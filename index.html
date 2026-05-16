@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Training — ThinkBox AI Studios | June 6th</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7b2fff;
+      --purple-dark: #4a0fa3;
+      --purple-light: #b06aff;
+      --gold: #f5c842;
+      --bg: #0a0010;
+      --bg2: #0f0020;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--bg);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: linear-gradient(160deg, #12002a 0%, #1a0040 40%, #0a0010 100%);
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(123,47,255,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 80%, rgba(123,47,255,0.2) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* star dots */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 40px 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 40px;
+    }
+
+    .hero-text { flex: 1; padding-bottom: 60px; }
+
+    .brand-tag {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(123,47,255,0.5);
+      border: 1px solid rgba(176,106,255,0.5);
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 6vw, 80px);
+      line-height: 1.0;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 .white { color: #fff; }
+    .hero h1 .purple { color: var(--purple-light); }
+
+    .hero-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 800;
+      text-transform: uppercase;
+      background: #fff;
+      color: var(--purple-dark);
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+    }
+
+    .tagline {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .tagline span { color: var(--purple-light); font-style: normal; font-weight: 700; }
+
+    .event-pills {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .pill {
+      background: rgba(123,47,255,0.3);
+      border: 1px solid rgba(176,106,255,0.5);
+      border-radius: 50px;
+      padding: 10px 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .pill span { color: var(--purple-light); }
+
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 20px 52px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 2px solid var(--purple-light);
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 30px rgba(123,47,255,0.6), 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 50px rgba(123,47,255,0.9), 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero-image {
+      flex-shrink: 0;
+      width: 480px;
+      position: relative;
+      align-self: center;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(123,47,255,0.7), 0 0 120px rgba(255,46,247,0.3);
+    }
+
+    .hero-image img {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+    }
+
+    /* ── BONUSES STRIP ── */
+    .bonuses-strip {
+      background: linear-gradient(90deg, #0f0025, #1a0045, #0f0025);
+      border-top: 2px solid var(--purple);
+      border-bottom: 2px solid var(--purple);
+      padding: 16px 40px;
+    }
+
+    .bonuses-strip-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .strip-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    .strip-badge {
+      background: var(--gold);
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      padding: 4px 16px;
+      border-radius: 20px;
+    }
+
+    /* ── WHAT'S INSIDE ── */
+    .inside-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .section-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+      color: #fff;
+    }
+
+    .section-title span { color: var(--purple-light); }
+
+    .bonuses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .bonus-card {
+      background: linear-gradient(160deg, rgba(123,47,255,0.15), rgba(10,0,16,0.8));
+      border: 1px solid rgba(123,47,255,0.4);
+      border-radius: 16px;
+      padding: 32px 24px;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .bonus-card:hover {
+      border-color: var(--purple-light);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(123,47,255,0.3);
+    }
+
+    .bonus-icon { font-size: 40px; margin-bottom: 16px; }
+
+    .bonus-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .bonus-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    /* exclusive badge */
+    .exclusive-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--gold), #e6a800);
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(18px, 3vw, 28px);
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border-radius: 60px;
+      margin-bottom: 60px;
+      box-shadow: 0 8px 32px rgba(245,200,66,0.4);
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      background: linear-gradient(160deg, #0f0025, #1a0040, #0f0025);
+      border-top: 1px solid rgba(123,47,255,0.3);
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 40px;
+      display: flex;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      flex-shrink: 0;
+      width: 280px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 3px solid var(--purple);
+      box-shadow: 0 0 40px rgba(123,47,255,0.4);
+    }
+
+    .about-img-wrap img { width: 100%; display: block; }
+
+    .about-text .section-eyebrow { text-align: left; margin-bottom: 8px; }
+
+    .about-text h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .about-text h2 span { color: var(--purple-light); }
+
+    .about-text p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .about-text .site-link {
+      color: var(--purple-light);
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+    }
+
+    /* ── REGISTRATION ── */
+    .reg-section {
+      background: var(--bg);
+    }
+
+    .reg-inner {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .reg-inner .section-title { margin-bottom: 10px; }
+
+    .reg-inner > p {
+      color: rgba(255,255,255,0.6);
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(123,47,255,0.1);
+      border: 1px solid rgba(123,47,255,0.4);
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 15px;
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--purple-light); }
+
+    .form-group select option { background: #1a0040; }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid var(--purple-light);
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s;
+      box-shadow: 0 0 30px rgba(123,47,255,0.5);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(123,47,255,0.8);
+    }
+
+    .form-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 14px;
+    }
+
+    .success-msg {
+      display: none;
+      background: rgba(123,47,255,0.15);
+      border: 1px solid rgba(123,47,255,0.5);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 20px;
+    }
+
+    .success-msg h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--purple-light);
+      margin-bottom: 10px;
+    }
+
+    .success-msg p { color: rgba(255,255,255,0.7); font-size: 15px; }
+
+    /* ── UPGRADE BANNER ── */
+    .upgrade-banner {
+      background: linear-gradient(90deg, var(--purple-dark), var(--purple), var(--purple-dark));
+      padding: 28px 40px;
+      text-align: center;
+    }
+
+    .upgrade-banner p {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(20px, 3vw, 32px);
+      text-transform: uppercase;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .upgrade-banner span { color: var(--gold); }
+
+    .upgrade-banner .site {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      margin-top: 6px;
+      font-weight: 400;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 40px;
+      border-top: 1px solid rgba(123,47,255,0.2);
+      color: rgba(255,255,255,0.3);
+      font-size: 13px;
+    }
+
+    footer a { color: var(--purple-light); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-inner { flex-direction: column; padding: 40px 24px 0; }
+      .hero-image { width: 100%; max-width: 320px; margin: 0 auto; }
+      .about-inner { flex-direction: column; padding: 50px 24px; }
+      .about-img-wrap { width: 100%; max-width: 260px; margin: 0 auto; }
+      .inside-section { padding: 50px 24px; }
+      .reg-inner { padding: 50px 24px; }
+      .bonuses-strip { padding: 16px 24px; }
+    }
+
+    /* ── VIDEO SECTION ── */
+    .video-section {
+      background: linear-gradient(160deg, #0a0010 0%, #0f0025 50%, #0a0010 100%);
+      border-top: 1px solid rgba(123,47,255,0.3);
+      border-bottom: 1px solid rgba(123,47,255,0.3);
+    }
+
+    .video-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 70px 40px;
+      text-align: center;
+    }
+
+    .video-subtext {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(123,47,255,0.6), 0 0 120px rgba(255,46,247,0.2);
+      border: 2px solid rgba(176,106,255,0.5);
+      aspect-ratio: 9/16;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="brand-tag">ThinkBox AI Studios</div>
+        <h1>
+          <span class="white">Upgrade Your</span><br/>
+          <span class="purple">AI Training</span><br/>
+          <span class="white">Experience</span>
+        </h1>
+        <div class="hero-sub">Go Beyond the Session.</div>
+        <p class="tagline">Live Virtual Training • <span>June 6th at 2PM EST</span> • Registration Required</p>
+
+        <div class="event-pills">
+          <div class="pill">📅 <span>June 6, 2026</span></div>
+          <div class="pill">🕑 <span>2:00 PM EST</span></div>
+          <div class="pill">💻 <span>Virtual / Live</span></div>
+          <div class="pill">🔒 <span>Must Register</span></div>
+        </div>
+
+        <a href="#register" class="cta-btn">⬆ Reserve Your Seat Now</a>
+      </div>
+
+      <div class="hero-image">
+        <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/340428903_5480d9af5_generated_image.png" alt="Upgrade Your AI Training Bootcamp Experience — Mona Jackson-Ham"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- BONUSES STRIP -->
+  <div class="bonuses-strip">
+    <div class="bonuses-strip-inner">
+      <span class="strip-label">Inside Your Registration:</span>
+      <span class="strip-badge">🎁 Exclusive Bonuses Worth $700+</span>
+      <span class="strip-label">• Live Training + Full Recordings • AI Swipe Files • Playbook & More</span>
+    </div>
+  </div>
+
+  <!-- WHAT'S INSIDE -->
+  <section>
+    
+  <!-- ── VIDEO SECTION ── -->
+  <section class="video-section">
+    <div class="video-inner">
+      <div class="section-eyebrow">🎬 Watch the Preview</div>
+      <h2 class="section-title">See What <span>You're Getting</span></h2>
+      <p class="video-subtext">Get a sneak peek at what's inside the ThinkBox AI Intensive — and why this training is unlike anything you've seen before.</p>
+      <div class="video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/WFyiNa6pXVY?rel=0&modestbranding=1&showinfo=0"
+          title="ThinkBox AI Intensive — Mona Jackson-Ham"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <div class="inside-section">
+      <div class="section-eyebrow">What's Included</div>
+      <h2 class="section-title">Inside Your <span>Training</span> Access</h2>
+
+      <div class="bonuses-grid">
+        <div class="bonus-card">
+          <div class="bonus-icon">▶️</div>
+          <h3>Full Recordings</h3>
+          <p>Lifetime access to the complete training session — rewatch anytime.</p>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-icon">📋</div>
+          <h3>AI Agent Swipe File</h3>
+          <p>10 pre-built plug-and-play templates ready to deploy in your business.</p>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-icon">🤖</div>
+          <h3>Troubleshooting Guide</h3>
+          <p>Solutions for when you get stuck — step-by-step AI agent fixes.</p>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-icon">📄</div>
+          <h3>Complete Notes PDF</h3>
+          <p>Fully searchable bootcamp notes — everything in one easy-to-find doc.</p>
+        </div>
+        <div class="bonus-card">
+          <div class="bonus-icon">📈</div>
+          <h3>7-Figure Agent Playbook</h3>
+          <p>Strategies to build, scale, and profit using AI agents in your business.</p>
+        </div>
+      </div>
+
+      <div class="exclusive-badge">
+        🏆 Exclusive Bonuses Worth <span style="margin-left:8px;">$700+</span>
+      </div>
+
+      <a href="#register" class="cta-btn">⬆ Upgrade Your Access Today</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <div class="about-inner">
+      <div class="about-img-wrap">
+        <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/3eaa04ea8_file_0.jpg" alt="Mona Jackson-Ham"/>
+      </div>
+      <div class="about-text">
+        <div class="section-eyebrow">Your Trainer</div>
+        <h2>Mona <span>Jackson-Ham</span></h2>
+        <p>Founder & CEO of <strong>MJUnlimited Essential Marketing</strong> and <strong>ThinkBox AI Studios</strong> — AI Strategist, Designer, and Educator helping entrepreneurs, ministries, and small businesses harness the power of Artificial Intelligence.</p>
+        <p>Mona brings real-world AI implementation experience to every training. No fluff. No theory. Just tools and strategies that work — starting June 6th.</p>
+        <a href="https://ThinkBoxAIStudios.com" target="_blank" class="site-link">🌐 ThinkBoxAIStudios.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING / REGISTRATION -->
+  <section class="reg-section" id="register">
+    <div class="reg-inner">
+      <div class="section-eyebrow">Secure Your Spot</div>
+      <h2 class="section-title">Choose Your <span>Access</span></h2>
+      <p style="margin-bottom:40px;">Seats are limited. Select your access level below and register now for June 6th at 2PM EST.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:900px;margin:0 auto 40px;">
+
+        <!-- LIVE TICKET -->
+        <div style="background:linear-gradient(160deg,rgba(123,47,255,0.15),rgba(10,0,16,0.9));border:1px solid rgba(123,47,255,0.5);border-radius:20px;padding:36px 28px;text-align:center;transition:all 0.3s;position:relative;">
+          <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#b06aff;margin-bottom:14px;">Live Access</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:42px;font-weight:900;color:#fff;margin-bottom:4px;">$47</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:20px;">One-time payment</div>
+          <div style="text-align:left;margin-bottom:24px;">
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ Live 2-Hour Training Session</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ Live Q&A with Mona</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ AI Swipe File Templates</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ 7-Figure Agent Playbook</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;">✅ Complete Notes PDF</div>
+          </div>
+          <a href="https://buy.stripe.com/8x2cN4cFNejRcVw6e9aVa0e" target="_blank" style="display:block;background:linear-gradient(135deg,#7b2fff,#4a0fa3);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;letter-spacing:1px;text-transform:uppercase;padding:16px 24px;border-radius:50px;text-decoration:none;border:2px solid #b06aff;transition:all 0.3s;box-shadow:0 0 24px rgba(123,47,255,0.5);">🔒 Reserve My Seat</a>
+          <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:12px;">📅 June 6, 2026 · 2PM EST</p>
+        </div>
+
+        <!-- BUNDLE — MOST POPULAR -->
+        <div style="background:linear-gradient(160deg,rgba(123,47,255,0.3),rgba(74,15,163,0.4));border:2px solid #b06aff;border-radius:20px;padding:36px 28px;text-align:center;transition:all 0.3s;position:relative;box-shadow:0 0 40px rgba(123,47,255,0.3);">
+          <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#f5c842;color:#000;font-family:'Montserrat',sans-serif;font-weight:900;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:5px 18px;border-radius:20px;">⭐ Most Popular</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#f5c842;margin-bottom:14px;">Live + Replay Bundle</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:42px;font-weight:900;color:#fff;margin-bottom:4px;">$67</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:20px;">Best value · Save $7</div>
+          <div style="text-align:left;margin-bottom:24px;">
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ Everything in Live Access</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ Lifetime Replay Access</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ Rewatch Anytime</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ Share with Your Team</div>
+            <div style="font-size:14px;color:#f5c842;padding:6px 0;font-weight:700;">🎁 Exclusive Bonus Materials</div>
+          </div>
+          <a href="https://buy.stripe.com/cNi28q0X5dfNf3E0TPaVa0g" target="_blank" style="display:block;background:linear-gradient(135deg,#f5c842,#d4a017);color:#000;font-family:'Montserrat',sans-serif;font-weight:900;font-size:15px;letter-spacing:1px;text-transform:uppercase;padding:16px 24px;border-radius:50px;text-decoration:none;border:2px solid #f5c842;transition:all 0.3s;box-shadow:0 0 24px rgba(245,200,66,0.4);">⭐ Get Best Value</a>
+          <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:12px;">📅 June 6, 2026 · 2PM EST</p>
+        </div>
+
+        <!-- REPLAY ONLY -->
+        <div style="background:linear-gradient(160deg,rgba(123,47,255,0.15),rgba(10,0,16,0.9));border:1px solid rgba(123,47,255,0.5);border-radius:20px;padding:36px 28px;text-align:center;transition:all 0.3s;position:relative;">
+          <div style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#b06aff;margin-bottom:14px;">Replay Only</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:42px;font-weight:900;color:#fff;margin-bottom:4px;">$27</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:20px;">One-time payment</div>
+          <div style="text-align:left;margin-bottom:24px;">
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ Full Session Recording</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ Lifetime Access</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ AI Swipe File Templates</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.8);padding:6px 0;border-bottom:1px solid rgba(123,47,255,0.2);">✅ Complete Notes PDF</div>
+            <div style="font-size:14px;color:rgba(255,255,255,0.4);padding:6px 0;">❌ No Live Q&A Access</div>
+          </div>
+          <a href="https://buy.stripe.com/fZu28qgW3grZ2gSbytaVa0f" target="_blank" style="display:block;background:linear-gradient(135deg,#7b2fff,#4a0fa3);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;letter-spacing:1px;text-transform:uppercase;padding:16px 24px;border-radius:50px;text-decoration:none;border:2px solid #b06aff;transition:all 0.3s;box-shadow:0 0 24px rgba(123,47,255,0.5);">🎬 Get Replay Access</a>
+          <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:12px;">Available after June 6th</p>
+        </div>
+
+      </div>
+
+      <p style="font-size:13px;color:rgba(255,255,255,0.35);text-align:center;">🔒 Secure checkout powered by Stripe · All major cards accepted<br/>✅ You'll receive a confirmation email with your access link after payment.</p>
+    </div>
+  </section>
+
+  <!-- UPGRADE BANNER -->
+  <div class="upgrade-banner">
+    <p>⬆ <span>Upgrade Your Access</span> Today!</p>
+    <p class="site">🌐 ThinkBoxAIStudios.com</p>
+  </div>
+
+  <footer>
+    <p>© 2026 ThinkBox AI Studios &bull; <a href="https://ThinkBoxAIStudios.com" target="_blank">ThinkBoxAIStudios.com</a></p>
+    <p style="margin-top:8px;">Questions? <a href="mailto:thinkboxaistudios@gmail.com">thinkboxaistudios@gmail.com</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('regForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('fullName').value;
+      const email = document.getElementById('email').value;
+      if (!name || !email) return;
+      this.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      console.log('Registration:', { name, email, phone: document.getElementById('phone').value, role: document.getElementById('role').value });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
