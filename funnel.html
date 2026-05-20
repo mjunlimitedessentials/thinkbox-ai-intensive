@@ -626,6 +626,26 @@
     document.getElementById('thankYouName').innerHTML =
       '<b style="color:#f5c842;">' + registrantData.firstName + ' ' + registrantData.lastName + '</b>, I am so honored you are joining us for the ThinkBox AI Intensive.';
 
+    // ── SUBMIT TO JOTFORM ──
+    var jfData = new FormData();
+    jfData.append('q1_fullName[first]', registrantData.firstName);
+    jfData.append('q1_fullName[last]',  registrantData.lastName);
+    jfData.append('q2_address',          registrantData.address);
+    jfData.append('q3_emailAddress',     registrantData.email);
+    jfData.append('q4_phoneNumber[full]',registrantData.phone);
+    jfData.append('formID',              '261395894134163');
+    jfData.append('simple_spc',          '261395894134163-261395894134163');
+
+    fetch('https://submit.jotform.com/submit/261395894134163/', {
+      method: 'POST',
+      body: jfData,
+      mode: 'no-cors'
+    }).then(function(){
+      console.log('Jotform: submitted successfully');
+    }).catch(function(err){
+      console.log('Jotform error:', err);
+    });
+
     goToStep(3);
   }
 
