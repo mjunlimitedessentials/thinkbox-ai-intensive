@@ -6,13 +6,13 @@
 <title>ThinkBox AI Intensive — Register Now</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', sans-serif; background: #0a0a0f; color: #fff; min-height: 100vh; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0a0010; color: #fff; min-height: 100vh; }
 
   /* PROGRESS BAR */
-  .progress-wrap { background: #1a1a2e; padding: 12px 20px; position: sticky; top: 0; z-index: 100; }
-  .progress-track { background: #2a2a4a; border-radius: 20px; height: 8px; overflow: hidden; max-width: 600px; margin: 0 auto; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, #9b5de5, #f72585, #f5c842); border-radius: 20px; transition: width 0.5s ease; }
-  .step-label { text-align: center; font-size: 11px; color: #9b5de5; margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+  .progress-wrap { background: #0f0025; padding: 12px 20px; position: sticky; top: 0; z-index: 100; }
+  .progress-track { background: #1a0040; border-radius: 20px; height: 8px; overflow: hidden; max-width: 600px; margin: 0 auto; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #7b2fff, #7B2FBE, #f5c842); border-radius: 20px; transition: width 0.5s ease; }
+  .step-label { text-align: center; font-size: 11px; color: #7b2fff; margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
 
   /* STEPS */
   .step { display: none; animation: fadeIn 0.5s ease; }
@@ -20,36 +20,36 @@
   @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
   /* HERO SECTION */
-  .hero { background: linear-gradient(135deg, #0d0d1a 0%, #1a0a2e 50%, #0a1628 100%); padding: 50px 20px 30px; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 50% 0%, rgba(155,93,229,0.3) 0%, transparent 70%); }
-  .hero-badge { display: inline-block; background: linear-gradient(135deg, #f72585, #9b5de5); padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; position: relative; }
+  .hero { background: linear-gradient(135deg, #0f0020 0%, #12002a 50%, #0f0025 100%); padding: 50px 20px 30px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 50% 0%, rgba(123,47,255,0.3) 0%, transparent 70%); }
+  .hero-badge { display: inline-block; background: linear-gradient(135deg, #7B2FBE, #7b2fff); padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; position: relative; }
   .hero h1 { font-size: clamp(28px,5vw,52px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; position: relative; }
-  .hero h1 span { background: linear-gradient(135deg, #f5c842, #f72585, #9b5de5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .hero-sub { font-size: clamp(15px,2.5vw,20px); color: #c8b8ff; margin-bottom: 30px; position: relative; }
+  .hero h1 span { background: linear-gradient(135deg, #f5c842, #7B2FBE, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-sub { font-size: clamp(15px,2.5vw,20px); color: #b06aff; margin-bottom: 30px; position: relative; }
   .event-date { display: inline-block; border: 2px solid #f5c842; color: #f5c842; padding: 10px 28px; border-radius: 30px; font-weight: 700; font-size: 16px; margin-bottom: 30px; position: relative; }
 
   /* MJ PHOTO SECTION */
   .mj-section { display: flex; align-items: center; gap: 30px; max-width: 900px; margin: 40px auto; padding: 0 20px; flex-wrap: wrap; justify-content: center; }
   .mj-photo-wrap { position: relative; flex-shrink: 0; }
-  .mj-photo-wrap::before { content:''; position:absolute; inset:-4px; border-radius: 20px; background: linear-gradient(135deg, #f5c842, #f72585, #9b5de5); z-index:0; }
+  .mj-photo-wrap::before { content:''; position:absolute; inset:-4px; border-radius: 20px; background: linear-gradient(135deg, #f5c842, #7B2FBE, #7b2fff); z-index:0; }
   .mj-photo { width: 260px; height: 320px; object-fit: cover; border-radius: 18px; position: relative; z-index: 1; display: block; }
   .mj-bio { flex: 1; min-width: 260px; text-align: left; }
   .mj-bio h2 { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
   .mj-bio h2 span { color: #f5c842; }
-  .mj-bio .title { color: #9b5de5; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
-  .mj-bio p { color: #c8b8ff; line-height: 1.7; font-size: 15px; }
+  .mj-bio .title { color: #7b2fff; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+  .mj-bio p { color: #b06aff; line-height: 1.7; font-size: 15px; }
 
   /* FLYER */
   .flyer-wrap { text-align: center; padding: 30px 20px; }
-  .flyer-wrap img { max-width: 480px; width: 100%; border-radius: 16px; box-shadow: 0 0 40px rgba(155,93,229,0.5); }
+  .flyer-wrap img { max-width: 480px; width: 100%; border-radius: 16px; box-shadow: 0 0 40px rgba(123,47,255,0.5); }
 
   /* EMBARK CARDS */
   .embark-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; padding: 30px 20px; }
-  .embark-card { background: linear-gradient(135deg, #12122a, #1e1a3a); border: 1px solid rgba(155,93,229,0.3); border-radius: 16px; padding: 24px; transition: transform 0.3s, box-shadow 0.3s; }
-  .embark-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(155,93,229,0.3); }
+  .embark-card { background: linear-gradient(135deg, #0d0a1a, #1a0045); border: 1px solid rgba(123,47,255,0.3); border-radius: 16px; padding: 24px; transition: transform 0.3s, box-shadow 0.3s; }
+  .embark-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(123,47,255,0.3); }
   .embark-card .icon { font-size: 32px; margin-bottom: 12px; }
   .embark-card h3 { font-size: 16px; font-weight: 700; color: #f5c842; margin-bottom: 8px; }
-  .embark-card p { font-size: 13px; color: #a09bc8; line-height: 1.6; }
+  .embark-card p { font-size: 13px; color: #7b2fff; line-height: 1.6; }
 
   /* VIDEO SECTION */
   .video-section { max-width: 720px; margin: 0 auto; padding: 30px 20px; text-align: center; }
@@ -59,46 +59,46 @@
   .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
   /* QUOTE */
-  .quote-bar { background: linear-gradient(135deg, #1a0a2e, #0a1628); border-left: 4px solid #f5c842; margin: 20px auto; max-width: 700px; padding: 20px 28px; border-radius: 0 12px 12px 0; }
-  .quote-bar p { font-style: italic; color: #e8d5ff; font-size: 17px; line-height: 1.7; }
+  .quote-bar { background: linear-gradient(135deg, #12002a, #0f0025); border-left: 4px solid #f5c842; margin: 20px auto; max-width: 700px; padding: 20px 28px; border-radius: 0 12px 12px 0; }
+  .quote-bar p { font-style: italic; color: #b06aff; font-size: 17px; line-height: 1.7; }
   .quote-bar .attr { color: #f5c842; font-size: 13px; font-weight: 700; margin-top: 10px; }
 
   /* FORM */
   .form-section { max-width: 600px; margin: 0 auto; padding: 30px 20px; }
   .form-section h2 { font-size: 26px; font-weight: 800; text-align: center; margin-bottom: 6px; }
   .form-section h2 span { color: #f5c842; }
-  .form-section .sub { text-align: center; color: #a09bc8; margin-bottom: 28px; font-size: 14px; }
+  .form-section .sub { text-align: center; color: #7b2fff; margin-bottom: 28px; font-size: 14px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-group { margin-bottom: 18px; }
-  .form-group label { display: block; font-size: 13px; font-weight: 600; color: #c8b8ff; margin-bottom: 6px; }
-  .form-group input { width: 100%; background: #12122a; border: 1px solid rgba(155,93,229,0.4); border-radius: 10px; padding: 12px 16px; color: #fff; font-size: 15px; outline: none; transition: border-color 0.3s; }
-  .form-group input:focus { border-color: #9b5de5; box-shadow: 0 0 0 3px rgba(155,93,229,0.2); }
-  .sms-note { font-size: 11px; color: #6b6880; margin-top: 6px; line-height: 1.5; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: #b06aff; margin-bottom: 6px; }
+  .form-group input { width: 100%; background: #0d0a1a; border: 1px solid rgba(123,47,255,0.4); border-radius: 10px; padding: 12px 16px; color: #fff; font-size: 15px; outline: none; transition: border-color 0.3s; }
+  .form-group input:focus { border-color: #7b2fff; box-shadow: 0 0 0 3px rgba(123,47,255,0.2); }
+  .sms-note { font-size: 11px; color: #4B0082; margin-top: 6px; line-height: 1.5; }
 
   /* PACKAGES */
   .pkg-section { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
-  .pkg-greeting { text-align: center; font-size: 20px; margin-bottom: 28px; color: #c8b8ff; }
+  .pkg-greeting { text-align: center; font-size: 20px; margin-bottom: 28px; color: #b06aff; }
   .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; }
-  .pkg-card { background: linear-gradient(135deg, #12122a, #1e1a3a); border: 2px solid rgba(155,93,229,0.3); border-radius: 20px; padding: 30px 24px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
-  .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(155,93,229,0.4); }
+  .pkg-card { background: linear-gradient(135deg, #0d0a1a, #1a0045); border: 2px solid rgba(123,47,255,0.3); border-radius: 20px; padding: 30px 24px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+  .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(123,47,255,0.4); }
   .pkg-card.featured { border-color: #f5c842; box-shadow: 0 0 30px rgba(245,200,66,0.3); }
-  .pkg-card .badge { display: inline-block; background: #f5c842; color: #0a0a0f; font-size: 11px; font-weight: 800; padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .pkg-card .badge { display: inline-block; background: #f5c842; color: #0a0010; font-size: 11px; font-weight: 800; padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
   .pkg-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
   .pkg-card .price { font-size: 42px; font-weight: 900; color: #f5c842; margin: 12px 0; }
   .pkg-card ul { list-style: none; margin: 16px 0 24px; text-align: left; }
-  .pkg-card ul li { padding: 5px 0; font-size: 13px; color: #c8b8ff; }
+  .pkg-card ul li { padding: 5px 0; font-size: 13px; color: #b06aff; }
   .pkg-card ul li::before { content: '✅ '; }
 
   /* UPSELL */
   .upsell-section { max-width: 680px; margin: 0 auto; padding: 30px 20px; text-align: center; }
-  .upsell-card { background: linear-gradient(135deg, #1a0a2e, #0a1628); border: 2px solid #f5c842; border-radius: 24px; padding: 40px 30px; }
-  .upsell-card .tag { display: inline-block; background: linear-gradient(135deg,#f72585,#9b5de5); padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+  .upsell-card { background: linear-gradient(135deg, #12002a, #0f0025); border: 2px solid #f5c842; border-radius: 24px; padding: 40px 30px; }
+  .upsell-card .tag { display: inline-block; background: linear-gradient(135deg,#7B2FBE,#7b2fff); padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
   .upsell-card h2 { font-size: 26px; font-weight: 900; margin-bottom: 12px; }
   .upsell-card h2 span { color: #f5c842; }
   .upsell-card .price { font-size: 48px; font-weight: 900; color: #f5c842; margin: 16px 0; }
-  .upsell-card .orig { text-decoration: line-through; color: #6b6880; font-size: 20px; margin-left: 8px; }
+  .upsell-card .orig { text-decoration: line-through; color: #4B0082; font-size: 20px; margin-left: 8px; }
   .upsell-list { text-align: left; max-width: 400px; margin: 20px auto; }
-  .upsell-list li { padding: 7px 0; font-size: 14px; color: #c8b8ff; list-style: none; }
+  .upsell-list li { padding: 7px 0; font-size: 14px; color: #b06aff; list-style: none; }
   .upsell-list li::before { content: '🔥 '; }
 
   /* THANK YOU */
@@ -106,19 +106,19 @@
   .thankyou-section .crown { font-size: 60px; margin-bottom: 20px; }
   .thankyou-section h1 { font-size: clamp(28px,5vw,46px); font-weight: 900; margin-bottom: 16px; }
   .thankyou-section h1 span { color: #f5c842; }
-  .thankyou-section p { color: #c8b8ff; font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
+  .thankyou-section p { color: #b06aff; font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
   .mj-sign-photo { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 3px solid #f5c842; margin: 20px auto; display: block; }
   .signature { font-size: 14px; color: #f5c842; font-weight: 700; margin-top: 8px; }
 
   /* BUTTONS */
-  .btn-gold { display: inline-block; background: linear-gradient(135deg, #f5c842, #f7a800); color: #0a0a0f; font-size: 16px; font-weight: 800; padding: 16px 36px; border-radius: 50px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; margin-top: 10px; }
+  .btn-gold { display: inline-block; background: linear-gradient(135deg, #f5c842, #f7a800); color: #0a0010; font-size: 16px; font-weight: 800; padding: 16px 36px; border-radius: 50px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; margin-top: 10px; }
   .btn-gold:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(245,200,66,0.5); }
-  .btn-purple { display: inline-block; background: linear-gradient(135deg, #9b5de5, #f72585); color: #fff; font-size: 16px; font-weight: 800; padding: 16px 36px; border-radius: 50px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; margin-top: 10px; }
-  .btn-purple:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(155,93,229,0.5); }
-  .btn-skip { background: none; border: none; color: #6b6880; font-size: 13px; cursor: pointer; margin-top: 16px; display: block; text-align: center; text-decoration: underline; }
+  .btn-purple { display: inline-block; background: linear-gradient(135deg, #7b2fff, #7B2FBE); color: #fff; font-size: 16px; font-weight: 800; padding: 16px 36px; border-radius: 50px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; margin-top: 10px; }
+  .btn-purple:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(123,47,255,0.5); }
+  .btn-skip { background: none; border: none; color: #4B0082; font-size: 13px; cursor: pointer; margin-top: 16px; display: block; text-align: center; text-decoration: underline; }
 
   /* DIVIDER */
-  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(155,93,229,0.4), transparent); margin: 10px auto; max-width: 600px; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(123,47,255,0.4), transparent); margin: 10px auto; max-width: 600px; }
 
   @media(max-width:600px) {
     .form-row { grid-template-columns: 1fr; }
@@ -196,7 +196,7 @@
   <div style="text-align:center; padding: 40px 20px 10px;">
     <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/3eaa04ea8_file_0.jpg" style="width:90px;height:90px;object-fit:cover;border-radius:50%;border:3px solid #f5c842;margin-bottom:16px;" alt="MJ"/>
     <h2 style="font-size:28px;font-weight:900;">Secure Your <span style="color:#f5c842;">Spot</span> 🎉</h2>
-    <p style="color:#a09bc8;margin-top:8px;font-size:14px;">Fill in your details below to begin your registration</p>
+    <p style="color:#7b2fff;margin-top:8px;font-size:14px;">Fill in your details below to begin your registration</p>
   </div>
   <div class="form-section">
     <form onsubmit="handleRegistration(event)">
@@ -258,7 +258,7 @@
         <a href="https://buy.stripe.com/live_placeholder" class="btn-gold" onclick="trackPurchase('live')" target="_blank">Join Live →</a>
       </div>
       <div class="pkg-card">
-        <div class="badge" style="background:linear-gradient(135deg,#9b5de5,#f72585);color:#fff;">Best Value</div>
+        <div class="badge" style="background:linear-gradient(135deg,#7b2fff,#7B2FBE);color:#fff;">Best Value</div>
         <h3>💎 Live + Replay Bundle</h3>
         <div class="price">$67</div>
         <ul>
@@ -282,7 +282,7 @@
     <div class="upsell-card">
       <div class="tag">⚡ One-Time Offer — Don't Miss This!</div>
       <h2>Add the <span>SEO Prompt Pack</span> to Your Order</h2>
-      <p style="color:#a09bc8;margin-bottom:10px;">50+ done-for-you AI prompts engineered to rank your content, grow your audience, and drive traffic — starting today.</p>
+      <p style="color:#7b2fff;margin-bottom:10px;">50+ done-for-you AI prompts engineered to rank your content, grow your audience, and drive traffic — starting today.</p>
       <div class="price">$37 <span class="orig">$97</span></div>
       <ul class="upsell-list">
         <li>50+ SEO-optimized AI prompts</li>
@@ -317,10 +317,10 @@
     </div>
 
     <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/3eaa04ea8_file_0.jpg" class="mj-sign-photo" alt="Mona Jackson-Ham"/>
-    <div class="signature">Mona Jackson-Ham<br/>Your AI Bootcamp Coach<br/><span style="color:#9b5de5;font-size:12px;">MJUnlimited Essential Marketing · ThinkBox AI Studios</span></div>
+    <div class="signature">Mona Jackson-Ham<br/>Your AI Bootcamp Coach<br/><span style="color:#7b2fff;font-size:12px;">MJUnlimited Essential Marketing · ThinkBox AI Studios</span></div>
 
-    <div style="margin-top:40px; padding:24px; background:linear-gradient(135deg,#1a0a2e,#0a1628); border:1px solid rgba(245,200,66,0.3); border-radius:16px;">
-      <p style="font-size:13px;color:#a09bc8;">Haven't grabbed the SEO Prompt Pack yet?</p>
+    <div style="margin-top:40px; padding:24px; background:linear-gradient(135deg,#12002a,#0f0025); border:1px solid rgba(245,200,66,0.3); border-radius:16px;">
+      <p style="font-size:13px;color:#7b2fff;">Haven't grabbed the SEO Prompt Pack yet?</p>
       <a href="https://buy.stripe.com/seo_placeholder" class="btn-gold" target="_blank" style="font-size:14px;padding:12px 28px;margin-top:12px;display:inline-block;">Add SEO Prompt Pack — $37 →</a>
     </div>
   </div>
