@@ -15,9 +15,7 @@
   .step-label { text-align: center; font-size: 11px; color: #7b2fff; margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
 
   /* STEPS */
-  .step { display: none; animation: fadeIn 0.5s ease; }
-  .step.active { display: block; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
   /* HERO SECTION */
   .hero { background: linear-gradient(135deg, #0f0020 0%, #12002a 50%, #0f0025 100%); padding: 50px 20px 30px; text-align: center; position: relative; overflow: hidden; }
@@ -330,57 +328,68 @@
   var registrantData = {};
 
   function goToStep(n) {
-    document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
-    document.getElementById('step' + n).classList.add('active');
-    document.getElementById('progressBar').style.width = (n * 20) + '%';
-    var labels = ['','Step 1 of 5 — Welcome','Step 2 of 5 — Registration','Step 3 of 5 — Choose Package','Step 4 of 5 — Special Offer','Step 5 of 5 — You\'re In!'];
-    document.getElementById('stepLabel').textContent = labels[n];
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    var steps = document.querySelectorAll(".step");
+    for (var i = 0; i < steps.length; i++) {
+      steps[i].style.display = "none";
+    }
+    document.getElementById("step" + n).style.display = "block";
+    document.getElementById("progressBar").style.width = (n * 20) + "%";
+    var labels = ["", "Step 1 of 5 - Welcome", "Step 2 of 5 - Registration", "Step 3 of 5 - Choose Package", "Step 4 of 5 - Special Offer", "Step 5 of 5 - You are In!"];
+    document.getElementById("stepLabel").textContent = labels[n];
+    window.scrollTo(0, 0);
   }
 
   function handleRegistration(e) {
     e.preventDefault();
-    registrantData.firstName = document.getElementById('firstName').value;
-    registrantData.lastName  = document.getElementById('lastName').value;
-    registrantData.address   = document.getElementById('address').value;
-    registrantData.email     = document.getElementById('email').value;
-    registrantData.phone     = document.getElementById('phone').value;
+    registrantData.firstName = document.getElementById("firstName").value;
+    registrantData.lastName  = document.getElementById("lastName").value;
+    registrantData.address   = document.getElementById("address").value;
+    registrantData.email     = document.getElementById("email").value;
+    registrantData.phone     = document.getElementById("phone").value;
 
-    document.getElementById('registrantGreeting').innerHTML =
-      'Welcome, <b style="color:#f5c842;">' + registrantData.firstName + '</b>! Choose the access level that\'s right for you. 🎉';
+    document.getElementById("registrantGreeting").innerHTML =
+      "Welcome, <b style='color:#f5c842;'>" + registrantData.firstName + "</b>! Choose the access level right for you!";
 
-    document.getElementById('thankYouName').innerHTML =
-      registrantData.firstName + ' ' + registrantData.lastName + ', I am so honored you are joining us!';
+    document.getElementById("thankYouName").innerHTML =
+      registrantData.firstName + " " + registrantData.lastName + ", I am so honored you are joining us!";
 
-    // ── SUBMIT TO JOTFORM ──
     var jfData = new FormData();
-    jfData.append('q1_fullName[first]', registrantData.firstName);
-    jfData.append('q1_fullName[last]',  registrantData.lastName);
-    jfData.append('q2_address',          registrantData.address);
-    jfData.append('q3_emailAddress',     registrantData.email);
-    jfData.append('q4_phoneNumber[full]',registrantData.phone);
-    jfData.append('formID',              '261395894134163');
-    jfData.append('simple_spc',          '261395894134163-261395894134163');
+    jfData.append("q1_fullName[first]", registrantData.firstName);
+    jfData.append("q1_fullName[last]",  registrantData.lastName);
+    jfData.append("q2_address",          registrantData.address);
+    jfData.append("q3_emailAddress",     registrantData.email);
+    jfData.append("q4_phoneNumber[full]",registrantData.phone);
+    jfData.append("formID",              "261395894134163");
+    jfData.append("simple_spc",          "261395894134163-261395894134163");
 
-    fetch('https://submit.jotform.com/submit/261395894134163/', {
-      method: 'POST',
+    fetch("https://submit.jotform.com/submit/261395894134163/", {
+      method: "POST",
       body: jfData,
-      mode: 'no-cors'
-    }).then(function(){ console.log('✅ Jotform: submitted'); })
-      .catch(function(err){ console.log('Jotform error:', err); });
+      mode: "no-cors"
+    }).then(function(){ console.log("Jotform: submitted"); })
+      .catch(function(err){ console.log("Jotform error:", err); });
 
     goToStep(3);
   }
 
   function trackPurchase(pkg) {
     setTimeout(function(){
-      var btn = document.getElementById('continueBtn');
-      if(btn) {
-        btn.style.background = 'linear-gradient(135deg,#2fff7b,#0fa34a)';
-        btn.innerHTML = "✅ I've Purchased — Continue →";
+      var btn = document.getElementById("continueBtn");
+      if (btn) {
+        btn.style.background = "linear-gradient(135deg,#2fff7b,#0fa34a)";
+        btn.innerHTML = "I Have Purchased - Continue to My Bonus";
       }
     }, 2000);
   }
+
+  // Replace CSS-based show/hide with JS display control on init
+  window.onload = function() {
+    var steps = document.querySelectorAll(".step");
+    for (var i = 0; i < steps.length; i++) {
+      steps[i].style.display = "none";
+    }
+    document.getElementById("step1").style.display = "block";
+  };
 </script>
 </body>
 </html>
