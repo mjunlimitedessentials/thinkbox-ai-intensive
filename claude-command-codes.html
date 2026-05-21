@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>20 Claude Command Codes — ThinkBox AI Studios</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", sans-serif; background: #0a0010; color: #fff; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, #0f0020 0%, #12002a 50%, #0f0025 100%); padding: 60px 20px 40px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content:""; position:absolute; inset:0; background: radial-gradient(ellipse at 50% 0%, rgba(123,47,255,0.4) 0%, transparent 70%); }
+  .stars { position:absolute; inset:0; background-image: radial-gradient(1px 1px at 10% 20%, #fff 0%, transparent 100%), radial-gradient(1px 1px at 30% 50%, #fff 0%, transparent 100%), radial-gradient(1px 1px at 60% 15%, #fff 0%, transparent 100%), radial-gradient(1px 1px at 80% 70%, #fff 0%, transparent 100%), radial-gradient(1px 1px at 50% 80%, #fff 0%, transparent 100%), radial-gradient(1px 1px at 20% 90%, #fff 0%, transparent 100%), radial-gradient(1px 1px at 90% 30%, #fff 0%, transparent 100%); opacity: 0.6; }
+
+  .mj-circle { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #f72585; object-fit: cover; margin: 0 auto 16px; display: block; position: relative; z-index:1; }
+  .brand { font-size: 12px; letter-spacing: 3px; color: #f72585; text-transform: uppercase; margin-bottom: 16px; position: relative; z-index:1; }
+  .hero h1 { font-size: clamp(32px, 6vw, 60px); font-weight: 900; line-height: 1.1; position: relative; z-index:1; margin-bottom: 16px; }
+  .hero h1 span { background: linear-gradient(135deg, #f5c842, #f72585, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-sub { font-size: clamp(16px, 2.5vw, 22px); color: #b06aff; margin-bottom: 30px; position: relative; z-index:1; font-style: italic; }
+  .price-tag { display: inline-block; background: linear-gradient(135deg, #f5c842, #f7a800); color: #0a0010; font-size: 42px; font-weight: 900; padding: 12px 40px; border-radius: 50px; margin-bottom: 10px; position: relative; z-index:1; }
+  .orig-price { color: #6b6880; font-size: 18px; text-decoration: line-through; margin-bottom: 24px; position: relative; z-index:1; }
+
+  .btn-buy { display: inline-block; background: linear-gradient(135deg, #f72585, #7b2fff); color: #fff; font-size: 20px; font-weight: 800; padding: 20px 50px; border-radius: 50px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; position: relative; z-index:1; margin-top: 10px; }
+  .btn-buy:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(247,37,133,0.5); }
+  .secure { font-size: 12px; color: #7b2fff; margin-top: 12px; position: relative; z-index:1; }
+
+  /* PREVIEW */
+  .preview-section { max-width: 700px; margin: 0 auto; padding: 50px 20px; text-align: center; }
+  .preview-section h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .preview-section h2 span { color: #f5c842; }
+  .preview-section p { color: #b06aff; margin-bottom: 30px; }
+  .preview-img { width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 0 60px rgba(123,47,255,0.6); border: 2px solid rgba(123,47,255,0.4); }
+
+  /* CODES PREVIEW */
+  .codes-section { max-width: 800px; margin: 0 auto; padding: 0 20px 50px; }
+  .codes-section h2 { text-align:center; font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .codes-section .sub { text-align:center; color: #b06aff; margin-bottom: 30px; }
+  .code-row { display: flex; align-items: center; gap: 16px; background: linear-gradient(135deg, #0d0a1a, #1a0045); border: 1px solid rgba(123,47,255,0.3); border-radius: 14px; padding: 18px 24px; margin-bottom: 12px; transition: transform 0.2s, box-shadow 0.2s; }
+  .code-row:hover { transform: translateX(6px); box-shadow: 0 4px 20px rgba(123,47,255,0.3); }
+  .code-name { font-size: 20px; font-weight: 900; color: #f72585; min-width: 140px; font-family: monospace; }
+  .code-desc { font-size: 15px; color: #c8b8ff; }
+  .locked { filter: blur(4px); pointer-events: none; }
+  .lock-badge { text-align:center; margin: 20px 0; }
+  .lock-badge span { background: rgba(123,47,255,0.2); border: 1px solid #7b2fff; color: #b06aff; padding: 8px 24px; border-radius: 20px; font-size: 13px; }
+
+  /* WHAT YOU GET */
+  .get-section { background: linear-gradient(135deg, #0f0020, #12002a); padding: 50px 20px; }
+  .get-inner { max-width: 800px; margin: 0 auto; }
+  .get-inner h2 { text-align:center; font-size: 28px; font-weight: 800; margin-bottom: 30px; }
+  .get-inner h2 span { color: #f5c842; }
+  .get-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; }
+  .get-card { background: linear-gradient(135deg, #0d0a1a, #1a0045); border: 1px solid rgba(123,47,255,0.3); border-radius: 16px; padding: 24px; text-align:center; }
+  .get-card .icon { font-size: 36px; margin-bottom: 12px; }
+  .get-card h3 { font-size: 15px; font-weight: 700; color: #f5c842; margin-bottom: 8px; }
+  .get-card p { font-size: 13px; color: #b06aff; line-height: 1.6; }
+
+  /* ABOUT */
+  .about-section { max-width: 800px; margin: 0 auto; padding: 50px 20px; display: flex; align-items: center; gap: 30px; flex-wrap: wrap; justify-content: center; }
+  .about-photo { width: 180px; height: 220px; object-fit: cover; border-radius: 16px; border: 3px solid #f5c842; flex-shrink: 0; }
+  .about-text h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+  .about-text h2 span { color: #f5c842; }
+  .about-text .role { color: #7b2fff; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .about-text p { color: #b06aff; font-size: 15px; line-height: 1.7; }
+
+  /* CTA BOTTOM */
+  .cta-bottom { background: linear-gradient(135deg, #0f0020, #12002a); padding: 60px 20px; text-align: center; }
+  .cta-bottom h2 { font-size: clamp(24px,4vw,40px); font-weight: 900; margin-bottom: 12px; }
+  .cta-bottom h2 span { color: #f5c842; }
+  .cta-bottom p { color: #b06aff; margin-bottom: 30px; font-size: 16px; }
+
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(123,47,255,0.5), transparent); margin: 10px auto; max-width: 600px; }
+
+  footer { text-align:center; padding: 24px; font-size: 12px; color: #4B0082; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="stars"></div>
+  <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/870311f01_file_30.jpg" class="mj-circle" alt="Mona Jackson-Ham"/>
+  <div class="brand">ThinkBox AI Studios</div>
+  <h1>20 Claude<br/><span>Command Codes</span></h1>
+  <p class="hero-sub">Shortcut prompts that unlock Claude's best work — instantly</p>
+  <div class="price-tag">$27</div>
+  <div style="position:relative;z-index:1;">
+    <div class="orig-price">Value: $97</div>
+  </div>
+  <a href="https://buy.stripe.com/command_codes_placeholder" class="btn-buy">Yes! I Want All 20 Codes →</a>
+  <div class="secure">🔒 Instant Digital Download · Secure Checkout</div>
+</div>
+
+<!-- PREVIEW IMAGE -->
+<div class="preview-section">
+  <h2>A <span>Sneak Peek</span> Inside 👀</h2>
+  <p>Here are just 4 of the 20 powerful codes waiting for you</p>
+  <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/870311f01_file_30.jpg" class="preview-img" alt="20 Claude Command Codes Preview"/>
+</div>
+
+<div class="divider"></div>
+
+<!-- CODES PREVIEW -->
+<div class="codes-section">
+  <h2>What's <span style="color:#f5c842;">Inside</span></h2>
+  <div class="sub">Type a code. Get a better answer. That simple.</div>
+
+  <div class="code-row">
+    <div class="code-name">/Natural</div>
+    <div class="code-desc">Strips robotic AI tone — rewrites in YOUR natural human voice</div>
+  </div>
+  <div class="code-row">
+    <div class="code-name">/Unlock</div>
+    <div class="code-desc">Drops the short safe answer — delivers maximum depth instantly</div>
+  </div>
+  <div class="code-row">
+    <div class="code-name">/DeepDive</div>
+    <div class="code-desc">Consultant-grade analysis on any topic or business decision</div>
+  </div>
+  <div class="code-row">
+    <div class="code-name">/Hooks</div>
+    <div class="code-desc">Generates scroll-stopping openers for posts, emails, headlines</div>
+  </div>
+  <div class="code-row">
+    <div class="code-name">/Repurpose</div>
+    <div class="code-desc">Turns one piece of content into multiple formats instantly</div>
+  </div>
+
+  <div class="lock-badge">
+    <span>🔒 + 15 More Codes Unlocked After Purchase</span>
+  </div>
+
+  <div class="code-row locked">
+    <div class="code-name">/Blindspot</div>
+    <div class="code-desc">Surfaces hidden risks and gaps in your thinking</div>
+  </div>
+  <div class="code-row locked">
+    <div class="code-name">/Stresstest</div>
+    <div class="code-desc">Pressure-tests your idea from every angle before you launch</div>
+  </div>
+  <div class="code-row locked">
+    <div class="code-name">/Brainstorm</div>
+    <div class="code-desc">Floods you with a wide, varied list of ideas — fast</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHAT YOU GET -->
+<div class="get-section">
+  <div class="get-inner">
+    <h2>Everything You <span>Get Today</span></h2>
+    <div class="get-grid">
+      <div class="get-card"><div class="icon">📄</div><h3>20 Command Codes PDF</h3><p>Beautifully designed, ready to reference anytime — desktop or mobile</p></div>
+      <div class="get-card"><div class="icon">⚡</div><h3>Instant Download</h3><p>Access your codes immediately after purchase — no waiting</p></div>
+      <div class="get-card"><div class="icon">🔀</div><h3>Stackable Codes</h3><p>Combine codes for layered, expert-level AI outputs every time</p></div>
+      <div class="get-card"><div class="icon">💡</div><h3>How-To Guide</h3><p>3 ways to use every code — standalone, inline, or stacked</p></div>
+      <div class="get-card"><div class="icon">🎯</div><h3>Works Immediately</h3><p>No setup. No tech skills needed. Just type the code and go.</p></div>
+      <div class="get-card"><div class="icon">💜</div><h3>ThinkBox AI Method</h3><p>Built on Mona's proven AI framework for entrepreneurs and educators</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT MJ -->
+<div class="about-section">
+  <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/3eaa04ea8_file_0.jpg" class="about-photo" alt="Mona Jackson-Ham"/>
+  <div class="about-text">
+    <h2>Meet <span>Mona Jackson-Ham</span></h2>
+    <div class="role">Founder · MJUnlimited Essential Marketing · ThinkBox AI Studios</div>
+    <p>Designer, AI Strategist, and Educator — Mona has helped entrepreneurs, ministries, and small business owners harness the power of AI. These 20 codes are the exact shortcuts she uses every single day to get better outputs, faster results, and expert-level work from Claude.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CTA BOTTOM -->
+<div class="cta-bottom">
+  <h2>Ready to <span>Work Smarter</span> with AI?</h2>
+  <p>Stop typing paragraphs. Start using codes. Get all 20 today for just $27.</p>
+  <a href="https://buy.stripe.com/command_codes_placeholder" class="btn-buy">Get My 20 Claude Command Codes →</a>
+  <div class="secure" style="margin-top:16px;">🔒 Instant Download · Secure Checkout · One-Time Payment</div>
+</div>
+
+<footer>
+  © ThinkBox AI Studios — MJUnlimited Essential Marketing. For personal use by the purchaser only. Please do not redistribute or resell.<br/>
+  Questions? <a href="mailto:ThinkBoxAIStudios@gmail.com" style="color:#7b2fff;">ThinkBoxAIStudios@gmail.com</a>
+</footer>
+
+</body>
+</html>
