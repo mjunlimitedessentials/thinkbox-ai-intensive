@@ -379,7 +379,12 @@ body { font-family: 'Inter', sans-serif; background: #050008; color: #fff; overf
     <h2>The <span>AI Revolution</span> Is Here.<br/>Are You Ready?</h2>
     <p>This 3-minute video breaks down exactly why AI is the most important skill you can learn right now — and what we're covering in the intensive.</p>
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1" allowfullscreen title="ThinkBox AI Intensive Preview"></iframe>
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0d0022,#1a0045);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border-radius:16px;">
+        <div style="font-size:56px;">🎬</div>
+        <div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:800;color:#f5c842;letter-spacing:2px;text-transform:uppercase;">Video Coming Soon</div>
+        <div style="font-size:13px;color:#b06aff;text-align:center;max-width:300px;line-height:1.6;">Your AI Intensive preview video will appear here. Drop the YouTube link and I'll plug it in instantly!</div>
+        <div style="background:rgba(123,47,255,0.2);border:1px solid #7b2fff;border-radius:8px;padding:8px 20px;font-size:11px;color:#7b2fff;letter-spacing:1px;">mjunlimited.com | ThinkBox AI Studios</div>
+      </div>
     </div>
   </div>
 
@@ -522,11 +527,39 @@ body { font-family: 'Inter', sans-serif; background: #050008; color: #fff; overf
 
   function goStep3() { showStep(2); }
 
-  function goStep4(vip) {
-    isVIP = vip;
+  let selectedPkg = null;
+  let vaultAdded = false;
+
+  function selectPkg(type, price) {
+    selectedPkg = { type, price };
+    // Scroll down to vault add-on
+    document.getElementById('addVaultBtn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function toggleVault() {
+    vaultAdded = !vaultAdded;
+    const btn = document.getElementById('addVaultBtn');
+    const added = document.getElementById('vaultAdded');
+    if (vaultAdded) {
+      btn.textContent = '✅ VAULT ADDED — Click to Remove';
+      btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+      added.style.display = 'block';
+    } else {
+      btn.textContent = '➕ YES — ADD THE PROMPT VAULT FOR $37';
+      btn.style.background = '';
+      added.style.display = 'none';
+    }
+  }
+
+  function skipVault() {
+    if (!selectedPkg) { alert('Please select a package above first!'); return; }
+    goStep4(selectedPkg.type !== 'recording');
+  }
+
+  function goStep4(hasLive) {
     const fn = document.getElementById('firstName').value.trim() || 'Friend';
     document.getElementById('firstName4').textContent = fn;
-    if (vip) document.getElementById('vipLine').style.display = 'list-item';
+    if (hasLive || vaultAdded) document.getElementById('vipLine').style.display = 'list-item';
     showStep(3);
   }
 </script>
