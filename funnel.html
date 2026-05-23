@@ -3,393 +3,532 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ThinkBox AI Intensive — Register Now</title>
+<title>ThinkBox AI Intensive — Free AI Training for Entrepreneurs | Mona Jackson-Ham</title>
+<meta name="description" content="Join Mona Jackson-Ham LIVE for the ThinkBox AI Intensive — the #1 AI training for Black women entrepreneurs, coaches, ministry leaders & small business owners. June 13, 2026."/>
+<meta name="keywords" content="AI training for entrepreneurs, AI for small business, AI for Black women, ThinkBox AI Intensive, Mona Jackson-Ham, AI bootcamp, AI tools for business, AI marketing, AI automation, free AI training 2026"/>
+<meta property="og:title" content="ThinkBox AI Intensive — Free AI Training | Mona Jackson-Ham"/>
+<meta property="og:description" content="The AI training built for entrepreneurs who are done being left behind. Join live June 13, 2026."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', sans-serif; background: #0a0010; color: #fff; min-height: 100vh; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #050008; color: #fff; overflow-x: hidden; }
 
-  /* PROGRESS BAR */
-  .progress-wrap { background: #0f0025; padding: 12px 20px; position: sticky; top: 0; z-index: 100; }
-  .progress-track { background: #1a0040; border-radius: 20px; height: 8px; overflow: hidden; max-width: 600px; margin: 0 auto; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, #7b2fff, #7B2FBE, #f5c842); border-radius: 20px; transition: width 0.5s ease; }
-  .step-label { text-align: center; font-size: 11px; color: #7b2fff; margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+/* ── STEP SYSTEM ── */
+.step { display: none; animation: fadeUp 0.5s ease; }
+.step.active { display: block; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
-  /* STEPS */
-  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+/* ── STICKY PROGRESS ── */
+.progress-bar-wrap {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(5,0,8,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(123,47,255,0.2);
+  padding: 12px 20px;
+}
+.progress-inner { max-width: 640px; margin: 0 auto; }
+.progress-track { background: #1a0040; border-radius: 20px; height: 6px; overflow: hidden; margin-bottom: 6px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #7b2fff, #e040fb, #f5c842); border-radius: 20px; transition: width 0.6s cubic-bezier(0.4,0,0.2,1); }
+.progress-label { text-align: center; font-size: 10px; color: #7b2fff; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
 
-  /* HERO SECTION */
-  .hero { background: linear-gradient(135deg, #0f0020 0%, #12002a 50%, #0f0025 100%); padding: 50px 20px 30px; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse at 50% 0%, rgba(123,47,255,0.3) 0%, transparent 70%); }
-  .hero-badge { display: inline-block; background: linear-gradient(135deg, #7B2FBE, #7b2fff); padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; position: relative; }
-  .hero h1 { font-size: clamp(28px,5vw,52px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; position: relative; }
-  .hero h1 span { background: linear-gradient(135deg, #f5c842, #7B2FBE, #7b2fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .hero-sub { font-size: clamp(15px,2.5vw,20px); color: #b06aff; margin-bottom: 30px; position: relative; }
-  .event-date { display: inline-block; border: 2px solid #f5c842; color: #f5c842; padding: 10px 28px; border-radius: 30px; font-weight: 700; font-size: 16px; margin-bottom: 30px; position: relative; }
+/* ── SECTION: HERO ── */
+.hero {
+  background: radial-gradient(ellipse at 50% 0%, rgba(123,47,255,0.35) 0%, transparent 60%), #050008;
+  text-align: center; padding: 60px 20px 40px; position: relative; overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%237b2fff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(123,47,255,0.3), rgba(224,64,251,0.3));
+  border: 1px solid rgba(123,47,255,0.5);
+  border-radius: 50px; padding: 6px 20px;
+  font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+  color: #e040fb; margin-bottom: 24px; position: relative;
+}
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(26px, 5.5vw, 56px);
+  font-weight: 900; line-height: 1.1; margin-bottom: 16px; position: relative;
+}
+.hero h1 .gold { color: #f5c842; }
+.hero h1 .purple { background: linear-gradient(135deg, #7b2fff, #e040fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-size: clamp(15px, 2.5vw, 20px); color: #b06aff; margin-bottom: 28px; position: relative; max-width: 680px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+.hero-date {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 2px solid #f5c842; color: #f5c842; padding: 10px 28px;
+  border-radius: 50px; font-weight: 800; font-size: 15px; margin-bottom: 36px; position: relative;
+}
 
-  /* MJ PHOTO SECTION */
-  .mj-section { display: flex; align-items: center; gap: 30px; max-width: 900px; margin: 40px auto; padding: 0 20px; flex-wrap: wrap; justify-content: center; }
-  .mj-photo-wrap { position: relative; flex-shrink: 0; }
-  .mj-photo-wrap::before { content:''; position:absolute; inset:-4px; border-radius: 20px; background: linear-gradient(135deg, #f5c842, #7B2FBE, #7b2fff); z-index:0; }
-  .mj-photo { width: 260px; height: 320px; object-fit: cover; border-radius: 18px; position: relative; z-index: 1; display: block; }
-  .mj-bio { flex: 1; min-width: 260px; text-align: left; }
-  .mj-bio h2 { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
-  .mj-bio h2 span { color: #f5c842; }
-  .mj-bio .title { color: #7b2fff; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
-  .mj-bio p { color: #b06aff; line-height: 1.7; font-size: 15px; }
+/* ── URGENCY BAR ── */
+.urgency-bar {
+  background: linear-gradient(135deg, #7b2fff, #e040fb);
+  text-align: center; padding: 12px 20px;
+  font-size: 13px; font-weight: 800; letter-spacing: 1px;
+}
+.urgency-bar span { color: #f5c842; }
 
-  /* FLYER */
-  .flyer-wrap { text-align: center; padding: 30px 20px; }
-  .flyer-wrap img { max-width: 480px; width: 100%; border-radius: 16px; box-shadow: 0 0 40px rgba(123,47,255,0.5); }
+/* ── SOUND BAR ── */
+.sound-bar {
+  background: #1a0a00; border: 2px solid #f5c842;
+  border-radius: 12px; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  max-width: 580px; margin: 0 auto 28px;
+  font-size: 14px; font-weight: 700; color: #f5c842;
+}
 
-  /* EMBARK CARDS */
-  .embark-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; padding: 30px 20px; }
-  .embark-card { background: linear-gradient(135deg, #0d0a1a, #1a0045); border: 1px solid rgba(123,47,255,0.3); border-radius: 16px; padding: 24px; transition: transform 0.3s, box-shadow 0.3s; }
-  .embark-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(123,47,255,0.3); }
-  .embark-card .icon { font-size: 32px; margin-bottom: 12px; }
-  .embark-card h3 { font-size: 16px; font-weight: 700; color: #f5c842; margin-bottom: 8px; }
-  .embark-card p { font-size: 13px; color: #7b2fff; line-height: 1.6; }
+/* ── ALMOST COMPLETE BAR ── */
+.almost-bar {
+  max-width: 640px; margin: 0 auto 28px;
+  background: #0f0025; border-radius: 50px; overflow: hidden;
+  border: 1px solid rgba(123,47,255,0.3); position: relative; height: 44px;
+}
+.almost-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg, #22c55e, #22c55e 10px, #16a34a 10px, #16a34a 20px
+  );
+  width: 88%; border-radius: 50px;
+  animation: pulse-bar 2s ease-in-out infinite;
+}
+.almost-text {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; letter-spacing: 3px; color: white; text-transform: uppercase;
+}
+@keyframes pulse-bar { 0%,100%{opacity:1} 50%{opacity:0.85} }
 
-  /* VIDEO SECTION */
-  .video-section { max-width: 720px; margin: 0 auto; padding: 30px 20px; text-align: center; }
-  .video-section h3 { font-size: 22px; font-weight: 800; margin-bottom: 16px; }
-  .video-section h3 span { color: #f5c842; }
-  .video-wrap { position: relative; padding-bottom: 56.25%; border-radius: 16px; overflow: hidden; box-shadow: 0 0 40px rgba(247,37,133,0.4); }
-  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+/* ── DEMO FORM (Step 1) ── */
+.demo-section { max-width: 580px; margin: 0 auto; padding: 20px 20px 40px; }
+.demo-card {
+  background: linear-gradient(135deg, #0d0022, #120030);
+  border: 1px solid rgba(123,47,255,0.4); border-radius: 24px; padding: 36px 32px;
+  box-shadow: 0 0 60px rgba(123,47,255,0.15);
+}
+.demo-card h2 { font-size: 22px; font-weight: 900; text-align: center; margin-bottom: 6px; }
+.demo-card h2 span { color: #f5c842; }
+.demo-sub { text-align: center; color: #7b2fff; font-size: 13px; margin-bottom: 28px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 12px; font-weight: 700; color: #b06aff; margin-bottom: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
+.form-group input, .form-group select {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(123,47,255,0.35); border-radius: 10px;
+  padding: 13px 16px; color: #fff; font-size: 15px; outline: none;
+  transition: border-color 0.3s; font-family: 'Inter', sans-serif;
+  appearance: none;
+}
+.form-group input:focus, .form-group select:focus { border-color: #7b2fff; box-shadow: 0 0 0 3px rgba(123,47,255,0.2); }
+.form-group select option { background: #0d0022; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.privacy-note { font-size: 11px; color: #4B0082; text-align: center; margin-top: 10px; line-height: 1.5; }
 
-  /* QUOTE */
-  .quote-bar { background: linear-gradient(135deg, #12002a, #0f0025); border-left: 4px solid #f5c842; margin: 20px auto; max-width: 700px; padding: 20px 28px; border-radius: 0 12px 12px 0; }
-  .quote-bar p { font-style: italic; color: #b06aff; font-size: 17px; line-height: 1.7; }
-  .quote-bar .attr { color: #f5c842; font-size: 13px; font-weight: 700; margin-top: 10px; }
+/* ── BUTTONS ── */
+.btn-gold {
+  display: block; width: 100%;
+  background: linear-gradient(135deg, #f5c842, #f7a800);
+  color: #050008; font-size: 17px; font-weight: 900;
+  padding: 18px 36px; border-radius: 50px; border: none;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;
+}
+.btn-gold:hover { transform: scale(1.03); box-shadow: 0 10px 40px rgba(245,200,66,0.5); }
+.btn-purple {
+  display: block; width: 100%;
+  background: linear-gradient(135deg, #7b2fff, #e040fb);
+  color: #fff; font-size: 17px; font-weight: 900;
+  padding: 18px 36px; border-radius: 50px; border: none;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;
+}
+.btn-purple:hover { transform: scale(1.03); box-shadow: 0 10px 40px rgba(123,47,255,0.5); }
+.btn-skip {
+  background: none; border: none; color: #4B0082;
+  font-size: 13px; cursor: pointer; display: block;
+  text-align: center; text-decoration: underline; margin: 14px auto 0; width: 100%;
+}
 
-  /* FORM */
-  .form-section { max-width: 600px; margin: 0 auto; padding: 30px 20px; }
-  .form-section h2 { font-size: 26px; font-weight: 800; text-align: center; margin-bottom: 6px; }
-  .form-section h2 span { color: #f5c842; }
-  .form-section .sub { text-align: center; color: #7b2fff; margin-bottom: 28px; font-size: 14px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-group { margin-bottom: 18px; }
-  .form-group label { display: block; font-size: 13px; font-weight: 600; color: #b06aff; margin-bottom: 6px; }
-  .form-group input { width: 100%; background: #0d0a1a; border: 1px solid rgba(123,47,255,0.4); border-radius: 10px; padding: 12px 16px; color: #fff; font-size: 15px; outline: none; transition: border-color 0.3s; }
-  .form-group input:focus { border-color: #7b2fff; box-shadow: 0 0 0 3px rgba(123,47,255,0.2); }
-  .sms-note { font-size: 11px; color: #4B0082; margin-top: 6px; line-height: 1.5; }
+/* ── VIDEO SECTION (Step 2) ── */
+.video-section { max-width: 720px; margin: 0 auto; padding: 20px 20px 10px; text-align: center; }
+.video-label { display: inline-block; background: rgba(224,64,251,0.15); border: 1px solid #e040fb; border-radius: 50px; padding: 5px 18px; font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #e040fb; text-transform: uppercase; margin-bottom: 16px; }
+.video-section h2 { font-size: clamp(20px, 4vw, 34px); font-weight: 900; margin-bottom: 10px; }
+.video-section h2 span { color: #f5c842; }
+.video-section p { color: #b06aff; font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+.video-wrap { position: relative; padding-bottom: 56.25%; border-radius: 16px; overflow: hidden; box-shadow: 0 0 50px rgba(123,47,255,0.4); margin-bottom: 28px; }
+.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
-  /* PACKAGES */
-  .pkg-section { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
-  .pkg-greeting { text-align: center; font-size: 20px; margin-bottom: 28px; color: #b06aff; }
-  .pkg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; }
-  .pkg-card { background: linear-gradient(135deg, #0d0a1a, #1a0045); border: 2px solid rgba(123,47,255,0.3); border-radius: 20px; padding: 30px 24px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
-  .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(123,47,255,0.4); }
-  .pkg-card.featured { border-color: #f5c842; box-shadow: 0 0 30px rgba(245,200,66,0.3); }
-  .pkg-card .badge { display: inline-block; background: #f5c842; color: #0a0010; font-size: 11px; font-weight: 800; padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
-  .pkg-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
-  .pkg-card .price { font-size: 42px; font-weight: 900; color: #f5c842; margin: 12px 0; }
-  .pkg-card ul { list-style: none; margin: 16px 0 24px; text-align: left; }
-  .pkg-card ul li { padding: 5px 0; font-size: 13px; color: #b06aff; }
-  .pkg-card ul li::before { content: '✅ '; }
+/* ── AI NEWS TICKERS ── */
+.ticker-wrap { overflow: hidden; background: rgba(123,47,255,0.08); border-top: 1px solid rgba(123,47,255,0.2); border-bottom: 1px solid rgba(123,47,255,0.2); padding: 12px 0; margin: 20px 0; }
+.ticker { display: flex; gap: 60px; animation: ticker 30s linear infinite; white-space: nowrap; }
+.ticker-item { font-size: 12px; font-weight: 700; color: #b06aff; letter-spacing: 0.5px; }
+.ticker-item .dot { color: #f5c842; margin-right: 8px; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* UPSELL */
-  .upsell-section { max-width: 680px; margin: 0 auto; padding: 30px 20px; text-align: center; }
-  .upsell-card { background: linear-gradient(135deg, #12002a, #0f0025); border: 2px solid #f5c842; border-radius: 24px; padding: 40px 30px; }
-  .upsell-card .tag { display: inline-block; background: linear-gradient(135deg,#7B2FBE,#7b2fff); padding: 6px 20px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
-  .upsell-card h2 { font-size: 26px; font-weight: 900; margin-bottom: 12px; }
-  .upsell-card h2 span { color: #f5c842; }
-  .upsell-card .price { font-size: 48px; font-weight: 900; color: #f5c842; margin: 16px 0; }
-  .upsell-card .orig { text-decoration: line-through; color: #4B0082; font-size: 20px; margin-left: 8px; }
-  .upsell-list { text-align: left; max-width: 400px; margin: 20px auto; }
-  .upsell-list li { padding: 7px 0; font-size: 14px; color: #b06aff; list-style: none; }
-  .upsell-list li::before { content: '🔥 '; }
+/* ── STATS ROW ── */
+.stats-row { display: flex; justify-content: center; gap: 0; flex-wrap: wrap; max-width: 640px; margin: 0 auto 28px; border: 1px solid rgba(123,47,255,0.2); border-radius: 16px; overflow: hidden; }
+.stat-box { flex: 1; min-width: 120px; padding: 20px 16px; text-align: center; border-right: 1px solid rgba(123,47,255,0.2); }
+.stat-box:last-child { border-right: none; }
+.stat-num { font-family: 'Orbitron', sans-serif; font-size: 26px; font-weight: 900; color: #f5c842; }
+.stat-lbl { font-size: 11px; color: #7b2fff; margin-top: 4px; font-weight: 600; letter-spacing: 0.5px; }
 
-  /* THANK YOU */
-  .thankyou-section { max-width: 800px; margin: 0 auto; padding: 50px 20px; text-align: center; }
-  .thankyou-section .crown { font-size: 60px; margin-bottom: 20px; }
-  .thankyou-section h1 { font-size: clamp(28px,5vw,46px); font-weight: 900; margin-bottom: 16px; }
-  .thankyou-section h1 span { color: #f5c842; }
-  .thankyou-section p { color: #b06aff; font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
-  .mj-sign-photo { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 3px solid #f5c842; margin: 20px auto; display: block; }
-  .signature { font-size: 14px; color: #f5c842; font-weight: 700; margin-top: 8px; }
+/* ── UPSELL SECTION (Step 3) ── */
+.upsell-section { max-width: 680px; margin: 0 auto; padding: 10px 20px 40px; }
+.upsell-card {
+  background: linear-gradient(135deg, #0f0022, #150035);
+  border: 2px solid #f5c842; border-radius: 28px; padding: 44px 36px;
+  box-shadow: 0 0 80px rgba(245,200,66,0.15); text-align: center;
+}
+.upsell-tag { display: inline-block; background: linear-gradient(135deg, #7b2fff, #e040fb); padding: 6px 20px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+.upsell-card h2 { font-size: clamp(22px, 4vw, 36px); font-weight: 900; margin-bottom: 10px; }
+.upsell-card h2 span { color: #f5c842; }
+.upsell-card .headline-sub { color: #b06aff; font-size: 15px; margin-bottom: 24px; line-height: 1.6; }
+.price-wrap { margin: 24px 0; }
+.price-original { font-size: 20px; color: #4B0082; text-decoration: line-through; }
+.price-now { font-family: 'Orbitron', sans-serif; font-size: 58px; font-weight: 900; color: #f5c842; line-height: 1; }
+.price-note { font-size: 12px; color: #7b2fff; margin-top: 6px; }
+.upsell-features { text-align: left; max-width: 420px; margin: 24px auto; }
+.upsell-features li { list-style: none; padding: 9px 0; font-size: 14px; color: #e0c8ff; display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid rgba(123,47,255,0.1); }
+.upsell-features li:last-child { border-bottom: none; }
+.upsell-features li .fi { font-size: 16px; flex-shrink: 0; }
+.urgency-note { background: rgba(245,200,66,0.08); border: 1px solid rgba(245,200,66,0.3); border-radius: 12px; padding: 14px 20px; font-size: 13px; color: #f5c842; font-weight: 700; margin: 20px 0; }
+.guarantee { display: flex; align-items: center; gap: 12px; background: rgba(123,47,255,0.08); border-radius: 12px; padding: 14px 20px; margin: 16px 0; text-align: left; }
+.guarantee-icon { font-size: 28px; flex-shrink: 0; }
+.guarantee p { font-size: 12px; color: #7b2fff; line-height: 1.5; }
+.guarantee strong { color: #fff; }
 
-  /* BUTTONS */
-  .btn-gold { display: inline-block; background: linear-gradient(135deg, #f5c842, #f7a800); color: #0a0010; font-size: 16px; font-weight: 800; padding: 16px 36px; border-radius: 50px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; margin-top: 10px; }
-  .btn-gold:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(245,200,66,0.5); }
-  .btn-purple { display: inline-block; background: linear-gradient(135deg, #7b2fff, #7B2FBE); color: #fff; font-size: 16px; font-weight: 800; padding: 16px 36px; border-radius: 50px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; margin-top: 10px; }
-  .btn-purple:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(123,47,255,0.5); }
-  .btn-skip { background: none; border: none; color: #4B0082; font-size: 13px; cursor: pointer; margin-top: 16px; display: block; text-align: center; text-decoration: underline; }
+/* ── SAAS KEYWORD STRIP ── */
+.saas-strip { background: rgba(123,47,255,0.06); border-top: 1px solid rgba(123,47,255,0.15); border-bottom: 1px solid rgba(123,47,255,0.15); padding: 16px 20px; text-align: center; margin: 10px 0; }
+.saas-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 700px; margin: 0 auto; }
+.saas-tag { background: rgba(123,47,255,0.12); border: 1px solid rgba(123,47,255,0.25); border-radius: 50px; padding: 4px 14px; font-size: 11px; color: #b06aff; font-weight: 600; }
 
-  /* DIVIDER */
-  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(123,47,255,0.4), transparent); margin: 10px auto; max-width: 600px; }
+/* ── THANK YOU (Step 4) ── */
+.ty-section { max-width: 700px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+.ty-crown { font-size: 64px; margin-bottom: 20px; display: block; }
+.ty-section h1 { font-size: clamp(26px, 5vw, 46px); font-weight: 900; margin-bottom: 16px; }
+.ty-section h1 span { color: #f5c842; }
+.ty-section p { color: #b06aff; font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
+.ty-card { background: linear-gradient(135deg, #0d0022, #120030); border: 1px solid rgba(123,47,255,0.3); border-radius: 20px; padding: 28px; margin: 28px 0; text-align: left; }
+.ty-card h3 { font-size: 16px; font-weight: 800; color: #f5c842; margin-bottom: 14px; }
+.ty-card li { list-style: none; padding: 7px 0; font-size: 14px; color: #b06aff; }
+.ty-card li::before { content: '✅ '; }
+.signature-wrap { margin-top: 32px; }
+.sig-line { font-size: 15px; color: #f5c842; font-weight: 800; }
+.sig-title { font-size: 12px; color: #7b2fff; margin-top: 4px; }
 
-  @media(max-width:600px) {
-    .form-row { grid-template-columns: 1fr; }
-    .mj-photo { width: 200px; height: 250px; }
-  }
+/* ── SOCIAL PROOF ── */
+.proof-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 28px auto; max-width: 680px; padding: 0 20px; }
+.proof-pill { background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.25); border-radius: 50px; padding: 8px 18px; font-size: 12px; color: #b06aff; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(123,47,255,0.3), transparent); margin: 8px auto; max-width: 600px; }
+
+@media(max-width:600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .demo-card { padding: 28px 20px; }
+  .upsell-card { padding: 32px 20px; }
+  .stats-row { flex-direction: column; }
+  .stat-box { border-right: none; border-bottom: 1px solid rgba(123,47,255,0.2); }
+}
 </style>
 </head>
 <body>
 
 <!-- PROGRESS -->
-<div class="progress-wrap">
-  <div class="progress-track"><div class="progress-fill" id="progressBar" style="width:20%"></div></div>
-  <div class="step-label" id="stepLabel">Step 1 of 5 — Welcome</div>
+<div class="progress-bar-wrap">
+  <div class="progress-inner">
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:25%"></div></div>
+    <div class="progress-label" id="progressLabel">Step 1 of 4 — Secure Your Spot</div>
+  </div>
 </div>
 
-<!-- ═══════════ STEP 1 — WELCOME ═══════════ -->
+<!-- URGENCY BAR -->
+<div class="urgency-bar">⚡ <span>LIMITED SEATS AVAILABLE</span> — ThinkBox AI Intensive · June 13, 2026 · 6PM EDT</div>
+
+<!-- ═══════════════════════════════════════════
+     STEP 1 — DEMOGRAPHICS / REGISTRATION
+════════════════════════════════════════════ -->
 <div class="step active" id="step1">
   <div class="hero">
-    <div class="hero-badge">🔥 Limited Seats Available</div>
-    <h1>You're About to <span>Change Everything</span> with AI</h1>
-    <p class="hero-sub">Join Mona Jackson-Ham for a live, hands-on AI training that will transform how you run your business — in just one session.</p>
-    <div class="event-date">📅 Friday, June 13, 2026 · 6:00 PM EDT</div>
+    <div class="hero-eyebrow">✦ Free Live AI Training ✦</div>
+    <h1>Stop <span class="gold">Guessing</span> With AI.<br/>Start <span class="purple">Getting Paid</span> With It.</h1>
+    <p class="hero-sub">Join Mona Jackson-Ham LIVE for the AI training that's turning everyday entrepreneurs into AI-powered CEOs — without the tech overwhelm.</p>
+    <div class="hero-date">📅 Friday, June 13, 2026 · 6:00 PM EDT · Zoom</div>
   </div>
 
-  <!-- MJ PHOTO + BIO -->
-  <div class="mj-section">
-    <div class="mj-photo-wrap">
-      <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/3eaa04ea8_file_0.jpg" alt="Mona Jackson-Ham" class="mj-photo"/>
-    </div>
-    <div class="mj-bio">
-      <h2>Meet <span>Mona Jackson-Ham</span></h2>
-      <div class="title">Founder & CEO · MJUnlimited Essential Marketing · ThinkBox AI Studios</div>
-      <p>Designer, AI Strategist, and Educator — Mona has helped entrepreneurs, ministries, and small business owners harness the power of AI to streamline operations, grow their brands, and scale their impact. Now she's bringing that expertise directly to YOU.</p>
-    </div>
+  <div class="proof-row">
+    <div class="proof-pill">🔥 Entrepreneurs</div>
+    <div class="proof-pill">✝️ Ministry Leaders</div>
+    <div class="proof-pill">📚 Educators</div>
+    <div class="proof-pill">💼 Coaches & Consultants</div>
+    <div class="proof-pill">🎙️ Podcasters & Authors</div>
   </div>
 
-  <!-- FLYER -->
-  <div class="flyer-wrap">
-    <img src="https://mjunlimitedessentials.github.io/thinkbox-ai-intensive/flyer_june13.png" alt="ThinkBox AI Intensive Flyer"/>
-  </div>
+  <div class="demo-section">
+    <div class="demo-card">
+      <h2>Register <span>Free</span> Now</h2>
+      <p class="demo-sub">Tell us a little about you so we can personalize your experience 👇</p>
 
-  <div class="divider"></div>
-
-  <!-- EMBARK CARDS -->
-  <div class="embark-grid">
-    <div class="embark-card"><div class="icon">🤖</div><h3>AI Tools That Actually Work</h3><p>Discover the exact AI stack Mona uses to run her business — no fluff, just results.</p></div>
-    <div class="embark-card"><div class="icon">⚡</div><h3>Real-Time Implementation</h3><p>You won't just watch — you'll build alongside Mona so you leave with tools ready to use.</p></div>
-    <div class="embark-card"><div class="icon">📈</div><h3>Scale Without Burnout</h3><p>Learn how AI can automate your marketing, emails, content, and client follow-up.</p></div>
-    <div class="embark-card"><div class="icon">💜</div><h3>Community & Support</h3><p>Join a room full of driven entrepreneurs who are serious about growing with AI.</p></div>
-    <div class="embark-card"><div class="icon">🎯</div><h3>Strategy You Can Use Today</h3><p>Walk away with a personalized AI action plan tailored to your specific business.</p></div>
-    <div class="embark-card"><div class="icon">🔑</div><h3>Exclusive Bonuses</h3><p>Recordings, swipe files, troubleshooting guide, notes PDF, and the 7-Figure AI Playbook.</p></div>
-  </div>
-
-  <!-- VIDEO -->
-  <div class="video-section">
-    <h3>Watch This <span>Before You Register</span> 👇</h3>
-    <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/WFyiNa6pXVY?rel=0&modestbranding=1&showinfo=0" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <!-- QUOTE -->
-  <div class="quote-bar">
-    <p>"AI isn't replacing you — it's waiting for you to tell it what to do. Let me show you how."</p>
-    <div class="attr">— Mona Jackson-Ham, Your AI Bootcamp Coach</div>
-  </div>
-
-  <div style="text-align:center; padding: 30px 20px;">
-    <button class="btn-gold" onclick="goToStep(2)">Yes! I'm Ready to Register →</button>
-  </div>
-</div>
-
-<!-- ═══════════ STEP 2 — REGISTRATION FORM ═══════════ -->
-<div class="step" id="step2">
-  <div style="text-align:center; padding: 40px 20px 10px;">
-    <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/3eaa04ea8_file_0.jpg" style="width:90px;height:90px;object-fit:cover;border-radius:50%;border:3px solid #f5c842;margin-bottom:16px;" alt="MJ"/>
-    <h2 style="font-size:28px;font-weight:900;">Secure Your <span style="color:#f5c842;">Spot</span> 🎉</h2>
-    <p style="color:#7b2fff;margin-top:8px;font-size:14px;">Fill in your details below to begin your registration</p>
-  </div>
-  <div class="form-section">
-    <form onsubmit="handleRegistration(event)">
       <div class="form-row">
         <div class="form-group">
           <label>First Name *</label>
-          <input type="text" id="firstName" placeholder="Enter your first name" required/>
+          <input type="text" id="firstName" placeholder="Your first name" required/>
         </div>
         <div class="form-group">
           <label>Last Name *</label>
-          <input type="text" id="lastName" placeholder="Enter your last name" required/>
+          <input type="text" id="lastName" placeholder="Your last name" required/>
         </div>
       </div>
-      <div class="form-group">
-        <label>Home or Business Address *</label>
-        <input type="text" id="address" placeholder="Street address, City, State, ZIP" required/>
-      </div>
+
       <div class="form-group">
         <label>Email Address *</label>
         <input type="email" id="email" placeholder="your@email.com" required/>
       </div>
+
       <div class="form-group">
-        <label>Phone Number *</label>
-        <input type="tel" id="phone" placeholder="(555) 000-0000" required/>
-        <div class="sms-note">By providing your phone number you consent to receive SMS updates about this event. Message & data rates may apply.</div>
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="+1 (555) 000-0000"/>
       </div>
-      <div style="text-align:center;">
-        <button type="submit" class="btn-gold">Continue to Choose My Package →</button>
+
+      <div class="form-group">
+        <label>What best describes you? *</label>
+        <select id="role">
+          <option value="">— Select your role —</option>
+          <option>Entrepreneur / Business Owner</option>
+          <option>Coach or Consultant</option>
+          <option>Ministry or Church Leader</option>
+          <option>Educator / Homeschool Parent</option>
+          <option>Author or Podcaster</option>
+          <option>Corporate Professional</option>
+          <option>Student or New to Business</option>
+          <option>Other</option>
+        </select>
       </div>
-    </form>
+
+      <div class="form-group">
+        <label>How familiar are you with AI tools?</label>
+        <select id="aiLevel">
+          <option value="">— Select your level —</option>
+          <option>Complete Beginner — Never used AI tools</option>
+          <option>Curious — I've played around a little</option>
+          <option>Intermediate — I use ChatGPT or Claude sometimes</option>
+          <option>Advanced — I use AI regularly in my business</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>What's your biggest AI challenge?</label>
+        <select id="challenge">
+          <option value="">— Select your challenge —</option>
+          <option>I don't know where to start</option>
+          <option>I can't figure out how to use AI for MY business</option>
+          <option>I'm overwhelmed by too many AI tools</option>
+          <option>I want to monetize AI but don't know how</option>
+          <option>I need AI to save me time on content</option>
+          <option>I want to automate my business with AI</option>
+        </select>
+      </div>
+
+      <button class="btn-gold" onclick="goStep2()">🚀 YES — SAVE MY FREE SEAT NOW</button>
+      <p class="privacy-note">🔒 Your information is 100% secure. We never sell or share your data.</p>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════ STEP 3 — PACKAGES ═══════════ -->
+<!-- ═══════════════════════════════════════════
+     STEP 2 — AI NEWS VIDEO + INTRO
+════════════════════════════════════════════ -->
+<div class="step" id="step2">
+
+  <div style="background: radial-gradient(ellipse at 50% 0%, rgba(123,47,255,0.25) 0%, transparent 60%), #050008; text-align:center; padding: 50px 20px 30px;">
+    <div style="display:inline-block; background:rgba(34,197,94,0.15); border:1px solid #22c55e; border-radius:50px; padding:6px 20px; font-size:11px; font-weight:800; letter-spacing:2px; color:#22c55e; text-transform:uppercase; margin-bottom:16px;">✅ You're Registered!</div>
+    <h1 style="font-family:'Orbitron',sans-serif; font-size:clamp(22px,4.5vw,44px); font-weight:900; margin-bottom:10px;">🎉 Congratulations, <span id="firstName2" style="color:#f5c842;"></span>!</h1>
+    <p style="color:#b06aff; font-size:15px; max-width:560px; margin:0 auto 28px; line-height:1.6;">Your seat is secured. Before your training, watch this short AI news video — then we have a <strong style="color:#f5c842;">one-time opportunity</strong> to supercharge your results.</p>
+
+    <div class="almost-bar" style="margin-bottom: 20px;">
+      <div class="almost-fill"></div>
+      <div class="almost-text">Your Registration Is Almost Complete...</div>
+    </div>
+
+    <div class="sound-bar">
+      🔊 <span>Make Sure Your Sound Is ON!</span> — Watch the full video for your next steps
+    </div>
+  </div>
+
+  <!-- AI NEWS TICKER -->
+  <div class="ticker-wrap" aria-label="Latest AI news">
+    <div class="ticker">
+      <span class="ticker-item"><span class="dot">●</span>OpenAI releases GPT-5 with real-time web browsing</span>
+      <span class="ticker-item"><span class="dot">●</span>AI tools projected to add $15.7 trillion to global economy by 2030</span>
+      <span class="ticker-item"><span class="dot">●</span>73% of small businesses now use AI in daily operations</span>
+      <span class="ticker-item"><span class="dot">●</span>Claude 4 surpasses human performance on complex reasoning tasks</span>
+      <span class="ticker-item"><span class="dot">●</span>AI-powered content creators seeing 3x revenue growth</span>
+      <span class="ticker-item"><span class="dot">●</span>Google Gemini Ultra now available to all business accounts</span>
+      <span class="ticker-item"><span class="dot">●</span>OpenAI releases GPT-5 with real-time web browsing</span>
+      <span class="ticker-item"><span class="dot">●</span>AI tools projected to add $15.7 trillion to global economy by 2030</span>
+      <span class="ticker-item"><span class="dot">●</span>73% of small businesses now use AI in daily operations</span>
+      <span class="ticker-item"><span class="dot">●</span>Claude 4 surpasses human performance on complex reasoning tasks</span>
+    </div>
+  </div>
+
+  <div class="video-section">
+    <div class="video-label">🎬 Watch Now — AI Is Changing Everything</div>
+    <h2>The <span>AI Revolution</span> Is Here.<br/>Are You Ready?</h2>
+    <p>This 3-minute video breaks down exactly why AI is the most important skill you can learn right now — and what we're covering in the intensive.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1" allowfullscreen title="ThinkBox AI Intensive Preview"></iframe>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num">$15.7T</div><div class="stat-lbl">AI Economic Impact by 2030</div></div>
+    <div class="stat-box"><div class="stat-num">73%</div><div class="stat-lbl">Small Biz Using AI Now</div></div>
+    <div class="stat-box"><div class="stat-num">3x</div><div class="stat-lbl">Revenue Growth w/ AI</div></div>
+  </div>
+
+  <div style="text-align:center; padding: 0 20px 40px;">
+    <button class="btn-gold" style="max-width:480px; margin:0 auto;" onclick="goStep3()">⚡ SEE YOUR EXCLUSIVE UPGRADE →</button>
+    <p style="font-size:12px; color:#4B0082; margin-top:10px;">This offer is only available right now. Don't close this page.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     STEP 3 — UPSELL (VIP / BUNDLE)
+════════════════════════════════════════════ -->
 <div class="step" id="step3">
-  <div class="pkg-section">
-    <div class="pkg-greeting" id="registrantGreeting">Choose the access level that's right for you! 🎉</div>
-    <div class="pkg-grid">
-      <div class="pkg-card">
-        <h3>🎬 Replay Only</h3>
-        <div class="price">$27</div>
-        <ul>
-          <li>Full session recording</li>
-          <li>Notes PDF</li>
-          <li>Lifetime access to replay</li>
-        </ul>
-        <a href="https://buy.stripe.com/replay_placeholder" class="btn-purple" onclick="trackPurchase('replay')" target="_blank">Get Replay Access →</a>
-      </div>
-      <div class="pkg-card featured">
-        <div class="badge">Most Popular</div>
-        <h3>🔴 Live Zoom Access</h3>
-        <div class="price">$47</div>
-        <ul>
-          <li>Live Zoom session access</li>
-          <li>Real-time Q&A with Mona</li>
-          <li>Swipe file & troubleshooting guide</li>
-          <li>7-Figure AI Playbook</li>
-        </ul>
-        <a href="https://buy.stripe.com/live_placeholder" class="btn-gold" onclick="trackPurchase('live')" target="_blank">Join Live →</a>
-      </div>
-      <div class="pkg-card">
-        <div class="badge" style="background:linear-gradient(135deg,#7b2fff,#7B2FBE);color:#fff;">Best Value</div>
-        <h3>💎 Live + Replay Bundle</h3>
-        <div class="price">$67</div>
-        <ul>
-          <li>Everything in Live Access</li>
-          <li>Full session recording</li>
-          <li>Bonus resource library</li>
-          <li>30-day email support</li>
-        </ul>
-        <a href="https://buy.stripe.com/bundle_placeholder" class="btn-purple" onclick="trackPurchase('bundle')" target="_blank">Get Full Bundle →</a>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:30px;">
-      <button class="btn-purple" id="continueBtn" onclick="goToStep(4)">I've Purchased — Continue to My Bonus →</button>
+
+  <div style="background: radial-gradient(ellipse at 50% 0%, rgba(245,200,66,0.15) 0%, transparent 60%), #050008; text-align:center; padding:50px 20px 20px;">
+    <div style="display:inline-block; background:rgba(245,200,66,0.12); border:1px solid #f5c842; border-radius:50px; padding:6px 20px; font-size:11px; font-weight:800; letter-spacing:2px; color:#f5c842; text-transform:uppercase; margin-bottom:16px;">⚠️ One-Time Offer — This Page Will Not Appear Again</div>
+    <h1 style="font-family:'Orbitron',sans-serif; font-size:clamp(22px,4.5vw,44px); font-weight:900; margin-bottom:12px;">Ready To Take Your <span style="color:#f5c842;">AI Results</span> To The Next Level?</h1>
+    <p style="color:#b06aff; font-size:15px; max-width:580px; margin:0 auto; line-height:1.6;">You secured your free seat. Now upgrade and get everything you need to actually implement what you learn.</p>
+  </div>
+
+  <!-- SEO SaaS Strip -->
+  <div class="saas-strip">
+    <div class="saas-tags">
+      <span class="saas-tag">AI for entrepreneurs</span>
+      <span class="saas-tag">AI content creation</span>
+      <span class="saas-tag">AI automation tools</span>
+      <span class="saas-tag">AI prompt engineering</span>
+      <span class="saas-tag">AI for Black women</span>
+      <span class="saas-tag">AI for coaches</span>
+      <span class="saas-tag">AI for ministry</span>
+      <span class="saas-tag">ChatGPT for business</span>
+      <span class="saas-tag">AI revenue strategies</span>
+      <span class="saas-tag">AI marketing tools</span>
+      <span class="saas-tag">AI SaaS tools 2026</span>
+      <span class="saas-tag">done-for-you AI system</span>
     </div>
   </div>
-</div>
 
-<!-- ═══════════ STEP 4 — SEO UPSELL ═══════════ -->
-<div class="step" id="step4">
   <div class="upsell-section">
     <div class="upsell-card">
-      <div class="tag">⚡ One-Time Offer — Don't Miss This!</div>
-      <h2>Add the <span>SEO Prompt Pack</span> to Your Order</h2>
-      <p style="color:#7b2fff;margin-bottom:10px;">50+ done-for-you AI prompts engineered to rank your content, grow your audience, and drive traffic — starting today.</p>
-      <div class="price">$37 <span class="orig">$97</span></div>
-      <ul class="upsell-list">
-        <li>50+ SEO-optimized AI prompts</li>
-        <li>Blog, social media & YouTube scripts</li>
-        <li>Local SEO prompts for DMV businesses</li>
-        <li>Keyword research prompt templates</li>
-        <li>Instant digital download</li>
+      <div class="upsell-tag">🔥 VIP Bundle — Most Popular</div>
+      <h2>The <span>ThinkBox AI</span> VIP Experience</h2>
+      <p class="headline-sub">Everything you need to go from AI-curious to AI-powered in 30 days or less — with lifetime access so you never fall behind again.</p>
+
+      <div class="price-wrap">
+        <div class="price-original">Regular Price: $197</div>
+        <div class="price-now">$67</div>
+        <div class="price-note">One-time payment · Instant access · No subscription</div>
+      </div>
+
+      <ul class="upsell-features">
+        <li><span class="fi">🎥</span><span><strong>Live Zoom Access</strong> — Train with Mona in real time on June 13</span></li>
+        <li><span class="fi">♾️</span><span><strong>Lifetime Replay Access</strong> — Rewatch anytime, forever</span></li>
+        <li><span class="fi">⚡</span><span><strong>100-Prompt ThinkBox Vault</strong> — RCTF-engineered prompts for every niche</span></li>
+        <li><span class="fi">📋</span><span><strong>AI Swipe File</strong> — Copy-paste scripts, templates & captions</span></li>
+        <li><span class="fi">🗺️</span><span><strong>7-Figure AI Playbook</strong> — Step-by-step revenue roadmap</span></li>
+        <li><span class="fi">🤝</span><span><strong>Private Community Access</strong> — Network with AI-powered entrepreneurs</span></li>
+        <li><span class="fi">🎁</span><span><strong>Bonus: SEO Prompt Pack</strong> — Rank higher using AI ($37 value)</span></li>
       </ul>
-      <a href="https://buy.stripe.com/seo_placeholder" class="btn-gold" target="_blank" onclick="goToStep(5)">Yes! Add SEO Prompt Pack for $37 →</a>
-      <button class="btn-skip" onclick="goToStep(5)">No thanks, I'll skip this offer</button>
+
+      <div class="urgency-note">⏰ This price disappears when you leave this page. No exceptions.</div>
+
+      <div class="guarantee">
+        <div class="guarantee-icon">🛡️</div>
+        <p><strong>100% Satisfaction Guaranteed.</strong> If you show up, apply what you learn, and don't see results — we'll make it right. No questions asked.</p>
+      </div>
+
+      <button class="btn-gold" onclick="goStep4(true)">✅ YES! UPGRADE ME TO VIP — $67</button>
+      <button class="btn-skip" onclick="goStep4(false)">No thanks, I'll stay with free general admission only</button>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ STEP 5 — THANK YOU ═══════════ -->
-<div class="step" id="step5">
-  <div class="thankyou-section">
-    <div class="crown">👑</div>
-    <h1>Welcome to the <span>ThinkBox Family!</span></h1>
-    <p id="thankYouName" style="font-size:20px;color:#f5c842;font-weight:700;margin-bottom:16px;"></p>
-    <p>I am so honored you are joining us for the ThinkBox AI Intensive. Get ready to unlock a whole new level of what's possible for your business using AI.</p>
-    <p>Check your email for your confirmation and access details. See you on <b style="color:#f5c842;">June 13th at 6:00 PM EDT!</b> 🚀</p>
+<!-- ═══════════════════════════════════════════
+     STEP 4 — THANK YOU
+════════════════════════════════════════════ -->
+<div class="step" id="step4">
+  <div class="ty-section">
+    <span class="ty-crown">👑</span>
+    <h1>You're <span>All Set,</span> <span id="firstName4" style="color:#f5c842;"></span>!</h1>
+    <p>Your seat for the ThinkBox AI Intensive is confirmed. Get ready to unlock the AI strategies that are changing the game for entrepreneurs just like you.</p>
 
-    <div class="divider" style="margin:30px auto;"></div>
-
-    <!-- MJ PERSONAL VIDEO -->
-    <div class="video-section" style="margin-top:0;">
-      <h3>A Personal <span>Message From Mona</span> 🎥</h3>
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/WFyiNa6pXVY?rel=0&modestbranding=1&showinfo=0" allowfullscreen></iframe>
-      </div>
+    <div class="ty-card">
+      <h3>📬 What Happens Next:</h3>
+      <ul>
+        <li>Check your email for your confirmation + Zoom link</li>
+        <li id="vipLine" style="display:none;">Your VIP resources will be delivered before the event</li>
+        <li>Add June 13, 2026 at 6PM EDT to your calendar</li>
+        <li>Join our community and introduce yourself</li>
+        <li>Start exploring your ThinkBox Prompt Vault</li>
+      </ul>
     </div>
 
-    <img src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/3eaa04ea8_file_0.jpg" class="mj-sign-photo" alt="Mona Jackson-Ham"/>
-    <div class="signature">Mona Jackson-Ham<br/>Your AI Bootcamp Coach<br/><span style="color:#7b2fff;font-size:12px;">MJUnlimited Essential Marketing · ThinkBox AI Studios</span></div>
+    <p style="font-size:14px; color:#b06aff; margin-bottom:8px;">Have questions? Email us at</p>
+    <a href="mailto:hello@mjunlimited.com" style="color:#f5c842; font-weight:800; font-size:15px;">hello@mjunlimited.com</a>
 
-    <div style="margin-top:40px; padding:24px; background:linear-gradient(135deg,#12002a,#0f0025); border:1px solid rgba(245,200,66,0.3); border-radius:16px;">
-      <p style="font-size:13px;color:#7b2fff;">Haven't grabbed the SEO Prompt Pack yet?</p>
-      <a href="https://buy.stripe.com/seo_placeholder" class="btn-gold" target="_blank" style="font-size:14px;padding:12px 28px;margin-top:12px;display:inline-block;">Add SEO Prompt Pack — $37 →</a>
+    <div class="signature-wrap">
+      <div class="sig-line">— Mona Jackson-Ham</div>
+      <div class="sig-title">Your AI Bootcamp Coach · MJUnlimited Essential Mktg Co.</div>
     </div>
   </div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center; padding: 30px 20px; border-top: 1px solid rgba(123,47,255,0.15); font-size:11px; color:#2d1a4a; line-height:1.8;">
+  © 2026 MJUnlimited Essential Mktg Co. · A ThinkBox AI Operation Systems · All Rights Reserved<br/>
+  <a href="#" style="color:#2d1a4a;">Privacy Policy</a> · <a href="#" style="color:#2d1a4a;">Terms</a> · <a href="#" style="color:#2d1a4a;">Disclaimer</a><br/>
+  Results are not typical. Individual outcomes vary based on effort, experience, and implementation.
 </div>
 
 <script>
-  var registrantData = {};
+  const steps = ['step1','step2','step3','step4'];
+  const labels = ['Step 1 of 4 — Secure Your Spot','Step 2 of 4 — Watch AI News Brief','Step 3 of 4 — Exclusive Upgrade','Step 4 of 4 — You\'re In! 🎉'];
+  const fills  = ['25%','50%','75%','100%'];
+  let isVIP = false;
 
-  function goToStep(n) {
-    var steps = document.querySelectorAll(".step");
-    for (var i = 0; i < steps.length; i++) {
-      steps[i].style.display = "none";
-    }
-    document.getElementById("step" + n).style.display = "block";
-    document.getElementById("progressBar").style.width = (n * 20) + "%";
-    var labels = ["", "Step 1 of 5 - Welcome", "Step 2 of 5 - Registration", "Step 3 of 5 - Choose Package", "Step 4 of 5 - Special Offer", "Step 5 of 5 - You are In!"];
-    document.getElementById("stepLabel").textContent = labels[n];
-    window.scrollTo(0, 0);
+  function showStep(n) {
+    steps.forEach((id,i) => {
+      document.getElementById(id).classList.toggle('active', i === n);
+    });
+    document.getElementById('progressFill').style.width = fills[n];
+    document.getElementById('progressLabel').textContent = labels[n];
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function handleRegistration(e) {
-    e.preventDefault();
-    registrantData.firstName = document.getElementById("firstName").value;
-    registrantData.lastName  = document.getElementById("lastName").value;
-    registrantData.address   = document.getElementById("address").value;
-    registrantData.email     = document.getElementById("email").value;
-    registrantData.phone     = document.getElementById("phone").value;
-
-    document.getElementById("registrantGreeting").innerHTML =
-      "Welcome, <b style='color:#f5c842;'>" + registrantData.firstName + "</b>! Choose the access level right for you!";
-
-    document.getElementById("thankYouName").innerHTML =
-      registrantData.firstName + " " + registrantData.lastName + ", I am so honored you are joining us!";
-
-    var jfData = new FormData();
-    jfData.append("q1_fullName[first]", registrantData.firstName);
-    jfData.append("q1_fullName[last]",  registrantData.lastName);
-    jfData.append("q2_address",          registrantData.address);
-    jfData.append("q3_emailAddress",     registrantData.email);
-    jfData.append("q4_phoneNumber[full]",registrantData.phone);
-    jfData.append("formID",              "261395894134163");
-    jfData.append("simple_spc",          "261395894134163-261395894134163");
-
-    fetch("https://submit.jotform.com/submit/261395894134163/", {
-      method: "POST",
-      body: jfData,
-      mode: "no-cors"
-    }).then(function(){ console.log("Jotform: submitted"); })
-      .catch(function(err){ console.log("Jotform error:", err); });
-
-    goToStep(3);
+  function goStep2() {
+    const fn = document.getElementById('firstName').value.trim();
+    const em = document.getElementById('email').value.trim();
+    const ro = document.getElementById('role').value;
+    if (!fn || !em || !ro) { alert('Please fill in your name, email, and role to continue.'); return; }
+    document.getElementById('firstName2').textContent = fn;
+    showStep(1);
   }
 
-  function trackPurchase(pkg) {
-    setTimeout(function(){
-      var btn = document.getElementById("continueBtn");
-      if (btn) {
-        btn.style.background = "linear-gradient(135deg,#2fff7b,#0fa34a)";
-        btn.innerHTML = "I Have Purchased - Continue to My Bonus";
-      }
-    }, 2000);
-  }
+  function goStep3() { showStep(2); }
 
-  // Replace CSS-based show/hide with JS display control on init
-  window.onload = function() {
-    var steps = document.querySelectorAll(".step");
-    for (var i = 0; i < steps.length; i++) {
-      steps[i].style.display = "none";
-    }
-    document.getElementById("step1").style.display = "block";
-  };
+  function goStep4(vip) {
+    isVIP = vip;
+    const fn = document.getElementById('firstName').value.trim() || 'Friend';
+    document.getElementById('firstName4').textContent = fn;
+    if (vip) document.getElementById('vipLine').style.display = 'list-item';
+    showStep(3);
+  }
 </script>
 </body>
 </html>
