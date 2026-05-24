@@ -696,18 +696,25 @@ function addVaultAndCheckout() {
   vaultAdded = true;
   const btn = document.getElementById('vaultBtnStep4');
   if (btn) { btn.textContent = '✅ Vault Added! Opening checkout...'; btn.style.background='linear-gradient(135deg,#22c55e,#16a34a)'; }
-  window.open('https://buy.stripe.com/eVqfZg9tB3Fd08K5a5aVa0h', '_blank');
-  setTimeout(function() {
+  // Combined Stripe links (package + $37 Prompt Vault)
+  const combinedLinks = {
+    recording: 'https://buy.stripe.com/4gMeVc6hpb7F9Jk5a5aVa0i', // $27 + $37 = $64
+    live:      'COMBINED_LIVE_LINK_HERE',                           // $47 + $37 = $84
+    bundle:    'COMBINED_BUNDLE_LINK_HERE'                          // $67 + $37 = $104
+  };
+  if (selectedPkg && combinedLinks[selectedPkg.type] && combinedLinks[selectedPkg.type] !== 'COMBINED_LIVE_LINK_HERE' && combinedLinks[selectedPkg.type] !== 'COMBINED_BUNDLE_LINK_HERE') {
+    window.open(combinedLinks[selectedPkg.type], '_blank');
+  } else if (selectedPkg) {
+    // Fallback: open vault + package separately until combined links are ready
+    window.open('https://buy.stripe.com/eVqfZg9tB3Fd08K5a5aVa0h', '_blank');
     const stripeLinks = {
       recording: 'https://buy.stripe.com/fZu28qgW3grZ2gSbytaVa0f',
       live: 'https://buy.stripe.com/8x2cN4cFNejRcVw6e9aVa0e',
       bundle: 'https://buy.stripe.com/cNi28q0X5dfNf3E0TPaVa0g'
     };
-    if (selectedPkg && stripeLinks[selectedPkg.type]) {
-      window.open(stripeLinks[selectedPkg.type], '_blank');
-    }
-    setTimeout(function() { goConfirmation(); }, 800);
-  }, 600);
+    setTimeout(function() { window.open(stripeLinks[selectedPkg.type], '_blank'); }, 600);
+  }
+  setTimeout(function() { goConfirmation(); }, 1200);
 }
 
 function proceedToCheckout() {
