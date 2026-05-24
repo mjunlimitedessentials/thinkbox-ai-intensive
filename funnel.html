@@ -342,7 +342,7 @@ body{font-family:'Inter',sans-serif;background:#050008;color:#fff;overflow-x:hid
   <div class="pkg-grid">
 
     <!-- $27 Recording Only -->
-    <div class="pkg-card" id="card27" onclick="selectPkg('recording', 27, this)">
+    <div class="pkg-card" id="card27" onclick="selectPkg('recording', 27, this); window.open('https://buy.stripe.com/fZu28qgW3grZ2gSbytaVa0f','_blank')">
       <div class="pkg-tier">Replay Access</div>
       <div class="pkg-name">Recording Only</div>
       <div class="pkg-orig"></div>
@@ -353,11 +353,11 @@ body{font-family:'Inter',sans-serif;background:#050008;color:#fff;overflow-x:hid
         <li>♾️ Lifetime Replay Access</li>
         <li>📥 Downloadable Training Notes PDF</li>
       </ul>
-      <button class="btn-purple" onclick="selectPkg('recording', 27, document.getElementById('card27'))">SELECT — $27</button>
+      <button class="btn-purple" onclick="selectPkg('recording', 27, document.getElementById('card27')); window.open('https://buy.stripe.com/fZu28qgW3grZ2gSbytaVa0f','_blank')">SELECT — $27</button>
     </div>
 
     <!-- $47 Live Only -->
-    <div class="pkg-card" id="card47" onclick="selectPkg('live', 47, this)">
+    <div class="pkg-card" id="card47" onclick="selectPkg('live', 47, this); window.open('https://buy.stripe.com/8x2cN4cFNejRcVw6e9aVa0e','_blank')">
       <div class="pkg-tier">Live Session</div>
       <div class="pkg-name">Live Zoom Only</div>
       <div class="pkg-orig"></div>
@@ -368,11 +368,11 @@ body{font-family:'Inter',sans-serif;background:#050008;color:#fff;overflow-x:hid
         <li>❓ Live Q&A with Mona</li>
         <li>🔥 Real-Time AI Implementation</li>
       </ul>
-      <button class="btn-purple" onclick="selectPkg('live', 47, document.getElementById('card47'))">SELECT — $47</button>
+      <button class="btn-purple" onclick="selectPkg('live', 47, document.getElementById('card47')); window.open('https://buy.stripe.com/8x2cN4cFNejRcVw6e9aVa0e','_blank')">SELECT — $47</button>
     </div>
 
     <!-- $67 Bundle — FEATURED -->
-    <div class="pkg-card featured" id="card67" onclick="selectPkg('bundle', 67, this)">
+    <div class="pkg-card featured" id="card67" onclick="selectPkg('bundle', 67, this); window.open('https://buy.stripe.com/cNi28q0X5dfNf3E0TPaVa0g','_blank')">
       <div class="most-popular">⭐ MOST POPULAR</div>
       <div class="pkg-tier">Best Value</div>
       <div class="pkg-name">Live + Recording Bundle</div>
@@ -386,7 +386,7 @@ body{font-family:'Inter',sans-serif;background:#050008;color:#fff;overflow-x:hid
         <li>📋 AI Swipe File & Templates</li>
         <li>🗺️ 7-Figure AI Playbook</li>
       </ul>
-      <button class="btn-gold" onclick="selectPkg('bundle', 67, document.getElementById('card67'))">SELECT BUNDLE — $67</button>
+      <button class="btn-gold" onclick="selectPkg('bundle', 67, document.getElementById('card67')); window.open('https://buy.stripe.com/cNi28q0X5dfNf3E0TPaVa0g','_blank')">SELECT BUNDLE — $67</button>
     </div>
 
   </div>
@@ -426,6 +426,7 @@ body{font-family:'Inter',sans-serif;background:#050008;color:#fff;overflow-x:hid
       <div class="upsell-note">Add to any package · Instant digital access · No subscription</div>
 
       <button class="btn-gold" id="vaultBtn" onclick="toggleVault()" style="max-width:440px;margin:0 auto;">➕ YES — ADD PROMPT VAULT FOR $37</button>
+      <div id="vaultStripeNote" style="display:none;font-size:12px;color:#f5c842;margin-top:8px;text-align:center;">✅ Redirecting you to secure checkout...</div>
       <div id="vault-added">✅ Prompt Vault Added! You're getting 100 AI prompts for just $37!</div>
       <button class="btn-skip" onclick="proceedToThanks()">Skip — No thank you</button>
     </div>
@@ -539,14 +540,20 @@ function toggleVault() {
   vaultAdded = !vaultAdded;
   const btn = document.getElementById('vaultBtn');
   const added = document.getElementById('vault-added');
+  const note = document.getElementById('vaultStripeNote');
   if (vaultAdded) {
     btn.textContent = '✅ VAULT ADDED — Click to Remove';
     btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
-    added.style.display = 'block';
+    if (added) added.style.display = 'block';
+    if (note) note.style.display = 'block';
+    // STRIPE VAULT LINK — update when ready
+    const vaultLink = 'VAULT_STRIPE_LINK_HERE';
+    if (vaultLink !== 'VAULT_STRIPE_LINK_HERE') window.open(vaultLink, '_blank');
   } else {
     btn.textContent = '➕ YES — ADD PROMPT VAULT FOR $37';
     btn.style.background = '';
-    added.style.display = 'none';
+    if (added) added.style.display = 'none';
+    if (note) note.style.display = 'none';
   }
 }
 
