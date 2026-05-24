@@ -400,13 +400,14 @@ body { font-family: 'Inter', sans-serif; background: #050008; color: #fff; overf
 ════════════════════════════════════════════ -->
 <div class="step" id="step3">
 
-  <div style="background: radial-gradient(ellipse at 50% 0%, rgba(245,200,66,0.15) 0%, transparent 60%), #050008; text-align:center; padding:50px 20px 20px;">
-    <div style="display:inline-block; background:rgba(245,200,66,0.12); border:1px solid #f5c842; border-radius:50px; padding:6px 20px; font-size:11px; font-weight:800; letter-spacing:2px; color:#f5c842; text-transform:uppercase; margin-bottom:16px;">⚠️ One-Time Offer — This Page Will Not Appear Again</div>
-    <h1 style="font-family:'Orbitron',sans-serif; font-size:clamp(22px,4.5vw,44px); font-weight:900; margin-bottom:12px;">Ready To Take Your <span style="color:#f5c842;">AI Results</span> To The Next Level?</h1>
-    <p style="color:#b06aff; font-size:15px; max-width:580px; margin:0 auto; line-height:1.6;">You secured your free seat. Now upgrade and get everything you need to actually implement what you learn.</p>
+  <!-- HEADER -->
+  <div style="background:radial-gradient(ellipse at 50% 0%,rgba(245,200,66,0.15) 0%,transparent 60%),#050008;text-align:center;padding:50px 20px 20px;">
+    <div style="display:inline-block;background:rgba(245,200,66,0.12);border:1px solid #f5c842;border-radius:50px;padding:6px 20px;font-size:11px;font-weight:800;letter-spacing:2px;color:#f5c842;text-transform:uppercase;margin-bottom:16px;">⚠️ One-Time Offer — This Page Will Not Appear Again</div>
+    <h1 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,4.5vw,40px);font-weight:900;margin-bottom:12px;">Choose Your <span style="color:#f5c842;">AI Experience</span></h1>
+    <p style="color:#b06aff;font-size:15px;max-width:580px;margin:0 auto 8px;line-height:1.6;">Your free seat is secured! Now pick the package that fits your goals — then add the AI Prompt Vault to supercharge your results.</p>
   </div>
 
-  <!-- SEO SaaS Strip -->
+  <!-- SEO STRIP -->
   <div class="saas-strip">
     <div class="saas-tags">
       <span class="saas-tag">AI for entrepreneurs</span>
@@ -418,45 +419,140 @@ body { font-family: 'Inter', sans-serif; background: #050008; color: #fff; overf
       <span class="saas-tag">AI for ministry</span>
       <span class="saas-tag">ChatGPT for business</span>
       <span class="saas-tag">AI revenue strategies</span>
-      <span class="saas-tag">AI marketing tools</span>
       <span class="saas-tag">AI SaaS tools 2026</span>
       <span class="saas-tag">done-for-you AI system</span>
     </div>
   </div>
 
-  <div class="upsell-section">
-    <div class="upsell-card">
-      <div class="upsell-tag">🔥 VIP Bundle — Most Popular</div>
-      <h2>The <span>ThinkBox AI</span> VIP Experience</h2>
-      <p class="headline-sub">Everything you need to go from AI-curious to AI-powered in 30 days or less — with lifetime access so you never fall behind again.</p>
+  <!-- 3 PRICING CARDS -->
+  <div style="max-width:960px;margin:0 auto;padding:24px 20px 10px;">
+    <p style="text-align:center;font-size:13px;color:#7b2fff;margin-bottom:20px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">👇 Step 1: Choose Your Package</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
 
-      <div class="price-wrap">
-        <div class="price-original">Regular Price: $197</div>
-        <div class="price-now">$67</div>
-        <div class="price-note">One-time payment · Instant access · No subscription</div>
+      <!-- $27 Recording Only -->
+      <div style="background:linear-gradient(135deg,#0d0022,#120030);border:1px solid rgba(123,47,255,0.4);border-radius:20px;padding:28px 22px;text-align:center;cursor:pointer;transition:all 0.3s;" id="pkg27" onclick="selectPkg('recording',27)">
+        <div style="display:inline-block;background:rgba(123,47,255,0.2);border:1px solid rgba(123,47,255,0.4);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:800;letter-spacing:2px;color:#b06aff;text-transform:uppercase;margin-bottom:14px;">Replay Access</div>
+        <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;">Recording Only</div>
+        <div style="font-family:'Orbitron',sans-serif;font-size:48px;font-weight:900;color:#f5c842;line-height:1;margin:12px 0;">$27</div>
+        <div style="font-size:11px;color:#7b2fff;margin-bottom:20px;">One-time · Instant access</div>
+        <ul style="list-style:none;text-align:left;margin-bottom:24px;">
+          <li style="padding:8px 0;font-size:13px;color:#b06aff;border-bottom:1px solid rgba(123,47,255,0.1);">🎥 Full Zoom Training Recording</li>
+          <li style="padding:8px 0;font-size:13px;color:#b06aff;border-bottom:1px solid rgba(123,47,255,0.1);">♾️ Lifetime Replay Access</li>
+          <li style="padding:8px 0;font-size:13px;color:#b06aff;">📥 Downloadable Training Notes PDF</li>
+        </ul>
+        <button class="btn-purple" style="font-size:14px;padding:14px;width:100%;" onclick="selectPkg('recording',27)">SELECT — $27</button>
       </div>
 
-      <ul class="upsell-features">
-        <li><span class="fi">🎥</span><span><strong>Live Zoom Access</strong> — Train with Mona in real time on June 13</span></li>
-        <li><span class="fi">♾️</span><span><strong>Lifetime Replay Access</strong> — Rewatch anytime, forever</span></li>
-        <li><span class="fi">⚡</span><span><strong>100-Prompt ThinkBox Vault</strong> — RCTF-engineered prompts for every niche</span></li>
-        <li><span class="fi">📋</span><span><strong>AI Swipe File</strong> — Copy-paste scripts, templates & captions</span></li>
-        <li><span class="fi">🗺️</span><span><strong>7-Figure AI Playbook</strong> — Step-by-step revenue roadmap</span></li>
-        <li><span class="fi">🤝</span><span><strong>Private Community Access</strong> — Network with AI-powered entrepreneurs</span></li>
-        <li><span class="fi">🎁</span><span><strong>Bonus: SEO Prompt Pack</strong> — Rank higher using AI ($37 value)</span></li>
-      </ul>
-
-      <div class="urgency-note">⏰ This price disappears when you leave this page. No exceptions.</div>
-
-      <div class="guarantee">
-        <div class="guarantee-icon">🛡️</div>
-        <p><strong>100% Satisfaction Guaranteed.</strong> If you show up, apply what you learn, and don't see results — we'll make it right. No questions asked.</p>
+      <!-- $47 Live Only -->
+      <div style="background:linear-gradient(135deg,#0d0022,#120030);border:1px solid rgba(123,47,255,0.4);border-radius:20px;padding:28px 22px;text-align:center;cursor:pointer;transition:all 0.3s;" id="pkg47" onclick="selectPkg('live',47)">
+        <div style="display:inline-block;background:rgba(123,47,255,0.2);border:1px solid rgba(123,47,255,0.4);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:800;letter-spacing:2px;color:#b06aff;text-transform:uppercase;margin-bottom:14px;">Live Session</div>
+        <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;">Live Zoom Only</div>
+        <div style="font-family:'Orbitron',sans-serif;font-size:48px;font-weight:900;color:#f5c842;line-height:1;margin:12px 0;">$47</div>
+        <div style="font-size:11px;color:#7b2fff;margin-bottom:20px;">One-time · Train live with Mona</div>
+        <ul style="list-style:none;text-align:left;margin-bottom:24px;">
+          <li style="padding:8px 0;font-size:13px;color:#b06aff;border-bottom:1px solid rgba(123,47,255,0.1);">📡 Live Zoom Training Access</li>
+          <li style="padding:8px 0;font-size:13px;color:#b06aff;border-bottom:1px solid rgba(123,47,255,0.1);">❓ Live Q&amp;A with Mona</li>
+          <li style="padding:8px 0;font-size:13px;color:#b06aff;">🔥 Real-Time AI Implementation</li>
+        </ul>
+        <button class="btn-purple" style="font-size:14px;padding:14px;width:100%;" onclick="selectPkg('live',47)">SELECT — $47</button>
       </div>
 
-      <button class="btn-gold" onclick="goStep4(true)">✅ YES! UPGRADE ME TO VIP — $67</button>
-      <button class="btn-skip" onclick="goStep4(false)">No thanks, I'll stay with free general admission only</button>
+      <!-- $67 BUNDLE FEATURED -->
+      <div style="background:linear-gradient(135deg,#12002e,#1a0045);border:2px solid #f5c842;border-radius:20px;padding:28px 22px;text-align:center;box-shadow:0 0 40px rgba(245,200,66,0.2);position:relative;cursor:pointer;transition:all 0.3s;" id="pkg67" onclick="selectPkg('bundle',67)">
+        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#f5c842,#f7a800);color:#050008;font-size:10px;font-weight:900;padding:5px 18px;border-radius:20px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;">⭐ MOST POPULAR</div>
+        <div style="display:inline-block;background:rgba(245,200,66,0.15);border:1px solid #f5c842;border-radius:20px;padding:4px 14px;font-size:10px;font-weight:800;letter-spacing:2px;color:#f5c842;text-transform:uppercase;margin-bottom:14px;">Best Value</div>
+        <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;">Live + Recording Bundle</div>
+        <div style="font-size:15px;color:#4B0082;text-decoration:line-through;margin-top:4px;">$97</div>
+        <div style="font-family:'Orbitron',sans-serif;font-size:48px;font-weight:900;color:#f5c842;line-height:1;margin:8px 0;">$67</div>
+        <div style="font-size:11px;color:#7b2fff;margin-bottom:20px;">One-time · Everything included</div>
+        <ul style="list-style:none;text-align:left;margin-bottom:24px;">
+          <li style="padding:8px 0;font-size:13px;color:#e0c8ff;border-bottom:1px solid rgba(123,47,255,0.1);">📡 Live Zoom Training Access</li>
+          <li style="padding:8px 0;font-size:13px;color:#e0c8ff;border-bottom:1px solid rgba(123,47,255,0.1);">🎥 Full Recording + Lifetime Replay</li>
+          <li style="padding:8px 0;font-size:13px;color:#e0c8ff;border-bottom:1px solid rgba(123,47,255,0.1);">❓ Live Q&amp;A with Mona</li>
+          <li style="padding:8px 0;font-size:13px;color:#e0c8ff;border-bottom:1px solid rgba(123,47,255,0.1);">📋 AI Swipe File &amp; Templates</li>
+          <li style="padding:8px 0;font-size:13px;color:#e0c8ff;">🗺️ 7-Figure AI Playbook</li>
+        </ul>
+        <button class="btn-gold" style="font-size:14px;padding:14px;width:100%;" onclick="selectPkg('bundle',67)">SELECT BUNDLE — $67</button>
+      </div>
+
+    </div>
+
+    <!-- SELECTION CONFIRMATION -->
+    <div id="pkgConfirm" style="display:none;background:rgba(34,197,94,0.1);border:1px solid #22c55e;border-radius:14px;padding:14px 20px;text-align:center;margin-top:20px;font-size:14px;color:#22c55e;font-weight:700;">
+      ✅ <span id="pkgConfirmText"></span> — Now scroll down to see your bonus offer! 👇
     </div>
   </div>
+
+  <!-- $37 PROMPT VAULT UPSELL -->
+  <div style="max-width:680px;margin:28px auto;padding:0 20px;">
+    <p style="text-align:center;font-size:13px;color:#7b2fff;margin-bottom:16px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">👇 Step 2: Add Your Power-Up (Optional)</p>
+    <div id="vaultBox" style="background:linear-gradient(135deg,#0f0022,#150035);border:2px dashed rgba(224,64,251,0.5);border-radius:24px;padding:36px 28px;text-align:center;transition:all 0.3s;">
+
+      <div style="display:inline-block;background:linear-gradient(135deg,#e040fb,#7b2fff);padding:6px 20px;border-radius:20px;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;">⚡ ADD-ON OFFER — Only $37</div>
+
+      <div style="font-size:32px;margin-bottom:12px;">🤖✨</div>
+      <h2 style="font-size:clamp(18px,3.5vw,26px);font-weight:900;margin-bottom:10px;">Supercharge Your Training With the <span style="color:#f5c842;">ThinkBox AI Prompt Vault</span></h2>
+      <p style="color:#b06aff;font-size:14px;line-height:1.7;margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto;">Walk into your training <strong style="color:#fff;">already armed</strong> with 100 RCTF-engineered AI prompts across every category your business needs. This is the shortcut kit built for entrepreneurs who don't have time to figure it out from scratch.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:500px;margin:0 auto 24px;text-align:left;">
+        <div style="background:rgba(123,47,255,0.1);border:1px solid rgba(123,47,255,0.2);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:18px;margin-bottom:4px;">📈</div>
+          <div style="font-size:12px;font-weight:700;color:#f5c842;margin-bottom:2px;">Business Growth</div>
+          <div style="font-size:11px;color:#7b2fff;">Sales, pricing &amp; launches</div>
+        </div>
+        <div style="background:rgba(123,47,255,0.1);border:1px solid rgba(123,47,255,0.2);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:18px;margin-bottom:4px;">✍️</div>
+          <div style="font-size:12px;font-weight:700;color:#f5c842;margin-bottom:2px;">Content Creation</div>
+          <div style="font-size:11px;color:#7b2fff;">Captions, reels &amp; newsletters</div>
+        </div>
+        <div style="background:rgba(123,47,255,0.1);border:1px solid rgba(123,47,255,0.2);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:18px;margin-bottom:4px;">✝️</div>
+          <div style="font-size:12px;font-weight:700;color:#f5c842;margin-bottom:2px;">Ministry &amp; Faith</div>
+          <div style="font-size:11px;color:#7b2fff;">Sermons, prayers &amp; outreach</div>
+        </div>
+        <div style="background:rgba(123,47,255,0.1);border:1px solid rgba(123,47,255,0.2);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:18px;margin-bottom:4px;">🤖</div>
+          <div style="font-size:12px;font-weight:700;color:#f5c842;margin-bottom:2px;">AI Automation</div>
+          <div style="font-size:11px;color:#7b2fff;">CRMs, funnels &amp; chatbots</div>
+        </div>
+        <div style="background:rgba(123,47,255,0.1);border:1px solid rgba(123,47,255,0.2);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:18px;margin-bottom:4px;">📚</div>
+          <div style="font-size:12px;font-weight:700;color:#f5c842;margin-bottom:2px;">Author &amp; Podcast</div>
+          <div style="font-size:11px;color:#7b2fff;">Books, KDP &amp; sponsorships</div>
+        </div>
+        <div style="background:rgba(123,47,255,0.1);border:1px solid rgba(123,47,255,0.2);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:18px;margin-bottom:4px;">⚡</div>
+          <div style="font-size:12px;font-weight:700;color:#f5c842;margin-bottom:2px;">Claude Power Prompts</div>
+          <div style="font-size:11px;color:#7b2fff;">Master-level AI commands</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.25);border-radius:12px;padding:14px 20px;margin-bottom:20px;">
+        <div style="font-size:13px;color:#f5c842;font-weight:800;margin-bottom:4px;">🔥 This Is NOT Just a Prompt List</div>
+        <div style="font-size:12px;color:#b06aff;line-height:1.6;">Every prompt is SEO-optimized, SaaS-ready, and built using the RCTF Framework™. Top AI strategists charge thousands to teach this. You get 100 prompts for just $37.</div>
+      </div>
+
+      <div style="margin-bottom:8px;">
+        <span style="font-size:16px;color:#4B0082;text-decoration:line-through;">$97 value</span>
+        <span style="font-family:'Orbitron',sans-serif;font-size:42px;font-weight:900;color:#f5c842;margin-left:12px;">$37</span>
+      </div>
+      <div style="font-size:11px;color:#7b2fff;margin-bottom:20px;">Add to any package · Instant digital access · No subscription</div>
+
+      <button id="addVaultBtn" onclick="toggleVault()" style="display:block;width:100%;max-width:440px;margin:0 auto;background:linear-gradient(135deg,#e040fb,#7b2fff);color:#fff;font-size:16px;font-weight:900;padding:18px 36px;border-radius:50px;border:none;cursor:pointer;transition:all 0.3s;text-transform:uppercase;letter-spacing:1px;">➕ YES — ADD PROMPT VAULT FOR $37</button>
+      <div id="vaultAdded" style="display:none;background:rgba(34,197,94,0.1);border:1px solid #22c55e;border-radius:10px;padding:10px;margin-top:12px;font-size:13px;color:#22c55e;font-weight:700;">✅ Prompt Vault Added! You're getting 100 AI prompts for just $37!</div>
+      <button style="background:none;border:none;color:#4B0082;font-size:12px;cursor:pointer;display:block;text-align:center;text-decoration:underline;margin:14px auto 0;width:100%;" onclick="skipVault()">No thanks, I don't need 100 AI prompts</button>
+    </div>
+  </div>
+
+  <!-- GUARANTEE -->
+  <div style="max-width:580px;margin:0 auto 30px;padding:0 20px;">
+    <div class="guarantee">
+      <div class="guarantee-icon">🛡️</div>
+      <p><strong>100% Satisfaction Guaranteed.</strong> Show up, apply what you learn, and if you don't see value — we'll make it right. No questions asked.</p>
+    </div>
+    <p style="text-align:center;font-size:11px;color:#4B0082;margin-top:10px;">These prices are only available on this page and will increase after you leave.</p>
+  </div>
+
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -547,8 +643,27 @@ body { font-family: 'Inter', sans-serif; background: #050008; color: #fff; overf
 
   function selectPkg(type, price) {
     selectedPkg = { type, price };
-    // Scroll down to vault add-on
-    document.getElementById('addVaultBtn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Highlight selected card
+    ['pkg27','pkg47','pkg67'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.border = '1px solid rgba(123,47,255,0.4)';
+    });
+    const pkgId = type === 'recording' ? 'pkg27' : type === 'live' ? 'pkg47' : 'pkg67';
+    const el = document.getElementById(pkgId);
+    if (el) el.style.border = '2px solid #22c55e';
+    // Show confirmation
+    const confirm = document.getElementById('pkgConfirm');
+    const confirmText = document.getElementById('pkgConfirmText');
+    if (confirm && confirmText) {
+      const labels = { recording: 'Recording Only ($27) selected', live: 'Live Zoom Only ($47) selected', bundle: 'Live + Recording Bundle ($67) selected' };
+      confirmText.textContent = labels[type] || '';
+      confirm.style.display = 'block';
+    }
+    // Scroll to vault
+    setTimeout(() => {
+      const vaultEl = document.getElementById('vaultBox');
+      if (vaultEl) vaultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
   }
 
   function toggleVault() {
@@ -558,23 +673,26 @@ body { font-family: 'Inter', sans-serif; background: #050008; color: #fff; overf
     if (vaultAdded) {
       btn.textContent = '✅ VAULT ADDED — Click to Remove';
       btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
-      added.style.display = 'block';
+      if (added) added.style.display = 'block';
     } else {
-      btn.textContent = '➕ YES — ADD THE PROMPT VAULT FOR $37';
-      btn.style.background = '';
-      added.style.display = 'none';
+      btn.textContent = '➕ YES — ADD PROMPT VAULT FOR $37';
+      btn.style.background = 'linear-gradient(135deg,#e040fb,#7b2fff)';
+      if (added) added.style.display = 'none';
     }
   }
 
   function skipVault() {
     if (!selectedPkg) { alert('Please select a package above first!'); return; }
-    goStep4(selectedPkg.type !== 'recording');
+    goStep4();
   }
 
-  function goStep4(hasLive) {
+  function goStep4() {
     const fn = document.getElementById('firstName').value.trim() || 'Friend';
     document.getElementById('firstName4').textContent = fn;
-    if (hasLive || vaultAdded) document.getElementById('vipLine').style.display = 'list-item';
+    const pkg = selectedPkg ? selectedPkg.type : 'free';
+    if (pkg !== 'recording' || vaultAdded) {
+      document.getElementById('vipLine').style.display = 'list-item';
+    }
     showStep(3);
   }
 </script>
