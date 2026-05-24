@@ -513,9 +513,29 @@ body { font-family: 'Inter', sans-serif; background: #050008; color: #fff; overf
 
   function goStep2() {
     const fn = document.getElementById('firstName').value.trim();
+    const ln = document.getElementById('lastName').value.trim();
     const em = document.getElementById('email').value.trim();
+    const ph = document.getElementById('phone').value.trim();
     const ro = document.getElementById('role').value;
+    const ai = document.getElementById('aiLevel').value;
+    const ch = document.getElementById('challenge').value;
+
     if (!fn || !em || !ro) { alert('Please fill in your name, email, and role to continue.'); return; }
+
+    // Submit to Jotform ID 261395894134163
+    const formData = new FormData();
+    formData.append('q1_fullName[first]', fn);
+    formData.append('q1_fullName[last]', ln);
+    formData.append('q3_emailAddress', em);
+    formData.append('q4_phoneNumber[full]', ph);
+    formData.append('q2_address', ro + (ai ? ' | AI Level: ' + ai : '') + (ch ? ' | Challenge: ' + ch : ''));
+
+    fetch('https://submit.jotform.com/submit/261395894134163/', {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'
+    }).catch(() => {}); // silent fail — still advance user
+
     document.getElementById('firstName2').textContent = fn;
     showStep(1);
   }
