@@ -175,6 +175,10 @@ body{font-family:'Inter',sans-serif;background:#050008;color:#fff;overflow-x:hid
   .stat{border-right:none;border-bottom:1px solid rgba(123,47,255,0.2);}
   .prompt-grid{grid-template-columns:1fr;}
 }
+/* COUNTDOWN */
+.cd-box{background:rgba(123,47,255,0.15);border:2px solid rgba(123,47,255,0.4);border-radius:14px;padding:14px 16px;text-align:center;min-width:68px;}
+.cd-box span{font-family:"Orbitron",sans-serif;font-size:30px;font-weight:900;color:#f5c842;display:block;}
+.cd-label{font-size:9px;color:#7b2fff;letter-spacing:2px;font-weight:800;margin-top:4px;text-transform:uppercase;}
 </style>
 </head>
 <body>
@@ -445,68 +449,89 @@ body{font-family:'Inter',sans-serif;background:#050008;color:#fff;overflow-x:hid
 <!-- ══════════════════════════════════
      STEP 4 — THANK YOU
 ══════════════════════════════════ -->
+
+<!-- ══════════════════════════════════
+     STEP 4 — CONFIRMATION + SMS
+══════════════════════════════════ -->
 <div class="step" id="step4">
-  <div style="background:radial-gradient(ellipse at 50% 0%,rgba(34,197,94,0.15) 0%,transparent 65%),#050008;text-align:center;padding:50px 20px 30px;">
-    <div style="width:80px;height:80px;border-radius:50%;background:rgba(34,197,94,0.15);border:3px solid #22c55e;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px;">✅</div>
-    <h1 style="font-size:clamp(26px,5vw,44px);font-weight:900;margin-bottom:10px;">You're Registered, <span id="fn4" style="color:#f5c842;"></span>!</h1>
-    <p style="color:#b06aff;font-size:15px;max-width:500px;margin:0 auto 10px;line-height:1.6;">Your confirmation has been sent to your email. The training begins:</p>
-    <p style="font-size:18px;font-weight:900;color:#f5c842;margin-bottom:30px;">Friday, June 13, 2026 — 6:00 PM EDT — LIVE on Zoom</p>
-    <div style="max-width:560px;margin:0 auto 16px;">
-      <p style="font-size:10px;font-weight:800;letter-spacing:3px;color:#7b2fff;text-transform:uppercase;margin-bottom:14px;">⏱ Until the Training Begins</p>
-      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
-        <div style="background:#0d0022;border:2px solid rgba(123,47,255,0.5);border-radius:14px;padding:18px 22px;min-width:80px;"><div id="cd-days" style="font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;color:#fff;line-height:1;">00</div><div style="font-size:10px;color:#7b2fff;letter-spacing:2px;text-transform:uppercase;margin-top:6px;font-weight:700;">Days</div></div>
-        <div style="background:#0d0022;border:2px solid rgba(123,47,255,0.5);border-radius:14px;padding:18px 22px;min-width:80px;"><div id="cd-hours" style="font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;color:#fff;line-height:1;">00</div><div style="font-size:10px;color:#7b2fff;letter-spacing:2px;text-transform:uppercase;margin-top:6px;font-weight:700;">Hours</div></div>
-        <div style="background:#0d0022;border:2px solid rgba(123,47,255,0.5);border-radius:14px;padding:18px 22px;min-width:80px;"><div id="cd-mins" style="font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;color:#fff;line-height:1;">00</div><div style="font-size:10px;color:#7b2fff;letter-spacing:2px;text-transform:uppercase;margin-top:6px;font-weight:700;">Minutes</div></div>
-        <div style="background:#0d0022;border:2px solid rgba(123,47,255,0.5);border-radius:14px;padding:18px 22px;min-width:80px;"><div id="cd-secs" style="font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;color:#fff;line-height:1;">00</div><div style="font-size:10px;color:#7b2fff;letter-spacing:2px;text-transform:uppercase;margin-top:6px;font-weight:700;">Seconds</div></div>
-      </div>
+  <!-- HERO: Registered confirmation + countdown -->
+  <div style="background:radial-gradient(ellipse at 50% 0%,rgba(34,197,94,0.18) 0%,transparent 65%),#050008;text-align:center;padding:50px 20px 30px;">
+    <div style="width:82px;height:82px;background:rgba(34,197,94,0.15);border:3px solid #22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:38px;">✅</div>
+    <h1 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,5vw,38px);font-weight:900;margin-bottom:10px;">You're Registered!<br/><span id="fn4" style="color:#f5c842;font-size:clamp(18px,4vw,30px);"></span></h1>
+    <p style="color:#22c55e;font-size:14px;font-weight:700;margin-bottom:6px;">We've sent your confirmation by email. The training runs:</p>
+    <p style="color:#f5c842;font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;margin-bottom:24px;">June 13, 2026 — Online via Zoom</p>
+    <!-- LIVE COUNTDOWN -->
+    <div style="margin-bottom:8px;font-size:10px;font-weight:800;letter-spacing:3px;color:#7b2fff;text-transform:uppercase;">Until The Training Begins</div>
+    <div style="display:flex;justify-content:center;gap:10px;margin-bottom:36px;flex-wrap:wrap;">
+      <div class="cd-box"><span id="cd-days">--</span><div class="cd-label">DAYS</div></div>
+      <div class="cd-box"><span id="cd-hours">--</span><div class="cd-label">HOURS</div></div>
+      <div class="cd-box"><span id="cd-mins">--</span><div class="cd-label">MINUTES</div></div>
+      <div class="cd-box"><span id="cd-secs">--</span><div class="cd-label">SECONDS</div></div>
     </div>
-    <div style="max-width:500px;margin:30px auto 0;">
-      <p style="font-size:11px;font-weight:800;color:#b06aff;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;" id="conf-prog-label">Complete your registration: 1/3 done</p>
-      <div style="background:#1a0040;border-radius:20px;height:8px;overflow:hidden;"><div id="conf-prog-fill" style="height:100%;background:linear-gradient(90deg,#7b2fff,#e040fb,#f5c842);border-radius:20px;width:33%;transition:width 0.6s ease;"></div></div>
-    </div>
+    <p style="font-size:13px;color:#b06aff;font-weight:700;">To make sure you don't miss a thing, complete the 3 quick steps below.</p>
   </div>
-  <div style="max-width:580px;margin:0 auto;padding:30px 20px 50px;">
-    <div id="conf-s1" style="background:linear-gradient(135deg,#0d0022,#120030);border:2px solid rgba(34,197,94,0.5);border-radius:20px;padding:24px;margin-bottom:16px;">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-        <div style="width:44px;height:44px;border-radius:50%;background:rgba(34,197,94,0.15);border:2px solid #22c55e;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📅</div>
-        <div><div style="font-size:10px;font-weight:800;color:#22c55e;letter-spacing:2px;text-transform:uppercase;">STEP 1 · DONE</div><div style="font-size:17px;font-weight:900;color:#fff;margin-top:2px;">Calendar Saved</div></div>
+
+  <!-- PROGRESS + STEPS -->
+  <div style="max-width:580px;margin:0 auto;padding:20px 18px 50px;">
+    <!-- Progress bar -->
+    <div style="margin-bottom:22px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-size:11px;color:#7b2fff;font-weight:800;letter-spacing:1px;">Progress: <span id="conf-prog-label">1/3 done</span></span>
       </div>
-      <p style="font-size:13px;color:#b06aff;margin-bottom:14px;line-height:1.5;">ThinkBox AI Intensive — June 13, 2026 at 6:00 PM EDT</p>
-      <button onclick="dlCal()" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:rgba(34,197,94,0.1);border:1px solid #22c55e;border-radius:50px;padding:12px;color:#22c55e;font-size:13px;font-weight:800;cursor:pointer;">☑ Done — Download Again</button>
+      <div style="background:#1a0040;border-radius:20px;height:7px;overflow:hidden;"><div id="conf-prog-fill" style="height:100%;background:linear-gradient(90deg,#7b2fff,#22c55e);border-radius:20px;width:33%;transition:width 0.5s ease;"></div></div>
     </div>
-    <div id="conf-s2" style="background:linear-gradient(135deg,#0d0022,#120030);border:2px solid rgba(123,47,255,0.5);border-radius:20px;padding:24px;margin-bottom:16px;">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-        <div style="width:44px;height:44px;border-radius:50%;background:rgba(123,47,255,0.15);border:2px solid rgba(123,47,255,0.5);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🔔</div>
-        <div><div style="font-size:10px;font-weight:800;color:#b06aff;letter-spacing:2px;text-transform:uppercase;">STEP 2</div><div style="font-size:17px;font-weight:900;color:#fff;margin-top:2px;">Enable SMS Reminders</div></div>
+
+    <!-- STEP 1: Calendar -->
+    <div id="conf-s1" style="display:flex;gap:14px;background:linear-gradient(135deg,#0d0022,#120030);border:2px solid #22c55e;border-radius:18px;padding:20px 18px;margin-bottom:14px;align-items:flex-start;">
+      <div style="width:46px;height:46px;min-width:46px;background:rgba(34,197,94,0.2);border:2px solid #22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#22c55e;font-weight:900;">✓</div>
+      <div style="flex:1;">
+        <div style="font-size:10px;font-weight:800;color:#22c55e;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">STEP 1 <span style="background:#22c55e;color:#000;border-radius:50px;padding:1px 9px;font-size:9px;margin-left:6px;">Done</span></div>
+        <div style="font-size:16px;font-weight:900;margin-bottom:5px;">📅 Calendar Saved</div>
+        <p style="font-size:12px;color:#b06aff;margin-bottom:12px;line-height:1.5;">June 13, 2026 at 6PM EDT added to your calendar!</p>
+        <a href="#" onclick="dlCal();return false;" style="display:inline-block;background:rgba(34,197,94,0.15);border:1px solid #22c55e;color:#22c55e;border-radius:50px;padding:9px 20px;font-size:12px;font-weight:800;text-decoration:none;">⊙ Done — download again</a>
       </div>
-      <p style="font-size:13px;color:#b06aff;margin-bottom:16px;line-height:1.5;">We'll text you 24 hours before AND 20 minutes before the training begins so you never miss it.</p>
-      <div id="sms-area">
-        <div style="display:flex;gap:10px;margin-bottom:10px;">
-          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(123,47,255,0.35);border-radius:10px;padding:13px 14px;color:#fff;font-size:14px;white-space:nowrap;">🇺🇸 +1</div>
-          <input type="tel" id="sms-ph" placeholder="Your mobile number" style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(123,47,255,0.35);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;outline:none;font-family:'Inter',sans-serif;" />
+    </div>
+
+    <!-- STEP 2: SMS -->
+    <div id="conf-s2" style="display:flex;gap:14px;background:linear-gradient(135deg,#0d0022,#120030);border:1px solid rgba(123,47,255,0.3);border-radius:18px;padding:20px 18px;margin-bottom:14px;align-items:flex-start;">
+      <div style="width:46px;height:46px;min-width:46px;background:rgba(123,47,255,0.1);border:2px solid rgba(123,47,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;">🔔</div>
+      <div style="flex:1;">
+        <div style="font-size:10px;font-weight:800;color:#7b2fff;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">STEP 2</div>
+        <div style="font-size:16px;font-weight:900;margin-bottom:5px;">📲 Enable SMS Reminders</div>
+        <p style="font-size:12px;color:#b06aff;margin-bottom:12px;line-height:1.5;">We'll text you 1 hour before the training begins so you never miss it!</p>
+        <div id="sms-area">
+          <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(123,47,255,0.35);border-radius:10px;overflow:hidden;flex:1;min-width:170px;">
+              <span style="padding:0 10px;font-size:16px;">🇺🇸</span>
+              <input type="tel" id="sms-ph" placeholder="+1 (555) 000-0000" style="background:transparent;border:none;color:#fff;font-size:14px;padding:12px 8px 12px 0;outline:none;width:100%;font-family:'Inter',sans-serif;" />
+            </div>
+            <button onclick="enSMS()" style="background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:10px;padding:12px 16px;font-weight:800;font-size:13px;cursor:pointer;white-space:nowrap;">🔔 Enable</button>
+          </div>
+          <p style="font-size:10px;color:#4B0082;line-height:1.5;">By submitting your number, you agree to receive SMS reminders. Msg rates may apply. Opt out anytime.</p>
         </div>
-        <p style="font-size:10px;color:#4B0082;margin-bottom:12px;line-height:1.5;">By submitting your number, you agree to receive SMS reminders for this event. Msg rates may apply. Opt out anytime.</p>
-        <button onclick="enSMS()" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg,#7b2fff,#e040fb);border:none;border-radius:50px;padding:14px;color:#fff;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:1px;text-transform:uppercase;">🔔 Enable SMS Reminders</button>
+        <div id="sms-ok" style="display:none;background:rgba(34,197,94,0.1);border:1px solid #22c55e;border-radius:10px;padding:12px 14px;color:#22c55e;font-size:13px;font-weight:700;">✅ SMS Reminders enabled! We'll text you before the event. 📲</div>
       </div>
-      <div id="sms-ok" style="display:none;text-align:center;padding:10px 0;"><p style="color:#22c55e;font-weight:900;font-size:16px;">✅ SMS Reminders Enabled!</p><p style="color:#b06aff;font-size:13px;margin-top:4px;">You'll get a text 24hrs before + 20 mins before. You're all set! 🎉</p></div>
     </div>
-    <div id="conf-s3" style="background:linear-gradient(135deg,#0d0022,#120030);border:1px solid rgba(123,47,255,0.3);border-radius:20px;padding:24px;margin-bottom:30px;">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-        <div style="width:44px;height:44px;border-radius:50%;background:rgba(123,47,255,0.1);border:2px solid rgba(123,47,255,0.3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📧</div>
-        <div><div style="font-size:10px;font-weight:800;color:#b06aff;letter-spacing:2px;text-transform:uppercase;">STEP 3</div><div style="font-size:17px;font-weight:900;color:#fff;margin-top:2px;">Check Your Inbox</div></div>
+
+    <!-- STEP 3: Email -->
+    <div id="conf-s3" style="display:flex;gap:14px;background:linear-gradient(135deg,#0d0022,#120030);border:1px solid rgba(123,47,255,0.3);border-radius:18px;padding:20px 18px;margin-bottom:24px;align-items:flex-start;">
+      <div style="width:46px;height:46px;min-width:46px;background:rgba(123,47,255,0.1);border:2px solid rgba(123,47,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;">📧</div>
+      <div style="flex:1;">
+        <div style="font-size:10px;font-weight:800;color:#7b2fff;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">STEP 3</div>
+        <div style="font-size:16px;font-weight:900;margin-bottom:5px;">📧 Check Your Inbox for the Ticket</div>
+        <p style="font-size:12px;color:#b06aff;margin-bottom:12px;line-height:1.5;">Open your inbox and confirm the registration confirmation email arrived. If it's not there, check your Spam folder.</p>
+        <button onclick="confEmail()" id="email-btn" style="background:linear-gradient(135deg,#f5c842,#f7a800);color:#050008;border:none;border-radius:50px;padding:13px 28px;font-size:13px;font-weight:900;cursor:pointer;letter-spacing:0.5px;">✉️ I Found the Email</button>
       </div>
-      <p style="font-size:13px;color:#b06aff;margin-bottom:16px;line-height:1.5;">Open your email and confirm your registration confirmation arrived. If it's not there, check Spam and mark "Not Spam."</p>
-      <button onclick="confEmail()" id="email-btn" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg,#f5c842,#f7a800);border:none;border-radius:50px;padding:14px;color:#050008;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:1px;text-transform:uppercase;">📧 I Found The Email!</button>
     </div>
-    <div style="text-align:center;padding-top:10px;">
-      <p style="font-size:14px;color:#b06aff;margin-bottom:4px;">See you June 13th! Questions?</p>
-      <a href="mailto:mjunlimitedessentials@gmail.com" style="color:#f5c842;font-weight:800;font-size:15px;">mjunlimitedessentials@gmail.com</a>
-      <div style="margin-top:16px;color:#7b2fff;font-size:13px;font-weight:700;">— Mona Jackson-Ham</div>
+
+    <!-- Sig -->
+    <div style="text-align:center;padding-top:8px;">
+      <p style="font-size:13px;color:#7b2fff;">Questions? <a href="mailto:mjunlimitedessentials@gmail.com" style="color:#f5c842;font-weight:800;">mjunlimitedessentials@gmail.com</a></p>
+      <div style="margin-top:14px;color:#b06aff;font-size:13px;font-style:italic;">— Mona Jackson-Ham</div>
       <div style="color:#4B0082;font-size:11px;margin-top:4px;">Your AI Bootcamp Coach · MJUnlimited Essential Mktg Co. · A ThinkBox AI Operation Systems</div>
     </div>
   </div>
 </div>
-
 <div class="footer">
   © 2026 MJUnlimited Essential Mktg Co. · A ThinkBox AI Operation Systems · All Rights Reserved<br/>
   <a href="#">Privacy Policy</a> · <a href="#">Terms</a> · <a href="#">Disclaimer</a><br/>
@@ -643,7 +668,7 @@ function enSMS() {
   // Store in sessionStorage for the automation to pick up
   sessionStorage.setItem('thinkbox_sms', fullPhone);
   // Call Twilio via backend
-  fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/twilioSmsReminder', {
+  fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/sendSmsReminder', {
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body: JSON.stringify({ phone: fullPhone, action: 'register' })
