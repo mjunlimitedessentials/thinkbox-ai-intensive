@@ -355,11 +355,13 @@ function selectOpt(el, group, val){
 
 // ── TICKER ──
 const tickerNames = [
-  'Keisha M. — DMV','Tanya R. — Baltimore','Marcus W. — DC','LaToya J. — PG County',
-  'Denise F. — Northern VA','Alicia B. — Waldorf MD','Simone T. — Annapolis',
-  'Renee P. — Silver Spring','David C. — Bowie MD','Jasmine L. — Richmond VA',
-  'Monique H. — DC','Terrell S. — Hampton Roads','Candice W. — DMV',
-  'Pastor Williams — Greenbelt','Coach Theresa — Suitland'
+  'Keisha M. · Waldorf, MD','Tanya R. · Baltimore, MD','Marcus W. · Washington, DC',
+  'LaToya J. · Oxon Hill, MD','Denise F. · Alexandria, VA','Alicia B. · Waldorf, MD',
+  'Simone T. · Annapolis, MD','Renee P. · Silver Spring, MD','David C. · Bowie, MD',
+  'Jasmine L. · Richmond, VA','Monique H. · Washington, DC','Terrell S. · Hampton, VA',
+  'Candice W. · Suitland, MD','Sharon P. · Greenbelt, MD','Theresa K. · Capitol Heights, MD',
+  'Brenda L. · Fort Washington, MD','Antoine S. · Hyattsville, MD','Tiffany R. · Woodbridge, VA',
+  'Corey M. · Landover, MD','Natasha B. · Temple Hills, MD'
 ];
 const track = document.getElementById('tickerTrack');
 const items = [...tickerNames,...tickerNames].map(n=>`<span class="ticker-item"><span>✦</span>${n} just joined the waitlist</span>`).join('');
@@ -367,19 +369,24 @@ track.innerHTML = items + items;
 
 // ── TOAST ──
 const toastNames = [
-  {name:'Keisha M.',action:'just reserved her spot',time:'2 min ago'},
-  {name:'Tanya R.',action:'signed up from Baltimore',time:'5 min ago'},
-  {name:'Marcus W.',action:'just grabbed a seat',time:'8 min ago'},
-  {name:'LaToya J.',action:'is in from PG County',time:'12 min ago'},
-  {name:'Denise F.',action:'just joined the waitlist',time:'3 min ago'},
-  {name:'Pastor Williams',action:'registered from Greenbelt',time:'7 min ago'},
-  {name:'Coach Theresa',action:'secured her spot',time:'11 min ago'},
+  {name:'Keisha M.',loc:'Waldorf, MD',action:'just reserved her spot',time:'2 min ago'},
+  {name:'Tanya R.',loc:'Baltimore, MD',action:'just grabbed a seat',time:'5 min ago'},
+  {name:'Marcus W.',loc:'Washington, DC',action:'just signed up',time:'8 min ago'},
+  {name:'LaToya J.',loc:'Oxon Hill, MD',action:'just reserved her spot',time:'12 min ago'},
+  {name:'Denise F.',loc:'Alexandria, VA',action:'just joined the waitlist',time:'3 min ago'},
+  {name:'Sharon P.',loc:'Greenbelt, MD',action:'just secured her seat',time:'7 min ago'},
+  {name:'Theresa K.',loc:'Capitol Heights, MD',action:'just grabbed a seat',time:'11 min ago'},
+  {name:'Brenda L.',loc:'Fort Washington, MD',action:'just reserved her spot',time:'15 min ago'},
+  {name:'Antoine S.',loc:'Hyattsville, MD',action:'just signed up',time:'6 min ago'},
+  {name:'Tiffany R.',loc:'Woodbridge, VA',action:'just grabbed a seat',time:'9 min ago'},
+  {name:'Corey M.',loc:'Landover, MD',action:'just reserved his spot',time:'4 min ago'},
+  {name:'Natasha B.',loc:'Temple Hills, MD',action:'just joined the waitlist',time:'1 min ago'},
 ];
 let ti=0;
 function showToast(){
   const t=document.getElementById('toast');
   const d=toastNames[ti%toastNames.length];
-  document.getElementById('toastName').textContent=d.name;
+  document.getElementById('toastName').textContent=d.name+' · '+d.loc;
   document.getElementById('toastMsg').textContent=d.action;
   document.getElementById('toastTime').textContent=d.time;
   t.classList.add('show');
