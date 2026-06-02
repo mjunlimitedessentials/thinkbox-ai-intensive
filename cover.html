@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ThinkBox AI Intensive — Welcome</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#0a0010;color:#fff;min-height:100vh;overflow-x:hidden;}
+
+/* TICKER */
+.ticker-bar{background:linear-gradient(90deg,#7b2fff,#e040fb);padding:9px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:10;}
+.ticker-track{display:inline-flex;animation:ticker 28s linear infinite;}
+.ticker-item{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#fff;padding:0 32px;}
+.ticker-item span{color:#f5c842;margin-right:6px;}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* HERO */
+.hero{text-align:center;padding:48px 20px 20px;position:relative;}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at center,rgba(123,47,255,0.25) 0%,transparent 70%);pointer-events:none;}
+.hero-eyebrow{display:inline-block;background:rgba(123,47,255,0.2);border:1px solid rgba(123,47,255,0.5);border-radius:50px;padding:7px 20px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#b06aff;margin-bottom:20px;}
+.hero h1{font-size:clamp(32px,6vw,62px);font-weight:900;line-height:1.1;margin-bottom:16px;max-width:780px;margin-left:auto;margin-right:auto;}
+.hero h1 .gold{color:#f5c842;}
+.hero h1 .purple{color:#b06aff;}
+.hero-sub{font-size:clamp(15px,2.5vw,19px);color:#a78bfa;line-height:1.6;max-width:600px;margin:0 auto 32px;}
+
+/* VIDEO SECTION */
+.video-section{max-width:680px;margin:0 auto 40px;padding:0 20px;}
+.video-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7b2fff;text-align:center;margin-bottom:10px;}
+.video-wrap{position:relative;width:100%;background:#111;border-radius:16px;overflow:hidden;border:2px solid rgba(123,47,255,0.4);box-shadow:0 0 40px rgba(123,47,255,0.2);}
+.video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#0a0010,#1a0533);gap:14px;}
+.play-icon{width:70px;height:70px;background:linear-gradient(135deg,#7b2fff,#e040fb);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 0 30px rgba(123,47,255,0.5);}
+.play-icon:hover{transform:scale(1.08);box-shadow:0 0 50px rgba(123,47,255,0.7);}
+.play-icon svg{margin-left:5px;}
+.video-coming{font-size:13px;color:#6b7280;font-weight:600;letter-spacing:1px;}
+
+/* WHAT YOU'LL LEARN */
+.learn-section{max-width:860px;margin:0 auto 48px;padding:0 20px;}
+.section-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7b2fff;text-align:center;margin-bottom:10px;}
+.section-title{font-size:clamp(22px,4vw,34px);font-weight:900;text-align:center;margin-bottom:32px;line-height:1.2;}
+.section-title span{color:#f5c842;}
+.learn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.learn-card{background:rgba(123,47,255,0.08);border:1px solid rgba(123,47,255,0.2);border-radius:14px;padding:22px;transition:border-color 0.2s,transform 0.2s;}
+.learn-card:hover{border-color:rgba(123,47,255,0.5);transform:translateY(-2px);}
+.learn-icon{font-size:28px;margin-bottom:12px;}
+.learn-card h3{font-size:15px;font-weight:800;color:#fff;margin-bottom:6px;}
+.learn-card p{font-size:13px;color:#9ca3af;line-height:1.6;}
+
+/* WHO IS THIS FOR */
+.who-section{max-width:860px;margin:0 auto 48px;padding:0 20px;}
+.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
+.who-pill{background:rgba(245,200,66,0.06);border:1px solid rgba(245,200,66,0.2);border-radius:12px;padding:16px;text-align:center;}
+.who-pill-icon{font-size:24px;margin-bottom:8px;}
+.who-pill p{font-size:12px;font-weight:700;color:#f5c842;text-transform:uppercase;letter-spacing:1px;}
+
+/* HOST SECTION */
+.host-section{max-width:860px;margin:0 auto 48px;padding:0 20px;}
+.host-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;}
+.host-img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid #7b2fff;flex-shrink:0;background:linear-gradient(135deg,#7b2fff,#e040fb);}
+.host-img-placeholder{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#7b2fff,#e040fb);display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;}
+.host-info h3{font-size:22px;font-weight:900;color:#fff;margin-bottom:4px;}
+.host-info .host-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#b06aff;margin-bottom:12px;}
+.host-info p{font-size:14px;color:#9ca3af;line-height:1.7;}
+
+/* CAPTURE FORM */
+.capture-section{max-width:580px;margin:0 auto 0;padding:0 20px 60px;}
+.capture-card{background:rgba(255,255,255,0.04);border:1px solid rgba(123,47,255,0.3);border-radius:20px;padding:36px 32px;box-shadow:0 0 60px rgba(123,47,255,0.15);}
+.capture-title{font-size:clamp(20px,4vw,28px);font-weight:900;text-align:center;margin-bottom:6px;line-height:1.2;}
+.capture-title span{color:#f5c842;}
+.capture-sub{font-size:14px;color:#9ca3af;text-align:center;margin-bottom:28px;line-height:1.6;}
+
+.form-field{margin-bottom:16px;}
+.form-label{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;margin-bottom:7px;display:block;}
+.form-field input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px 16px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border 0.2s;}
+.form-field input:focus{border-color:#7b2fff;background:rgba(123,47,255,0.08);}
+.form-field input::placeholder{color:#4b5563;}
+
+.select-group{display:grid;gap:8px;}
+.select-opt{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;padding:13px 16px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:12px;}
+.select-opt:hover{border-color:rgba(123,47,255,0.5);background:rgba(123,47,255,0.08);}
+.select-opt.selected{border-color:#7b2fff;background:rgba(123,47,255,0.15);}
+.select-radio{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);flex-shrink:0;transition:all 0.2s;background:transparent;}
+.select-opt.selected .select-radio{border-color:#7b2fff;background:#7b2fff;}
+.select-opt-label{font-size:13px;font-weight:600;color:#e2e8f0;}
+.select-opt-sub{font-size:11px;color:#6b7280;margin-top:1px;}
+
+.form-select{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px 16px;color:#e2e8f0;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border 0.2s;appearance:none;cursor:pointer;}
+.form-select:focus{border-color:#7b2fff;background:rgba(123,47,255,0.08);}
+.form-select option{background:#1a0533;color:#e2e8f0;}
+.select-wrap{position:relative;}
+.select-wrap::after{content:'▾';position:absolute;right:16px;top:50%;transform:translateY(-50%);color:#6b7280;pointer-events:none;font-size:14px;}
+
+.divider{height:1px;background:rgba(255,255,255,0.06);margin:22px 0;}
+
+.cta-btn{display:block;width:100%;background:linear-gradient(135deg,#7b2fff,#e040fb);color:#fff;font-size:16px;font-weight:900;padding:18px;border-radius:50px;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-transform:uppercase;letter-spacing:1.5px;text-align:center;margin-top:8px;}
+.cta-btn:hover{transform:scale(1.02);box-shadow:0 8px 40px rgba(123,47,255,0.5);}
+.cta-note{text-align:center;font-size:11px;color:#4b5563;margin-top:10px;letter-spacing:0.5px;}
+
+/* EXIT INTENT OVERLAY */
+.exit-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;}
+.exit-overlay.show{display:flex;}
+.exit-modal{background:linear-gradient(135deg,#0f0020,#1a0533);border:2px solid rgba(123,47,255,0.5);border-radius:20px;padding:40px 32px;max-width:460px;width:100%;text-align:center;position:relative;box-shadow:0 0 80px rgba(123,47,255,0.3);}
+.exit-close{position:absolute;top:14px;right:18px;font-size:20px;color:#6b7280;cursor:pointer;background:none;border:none;line-height:1;}
+.exit-emoji{font-size:48px;margin-bottom:12px;}
+.exit-title{font-size:24px;font-weight:900;color:#fff;margin-bottom:8px;line-height:1.2;}
+.exit-title span{color:#f5c842;}
+.exit-sub{font-size:14px;color:#9ca3af;line-height:1.6;margin-bottom:24px;}
+.exit-email{width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:14px 16px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;outline:none;margin-bottom:12px;}
+.exit-email::placeholder{color:#4b5563;}
+.exit-cta{display:block;width:100%;background:linear-gradient(135deg,#f5c842,#f7a800);color:#0a0010;font-size:14px;font-weight:900;padding:15px;border-radius:50px;border:none;cursor:pointer;letter-spacing:1px;text-transform:uppercase;}
+.exit-skip{font-size:11px;color:#4b5563;margin-top:12px;cursor:pointer;text-decoration:underline;display:block;}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;left:20px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;z-index:1000;max-width:270px;box-shadow:0 8px 24px rgba(0,0,0,0.18);transform:translateY(120px);opacity:0;transition:all 0.4s ease;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7b2fff,#e040fb);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.toast-text{font-size:12px;color:#374151;line-height:1.4;}
+.toast-text b{color:#1a1a1a;display:block;}
+.toast-time{font-size:10px;color:#9ca3af;}
+
+@media(max-width:600px){
+  .capture-card{padding:24px 18px;}
+  .host-card{flex-direction:column;text-align:center;}
+  .exit-modal{padding:28px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">🔥 July 20, 2026 · Live on Zoom · 6PM EDT</div>
+  <h1>Stop Running Your Business<br><span class="gold">Without AI.</span><br><span class="purple">It's Costing You.</span></h1>
+  <p class="hero-sub">One live training. Real tools. Real strategies. Walk away knowing exactly how to use AI to save time, create content, and scale your business — starting NOW.</p>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section">
+  <p class="video-label">👋 A Message From Mona</p>
+  <div class="video-wrap">
+    <div class="video-placeholder" id="videoPlaceholder">
+      <div class="play-icon" onclick="playVideo()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <p class="video-coming">Welcome video coming soon — check back!</p>
+    </div>
+    <!-- When MJ uploads video, swap placeholder with: -->
+    <!-- <video controls poster="YOUR_THUMBNAIL.jpg"><source src="YOUR_VIDEO.mp4" type="video/mp4"></video> -->
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="learn-section">
+  <p class="section-label">What You'll Learn</p>
+  <h2 class="section-title">3 Hours That Will Change <span>How You Work Forever</span></h2>
+  <div class="learn-grid">
+    <div class="learn-card">
+      <div class="learn-icon">🤖</div>
+      <h3>AI Tools That Actually Work</h3>
+      <p>No fluff. We go hands-on with the exact tools — ChatGPT, Claude, automation platforms — that are saving entrepreneurs hours every week.</p>
+    </div>
+    <div class="learn-card">
+      <div class="learn-icon">✍️</div>
+      <h3>Content in Minutes, Not Hours</h3>
+      <p>Learn how to generate a full week of social media content, emails, and marketing copy using AI prompts — live on the call.</p>
+    </div>
+    <div class="learn-card">
+      <div class="learn-icon">⚙️</div>
+      <h3>Automate Your Business</h3>
+      <p>Discover how to set up AI automations that handle your follow-ups, lead capture, and scheduling while you sleep.</p>
+    </div>
+    <div class="learn-card">
+      <div class="learn-icon">📈</div>
+      <h3>Scale Without Burning Out</h3>
+      <p>Build smarter systems using AI so you can grow your revenue without adding more hours to your day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section class="who-section">
+  <p class="section-label">Who Is This For?</p>
+  <h2 class="section-title" style="margin-bottom:24px;">Built For <span>You</span> If You Are...</h2>
+  <div class="who-grid">
+    <div class="who-pill"><div class="who-pill-icon">💼</div><p>Entrepreneur</p></div>
+    <div class="who-pill"><div class="who-pill-icon">⛪</div><p>Ministry Leader</p></div>
+    <div class="who-pill"><div class="who-pill-icon">📚</div><p>Educator</p></div>
+    <div class="who-pill"><div class="who-pill-icon">🏪</div><p>Small Business Owner</p></div>
+    <div class="who-pill"><div class="who-pill-icon">🎨</div><p>Creative / Freelancer</p></div>
+    <div class="who-pill"><div class="who-pill-icon">🚀</div><p>Coach / Consultant</p></div>
+  </div>
+</section>
+
+<!-- HOST -->
+<section class="host-section">
+  <div class="host-card">
+    <div class="host-img-placeholder">👩🏾‍💼</div>
+    <div class="host-info">
+      <h3>Mona Jackson-Ham</h3>
+      <p class="host-title">AI Operations Strategist · Founder, MJUnlimited &amp; ThinkBox AI Studios</p>
+      <p>Mona helps entrepreneurs, ministries, and educators use AI to work smarter — not harder. She's built automated marketing systems, AI-powered content engines, and done-for-you setups for businesses across the DMV and beyond. July 20th, she's bringing everything to you LIVE.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAPTURE FORM -->
+<section class="capture-section">
+  <div class="capture-card">
+    <h2 class="capture-title">Reserve Your <span>Free Spot</span> in Line</h2>
+    <p class="capture-sub">Tell us a little about yourself so we can make sure this training speaks directly to YOUR business needs. Pricing revealed on the next page.</p>
+
+    <!-- Name & Email -->
+    <div class="form-field">
+      <label class="form-label">Your First Name</label>
+      <input type="text" id="firstName" placeholder="e.g. Mona" />
+    </div>
+    <div class="form-field">
+      <label class="form-label">Your Email Address</label>
+      <input type="email" id="emailField" placeholder="you@yourbusiness.com" />
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- AI Experience -->
+    <div class="form-field">
+      <label class="form-label">Where are you with AI right now?</label>
+      <div class="select-group" id="aiLevelGroup">
+        <div class="select-opt" onclick="selectOpt(this,'aiLevel','new')">
+          <div class="select-radio"></div>
+          <div>
+            <div class="select-opt-label">🌱 Brand New — I barely know what AI is</div>
+            <div class="select-opt-sub">Never used it in my business</div>
+          </div>
+        </div>
+        <div class="select-opt" onclick="selectOpt(this,'aiLevel','some')">
+          <div class="select-radio"></div>
+          <div>
+            <div class="select-opt-label">⚡ I've dabbled — used ChatGPT a few times</div>
+            <div class="select-opt-sub">Know the basics but not consistent</div>
+          </div>
+        </div>
+        <div class="select-opt" onclick="selectOpt(this,'aiLevel','using')">
+          <div class="select-radio"></div>
+          <div>
+            <div class="select-opt-label">🔥 I use AI — but want to go deeper</div>
+            <div class="select-opt-sub">Ready to level up my systems</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Industry -->
+    <div class="form-field">
+      <label class="form-label">Your Industry / Field</label>
+      <div class="select-wrap">
+        <select class="form-select" id="industryField">
+          <option value="" disabled selected>Select your industry...</option>
+          <option>Entrepreneurship / Small Business</option>
+          <option>Ministry / Faith-Based Organization</option>
+          <option>Education / Teaching</option>
+          <option>Marketing / Branding / Creative</option>
+          <option>Coaching / Consulting</option>
+          <option>Health &amp; Wellness</option>
+          <option>Real Estate</option>
+          <option>Beauty / Fashion / Lifestyle</option>
+          <option>Non-Profit / Community Org</option>
+          <option>Technology / IT</option>
+          <option>Finance / Accounting</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Biggest Challenge -->
+    <div class="form-field">
+      <label class="form-label">What's your #1 business challenge right now?</label>
+      <div class="select-group" id="challengeGroup">
+        <div class="select-opt" onclick="selectOpt(this,'challenge','time')">
+          <div class="select-radio"></div>
+          <div>
+            <div class="select-opt-label">⏰ Not enough time — I'm doing everything myself</div>
+          </div>
+        </div>
+        <div class="select-opt" onclick="selectOpt(this,'challenge','content')">
+          <div class="select-radio"></div>
+          <div>
+            <div class="select-opt-label">📱 Content creation — I struggle to stay consistent</div>
+          </div>
+        </div>
+        <div class="select-opt" onclick="selectOpt(this,'challenge','leads')">
+          <div class="select-radio"></div>
+          <div>
+            <div class="select-opt-label">🎯 Getting leads &amp; clients consistently</div>
+          </div>
+        </div>
+        <div class="select-opt" onclick="selectOpt(this,'challenge','systems')">
+          <div class="select-radio"></div>
+          <div>
+            <div class="select-opt-label">⚙️ No systems — everything runs through my head</div>
+          </div>
+        </div>
+        <div class="select-opt" onclick="selectOpt(this,'challenge','scale')">
+          <div class="select-radio"></div>
+          <div>
+            <div class="select-opt-label">📈 Ready to scale but don't know how</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="cta-btn" onclick="submitCover()">Show Me The Training Details →</button>
+    <p class="cta-note">🔒 No spam. No pressure. Just the details.</p>
+  </div>
+</section>
+
+<!-- EXIT INTENT OVERLAY -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-modal">
+    <button class="exit-close" onclick="closeExit()">✕</button>
+    <div class="exit-emoji">⏳</div>
+    <h2 class="exit-title">Wait — Before You Go,<br><span>Save Your Seat</span></h2>
+    <p class="exit-sub">July 20th is coming fast. Drop your email and we'll send you all the details — no commitment required. You can decide later.</p>
+    <input class="exit-email" type="email" id="exitEmail" placeholder="Enter your email address..." />
+    <button class="exit-cta" onclick="saveExitEmail()">Yes — Send Me The Details!</button>
+    <span class="exit-skip" onclick="closeExit()">No thanks, I'll figure it out on my own</span>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-av">🎓</div>
+  <div class="toast-text">
+    <b id="toastName">Keisha M.</b>
+    <span id="toastMsg">just reserved her spot</span>
+    <span class="toast-time" id="toastTime">2 min ago</span>
+  </div>
+</div>
+
+<script>
+// ── SELECTED VALUES ──
+const selections = {aiLevel:'', challenge:''};
+
+function selectOpt(el, group, val){
+  const parent = document.getElementById(group==='aiLevel'?'aiLevelGroup':'challengeGroup');
+  parent.querySelectorAll('.select-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  selections[group] = val;
+}
+
+// ── TICKER ──
+const tickerNames = [
+  'Keisha M. — DMV','Tanya R. — Baltimore','Marcus W. — DC','LaToya J. — PG County',
+  'Denise F. — Northern VA','Alicia B. — Waldorf MD','Simone T. — Annapolis',
+  'Renee P. — Silver Spring','David C. — Bowie MD','Jasmine L. — Richmond VA',
+  'Monique H. — DC','Terrell S. — Hampton Roads','Candice W. — DMV',
+  'Pastor Williams — Greenbelt','Coach Theresa — Suitland'
+];
+const track = document.getElementById('tickerTrack');
+const items = [...tickerNames,...tickerNames].map(n=>`<span class="ticker-item"><span>✦</span>${n} just joined the waitlist</span>`).join('');
+track.innerHTML = items + items;
+
+// ── TOAST ──
+const toastNames = [
+  {name:'Keisha M.',action:'just reserved her spot',time:'2 min ago'},
+  {name:'Tanya R.',action:'signed up from Baltimore',time:'5 min ago'},
+  {name:'Marcus W.',action:'just grabbed a seat',time:'8 min ago'},
+  {name:'LaToya J.',action:'is in from PG County',time:'12 min ago'},
+  {name:'Denise F.',action:'just joined the waitlist',time:'3 min ago'},
+  {name:'Pastor Williams',action:'registered from Greenbelt',time:'7 min ago'},
+  {name:'Coach Theresa',action:'secured her spot',time:'11 min ago'},
+];
+let ti=0;
+function showToast(){
+  const t=document.getElementById('toast');
+  const d=toastNames[ti%toastNames.length];
+  document.getElementById('toastName').textContent=d.name;
+  document.getElementById('toastMsg').textContent=d.action;
+  document.getElementById('toastTime').textContent=d.time;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+  ti++;
+  const next = 8000+Math.random()*7000;
+  setTimeout(showToast,next);
+}
+setTimeout(showToast,4000);
+
+// ── EXIT INTENT ──
+let exitShown = false;
+document.addEventListener('mouseleave',function(e){
+  if(e.clientY<10 && !exitShown){
+    exitShown=true;
+    document.getElementById('exitOverlay').classList.add('show');
+  }
+});
+// Mobile: scroll up quickly
+let lastY=0;
+window.addEventListener('scroll',function(){
+  const y=window.scrollY;
+  if(lastY-y>60 && y<200 && !exitShown){
+    exitShown=true;
+    document.getElementById('exitOverlay').classList.add('show');
+  }
+  lastY=y;
+});
+function closeExit(){document.getElementById('exitOverlay').classList.remove('show');}
+function saveExitEmail(){
+  const e=document.getElementById('exitEmail').value;
+  if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}
+  // Store and redirect
+  sessionStorage.setItem('exitEmail',e);
+  closeExit();
+  alert('✅ Got it! Check your inbox for details. See you July 20th! 🔥');
+}
+
+// ── FORM SUBMIT ──
+function submitCover(){
+  const name=document.getElementById('firstName').value.trim();
+  const email=document.getElementById('emailField').value.trim();
+  const industry=document.getElementById('industryField').value;
+  if(!name){alert('Please enter your first name.');return;}
+  if(!email||!email.includes('@')){alert('Please enter a valid email.');return;}
+  if(!selections.aiLevel){alert('Please select your AI experience level.');return;}
+  if(!industry){alert('Please select your industry.');return;}
+  if(!selections.challenge){alert('Please select your #1 business challenge.');return;}
+
+  // Store demographic data
+  const data={name,email,industry,aiLevel:selections.aiLevel,challenge:selections.challenge};
+  sessionStorage.setItem('tbDemo',JSON.stringify(data));
+
+  // Send to Base44 waitlist entity (optional)
+  fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/n8nWaitlist',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({first_name:name,email,role:industry,source:'ThinkBox Cover Page',status:'cover_lead'})
+  }).catch(()=>{});
+
+  // Redirect to checkout
+  window.location.href='checkout.html?ref=cover&name='+encodeURIComponent(name);
+}
+
+function playVideo(){
+  // When MJ uploads video, this will trigger playback
+  alert('Welcome video coming soon! In the meantime — keep scrolling to learn more. 👇');
+}
+</script>
+</body>
+</html>
