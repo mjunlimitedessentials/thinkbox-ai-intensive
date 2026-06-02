@@ -144,14 +144,10 @@ body{font-family:'Inter',sans-serif;background:#0a0010;color:#fff;min-height:100
 <section class="video-section">
   <p class="video-label">👋 A Message From Mona</p>
   <div class="video-wrap">
-    <div class="video-placeholder" id="videoPlaceholder">
-      <div class="play-icon" onclick="playVideo()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
-      </div>
-      <p class="video-coming">Welcome video coming soon — check back!</p>
-    </div>
-    <!-- When MJ uploads video, swap placeholder with: -->
-    <!-- <video controls poster="YOUR_THUMBNAIL.jpg"><source src="YOUR_VIDEO.mp4" type="video/mp4"></video> -->
+    <video controls playsinline style="width:100%;display:block;border-radius:14px;max-height:480px;background:#000;">
+      <source src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/33230847c_d03f79f08_IMG_3159.MP4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 </section>
 
@@ -448,10 +444,7 @@ function submitCover(){
   window.location.href='checkout.html?ref=cover&name='+encodeURIComponent(name);
 }
 
-function playVideo(){
-  // When MJ uploads video, this will trigger playback
-  alert('Welcome video coming soon! In the meantime — keep scrolling to learn more. 👇');
-}
+
 </script>
 </body>
 </html>
