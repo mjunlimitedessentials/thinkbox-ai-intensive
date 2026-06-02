@@ -422,7 +422,16 @@ function saveExitEmail(){
   // Store and redirect
   sessionStorage.setItem('exitEmail',e);
   closeExit();
-  alert('✅ Got it! Check your inbox for details. See you July 20th! 🔥');
+  // Show thank you message in the modal instead of alert
+  const modal = document.querySelector('.exit-modal');
+  modal.innerHTML = `
+    <div style="text-align:center;padding:10px 0;">
+      <div style="font-size:48px;margin-bottom:16px;">🙏</div>
+      <h2 style="font-size:22px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;">Thank You!</h2>
+      <p style="font-size:14px;color:#9ca3af;line-height:1.7;margin-bottom:24px;">We appreciate you stopping by.<br>When you're ready to secure your seat,<br>we'll be here waiting for you.</p>
+      <button onclick="closeExit()" style="background:linear-gradient(135deg,#7b2fff,#e040fb);color:#fff;font-size:14px;font-weight:900;padding:14px 36px;border-radius:50px;border:none;cursor:pointer;letter-spacing:1px;text-transform:uppercase;">Close</button>
+    </div>
+  `;
 }
 
 // ── FORM SUBMIT ──
