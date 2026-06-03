@@ -435,9 +435,17 @@
     'Keisha M. · Waldorf, MD','Marcus W. · Washington, DC','LaToya J. · Oxon Hill, MD',
     'Denise F. · Alexandria, VA','Simone T. · Annapolis, MD','Renee P. · Silver Spring, MD',
     'David C. · Bowie, MD','Jasmine L. · Richmond, VA','Monique H. · Washington, DC',
-    'Terrell S. · Hampton, VA','Sharon P. · Greenbelt, MD','Theresa K. · Capitol Heights, MD',
-    'Brenda L. · Fort Washington, MD','Tiffany R. · Woodbridge, VA','Corey M. · Landover, MD',
-    'Natasha B. · Temple Hills, MD','Antoine S. · Hyattsville, MD','Candice W. · Suitland, MD'
+    'Terrell S. · Hampton, VA','Sharon P. · Greenbelt, MD','Brenda L. · Fort Washington, MD',
+    'Alicia T. · Newark, NJ','James R. · Trenton, NJ','Dominique S. · New York, NY',
+    'Sharice B. · Brooklyn, NY','Kevin P. · Bronx, NY','Tamara L. · Hartford, CT',
+    'Michelle F. · Stamford, CT','Darnell W. · Boston, MA','Yvonne K. · Springfield, MA',
+    'Rochelle H. · Charlotte, NC','Andre J. · Raleigh, NC','Felicia M. · Columbia, SC',
+    'Damon T. · Charleston, SC','Tanya G. · Houston, TX','Bernard C. · Dallas, TX',
+    'Latrice N. · Atlanta, GA','Darius W. · Savannah, GA','Cassandra L. · Miami, FL',
+    'Reginald B. · Orlando, FL','Sonya M. · Tampa, FL','Cheryl D. · Birmingham, AL',
+    'Marcus A. · Mobile, AL','Trina E. · Louisville, KY','Jerome H. · Lexington, KY',
+    'Vanessa P. · Charleston, WV','Darrell S. · Pittsburgh, PA','Nicole W. · Philadelphia, PA',
+    'Calvin J. · Columbus, OH','Sheila T. · Cleveland, OH','Patrice M. · Cincinnati, OH'
   ];
   const track = document.getElementById('ticker');
   const items = [...tickerNames, ...tickerNames].map(n =>
@@ -453,7 +461,22 @@
     {name:'David C.',loc:'Bowie, MD'},{name:'Jasmine L.',loc:'Richmond, VA'},
     {name:'Monique H.',loc:'Washington, DC'},{name:'Terrell S.',loc:'Hampton, VA'},
     {name:'Sharon P.',loc:'Greenbelt, MD'},{name:'Brenda L.',loc:'Fort Washington, MD'},
-    {name:'Tiffany R.',loc:'Woodbridge, VA'},{name:'Corey M.',loc:'Landover, MD'}
+    {name:'Tiffany R.',loc:'Woodbridge, VA'},{name:'Corey M.',loc:'Landover, MD'},
+    {name:'Alicia T.',loc:'Newark, NJ'},{name:'James R.',loc:'Trenton, NJ'},
+    {name:'Dominique S.',loc:'New York, NY'},{name:'Sharice B.',loc:'Brooklyn, NY'},
+    {name:'Kevin P.',loc:'Bronx, NY'},{name:'Tamara L.',loc:'Hartford, CT'},
+    {name:'Michelle F.',loc:'Stamford, CT'},{name:'Darnell W.',loc:'Boston, MA'},
+    {name:'Yvonne K.',loc:'Springfield, MA'},{name:'Rochelle H.',loc:'Charlotte, NC'},
+    {name:'Andre J.',loc:'Raleigh, NC'},{name:'Felicia M.',loc:'Columbia, SC'},
+    {name:'Damon T.',loc:'Charleston, SC'},{name:'Tanya G.',loc:'Houston, TX'},
+    {name:'Bernard C.',loc:'Dallas, TX'},{name:'Latrice N.',loc:'Atlanta, GA'},
+    {name:'Darius W.',loc:'Savannah, GA'},{name:'Cassandra L.',loc:'Miami, FL'},
+    {name:'Reginald B.',loc:'Orlando, FL'},{name:'Sonya M.',loc:'Tampa, FL'},
+    {name:'Cheryl D.',loc:'Birmingham, AL'},{name:'Marcus A.',loc:'Mobile, AL'},
+    {name:'Trina E.',loc:'Louisville, KY'},{name:'Jerome H.',loc:'Lexington, KY'},
+    {name:'Vanessa P.',loc:'Charleston, WV'},{name:'Darrell S.',loc:'Pittsburgh, PA'},
+    {name:'Nicole W.',loc:'Philadelphia, PA'},{name:'Calvin J.',loc:'Columbus, OH'},
+    {name:'Sheila T.',loc:'Cleveland, OH'},{name:'Patrice M.',loc:'Cincinnati, OH'}
   ];
   let toastIdx = 0;
   function showToast() {
