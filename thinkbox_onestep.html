@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ThinkBox AI Intensive — Secure Your Seat</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#f5f0eb;color:#1a1a1a;min-height:100vh;}
+
+/* PAGE SYSTEM */
+.page{display:none;}
+.page.active{display:block;}
+
+/* TOP BAR */
+.topbar{background:linear-gradient(90deg,#7b2fff,#e040fb);text-align:center;padding:10px 20px;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;}
+
+/* HEADER */
+.header{background:#fff;border-bottom:1px solid #e5e7eb;padding:18px 20px;text-align:center;}
+.header-badge{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7b2fff;margin-bottom:6px;}
+.header h1{font-size:clamp(20px,4vw,32px);font-weight:900;color:#1a1a1a;line-height:1.2;}
+.header h1 span{color:#f5c842;}
+.header-sub{font-size:13px;color:#6b7280;margin-top:6px;}
+
+/* MAIN LAYOUT */
+.main{display:grid;grid-template-columns:1fr 1fr;max-width:1060px;margin:28px auto;gap:24px;padding:0 20px 40px;}
+@media(max-width:768px){.main{grid-template-columns:1fr;padding:0 14px 30px;margin:16px auto;}}
+
+/* LEFT */
+.left{display:flex;flex-direction:column;gap:0;}
+
+.price-hero{margin-bottom:18px;}
+.one-time-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:4px;}
+.price-tag{font-size:clamp(36px,6vw,58px);font-weight:900;color:#f5c842;line-height:1;text-shadow:0 2px 12px rgba(245,200,66,0.3);}
+.price-note{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#9ca3af;margin-top:4px;}
+
+/* VIDEO EMBED */
+.video-wrap{position:relative;width:100%;background:#000;border-radius:14px;overflow:hidden;margin-bottom:20px;border:2px solid rgba(123,47,255,0.2);}
+.video-wrap video{width:100%;display:block;border-radius:12px;}
+.video-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7b2fff;margin-bottom:8px;}
+
+.includes-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:12px;}
+.include-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.include-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#374151;line-height:1.5;}
+.inc-check{width:20px;height:20px;background:linear-gradient(135deg,#7b2fff,#e040fb);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:900;flex-shrink:0;margin-top:1px;}
+
+.trust-row{display:flex;gap:10px;flex-wrap:wrap;}
+.trust-pill{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:50px;padding:6px 14px;font-size:10px;font-weight:800;color:#6b7280;letter-spacing:1px;text-transform:uppercase;}
+
+/* RIGHT — ORDER FORM */
+.order-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:28px 24px;box-shadow:0 4px 24px rgba(0,0,0,0.08);}
+.payment-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #e5e7eb;padding-bottom:10px;margin-bottom:18px;}
+
+/* CONTACT FIELDS */
+.field-group{margin-bottom:12px;}
+.field-group input{width:100%;background:#fff;border:1px solid #d1d5db;border-radius:8px;padding:13px 16px;color:#1a1a1a;font-size:14px;font-family:'Inter',sans-serif;transition:border 0.2s;outline:none;}
+.field-group input:focus{border-color:#7b2fff;box-shadow:0 0 0 3px rgba(123,47,255,0.1);}
+.field-group input::placeholder{color:#9ca3af;}
+
+/* PACKAGE TABLE */
+.payment-section{margin:18px 0 14px;}
+.payment-section-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:12px;}
+.pkg-table{width:100%;border-collapse:collapse;margin-bottom:4px;}
+.pkg-table thead tr{border-bottom:1px solid #e5e7eb;}
+.pkg-table thead th{font-size:11px;font-weight:700;color:#9ca3af;padding:0 0 8px;text-align:left;}
+.pkg-table thead th:last-child{text-align:right;}
+.pkg-row-item{border-bottom:1px solid #f3f4f6;cursor:pointer;transition:background 0.15s;}
+.pkg-row-item:hover td{background:#faf5ff;}
+.pkg-row-item td{padding:12px 8px 12px 0;vertical-align:middle;}
+.pkg-row-item td:last-child{text-align:right;}
+.pkg-radio-wrap{display:flex;align-items:center;gap:10px;}
+.pkg-radio{width:18px;height:18px;border-radius:50%;border:2px solid #d1d5db;flex-shrink:0;transition:all 0.2s;background:#fff;display:flex;align-items:center;justify-content:center;}
+.pkg-radio.active{border-color:#7b2fff;background:#7b2fff;}
+.pkg-radio.active::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff;display:block;}
+.pkg-name-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.pkg-name{font-size:13px;font-weight:700;color:#1a1a1a;}
+.pkg-desc{font-size:11px;color:#9ca3af;margin-top:1px;}
+.pkg-price-col{font-size:15px;font-weight:900;color:#7b2fff;}
+.popular-badge{background:linear-gradient(135deg,#f5c842,#f7a800);color:#050008;font-size:9px;font-weight:900;padding:2px 8px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
+
+/* ORDER BUMP */
+.bump-box{background:#fffbea;border:2px dashed #f5c842;border-radius:10px;padding:14px 16px;margin:16px 0;cursor:pointer;transition:all 0.2s;}
+.bump-box:hover,.bump-box.checked{background:#fff9d6;border-color:#f7a800;}
+.bump-row{display:flex;align-items:flex-start;gap:12px;}
+.bump-cb{width:18px;height:18px;border:2px solid #f5c842;border-radius:4px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;background:#fff;transition:all 0.2s;}
+.bump-box.checked .bump-cb{background:#f5c842;border-color:#f5c842;}
+.bump-check{display:none;color:#050008;font-size:11px;font-weight:900;}
+.bump-box.checked .bump-check{display:block;}
+.bump-title{font-size:13px;font-weight:800;color:#92400e;margin-bottom:3px;}
+.bump-title span{color:#7b2fff;}
+.bump-desc{font-size:11px;color:#78716c;line-height:1.5;margin-bottom:4px;}
+.bump-add{font-size:12px;font-weight:800;color:#7b2fff;}
+
+/* ORDER SUMMARY */
+.summary-wrap{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:14px 16px;margin-bottom:18px;}
+.sum-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#374151;margin-bottom:6px;}
+.sum-row.total{border-top:1px solid #e5e7eb;padding-top:10px;margin-top:6px;font-size:15px;font-weight:900;color:#1a1a1a;}
+.sum-price{font-weight:700;color:#7b2fff;}
+.sum-row.total .sum-price{color:#7b2fff;font-size:17px;}
+.sum-header{display:flex;justify-content:space-between;font-size:11px;color:#9ca3af;font-weight:700;margin-bottom:8px;}
+
+/* CTA */
+.cta-btn{display:block;width:100%;background:linear-gradient(135deg,#7b2fff,#e040fb);color:#fff;font-size:15px;font-weight:900;padding:17px;border-radius:50px;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-transform:uppercase;letter-spacing:1px;text-align:center;}
+.cta-btn:hover{transform:scale(1.02);box-shadow:0 8px 30px rgba(123,47,255,0.4);}
+.secure-note{text-align:center;font-size:10px;color:#9ca3af;margin-top:10px;letter-spacing:1px;}
+
+/* ===== THANK YOU PAGE ===== */
+.ty-page{max-width:680px;margin:0 auto;padding:40px 20px 60px;}
+.ty-confetti{text-align:center;font-size:48px;margin-bottom:10px;}
+.ty-badge{display:inline-block;background:rgba(34,197,94,0.1);border:2px solid #22c55e;border-radius:50px;padding:8px 24px;font-size:11px;font-weight:800;letter-spacing:2px;color:#22c55e;text-transform:uppercase;margin-bottom:16px;}
+.ty-h1{font-size:clamp(24px,5vw,38px);font-weight:900;color:#1a1a1a;line-height:1.2;margin-bottom:10px;}
+.ty-h1 span{color:#7b2fff;}
+.ty-sub{font-size:15px;color:#6b7280;line-height:1.6;margin-bottom:30px;}
+
+.ty-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:28px;margin-bottom:20px;box-shadow:0 4px 16px rgba(0,0,0,0.06);}
+.ty-card-title{font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7b2fff;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.ty-step{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start;}
+.ty-step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#7b2fff,#e040fb);color:#fff;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ty-step-text{font-size:13px;color:#374151;line-height:1.6;}
+.ty-step-text b{color:#1a1a1a;}
+
+.email-highlight{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px 18px;margin:12px 0;font-size:13px;color:#166534;font-weight:600;}
+.email-highlight code{background:#dcfce7;padding:2px 8px;border-radius:4px;font-family:monospace;font-weight:800;}
+
+.zoom-card{background:linear-gradient(135deg,#f0f4ff,#faf5ff);border:1px solid #c7d2fe;border-radius:12px;padding:18px;margin:12px 0;}
+.zoom-detail{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;}
+.zoom-label{color:#6b7280;font-weight:600;}
+.zoom-value{font-weight:800;color:#1a1a1a;}
+
+.fb-btn{display:block;width:100%;background:#1877f2;color:#fff;font-size:14px;font-weight:800;padding:15px;border-radius:10px;border:none;cursor:pointer;text-align:center;text-decoration:none;margin-top:12px;transition:opacity 0.2s;}
+.fb-btn:hover{opacity:0.9;}
+
+.ty-footer-note{text-align:center;font-size:12px;color:#9ca3af;line-height:1.7;margin-top:20px;}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;left:20px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;z-index:1000;max-width:260px;box-shadow:0 8px 24px rgba(0,0,0,0.12);transform:translateY(120px);opacity:0;transition:all 0.4s ease;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7b2fff,#e040fb);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0;}
+.toast-text{font-size:11px;color:#374151;line-height:1.5;}
+.toast-name{font-weight:800;color:#1a1a1a;}
+.toast-pkg{color:#7b2fff;font-weight:700;}
+
+/* FOOTER */
+.footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;background:#fff;margin-top:10px;}
+</style>
+</head>
+<body>
+
+<!-- ===== PAGE 1: ORDER FORM ===== -->
+<div class="page active" id="page-order">
+
+  <div class="topbar">🔥 June 27, 2026 · Live Zoom · Limited Seats Available · Register Now</div>
+
+  <div class="header">
+    <div class="header-badge">⚡ One-Time · No Subscription · Instant Access</div>
+    <h1>ThinkBox <span>AI Intensive</span> — Secure Your Seat</h1>
+    <p class="header-sub">Live training with Mona Jackson-Ham — June 27, 2026 @ 6PM EDT</p>
+  </div>
+
+  <div class="main">
+
+    <!-- LEFT -->
+    <div class="left">
+      <div class="price-hero">
+        <div class="one-time-label">Starting at just</div>
+        <div class="price-tag" id="display-price">$47</div>
+        <div class="price-note">One-Time · No Subscription · Instant Access</div>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="video-label">🎬 Watch Before You Register</div>
+      <div class="video-wrap">
+        <video controls playsinline preload="none" poster="">
+          <source src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/7d260042d_ad21cd4f9_a35dc0f5-dd47-428e-819e-8cf08237a177.mp4" type="video/mp4"/>
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="includes-label">Everything Included:</div>
+      <ul class="include-list">
+        <li><div class="inc-check">✓</div><span><b>Live Zoom Training</b> — June 27, 2026 @ 6PM EDT with Mona Jackson-Ham</span></li>
+        <li><div class="inc-check">✓</div><span><b>Full Session Replay</b> — Watch on demand after the live event</span></li>
+        <li><div class="inc-check">✓</div><span><b>AI Tools Masterclass</b> — Hands-on strategies you can use immediately</span></li>
+        <li><div class="inc-check">✓</div><span><b>Exclusive Resource Pack</b> — Templates, frameworks &amp; checklists</span></li>
+        <li><div class="inc-check">✓</div><span><b>Community Access</b> — Connect with other AI-powered entrepreneurs</span></li>
+      </ul>
+
+      <div class="trust-row">
+        <div class="trust-pill">🔒 Secure Checkout</div>
+        <div class="trust-pill">✅ Instant Access</div>
+        <div class="trust-pill">🎓 Expert-Led</div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+      <div class="order-card">
+
+        <div class="payment-label">Payment</div>
+
+        <div class="field-group"><input type="text" id="f-name" placeholder="Full Name..."/></div>
+        <div class="field-group"><input type="email" id="f-email" placeholder="Email Address..."/></div>
+        <div class="field-group"><input type="tel" id="f-phone" placeholder="Phone Number..."/></div>
+
+        <div class="payment-section">
+          <div class="payment-section-label">Choose Your Package:</div>
+          <table class="pkg-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th style="text-align:center;">Qty</th>
+                <th style="text-align:right;">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pkg-row-item" onclick="selectPkg('replay',27,'Replay Only')">
+                <td>
+                  <div class="pkg-radio-wrap">
+                    <div class="pkg-radio" id="radio-replay"></div>
+                    <div>
+                      <div class="pkg-name-wrap"><div class="pkg-name">Replay Only</div></div>
+                      <div class="pkg-desc">Full recording · On-demand access</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="text-align:center;font-size:13px;color:#6b7280;">1</td>
+                <td class="pkg-price-col">$27</td>
+              </tr>
+              <tr class="pkg-row-item" onclick="selectPkg('live',47,'Live Access')">
+                <td>
+                  <div class="pkg-radio-wrap">
+                    <div class="pkg-radio active" id="radio-live"></div>
+                    <div>
+                      <div class="pkg-name-wrap">
+                        <div class="pkg-name">Live Access</div>
+                        <span class="popular-badge">Most Popular</span>
+                      </div>
+                      <div class="pkg-desc">Attend live June 27 + full replay</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="text-align:center;font-size:13px;color:#6b7280;">1</td>
+                <td class="pkg-price-col">$47</td>
+              </tr>
+              <tr class="pkg-row-item" onclick="selectPkg('bundle',67,'Full Bundle')">
+                <td>
+                  <div class="pkg-radio-wrap">
+                    <div class="pkg-radio" id="radio-bundle"></div>
+                    <div>
+                      <div class="pkg-name-wrap"><div class="pkg-name">Full Bundle</div></div>
+                      <div class="pkg-desc">Live + Replay + Bonus Resource Pack</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="text-align:center;font-size:13px;color:#6b7280;">1</td>
+                <td class="pkg-price-col">$67</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ORDER BUMP -->
+        <div class="bump-box" id="bump-box" onclick="toggleBump()">
+          <div class="bump-row">
+            <div class="bump-cb" id="bump-cb"><span class="bump-check">✓</span></div>
+            <div>
+              <div class="bump-title">⚡ <span>Add the ThinkBox AI Prompt Vault</span></div>
+              <div class="bump-desc">100+ AI prompts for entrepreneurs — content creation, business strategy, client outreach &amp; more. Instant download.</div>
+              <div class="bump-add">Add for just $37 more →</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div class="summary-wrap">
+          <div class="sum-header"><span>Order Summary</span><span></span></div>
+          <div class="sum-row">
+            <span id="s-pkg-name">ThinkBox AI Intensive — Live Access</span>
+            <span class="sum-price" id="s-pkg-price">$47</span>
+          </div>
+          <div class="sum-row" id="s-vault-row" style="display:none;">
+            <span>ThinkBox AI Prompt Vault</span>
+            <span class="sum-price">$37</span>
+          </div>
+          <div class="sum-row total">
+            <span>Order Total</span>
+            <span class="sum-price" id="s-total">$47</span>
+          </div>
+        </div>
+
+        <button class="cta-btn" id="cta-btn" onclick="handleCheckout()">🔐 Complete My Order →</button>
+        <div class="secure-note">* 100% Secure &amp; Safe Payments *</div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <div class="toast-av" id="toast-av">K</div>
+    <div class="toast-text">
+      <span class="toast-name" id="toast-name">Keisha M.</span> from DC just registered for <span class="toast-pkg" id="toast-pkg">Live Access</span> 🔥
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 MJUnlimited Essential Mktg Co., a ThinkBox AI Operation Systems · All Rights Reserved<br/>
+    Questions? <a href="mailto:admin@mjunlimitedessentialmktg.com" style="color:#7b2fff;">admin@mjunlimitedessentialmktg.com</a>
+  </div>
+</div>
+
+
+<!-- ===== PAGE 2: THANK YOU / WELCOME ===== -->
+<div class="page" id="page-thankyou">
+
+  <div class="topbar">🎉 You're In! · ThinkBox AI Intensive · June 27, 2026</div>
+
+  <div style="background:#fff;padding:20px;text-align:center;border-bottom:1px solid #e5e7eb;">
+    <div style="font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7b2fff;">MJUnlimited Essential Mktg Co.</div>
+  </div>
+
+  <div class="ty-page">
+
+    <div style="text-align:center;margin-bottom:28px;">
+      <div class="ty-confetti">🎉</div>
+      <div class="ty-badge">✅ Registration Confirmed</div>
+      <h1 class="ty-h1">Welcome to <span>ThinkBox AI Intensive!</span></h1>
+      <p class="ty-sub">You made a powerful decision today. Here's everything you need to prepare for June 27th — read this page carefully so you don't miss a thing.</p>
+    </div>
+
+    <!-- EVENT DETAILS -->
+    <div class="ty-card">
+      <div class="ty-card-title">📅 Your Event Details</div>
+      <div class="zoom-card">
+        <div class="zoom-detail"><span class="zoom-label">Event</span><span class="zoom-value">ThinkBox AI Intensive — Live Training</span></div>
+        <div class="zoom-detail"><span class="zoom-label">Date</span><span class="zoom-value">Monday, June 27, 2026</span></div>
+        <div class="zoom-detail"><span class="zoom-label">Time</span><span class="zoom-value">6:00 PM EDT</span></div>
+        <div class="zoom-detail"><span class="zoom-label">Platform</span><span class="zoom-value">Zoom (link in your email)</span></div>
+        <div class="zoom-detail" style="margin-bottom:0;"><span class="zoom-label">Host</span><span class="zoom-value">Mona Jackson-Ham</span></div>
+      </div>
+      <p style="font-size:12px;color:#6b7280;margin-top:10px;">📧 Your Zoom link and full details have been sent to your email. Check your inbox now!</p>
+    </div>
+
+    <!-- EMAIL INSTRUCTIONS -->
+    <div class="ty-card">
+      <div class="ty-card-title">📬 Action Required — Check Your Email</div>
+      <div class="ty-step">
+        <div class="ty-step-num">1</div>
+        <div class="ty-step-text"><b>Find your confirmation email</b> from <code style="background:#f3f4f6;padding:2px 6px;border-radius:4px;font-size:12px;">admin@mjunlimitedessentialmktg.com</code> — it has your Zoom link and all event details inside.</div>
+      </div>
+      <div class="ty-step">
+        <div class="ty-step-num">2</div>
+        <div class="ty-step-text"><b>Check your Spam / Junk folder</b> — sometimes our emails land there first. If you see it, move it to your inbox immediately.</div>
+      </div>
+      <div class="ty-step">
+        <div class="ty-step-num">3</div>
+        <div class="ty-step-text"><b>Save our email address</b> to your contacts right now so future emails (reminders, updates, your Zoom link) always land in your inbox — not spam.</div>
+      </div>
+      <div class="email-highlight">
+        ✅ Save this email to your contacts: <code>admin@mjunlimitedessentialmktg.com</code>
+      </div>
+      <div class="ty-step" style="margin-top:12px;">
+        <div class="ty-step-num">4</div>
+        <div class="ty-step-text"><b>Gmail users:</b> Open the email → click the 3 dots (⋮) → "Move to inbox" or drag it from Promotions to your Primary tab.</div>
+      </div>
+      <div class="ty-step">
+        <div class="ty-step-num">5</div>
+        <div class="ty-step-text"><b>Outlook/Hotmail users:</b> Right-click the email → "Mark as not junk" → "Always trust email from this sender."</div>
+      </div>
+    </div>
+
+    <!-- FACEBOOK GROUP -->
+    <div class="ty-card">
+      <div class="ty-card-title">👥 Join Our Private Facebook Community</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7;margin-bottom:4px;">Connect with other ThinkBox AI members, get early resources, ask questions before the live training, and stay in the loop on everything happening June 27th. <b>Note: This is a private, paid members-only group — your registration confirms your access.</b></p>
+      <a href="https://www.facebook.com/share/g/18ZTBBi2Yo/" target="_blank" class="fb-btn">📘 Join the ThinkBox AI Private Facebook Group →</a>
+      <p style="font-size:11px;color:#9ca3af;margin-top:10px;text-align:center;">When prompted, answer the membership questions and confirm your purchase. Your payment confirms your access — see you inside! 🙌</p>
+    </div>
+
+    <!-- WHAT'S NEXT -->
+    <div class="ty-card">
+      <div class="ty-card-title">🚀 What Happens Next</div>
+      <div class="ty-step">
+        <div class="ty-step-num">1</div>
+        <div class="ty-step-text"><b>Confirmation email</b> — arriving in your inbox now with your Zoom link</div>
+      </div>
+      <div class="ty-step">
+        <div class="ty-step-num">2</div>
+        <div class="ty-step-text"><b>Reminder emails</b> — we'll send you reminders 3 days before and 1 hour before the training so you never miss it</div>
+      </div>
+      <div class="ty-step">
+        <div class="ty-step-num">3</div>
+        <div class="ty-step-text"><b>Day of training</b> — join Zoom 5-10 minutes early, have a notebook ready, and show up ready to learn!</div>
+      </div>
+      <div class="ty-step" style="margin-bottom:0;">
+        <div class="ty-step-num">4</div>
+        <div class="ty-step-text"><b>After the training</b> — replay access (if included in your package) will be delivered within 24 hours</div>
+      </div>
+    </div>
+
+    <div class="ty-footer-note">
+      Questions? Email us at <a href="mailto:admin@mjunlimitedessentialmktg.com" style="color:#7b2fff;font-weight:700;">admin@mjunlimitedessentialmktg.com</a><br/>
+      © 2026 MJUnlimited Essential Mktg Co., a ThinkBox AI Operation Systems
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let selectedPkg = {type:'live',price:47,name:'ThinkBox AI Intensive — Live Access'};
+  let vaultAdded = false;
+
+  const stripeBase = {
+    replay:'https://buy.stripe.com/fZu28qgW3grZ2gSbytaVa0f',
+    live:'https://buy.stripe.com/8x2cN4cFNejRcVw6e9aVa0e',
+    bundle:'https://buy.stripe.com/cNi28q0X5dfNf3E0TPaVa0g'
+  };
+  const stripeVault = {
+    replay:'https://buy.stripe.com/4gMeVc6hpb7F9Jk5a5aVa0i',
+    live:'https://buy.stripe.com/4gM28qgW31x5aNo6e9aVa0k',
+    bundle:'https://buy.stripe.com/9B600i8pxfnV4p0eKFaVa0j'
+  };
+
+  function selectPkg(type,price,label){
+    ['replay','live','bundle'].forEach(t=>document.getElementById('radio-'+t).classList.remove('active'));
+    document.getElementById('radio-'+type).classList.add('active');
+    selectedPkg={type,price,name:'ThinkBox AI Intensive — '+label};
+    document.getElementById('display-price').textContent='$'+price;
+    updateSummary();
+  }
+
+  function toggleBump(){
+    vaultAdded=!vaultAdded;
+    document.getElementById('bump-box').classList.toggle('checked',vaultAdded);
+    document.getElementById('s-vault-row').style.display=vaultAdded?'flex':'none';
+    updateSummary();
+  }
+
+  function updateSummary(){
+    const total=selectedPkg.price+(vaultAdded?37:0);
+    document.getElementById('s-pkg-name').textContent=selectedPkg.name;
+    document.getElementById('s-pkg-price').textContent='$'+selectedPkg.price;
+    document.getElementById('s-total').textContent='$'+total;
+  }
+
+  async function handleCheckout(){
+    const name=document.getElementById('f-name').value.trim();
+    const email=document.getElementById('f-email').value.trim();
+    const phone=document.getElementById('f-phone').value.trim();
+    if(!name||!email){alert('Please enter your name and email to continue.');return;}
+    const btn=document.getElementById('cta-btn');
+    btn.textContent='⏳ Processing...';
+    btn.disabled=true;
+    try{
+      const fd=new FormData();
+      fd.append('q3_fullName',name);
+      fd.append('q4_emailAddress',email);
+      fd.append('q5_phoneNumber[full]',phone);
+      fd.append('q6_package',selectedPkg.name);
+      fd.append('q7_promptVault',vaultAdded?'Yes':'No');
+      await fetch('https://submit.jotform.com/submit/261395894134163/',{method:'POST',body:fd,mode:'no-cors'});
+    }catch(e){}
+    const links=vaultAdded?stripeVault:stripeBase;
+    window.open(links[selectedPkg.type],'_blank');
+    // Show payment confirmation prompt after delay
+    setTimeout(()=>{
+      showPaymentConfirm();
+    }, 3000);
+    btn.textContent='✅ Opening Secure Checkout...';
+    setTimeout(()=>{btn.textContent='🔐 Complete My Order →';btn.disabled=false;},5000);
+  }
+
+  // SOCIAL PROOF TOASTS
+  const proofs=[
+    {name:'Keisha M.',loc:'Baltimore',pkg:'Live Access'},
+    {name:'Darnell W.',loc:'DC',pkg:'Full Bundle'},
+    {name:'Tamika J.',loc:'PG County',pkg:'Live Access'},
+    {name:'Raymond H.',loc:'Northern VA',pkg:'Replay Only'},
+    {name:'Ciara B.',loc:'Silver Spring',pkg:'Full Bundle'},
+    {name:'Marcus T.',loc:'Capitol Hill',pkg:'Live Access'},
+    {name:'Latoya S.',loc:'Waldorf',pkg:'Full Bundle'},
+    {name:'DeShawn A.',loc:'Annapolis',pkg:'Live Access'},
+    {name:'Monique F.',loc:'Bowie',pkg:'Replay Only'},
+    {name:'Pastor G.',loc:'Richmond',pkg:'Full Bundle'},
+  ];
+  let ti=0;
+  function showToast(){
+    const p=proofs[ti%proofs.length];ti++;
+    document.getElementById('toast-av').textContent=p.name[0];
+    document.getElementById('toast-name').textContent=p.name+' from '+p.loc;
+    document.getElementById('toast-pkg').textContent=p.pkg;
+    const t=document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),4000);
+  }
+  setTimeout(()=>{showToast();setInterval(showToast,12000);},5000);
+
+  function showPaymentConfirm(){
+    const btn = document.getElementById('cta-btn');
+    btn.textContent = '✅ I Completed My Payment →';
+    btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+    btn.disabled = false;
+    btn.onclick = function(){
+      document.getElementById('page-order').classList.remove('active');
+      document.getElementById('page-thankyou').classList.add('active');
+      window.scrollTo(0,0);
+    };
+  }
+
+  // Show thank you page ONLY if Stripe redirected back with ?success=true
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    if(params.get('success') === 'true'){
+      document.getElementById('page-order').classList.remove('active');
+      document.getElementById('page-thankyou').classList.add('active');
+      window.scrollTo(0,0);
+    }
+  })();
+</script>
+</body>
+</html>
