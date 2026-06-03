@@ -209,6 +209,31 @@
   .testi-name { font-size: 0.88rem; font-weight: 800; color: #fff; }
   .testi-loc { font-size: 0.72rem; color: #7b2fff; margin-top: 2px; }
 
+
+  /* ── DISCLAIMER BAR ── */
+  .disclaimer-bar {
+    background: #04000d;
+    border-top: 1px solid rgba(123,47,255,0.25);
+    padding: 2.5rem 20px;
+  }
+  .disclaimer-inner { max-width: 860px; margin: 0 auto; text-align: center; }
+  .disclaimer-badges { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .dbadge {
+    display: inline-block; background: rgba(123,47,255,0.12);
+    border: 1px solid rgba(123,47,255,0.35); color: #7b2fff;
+    font-size: 0.6rem; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px;
+  }
+  .disclaimer-text {
+    font-size: 0.72rem; color: #3d2d5a; line-height: 1.7;
+    max-width: 760px; margin: 0 auto;
+  }
+  .disclaimer-text b { color: #4B0082; }
+  .disclaimer-divider { height: 1px; background: rgba(123,47,255,0.15); margin: 1.2rem auto; max-width: 400px; }
+  .disclaimer-copy { font-size: 0.68rem; color: #2d1a45; line-height: 1.8; }
+  .disc-link { color: #4B0082; text-decoration: none; }
+  .disc-link:hover { color: #7b2fff; }
+
 </style>
 </head>
 <body>
@@ -498,10 +523,30 @@
   <div class="secure" style="margin-top:16px;">Instant Download · Secure Checkout · One-Time Payment</div>
 </div>
 
-<footer>
-  &copy; ThinkBox AI Studios — MJUnlimited Essential Marketing, a ThinkBox AI Operation Systems. For personal use by the purchaser only. Please do not redistribute or resell.<br/>
-  Questions? <a href="mailto:admin@mjunlimitedessentialmktg.com" style="color:#7b2fff;">admin@mjunlimitedessentialmktg.com</a>
-</footer>
+<!-- DISCLAIMER BAR -->
+<div class="disclaimer-bar">
+  <div class="disclaimer-inner">
+    <div class="disclaimer-badges">
+      <span class="dbadge">All Sales Final</span>
+      <span class="dbadge">No Redistribution</span>
+      <span class="dbadge">Secure Checkout</span>
+    </div>
+    <p class="disclaimer-text">
+      <b>ALL SALES ARE FINAL.</b> Due to the instant digital delivery nature of this product, all purchases are non-refundable and non-exchangeable once access has been granted. By completing your purchase you agree to these terms.
+    </p>
+    <p class="disclaimer-text" style="margin-top:0.6rem;">
+      <b>NO REDISTRIBUTION.</b> Redistribution, resale, reproduction, sharing, or any unauthorized use of ThinkBox AI Operation Systems products, frameworks, codes, or materials — in whole or in part — is strictly prohibited and constitutes a violation of intellectual property law. This purchase is a single-user license for personal use only.
+    </p>
+    <p class="disclaimer-text" style="margin-top:0.6rem;">
+      <b>PRIVACY POLICY.</b> We collect only the information you voluntarily provide (name, email, role) to personalize your experience and send relevant updates. Your information is never sold, rented, or shared with third parties. You may opt out of communications at any time by contacting us at <a href="mailto:admin@mjunlimitedessentialmktg.com" class="disc-link">admin@mjunlimitedessentialmktg.com</a>.
+    </p>
+    <div class="disclaimer-divider"></div>
+    <p class="disclaimer-copy">
+      &copy; 2026 ThinkBox AI Operation Systems — MJUnlimited Essential Marketing Co. All Rights Reserved.<br/>
+      Questions? <a href="mailto:admin@mjunlimitedessentialmktg.com" class="disc-link">admin@mjunlimitedessentialmktg.com</a>
+    </p>
+  </div>
+</div>
 
 <!-- TOAST -->
 <div class="toast" id="toast" role="status" aria-live="polite">
