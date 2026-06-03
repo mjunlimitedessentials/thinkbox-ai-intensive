@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ThinkBox AI Intensive — Live AI Training | Mona Jackson-Ham</title>
+<meta name="description" content="Join Mona Jackson-Ham LIVE for the ThinkBox AI Intensive — June 27, 2026 at 6PM EDT. Three training packages available. Entrepreneurs, coaches, ministry leaders & small business owners welcome."/>
+<meta name="keywords" content="AI training for entrepreneurs, AI bootcamp, ThinkBox AI Intensive, Mona Jackson-Ham, AI tools for business, AI marketing, AI automation, live AI training 2026, AI for coaches, AI for ministry"/>
+<meta property="og:title" content="ThinkBox AI Intensive — Live AI Training | Mona Jackson-Ham"/>
+<meta property="og:description" content="The AI training built for entrepreneurs ready to get serious. Choose your package and secure your seat — June 27, 2026."/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#050008;color:#fff;overflow-x:hidden;}
+
+/* STEPS */
+.step{display:none;}
+.step.active{display:block;animation:fadeUp 0.5s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* PROGRESS */
+.prog-wrap{position:sticky;top:0;z-index:200;background:rgba(5,0,8,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(123,47,255,0.2);padding:12px 20px;}
+.prog-inner{max-width:640px;margin:0 auto;}
+.prog-track{background:#1a0040;border-radius:20px;height:6px;overflow:hidden;margin-bottom:6px;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#7b2fff,#e040fb,#f5c842);border-radius:20px;transition:width 0.6s ease;}
+.prog-label{text-align:center;font-size:10px;color:#7b2fff;letter-spacing:2px;text-transform:uppercase;font-weight:700;}
+
+/* URGENCY */
+.urgency{background:linear-gradient(135deg,#7b2fff,#e040fb);text-align:center;padding:12px 20px;font-size:13px;font-weight:800;letter-spacing:1px;}
+.urgency span{color:#f5c842;}
+
+/* HERO */
+.hero{background:radial-gradient(ellipse at 50% 0%,rgba(123,47,255,0.3) 0%,transparent 65%),#050008;text-align:center;padding:56px 20px 36px;}
+.hero-badge{display:inline-block;background:rgba(123,47,255,0.2);border:1px solid rgba(123,47,255,0.5);border-radius:50px;padding:6px 20px;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#b06aff;margin-bottom:22px;}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(26px,5.5vw,54px);font-weight:900;line-height:1.1;margin-bottom:16px;}
+.hero h1 .gold{color:#f5c842;}
+.hero h1 .grad{background:linear-gradient(135deg,#7b2fff,#e040fb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:clamp(14px,2.5vw,18px);color:#b06aff;max-width:640px;margin:0 auto 24px;line-height:1.7;}
+.hero-date{display:inline-flex;align-items:center;gap:8px;border:2px solid #f5c842;color:#f5c842;padding:10px 28px;border-radius:50px;font-weight:800;font-size:15px;margin-bottom:32px;}
+
+/* AUDIENCE PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0 20px 30px;}
+.pill{background:rgba(123,47,255,0.1);border:1px solid rgba(123,47,255,0.25);border-radius:50px;padding:8px 18px;font-size:13px;color:#b06aff;font-weight:600;}
+
+/* FORM CARD */
+.form-wrap{max-width:580px;margin:0 auto;padding:0 20px 50px;}
+.form-card{background:linear-gradient(135deg,#0d0022,#120030);border:1px solid rgba(123,47,255,0.4);border-radius:24px;padding:36px 32px;box-shadow:0 0 60px rgba(123,47,255,0.12);}
+.form-card h2{font-size:22px;font-weight:900;text-align:center;margin-bottom:6px;}
+.form-card h2 span{color:#f5c842;}
+.form-sub{text-align:center;color:#7b2fff;font-size:13px;margin-bottom:28px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:11px;font-weight:700;color:#b06aff;margin-bottom:6px;letter-spacing:1px;text-transform:uppercase;}
+.fg input,.fg select{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(123,47,255,0.35);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:border-color 0.3s;font-family:'Inter',sans-serif;appearance:none;}
+.fg input:focus,.fg select:focus{border-color:#7b2fff;box-shadow:0 0 0 3px rgba(123,47,255,0.2);}
+.fg select option{background:#0d0022;}
+.privacy{font-size:11px;color:#4B0082;text-align:center;margin-top:10px;line-height:1.5;}
+
+/* BUTTONS */
+.btn-gold{display:block;width:100%;background:linear-gradient(135deg,#f5c842,#f7a800);color:#050008;font-size:17px;font-weight:900;padding:18px;border-radius:50px;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-transform:uppercase;letter-spacing:1px;margin-top:8px;}
+.btn-gold:hover{transform:scale(1.03);box-shadow:0 10px 40px rgba(245,200,66,0.5);}
+.btn-purple{display:block;width:100%;background:linear-gradient(135deg,#7b2fff,#e040fb);color:#fff;font-size:15px;font-weight:900;padding:16px;border-radius:50px;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-transform:uppercase;letter-spacing:1px;margin-top:8px;}
+.btn-purple:hover{transform:scale(1.03);box-shadow:0 10px 40px rgba(123,47,255,0.5);}
+.btn-skip{background:none;border:none;color:#4B0082;font-size:12px;cursor:pointer;display:block;text-align:center;text-decoration:underline;margin:12px auto 0;width:100%;}
+
+/* STEP 2 — VIDEO */
+.s2-top{background:radial-gradient(ellipse at 50% 0%,rgba(123,47,255,0.25) 0%,transparent 65%),#050008;text-align:center;padding:50px 20px 28px;}
+.confirmed-badge{display:inline-block;background:rgba(34,197,94,0.15);border:1px solid #22c55e;border-radius:50px;padding:6px 20px;font-size:11px;font-weight:800;letter-spacing:2px;color:#22c55e;text-transform:uppercase;margin-bottom:16px;}
+.sound-bar{background:#1a0a00;border:2px solid #f5c842;border-radius:12px;padding:14px 24px;display:flex;align-items:center;justify-content:center;gap:10px;max-width:560px;margin:0 auto 24px;font-size:14px;font-weight:700;color:#f5c842;}
+.almost-bar{max-width:620px;margin:0 auto 24px;background:#0f0025;border-radius:50px;overflow:hidden;border:1px solid rgba(123,47,255,0.3);position:relative;height:44px;}
+.almost-fill{height:100%;background:repeating-linear-gradient(45deg,#22c55e,#22c55e 10px,#16a34a 10px,#16a34a 20px);width:88%;border-radius:50px;animation:pb 2s ease-in-out infinite;}
+.almost-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;letter-spacing:3px;color:white;text-transform:uppercase;}
+@keyframes pb{0%,100%{opacity:1}50%{opacity:0.8}}
+
+/* TICKER */
+.ticker-wrap{overflow:hidden;background:rgba(123,47,255,0.07);border-top:1px solid rgba(123,47,255,0.2);border-bottom:1px solid rgba(123,47,255,0.2);padding:11px 0;margin:20px 0;}
+.ticker{display:flex;gap:60px;animation:tick 35s linear infinite;white-space:nowrap;}
+.ticker-item{font-size:12px;font-weight:700;color:#b06aff;}
+.ticker-item .dot{color:#f5c842;margin-right:8px;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* VIDEO */
+.vid-section{max-width:720px;margin:0 auto;padding:20px 20px 10px;text-align:center;}
+.vid-label{display:inline-block;background:rgba(224,64,251,0.15);border:1px solid #e040fb;border-radius:50px;padding:5px 18px;font-size:11px;font-weight:800;letter-spacing:2px;color:#e040fb;text-transform:uppercase;margin-bottom:14px;}
+.vid-section h2{font-size:clamp(20px,4vw,32px);font-weight:900;margin-bottom:10px;}
+.vid-section h2 span{color:#f5c842;}
+.vid-section p{color:#b06aff;font-size:14px;margin-bottom:18px;line-height:1.6;}
+.vid-wrap{position:relative;width:100%;max-width:340px;margin:0 auto 24px;border-radius:16px;overflow:hidden;box-shadow:0 0 50px rgba(123,47,255,0.4);aspect-ratio:9/16;background:#000;}
+.vid-wrap video{position:absolute;inset:0;width:100%;height:100%;border:none;object-fit:contain;background:#000;}
+
+/* STATS */
+.stats{display:flex;justify-content:center;max-width:620px;margin:0 auto 28px;border:1px solid rgba(123,47,255,0.2);border-radius:16px;overflow:hidden;flex-wrap:wrap;}
+.stat{flex:1;min-width:110px;padding:18px 12px;text-align:center;border-right:1px solid rgba(123,47,255,0.2);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;color:#f5c842;}
+.stat-l{font-size:10px;color:#7b2fff;margin-top:4px;font-weight:600;letter-spacing:0.5px;}
+
+/* STEP 3 — PRICING */
+.s3-top{background:radial-gradient(ellipse at 50% 0%,rgba(245,200,66,0.12) 0%,transparent 65%),#050008;text-align:center;padding:50px 20px 20px;}
+.oto-badge{display:inline-block;background:rgba(245,200,66,0.1);border:1px solid #f5c842;border-radius:50px;padding:6px 20px;font-size:11px;font-weight:800;letter-spacing:2px;color:#f5c842;text-transform:uppercase;margin-bottom:16px;}
+
+/* SEO STRIP */
+.seo-strip{background:rgba(123,47,255,0.06);border-top:1px solid rgba(123,47,255,0.15);border-bottom:1px solid rgba(123,47,255,0.15);padding:14px 20px;text-align:center;margin:10px 0;}
+.seo-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:700px;margin:0 auto;}
+.seo-tag{background:rgba(123,47,255,0.1);border:1px solid rgba(123,47,255,0.2);border-radius:50px;padding:4px 14px;font-size:11px;color:#b06aff;font-weight:600;}
+
+/* PRICING CARDS */
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:960px;margin:0 auto;padding:24px 20px 10px;}
+.pkg-card{background:linear-gradient(135deg,#0d0022,#120030);border:2px solid rgba(123,47,255,0.3);border-radius:20px;padding:28px 22px;text-align:center;cursor:pointer;transition:all 0.3s;position:relative;}
+.pkg-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(123,47,255,0.3);}
+.pkg-card.featured{border-color:#f5c842;box-shadow:0 0 40px rgba(245,200,66,0.2);}
+.pkg-card.selected{border-color:#22c55e !important;box-shadow:0 0 30px rgba(34,197,94,0.3) !important;}
+.pkg-tier{display:inline-block;background:rgba(123,47,255,0.2);border:1px solid rgba(123,47,255,0.4);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:800;letter-spacing:2px;color:#b06aff;text-transform:uppercase;margin-bottom:14px;}
+.pkg-card.featured .pkg-tier{background:rgba(245,200,66,0.15);border-color:#f5c842;color:#f5c842;}
+.pkg-name{font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;}
+.pkg-orig{font-size:14px;color:#4B0082;text-decoration:line-through;min-height:20px;}
+.pkg-price{font-family:'Orbitron',sans-serif;font-size:50px;font-weight:900;color:#f5c842;line-height:1;margin:8px 0;}
+.pkg-note{font-size:11px;color:#7b2fff;margin-bottom:18px;}
+.pkg-features{list-style:none;text-align:left;margin-bottom:22px;}
+.pkg-features li{padding:8px 0;font-size:13px;color:#b06aff;border-bottom:1px solid rgba(123,47,255,0.1);}
+.pkg-features li:last-child{border-bottom:none;}
+.pkg-card.featured .pkg-features li{color:#e0c8ff;}
+.most-popular{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#f5c842,#f7a800);color:#050008;font-size:10px;font-weight:900;padding:5px 18px;border-radius:20px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;}
+.pkg-confirm{display:none;background:rgba(34,197,94,0.1);border:1px solid #22c55e;border-radius:12px;padding:12px 20px;text-align:center;margin:16px 20px 0;font-size:14px;color:#22c55e;font-weight:700;max-width:960px;margin-left:auto;margin-right:auto;}
+
+/* UPSELL */
+.upsell-wrap{max-width:680px;margin:28px auto;padding:0 20px;}
+.upsell-card{background:linear-gradient(135deg,#0f0022,#150035);border:2px dashed rgba(224,64,251,0.5);border-radius:24px;padding:36px 28px;text-align:center;}
+.upsell-badge{display:inline-block;background:linear-gradient(135deg,#e040fb,#7b2fff);padding:6px 20px;border-radius:20px;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
+.upsell-card h2{font-size:clamp(18px,3.5vw,26px);font-weight:900;margin-bottom:10px;}
+.upsell-card h2 span{color:#f5c842;}
+.upsell-sub{color:#b06aff;font-size:14px;line-height:1.7;margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto;}
+.prompt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:500px;margin:0 auto 22px;text-align:left;}
+.prompt-box{background:rgba(123,47,255,0.1);border:1px solid rgba(123,47,255,0.2);border-radius:10px;padding:12px 14px;}
+.prompt-box .pi{font-size:18px;margin-bottom:4px;}
+.prompt-box .pt{font-size:12px;font-weight:700;color:#f5c842;margin-bottom:2px;}
+.prompt-box .ps{font-size:11px;color:#7b2fff;}
+.rctf-box{background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.25);border-radius:12px;padding:14px 20px;margin-bottom:20px;}
+.rctf-box .rt{font-size:13px;color:#f5c842;font-weight:800;margin-bottom:4px;}
+.rctf-box .rs{font-size:12px;color:#b06aff;line-height:1.6;}
+.upsell-price{margin-bottom:8px;}
+.upsell-orig{font-size:16px;color:#4B0082;text-decoration:line-through;}
+.upsell-now{font-family:'Orbitron',sans-serif;font-size:44px;font-weight:900;color:#f5c842;margin-left:12px;}
+.upsell-note{font-size:11px;color:#7b2fff;margin-bottom:20px;}
+#vault-added{display:none;background:rgba(34,197,94,0.1);border:1px solid #22c55e;border-radius:10px;padding:10px;margin-top:12px;font-size:13px;color:#22c55e;font-weight:700;}
+
+/* GUARANTEE */
+.guarantee{display:flex;align-items:flex-start;gap:14px;background:rgba(123,47,255,0.07);border-radius:14px;padding:16px 20px;margin:16px auto;max-width:600px;}
+.g-icon{font-size:28px;flex-shrink:0;}
+.g-text{font-size:13px;color:#7b2fff;line-height:1.6;}
+.g-text strong{color:#fff;}
+
+/* STEP 4 — THANK YOU */
+.ty-wrap{max-width:700px;margin:0 auto;padding:60px 20px;text-align:center;}
+.ty-crown{font-size:60px;display:block;margin-bottom:20px;}
+.ty-wrap h1{font-size:clamp(26px,5vw,44px);font-weight:900;margin-bottom:16px;}
+.ty-wrap h1 span{color:#f5c842;}
+.ty-wrap p{color:#b06aff;font-size:16px;line-height:1.8;margin-bottom:20px;}
+.ty-card{background:linear-gradient(135deg,#0d0022,#120030);border:1px solid rgba(123,47,255,0.3);border-radius:20px;padding:28px;margin:28px 0;text-align:left;}
+.ty-card h3{font-size:16px;font-weight:800;color:#f5c842;margin-bottom:14px;}
+.ty-card li{list-style:none;padding:7px 0;font-size:14px;color:#b06aff;}
+.ty-card li::before{content:'✅ ';}
+.sig-line{font-size:15px;color:#f5c842;font-weight:800;margin-top:28px;}
+.sig-title{font-size:12px;color:#7b2fff;margin-top:4px;}
+
+/* FOOTER */
+.footer{text-align:center;padding:28px 20px;border-top:1px solid rgba(123,47,255,0.12);font-size:11px;color:#2d1a4a;line-height:1.9;}
+.footer a{color:#2d1a4a;}
+
+@media(max-width:600px){
+  .frow{grid-template-columns:1fr;}
+  .form-card{padding:28px 18px;}
+  .upsell-card{padding:28px 18px;}
+  .stats{flex-direction:column;}
+  .stat{border-right:none;border-bottom:1px solid rgba(123,47,255,0.2);}
+  .prompt-grid{grid-template-columns:1fr;}
+}
+/* COUNTDOWN */
+.cd-box{background:rgba(123,47,255,0.15);border:2px solid rgba(123,47,255,0.4);border-radius:14px;padding:14px 16px;text-align:center;min-width:68px;}
+.cd-box span{font-family:"Orbitron",sans-serif;font-size:30px;font-weight:900;color:#f5c842;display:block;}
+.cd-label{font-size:9px;color:#7b2fff;letter-spacing:2px;font-weight:800;margin-top:4px;text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="prog-wrap">
+  <div class="prog-inner">
+    <div class="prog-track"><div class="prog-fill" id="pFill" style="width:25%"></div></div>
+    <div class="prog-label" id="pLabel">Step 1 of 4 — Register Your Info</div>
+  </div>
+</div>
+
+<!-- URGENCY BAR -->
+<div class="urgency">⚡ <span>LIMITED SEATS</span> — ThinkBox AI Intensive · June 27, 2026 · 6PM EDT</div>
+
+<!-- ══════════════════════════════════
+     STEP 1 — REGISTRATION FORM
+══════════════════════════════════ -->
+<div class="step active" id="step1">
+  <div class="hero">
+    <div class="hero-badge">✦ Live AI Training — June 27, 2026 ✦</div>
+    <h1>Stop <span class="gold">Guessing</span> With AI.<br/>Start <span class="grad">Getting Paid</span> With It.</h1>
+    <p class="hero-sub">Join Mona Jackson-Ham LIVE for the AI training turning everyday entrepreneurs into AI-powered CEOs — without the tech overwhelm.</p>
+    <div class="hero-date">📅 Monday, June 27, 2026 · 6:00 PM EDT · Zoom</div>
+  </div>
+
+  <div class="pills">
+    <div class="pill">🔥 Entrepreneurs</div>
+    <div class="pill">✝️ Ministry Leaders</div>
+    <div class="pill">📚 Educators</div>
+    <div class="pill">💼 Coaches & Consultants</div>
+    <div class="pill">🎙️ Podcasters & Authors</div>
+  </div>
+
+  <div class="form-wrap">
+    <div class="form-card">
+      <h2>Secure Your <span>Seat Now</span></h2>
+      <p class="form-sub">Tell us about you so we can personalize your training experience 👇</p>
+
+      <div class="frow">
+        <div class="fg"><label>First Name *</label><input type="text" id="fn" placeholder="First name" required/></div>
+        <div class="fg"><label>Last Name *</label><input type="text" id="ln" placeholder="Last name" required/></div>
+      </div>
+      <div class="fg"><label>Email Address *</label><input type="email" id="em" placeholder="your@email.com" required/></div>
+      <div class="fg"><label>Phone Number</label><input type="tel" id="ph" placeholder="+1 (555) 000-0000"/></div>
+      <div class="fg">
+        <label>What best describes you? *</label>
+        <select id="ro">
+          <option value="">— Select your role —</option>
+          <option>Entrepreneur / Business Owner</option>
+          <option>Coach or Consultant</option>
+          <option>Ministry or Church Leader</option>
+          <option>Educator / Homeschool Parent</option>
+          <option>Author or Podcaster</option>
+          <option>Corporate Professional</option>
+          <option>Student or New to Business</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>AI Experience Level</label>
+        <select id="ai">
+          <option value="">— Select your level —</option>
+          <option>Complete Beginner — Never used AI tools</option>
+          <option>Curious — I've played around a little</option>
+          <option>Intermediate — I use ChatGPT or Claude sometimes</option>
+          <option>Advanced — I use AI regularly in my business</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Biggest AI Challenge</label>
+        <select id="ch">
+          <option value="">— Select your challenge —</option>
+          <option>I don't know where to start</option>
+          <option>I can't figure out how to use AI for MY business</option>
+          <option>I'm overwhelmed by too many AI tools</option>
+          <option>I want to monetize AI but don't know how</option>
+          <option>I need AI to save me time on content</option>
+          <option>I want to automate my business with AI</option>
+        </select>
+      </div>
+
+      <button class="btn-gold" onclick="step1Submit()">🚀 CHOOSE MY PACKAGE →</button>
+      <p class="privacy">🔒 Your information is 100% secure. We never sell or share your data.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     STEP 2 — VIDEO + AI NEWS
+══════════════════════════════════ -->
+<div class="step" id="step2">
+  <div class="s2-top">
+    <div class="confirmed-badge">✅ Registration Received!</div>
+    <h1 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,4.5vw,42px);font-weight:900;margin-bottom:10px;">You're In, <span id="fn2" style="color:#f5c842;"></span>! 🎉</h1>
+    <p style="color:#b06aff;font-size:15px;max-width:540px;margin:0 auto 24px;line-height:1.6;">Before you select your package, watch this short AI news brief — then choose the right tier for you.</p>
+    <div class="almost-bar"><div class="almost-fill"></div><div class="almost-text">Almost Complete — Select Your Package Below</div></div>
+    <div class="sound-bar">🔊 <span>Turn Your Sound ON! Watch the full video first.</span></div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span class="ticker-item"><span class="dot">●</span>OpenAI releases GPT-5 with real-time web browsing</span>
+      <span class="ticker-item"><span class="dot">●</span>AI tools projected to add $15.7 trillion to global economy by 2030</span>
+      <span class="ticker-item"><span class="dot">●</span>73% of small businesses now use AI in daily operations</span>
+      <span class="ticker-item"><span class="dot">●</span>Claude 4 surpasses human performance on complex reasoning tasks</span>
+      <span class="ticker-item"><span class="dot">●</span>AI-powered entrepreneurs seeing 3x revenue growth</span>
+      <span class="ticker-item"><span class="dot">●</span>Google Gemini Ultra now available to all business accounts</span>
+      <span class="ticker-item"><span class="dot">●</span>OpenAI releases GPT-5 with real-time web browsing</span>
+      <span class="ticker-item"><span class="dot">●</span>AI tools projected to add $15.7 trillion to global economy by 2030</span>
+      <span class="ticker-item"><span class="dot">●</span>73% of small businesses now use AI in daily operations</span>
+      <span class="ticker-item"><span class="dot">●</span>Claude 4 surpasses human performance on complex reasoning tasks</span>
+    </div>
+  </div>
+
+  <div class="vid-section">
+    <div class="vid-label">🎬 Watch Now — AI Is Changing Everything</div>
+    <h2>The <span>AI Revolution</span> Is Here.<br/>Are You Ready?</h2>
+    <p>Watch this quick clip — then scroll down to secure your package and lock in your training.</p>
+    <div class="vid-wrap">
+      <video id="main-vid" controls playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;"></video>
+<script>
+setTimeout(function(){
+  var v = document.getElementById('main-vid');
+  var s = document.createElement('source');
+  s.src = 'https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/e7f305b7c_6e4e5259f_short_5_01_09_to_01_20.mp4';
+  s.type = 'video/mp4';
+  v.appendChild(s);
+  v.load();
+}, 1000);
+</script>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-n">$15.7T</div><div class="stat-l">AI Economic Impact by 2030</div></div>
+    <div class="stat"><div class="stat-n">73%</div><div class="stat-l">Small Biz Using AI Now</div></div>
+    <div class="stat"><div class="stat-n">3x</div><div class="stat-l">Revenue Growth w/ AI</div></div>
+  </div>
+
+  <div style="text-align:center;padding:0 20px 40px;">
+    <button class="btn-gold" style="max-width:480px;margin:0 auto;" onclick="goStep(2)">⚡ SELECT MY TRAINING PACKAGE →</button>
+    <p style="font-size:12px;color:#4B0082;margin-top:10px;">Packages are only available at this price right now.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     STEP 3 — PRICING + UPSELL
+══════════════════════════════════ -->
+<div class="step" id="step3">
+
+  <div class="s3-top">
+    <div class="oto-badge">⚠️ One-Time Pricing — Only Available Here</div>
+    <h1 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,4.5vw,40px);font-weight:900;margin-bottom:10px;">Select Your <span style="color:#f5c842;">Training Package</span></h1>
+    <p style="color:#b06aff;font-size:15px;max-width:580px;margin:0 auto;line-height:1.6;">Three tiers available. Pick the one that fits your goals — then click Continue to checkout.</p>
+  </div>
+
+  <div class="seo-strip">
+    <div class="seo-tags">
+      <span class="seo-tag">AI for entrepreneurs</span>
+      <span class="seo-tag">AI content creation</span>
+      <span class="seo-tag">AI automation tools</span>
+      <span class="seo-tag">AI prompt engineering</span>
+      <span class="seo-tag">AI for Black women</span>
+      <span class="seo-tag">AI for coaches</span>
+      <span class="seo-tag">AI for ministry</span>
+      <span class="seo-tag">ChatGPT for business</span>
+      <span class="seo-tag">AI revenue strategies</span>
+      <span class="seo-tag">AI SaaS tools 2026</span>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-size:12px;color:#7b2fff;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin:20px 0 4px;">👇 Step 1 — Choose Your Package</p>
+
+  <div class="pkg-grid">
+
+    <!-- $27 Recording Only -->
+    <div class="pkg-card" id="card27" onclick="selectPkg('recording', 27, this)">
+      <div class="pkg-tier">Replay Access</div>
+      <div class="pkg-name">Recording Only</div>
+      <div class="pkg-orig"></div>
+      <div class="pkg-price">$27</div>
+      <div class="pkg-note">One-time payment · Instant digital access</div>
+      <ul class="pkg-features">
+        <li>🎥 Full Zoom Training Recording</li>
+        <li>♾️ Lifetime Replay Access</li>
+        <li>📥 Downloadable Training Notes PDF</li>
+      </ul>
+      <button class="btn-purple" onclick="selectPkg('recording', 27, document.getElementById('card27'))">SELECT — $27</button>
+    </div>
+
+    <!-- $47 Live Only -->
+    <div class="pkg-card" id="card47" onclick="selectPkg('live', 47, this)">
+      <div class="pkg-tier">Live Session</div>
+      <div class="pkg-name">Live Zoom Only</div>
+      <div class="pkg-orig"></div>
+      <div class="pkg-price">$47</div>
+      <div class="pkg-note">One-time payment · Train live with Mona</div>
+      <ul class="pkg-features">
+        <li>📡 Live Zoom Training Access</li>
+        <li>❓ Live Q&A with Mona</li>
+        <li>🔥 Real-Time AI Implementation</li>
+      </ul>
+      <button class="btn-purple" onclick="selectPkg('live', 47, document.getElementById('card47'))">SELECT — $47</button>
+    </div>
+
+    <!-- $67 Bundle — FEATURED -->
+    <div class="pkg-card featured" id="card67" onclick="selectPkg('bundle', 67, this)">
+      <div class="most-popular">⭐ MOST POPULAR</div>
+      <div class="pkg-tier">Best Value</div>
+      <div class="pkg-name">Live + Recording Bundle</div>
+      <div class="pkg-orig">Valued at $97</div>
+      <div class="pkg-price">$67</div>
+      <div class="pkg-note">One-time payment · Everything included</div>
+      <ul class="pkg-features">
+        <li>📡 Live Zoom Training Access</li>
+        <li>🎥 Full Recording + Lifetime Replay</li>
+        <li>❓ Live Q&A with Mona</li>
+        <li>📋 AI Swipe File & Templates</li>
+        <li>🗺️ 7-Figure AI Playbook</li>
+      </ul>
+      <button class="btn-gold" onclick="selectPkg('bundle', 67, document.getElementById('card67'))">SELECT BUNDLE — $67</button>
+    </div>
+
+  </div>
+
+  <!-- Selection confirmation -->
+  <div class="pkg-confirm" id="pkgConfirm">
+    ✅ <span id="pkgConfirmTxt"></span> selected! Click the button below to continue. 👇
+  </div>
+
+  <div style="padding:0 20px 16px;">
+    <div class="guarantee" style="max-width:620px;">
+      <div class="g-icon">🛡️</div>
+      <div class="g-text"><strong>100% Satisfaction Guaranteed.</strong> Show up, apply what you learn, and if you don't see value — we'll make it right. No questions asked.</div>
+    </div>
+    <p style="text-align:center;font-size:11px;color:#4B0082;margin-top:8px;">These prices are only available on this page. They increase after you leave.</p>
+  </div>
+
+  <!-- CONTINUE CTA -->
+  <div style="text-align:center;padding:10px 20px 40px;">
+    <button class="btn-gold" style="max-width:480px;margin:0 auto;font-size:15px;padding:18px 30px;" onclick="goToUpsell()">
+      ⚡ CONTINUE — CLAIM YOUR BONUS OFFER →
+    </button>
+    <p style="font-size:11px;color:#4B0082;margin-top:8px;">You'll select your payment on the next step.</p>
+  </div>
+
+
+<!-- PAYMENT PENDING MESSAGE -->
+<div id="payment-pending-msg" style="display:none;max-width:600px;margin:0 auto 40px;padding:0 20px;">
+  <div style="background:linear-gradient(135deg,#0d0022,#120030);border:2px solid #f5c842;border-radius:20px;padding:36px 28px;text-align:center;">
+    <div style="font-size:48px;margin-bottom:16px;">💳</div>
+    <h2 style="font-size:22px;font-weight:900;color:#f5c842;margin-bottom:10px;">Complete Your Payment</h2>
+    <p style="color:#b06aff;font-size:14px;line-height:1.7;margin-bottom:24px;">
+      Your Stripe checkout window should be open. Complete your payment there to secure your seat.<br><br>
+      <b style="color:#fff;">Already paid?</b> Click the button below to access your confirmation.
+    </p>
+    <button onclick="goConfirmation()" class="btn-gold" style="max-width:320px;margin:0 auto 16px;">
+      ✅ I've Completed My Payment
+    </button>
+    <br>
+    <button onclick="document.getElementById('payment-pending-msg').style.display='none'" style="background:none;border:none;color:#4B0082;font-size:12px;cursor:pointer;text-decoration:underline;">
+      ← Go back to packages
+    </button>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════
+     STEP 4 — CONFIRMATION
+══════════════════════════════════ -->
+
+<!-- ══════════════════════════════════
+     STEP 4 — PROMPT VAULT UPSELL
+══════════════════════════════════ -->
+<div class="step" id="step4">
+
+  <!-- TOP BANNER -->
+  <div style="background:linear-gradient(135deg,#7b2fff,#e040fb);text-align:center;padding:14px 20px;">
+    <p style="margin:0;font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#fff;">🎉 YOU'RE NOW REGISTERED FOR THE LIVE TRAINING!</p>
+  </div>
+
+  <!-- HEADLINE -->
+  <div style="background:#0a0010;text-align:center;padding:40px 20px 24px;">
+    <h1 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,5vw,44px);font-weight:900;line-height:1.15;margin-bottom:12px;">
+      <span style="color:#e040fb;">WAIT… WANT THE</span><br/>
+      <span style="color:#fff;">PROMPT VAULT + REPLAY</span><br/>
+      <span style="color:#e040fb;">SO YOU DON'T MISS ANYTHING?</span>
+    </h1>
+    <p style="font-size:clamp(15px,2.5vw,20px);color:#fff;font-weight:600;margin:0;">Add the <strong style="color:#f5c842;">ThinkBox AI Prompt Vault</strong> to your order for just <strong style="color:#f5c842;">$37.</strong></p>
+  </div>
+
+  <!-- TWO COLUMN LAYOUT -->
+  <div style="max-width:980px;margin:0 auto;padding:20px 18px 40px;display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;justify-content:center;">
+
+    <!-- LEFT: Mockup + bullets -->
+    <div style="flex:1;min-width:280px;max-width:460px;">
+      <!-- Mockup Image -->
+      <div style="background:linear-gradient(135deg,#150035,#0a0010);border:2px solid rgba(123,47,255,0.5);border-radius:20px;padding:24px;text-align:center;margin-bottom:20px;">
+        <div style="font-size:64px;margin-bottom:12px;">🔐💡</div>
+        <div style="font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;color:#f5c842;margin-bottom:6px;">ThinkBox AI Prompt Vault</div>
+        <div style="font-size:12px;color:#b06aff;letter-spacing:2px;text-transform:uppercase;">RCTF Framework Edition · 100 Prompts</div>
+        <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+          <span style="background:rgba(123,47,255,0.2);border:1px solid #7b2fff;border-radius:20px;padding:5px 12px;font-size:11px;color:#d0a0ff;">📈 Business Growth</span>
+          <span style="background:rgba(123,47,255,0.2);border:1px solid #7b2fff;border-radius:20px;padding:5px 12px;font-size:11px;color:#d0a0ff;">✍️ Content Creation</span>
+          <span style="background:rgba(123,47,255,0.2);border:1px solid #7b2fff;border-radius:20px;padding:5px 12px;font-size:11px;color:#d0a0ff;">✝️ Ministry & Faith</span>
+          <span style="background:rgba(123,47,255,0.2);border:1px solid #7b2fff;border-radius:20px;padding:5px 12px;font-size:11px;color:#d0a0ff;">🤖 AI Automation</span>
+          <span style="background:rgba(123,47,255,0.2);border:1px solid #7b2fff;border-radius:20px;padding:5px 12px;font-size:11px;color:#d0a0ff;">📚 Author & Podcast</span>
+          <span style="background:rgba(123,47,255,0.2);border:1px solid #7b2fff;border-radius:20px;padding:5px 12px;font-size:11px;color:#d0a0ff;">⚡ Claude Power Prompts</span>
+        </div>
+      </div>
+
+      <p style="color:#ccc;font-size:14px;line-height:1.7;margin-bottom:16px;">You are about to learn AI like your business depends on it — walk into training <strong style="color:#fff;">already armed</strong> with 100 RCTF-engineered prompts built for entrepreneurs.</p>
+
+      <ul style="list-style:none;padding:0;margin:0 0 16px;">
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:13px;color:#ccc;"><span style="color:#22c55e;font-size:16px;flex-shrink:0;">✅</span> 100 prompts across 8 business categories</li>
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:13px;color:#ccc;"><span style="color:#22c55e;font-size:16px;flex-shrink:0;">✅</span> Built on the RCTF Framework™ — expert-level AI outputs</li>
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:13px;color:#ccc;"><span style="color:#22c55e;font-size:16px;flex-shrink:0;">✅</span> Instant digital access — works with any AI tool</li>
+        <li style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:13px;color:#ccc;"><span style="color:#22c55e;font-size:16px;flex-shrink:0;">✅</span> No subscription · one-time payment only</li>
+        <li style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#ccc;"><span style="color:#22c55e;font-size:16px;flex-shrink:0;">✅</span> This price disappears after you leave this page</li>
+      </ul>
+    </div>
+
+    <!-- RIGHT: Order form -->
+    <div style="flex:1;min-width:280px;max-width:440px;">
+      <div style="background:#fff;border-radius:16px;padding:28px 24px;color:#111;">
+
+        <!-- Order Summary -->
+        <div style="margin-bottom:20px;">
+          <div style="font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7b2fff;margin-bottom:10px;">PAYMENT</div>
+          <table style="width:100%;border-collapse:collapse;font-size:13px;">
+            <thead>
+              <tr style="border-bottom:1px solid #eee;">
+                <th style="text-align:left;padding:6px 0;color:#555;font-weight:700;">Item</th>
+                <th style="text-align:center;padding:6px 0;color:#555;font-weight:700;">Qty</th>
+                <th style="text-align:right;padding:6px 0;color:#555;font-weight:700;">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:10px 0;font-weight:700;color:#111;">
+                  <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#7b2fff;margin-right:8px;vertical-align:middle;"></span>
+                  ThinkBox AI Prompt Vault
+                </td>
+                <td style="text-align:center;color:#111;font-weight:600;">1</td>
+                <td style="text-align:right;color:#7b2fff;font-weight:800;">$37.00</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="border-top:1px solid #eee;margin-top:10px;padding-top:10px;">
+            <div style="font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:8px;">ORDER SUMMARY</div>
+            <table style="width:100%;font-size:13px;">
+              <tr>
+                <td style="padding:4px 0;color:#555;">ThinkBox AI Prompt Vault</td>
+                <td style="text-align:center;color:#555;">1</td>
+                <td style="text-align:right;font-weight:700;color:#111;">$37.00</td>
+              </tr>
+              <tr style="border-top:1px solid #eee;">
+                <td style="padding:8px 0;font-weight:800;color:#111;" colspan="2">Order Total</td>
+                <td style="text-align:right;font-weight:900;color:#7b2fff;font-size:15px;">$37.00</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- YES Button — Stripe -->
+        <button onclick="addVaultAndCheckout()" style="width:100%;background:linear-gradient(135deg,#f5c842,#f7a800);color:#050008;font-size:16px;font-weight:900;padding:18px;border-radius:50px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;">
+          ➕ YES — ADD VAULT FOR $37 + CHECKOUT
+        </button>
+
+        <!-- NO Button -->
+        <button onclick="proceedToCheckout()" style="width:100%;background:none;border:1px solid #ddd;border-radius:50px;padding:13px;font-size:12px;font-weight:700;color:#999;cursor:pointer;">
+          ❌ No thanks — I don't want the Prompt Vault. Skip this offer.
+        </button>
+
+        <p style="text-align:center;font-size:11px;color:#aaa;margin-top:12px;">🔒 Secure checkout · Instant access after payment</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="step" id="step5">
+  <!-- HERO -->
+  <div style="background:radial-gradient(ellipse at 50% 0%,rgba(34,197,94,0.18) 0%,transparent 65%),#050008;text-align:center;padding:50px 20px 30px;">
+    <div style="width:82px;height:82px;background:rgba(34,197,94,0.15);border:3px solid #22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:38px;">✅</div>
+    <h1 style="font-family:'Orbitron',sans-serif;font-size:clamp(22px,5vw,38px);font-weight:900;margin-bottom:10px;">You're Registered!<br/><span id="fn5" style="color:#f5c842;font-size:clamp(18px,4vw,30px);"></span></h1>
+    <p style="color:#22c55e;font-size:14px;font-weight:700;margin-bottom:6px;">We've sent your confirmation to your email. The training runs:</p>
+    <p style="color:#f5c842;font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;margin-bottom:24px;">June 27, 2026 — Online via Zoom</p>
+    <!-- LIVE COUNTDOWN -->
+    <div style="margin-bottom:8px;font-size:10px;font-weight:800;letter-spacing:3px;color:#7b2fff;text-transform:uppercase;">Until The Training Begins</div>
+    <div style="display:flex;justify-content:center;gap:10px;margin-bottom:36px;flex-wrap:wrap;">
+      <div class="cd-box"><span id="cd-days">--</span><div class="cd-label">DAYS</div></div>
+      <div class="cd-box"><span id="cd-hours">--</span><div class="cd-label">HOURS</div></div>
+      <div class="cd-box"><span id="cd-mins">--</span><div class="cd-label">MINUTES</div></div>
+      <div class="cd-box"><span id="cd-secs">--</span><div class="cd-label">SECONDS</div></div>
+    </div>
+  </div>
+
+  <!-- 2 STEPS: Calendar + Email -->
+  <div style="max-width:580px;margin:0 auto;padding:20px 18px 50px;">
+    <p style="text-align:center;font-size:14px;color:#b06aff;font-weight:700;margin-bottom:20px;">Complete these 2 quick steps so you don't miss a thing 👇</p>
+
+    <!-- STEP 1: Calendar -->
+    <div id="conf-s1" style="display:flex;gap:14px;background:linear-gradient(135deg,#0d0022,#120030);border:2px solid #22c55e;border-radius:18px;padding:20px 18px;margin-bottom:14px;align-items:flex-start;">
+      <div style="width:46px;height:46px;min-width:46px;background:rgba(34,197,94,0.2);border:2px solid #22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#22c55e;font-weight:900;">✓</div>
+      <div style="flex:1;">
+        <div style="font-size:10px;font-weight:800;color:#22c55e;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">STEP 1 <span style="background:#22c55e;color:#000;border-radius:50px;padding:1px 9px;font-size:9px;margin-left:6px;">Done</span></div>
+        <div style="font-size:16px;font-weight:900;margin-bottom:5px;">📅 Add to Calendar</div>
+        <p style="font-size:12px;color:#b06aff;margin-bottom:12px;line-height:1.5;">Block off June 27, 2026 at 6PM EDT — never miss the training!</p>
+        <a href="#" onclick="dlCal();return false;" style="display:inline-block;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border-radius:50px;padding:11px 22px;font-size:13px;font-weight:800;text-decoration:none;">📅 Add to My Calendar</a>
+      </div>
+    </div>
+
+    <!-- STEP 2: Email -->
+    <div id="conf-s2" style="display:flex;gap:14px;background:linear-gradient(135deg,#0d0022,#120030);border:1px solid rgba(123,47,255,0.3);border-radius:18px;padding:20px 18px;margin-bottom:24px;align-items:flex-start;">
+      <div style="width:46px;height:46px;min-width:46px;background:rgba(123,47,255,0.1);border:2px solid rgba(123,47,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;">📧</div>
+      <div style="flex:1;">
+        <div style="font-size:10px;font-weight:800;color:#7b2fff;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">STEP 2</div>
+        <div style="font-size:16px;font-weight:900;margin-bottom:5px;">📧 Confirm Your Email Arrived</div>
+        <p style="font-size:12px;color:#b06aff;margin-bottom:12px;line-height:1.5;">Check your inbox for your registration confirmation. Not there? Check your Spam folder and mark "Not Spam."</p>
+        <button onclick="confEmail()" id="email-btn" style="background:linear-gradient(135deg,#f5c842,#f7a800);color:#050008;border:none;border-radius:50px;padding:13px 28px;font-size:13px;font-weight:900;cursor:pointer;letter-spacing:0.5px;">✉️ I Found the Email</button>
+      </div>
+    </div>
+
+    <!-- Sig -->
+    <div style="text-align:center;padding-top:8px;">
+      <p style="font-size:13px;color:#7b2fff;">Questions? <a href="mailto:mjunlimitedessentials@gmail.com" style="color:#f5c842;font-weight:800;">mjunlimitedessentials@gmail.com</a></p>
+      <div style="margin-top:14px;color:#b06aff;font-size:13px;font-style:italic;">— Mona Jackson-Ham</div>
+      <div style="color:#4B0082;font-size:11px;margin-top:4px;">Your AI Bootcamp Coach · MJUnlimited Essential Mktg Co. · A ThinkBox AI Operation Systems</div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  © 2026 MJUnlimited Essential Mktg Co. · A ThinkBox AI Operation Systems · All Rights Reserved<br/>
+  <a href="#">Privacy Policy</a> · <a href="#">Terms</a> · <a href="#">Disclaimer</a><br/>
+  Results are not typical. Individual outcomes vary based on effort, experience, and implementation.
+</div>
+
+<script>
+const steps = ['step1','step2','step3','step4','step5'];
+const fills  = ['20%','40%','60%','80%','100%'];
+const labels = [
+  'Step 1 of 5 — Register Your Info',
+  'Step 2 of 5 — Watch AI News Brief',
+  'Step 3 of 5 — Select Your Package',
+  'Step 4 of 5 — ⚡ This Offer Disappears After Checkout',
+  'Step 5 of 5 — You\'re Confirmed! 🎉'
+];
+let selectedPkg = null;
+let vaultAdded  = false;
+
+function goStep(n) {
+  steps.forEach((id, i) => {
+    document.getElementById(id).classList.toggle('active', i === n);
+  });
+  document.getElementById('pFill').style.width  = fills[n];
+  document.getElementById('pLabel').textContent = labels[n];
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (n === 4) { setTimeout(startCountdown, 300); }
+}
+
+function step1Submit() {
+  const fn = document.getElementById('fn').value.trim();
+  const em = document.getElementById('em').value.trim();
+  const ro = document.getElementById('ro').value;
+  if (!fn || !em || !ro) { alert('Please fill in your name, email, and role to continue.'); return; }
+
+  // Submit to Jotform 261395894134163
+  const fd = new FormData();
+  fd.append('q1_fullName[first]', fn);
+  fd.append('q1_fullName[last]',  document.getElementById('ln').value.trim());
+  fd.append('q3_emailAddress',    em);
+  fd.append('q4_phoneNumber[full]', document.getElementById('ph').value.trim());
+  fd.append('q2_address', ro
+    + (document.getElementById('ai').value ? ' | AI: ' + document.getElementById('ai').value : '')
+    + (document.getElementById('ch').value ? ' | Challenge: ' + document.getElementById('ch').value : '')
+  );
+  fetch('https://submit.jotform.com/submit/261395894134163/', { method:'POST', body:fd, mode:'no-cors' }).catch(()=>{});
+
+  // Fire confirmation email + calendar event
+  const ln = document.getElementById('ln') ? document.getElementById('ln').value.trim() : '';
+  fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/thinkboxConfirm', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      firstName: fn,
+      lastName: ln,
+      email: em,
+      phone: document.getElementById('ph') ? document.getElementById('ph').value.trim() : '',
+      package: selectedPkg ? selectedPkg.type : 'bundle',
+      vaultAdded: vaultAdded || false
+    })
+  }).catch(function(e){ console.warn('Confirm email error:', e); });
+
+  document.getElementById('fn2').textContent = fn;
+  goStep(1);
+}
+
+function selectPkg(type, price, el) {
+  selectedPkg = { type, price };
+  // Highlight selected
+  ['card27','card47','card67'].forEach(id => {
+    const c = document.getElementById(id);
+    c.classList.remove('selected');
+    if (id !== 'card67') c.style.border = '2px solid rgba(123,47,255,0.3)';
+    else c.style.border = '2px solid #f5c842';
+  });
+  el.classList.add('selected');
+  // Confirm message
+  const labels = { recording: 'Recording Only — $27', live: 'Live Zoom Only — $47', bundle: 'Live + Recording Bundle — $67' };
+  document.getElementById('pkgConfirmTxt').textContent = labels[type];
+  document.getElementById('pkgConfirm').style.display = 'block';
+  // Scroll to upsell
+  setTimeout(() => document.getElementById('vaultBox').scrollIntoView({ behavior:'smooth', block:'start' }), 350);
+}
+
+function toggleVault() {
+  vaultAdded = !vaultAdded;
+  const btn = document.getElementById('vaultBtn');
+  const added = document.getElementById('vault-added');
+  const note = document.getElementById('vaultStripeNote');
+  if (vaultAdded) {
+    btn.textContent = '✅ VAULT ADDED — Click to Remove';
+    btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+    if (added) added.style.display = 'block';
+    if (note) note.style.display = 'block';
+    // STRIPE VAULT LINK — update when ready
+    const vaultLink = 'https://buy.stripe.com/eVqfZg9tB3Fd08K5a5aVa0h';
+    if (vaultLink !== 'VAULT_STRIPE_LINK_HERE') window.open(vaultLink, '_blank');
+  } else {
+    btn.textContent = '➕ YES — ADD PROMPT VAULT FOR $37';
+    btn.style.background = '';
+    if (added) added.style.display = 'none';
+    if (note) note.style.display = 'none';
+  }
+}
+
+function proceedToThanks() {
+  if (!selectedPkg) { alert('Please select a training package above before continuing.'); return; }
+  const fn = document.getElementById('fn').value.trim() || 'Friend';
+  document.getElementById('fn5').textContent = fn;
+  if (selectedPkg.type !== 'recording' || vaultAdded) {
+    document.getElementById('vipLine').style.display = 'list-item';
+  }
+  goStep(4);
+}
+
+// ── COUNTDOWN ──
+function startCountdown() {
+  var ev = new Date('2026-07-20T22:00:00Z');
+  function tick() {
+    var diff = ev - new Date();
+    if (diff <= 0) { ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(function(id){ document.getElementById(id).textContent='00'; }); return; }
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff%86400000)/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
+}
+
+// ── CALENDAR DOWNLOAD ──
+function dlCal() {
+  var ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nDTSTART:20260613T220000Z\r\nDTEND:20260614T000000Z\r\nSUMMARY:ThinkBox AI Intensive - Live Training with Mona Jackson-Ham\r\nDESCRIPTION:Join Mona Jackson-Ham LIVE. Check email for Zoom link.\r\nLOCATION:Zoom (Online)\r\nEND:VEVENT\r\nEND:VCALENDAR';
+  var b = new Blob([ics],{type:'text/calendar'});
+  var u = URL.createObjectURL(b);
+  var a = document.createElement('a'); a.href=u; a.download='ThinkBox-AI-Intensive.ics'; a.click();
+  URL.revokeObjectURL(u);
+  document.getElementById('conf-s1').style.borderColor='#22c55e';
+  updProg(2);
+}
+
+
+
+// ── EMAIL CONFIRM ──
+function confEmail() {
+  var btn = document.getElementById('email-btn');
+  btn.textContent = "✅ Great — You're All Set!";
+  btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+  document.getElementById('conf-s3').style.borderColor='#22c55e';
+  document.getElementById('conf-prog-fill').style.width='100%';
+  var lbl = document.getElementById('conf-prog-label');
+  lbl.textContent = '✅ Registration Complete — 3/3 done!';
+  lbl.style.color = '#22c55e';
+}
+
+
+
+
+function goToUpsell() {
+  if (!selectedPkg) { alert('Please select a training package above to continue.'); return; }
+  goStep(3);
+}
+
+function addVaultAndCheckout() {
+  vaultAdded = true;
+  const btn = document.getElementById('vaultBtnStep4');
+  if (btn) { btn.textContent = '✅ Vault Added! Opening checkout...'; btn.style.background='linear-gradient(135deg,#22c55e,#16a34a)'; }
+  // Combined Stripe links (package + $37 Prompt Vault)
+  const combinedLinks = {
+    recording: 'https://buy.stripe.com/4gMeVc6hpb7F9Jk5a5aVa0i', // $27 + $37 = $64
+    live:      'https://buy.stripe.com/4gM28qgW31x5aNo6e9aVa0k',   // $47 + $37 = $84
+    bundle:    'https://buy.stripe.com/9B600i8pxfnV4p0eKFaVa0j'    // $67 + $37 = $104
+  };
+  if (selectedPkg && combinedLinks[selectedPkg.type] && combinedLinks[selectedPkg.type] !== 'COMBINED_LIVE_LINK_HERE' && combinedLinks[selectedPkg.type] !== 'COMBINED_BUNDLE_LINK_HERE') {
+    window.open(combinedLinks[selectedPkg.type], '_blank');
+  } else if (selectedPkg) {
+    // Fallback: open vault + package separately until combined links are ready
+    window.open('https://buy.stripe.com/eVqfZg9tB3Fd08K5a5aVa0h', '_blank');
+    const stripeLinks = {
+      recording: 'https://buy.stripe.com/fZu28qgW3grZ2gSbytaVa0f',
+      live: 'https://buy.stripe.com/8x2cN4cFNejRcVw6e9aVa0e',
+      bundle: 'https://buy.stripe.com/cNi28q0X5dfNf3E0TPaVa0g'
+    };
+    setTimeout(function() { window.open(stripeLinks[selectedPkg.type], '_blank'); }, 600);
+  }
+  // Open Stripe — show payment pending screen, do NOT auto-advance
+  showPaymentPending();
+}
+
+function proceedToCheckout() {
+  const stripeLinks = {
+    recording: 'https://buy.stripe.com/fZu28qgW3grZ2gSbytaVa0f',
+    live: 'https://buy.stripe.com/8x2cN4cFNejRcVw6e9aVa0e',
+    bundle: 'https://buy.stripe.com/cNi28q0X5dfNf3E0TPaVa0g'
+  };
+  if (selectedPkg && stripeLinks[selectedPkg.type]) {
+    window.open(stripeLinks[selectedPkg.type], '_blank');
+  }
+  showPaymentPending();
+}
+
+function showPaymentPending() {
+  // Hide step 3, show a payment pending overlay inside step 3
+  const pendingEl = document.getElementById('payment-pending-msg');
+  if (pendingEl) {
+    pendingEl.style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+}
+
+function goConfirmation() {
+  const fn = document.getElementById('fn').value.trim() || 'Friend';
+  document.getElementById('fn5').textContent = fn;
+  goStep(4);
+}
+
+function proceedToThanks() { goConfirmation(); }
+
+
+</script>
+
+<!-- SOCIAL PROOF TOASTS v3 -->
+<div id="sp-toast" style="
+  position:fixed;bottom:24px;left:24px;z-index:9999;
+  background:#fff;border-radius:14px;padding:14px 18px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.35);
+  max-width:300px;min-width:240px;
+  transform:translateX(-120%);transition:transform 0.5s cubic-bezier(.34,1.56,.64,1);
+  font-family:'Inter',sans-serif;
+">
+  <div style="background:linear-gradient(135deg,#7b2fff,#e040fb);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+    <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12.5l3.5 3.5 6.5-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <div style="flex:1;">
+    <div id="sp-name" style="font-weight:800;font-size:14px;color:#111;"></div>
+    <div id="sp-detail" style="font-size:12px;color:#666;margin-top:2px;"></div>
+  </div>
+  <button onclick="document.getElementById('sp-toast').style.transform='translateX(-120%)'" style="background:none;border:none;cursor:pointer;color:#aaa;font-size:18px;line-height:1;padding:0 0 0 6px;">×</button>
+</div>
+
+<script>
+(function(){
+  const entries=[
+    {name:"Tamika R.",location:"Baltimore, MD",pkg:"🎟️ Live Access + Prompt Vault",time:"2 minutes ago"},
+    {name:"Sherice W.",location:"Washington, DC",pkg:"🎬 Replay Only",time:"5 minutes ago"},
+    {name:"Denise M.",location:"Waldorf, MD",pkg:"💎 Full Bundle + Prompt Vault",time:"12 minutes ago"},
+    {name:"LaTonya B.",location:"Upper Marlboro, MD",pkg:"🎟️ Live Access",time:"18 minutes ago"},
+    {name:"Jasmine T.",location:"Alexandria, VA",pkg:"🎬 Replay + Prompt Vault",time:"27 minutes ago"},
+    {name:"Carla H.",location:"Silver Spring, MD",pkg:"💎 Full Bundle + Prompt Vault",time:"34 minutes ago"},
+    {name:"Monique S.",location:"Bowie, MD",pkg:"🎁 BONUS: 100 Prompt Pack",time:"41 minutes ago"},
+    {name:"Renee A.",location:"Clinton, MD",pkg:"🎟️ Live Access + Prompt Vault",time:"53 minutes ago"},
+    {name:"Patricia L.",location:"Hyattsville, MD",pkg:"💎 Full Bundle",time:"1 hour ago"},
+    {name:"Angela F.",location:"Fort Washington, MD",pkg:"🎬 Replay + Prompt Vault",time:"1 hour ago"},
+    {name:"Keisha D.",location:"Laurel, MD",pkg:"🎁 BONUS: 100 Prompt Pack",time:"2 hours ago"},
+    {name:"Brenda N.",location:"Oxon Hill, MD",pkg:"🎟️ Live Access",time:"2 hours ago"},
+    {name:"Tiffany C.",location:"Temple Hills, MD",pkg:"💎 Full Bundle + Prompt Vault",time:"3 hours ago"},
+    {name:"Sharon P.",location:"Landover, MD",pkg:"🎬 Replay Only",time:"3 hours ago"},
+    {name:"Nicole G.",location:"Suitland, MD",pkg:"🎁 BONUS: 100 Prompt Pack",time:"4 hours ago"},
+    {name:"Vanessa K.",location:"Germantown, MD",pkg:"🎟️ Live Access + Prompt Vault",time:"4 hours ago"},
+    {name:"Darlene M.",location:"Rockville, MD",pkg:"💎 Full Bundle + Prompt Vault",time:"5 hours ago"},
+    {name:"Tonya B.",location:"Accokeek, MD",pkg:"🎁 BONUS: 100 Prompt Pack",time:"5 hours ago"},
+    {name:"Crystal J.",location:"Brandywine, MD",pkg:"🎬 Replay + Prompt Vault",time:"6 hours ago"},
+    {name:"Sandra W.",location:"District Heights, MD",pkg:"🎟️ Live Access",time:"6 hours ago"},
+  ];
+  let idx=0;
+  const toast=document.getElementById('sp-toast');
+  const spName=document.getElementById('sp-name');
+  const spDetail=document.getElementById('sp-detail');
+
+  function showNext(){
+    const e=entries[idx % entries.length];
+    idx++;
+    spName.textContent=e.name+" — "+e.pkg;
+    spDetail.textContent=e.location+" • "+e.time;
+    toast.style.transform='translateX(0)';
+    setTimeout(()=>{ toast.style.transform='translateX(-120%)'; },5000);
+    setTimeout(showNext, 15000);
+  }
+
+  setTimeout(showNext, 5000);
+})();
+</script>
+
+</body>
+</html>
