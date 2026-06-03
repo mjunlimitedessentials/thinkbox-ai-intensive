@@ -3,499 +3,465 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ThinkBox AI: n8n Automation Course — Join the Waitlist | MJUnlimited Essential Mktg</title>
-  <meta name="description" content="The first structured n8n automation curriculum for students and entrepreneurs. Learn to build real workflows, save time, and automate your business. Launching June 27, 2026." />
-  <meta name="keywords" content="n8n automation course, AI automation training, ThinkBox AI, business automation, workflow automation, MJUnlimited" />
-  <meta property="og:title" content="ThinkBox AI: n8n Automation Course — Launching June 27, 2026" />
-  <meta property="og:description" content="The first structured n8n automation curriculum. Real tools. Real workflows. Launching June 27." />
-  <meta property="og:type" content="website" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet" />
+  <title>ThinkBox AI: n8n Automation Course — Join the Waitlist</title>
+  <meta name="description" content="The first structured n8n automation curriculum built for students ages 11–18. Join the waitlist and be first in line when we launch June 27." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #0f0f1a; overflow-x: hidden; }
+    :root {
+      --bg: #040008;
+      --purple: #7b2fff;
+      --purple-light: #b06aff;
+      --pink: #e040fb;
+      --gold: #f5c842;
+      --white: #ffffff;
+      --gray: #e2e8f0;
+      --card-bg: rgba(123,47,255,0.08);
+      --border: rgba(123,47,255,0.25);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--white); min-height: 100vh; overflow-x: hidden; }
 
-    /* ── TOPBAR ── */
+    /* STARS BG */
+    .stars {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;
+      background-image:
+        radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 25%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 85%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 40%, rgba(255,255,255,0.15) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 5%, rgba(255,255,255,0.3) 0%, transparent 100%);
+    }
+
+    /* GLOW ORBS */
+    .orb1 {
+      position: fixed; top: -200px; left: -100px; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(123,47,255,0.2) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .orb2 {
+      position: fixed; bottom: -200px; right: -100px; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(224,64,251,0.15) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* CONTENT */
+    .wrap { position: relative; z-index: 1; }
+
+    /* TOP BAR */
     .topbar {
-      background: #0f0f1a; color: #fff;
-      padding: 0.75rem 2rem; display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      display: flex; justify-content: center; padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(4,0,8,0.8); backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 100;
     }
-    .topbar-brand { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 0.95rem; letter-spacing: -0.02em; color: #fff; }
-    .topbar-brand span { color: #7b2fff; }
-    .topbar-badge {
-      background: linear-gradient(135deg, #7b2fff, #e040fb);
-      color: #fff; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em;
-      text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px;
-      animation: pulse 2s infinite;
+    .topbar-inner { display: flex; align-items: center; gap: 0.6rem; }
+    .topbar-logo {
+      font-family: 'Orbitron', sans-serif; font-size: 0.85rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--purple-light), var(--pink));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes slideIn { from{opacity:0;transform:translateX(120px)} to{opacity:1;transform:translateX(0)} }
-    @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
-    @keyframes toastIn { from{opacity:0;transform:translateY(20px) scale(0.95)} to{opacity:1;transform:translateY(0) scale(1)} }
-    @keyframes toastOut { from{opacity:1;transform:translateY(0) scale(1)} to{opacity:0;transform:translateY(10px) scale(0.95)} }
+    .topbar-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+    .topbar-status { font-size: 0.72rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    /* ── HERO ── */
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes glow { 0%,100%{box-shadow:0 0 20px rgba(123,47,255,0.3)} 50%{box-shadow:0 0 50px rgba(123,47,255,0.7), 0 0 80px rgba(224,64,251,0.3)} }
+    @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes countUp { from{opacity:0;transform:scale(0.5)} to{opacity:1;transform:scale(1)} }
+
+    /* HERO */
     .hero {
-      background: linear-gradient(160deg, #0f0f1a 0%, #1a0533 50%, #0d0020 100%);
-      color: #fff; padding: 5rem 1.5rem 4rem; text-align: center; position: relative; overflow: hidden;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 5rem 1.5rem 4rem;
     }
-    .hero::before {
-      content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
-      width: 900px; height: 900px;
-      background: radial-gradient(circle, rgba(123,47,255,0.18) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
-    .hero-eyebrow {
+
+    .product-label {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(123,47,255,0.2); border: 1px solid rgba(123,47,255,0.5);
-      color: #b06aff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em;
-      text-transform: uppercase; padding: 0.45rem 1.1rem; border-radius: 30px;
-      margin-bottom: 2rem; animation: fadeUp 0.7s ease both;
+      background: rgba(123,47,255,0.15); border: 1px solid rgba(123,47,255,0.4);
+      color: var(--purple-light); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.5rem 1.2rem; border-radius: 30px; margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s ease both;
     }
-    .eyebrow-dot { width: 5px; height: 5px; background: #e040fb; border-radius: 50%; animation: pulse 1.5s infinite; }
+    .product-label .dot { width: 6px; height: 6px; background: var(--pink); border-radius: 50%; animation: pulse 1.5s infinite; }
+
+    .hero-eyebrow {
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(226,232,240,0.4); margin-bottom: 1rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
     .hero-title {
-      font-family: 'Poppins', sans-serif; font-size: clamp(2.2rem, 7vw, 5rem);
-      font-weight: 900; line-height: 1.08; margin-bottom: 1.2rem;
-      animation: fadeUp 0.7s 0.1s ease both;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 9vw, 6rem);
+      font-weight: 900; line-height: 1.05; margin-bottom: 1rem;
+      animation: fadeUp 0.8s 0.2s ease both;
     }
-    .hero-title .white { color: #fff; display: block; }
-    .hero-title .gradient {
+    .hero-title .line1 { display: block; color: var(--white); }
+    .hero-title .line2 {
       display: block;
-      background: linear-gradient(135deg, #b06aff 0%, #e040fb 40%, #f5c842 100%);
+      background: linear-gradient(135deg, var(--purple-light) 0%, var(--pink) 50%, var(--gold) 100%);
       background-size: 200% auto;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      animation: shimmer 5s linear infinite;
+      animation: fadeUp 0.8s 0.2s ease both, shimmer 4s linear infinite;
     }
+
     .hero-sub {
-      font-size: clamp(1rem, 2.2vw, 1.2rem); color: rgba(226,232,240,0.7);
-      max-width: 580px; margin: 0 auto 2rem; line-height: 1.75;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
-    .hero-pills {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
-      margin-bottom: 3rem; animation: fadeUp 0.7s 0.3s ease both;
-    }
-    .pill {
-      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(226,232,240,0.65); font-size: 0.72rem; font-weight: 600;
-      padding: 0.35rem 0.9rem; border-radius: 20px;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(226,232,240,0.65); max-width: 560px; margin: 0 auto 1rem;
+      line-height: 1.7; animation: fadeUp 0.8s 0.3s ease both;
     }
 
-    /* ── COUNTDOWN ── */
-    .countdown-wrap { animation: fadeUp 0.7s 0.4s ease both; margin-bottom: 3.5rem; }
-    .cd-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #f5c842; margin-bottom: 1rem; }
-    .countdown { display: flex; justify-content: center; align-items: center; gap: 0.8rem; }
-    .cd-unit { text-align: center; }
+    .hero-tags {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 3rem; animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .tag {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(226,232,240,0.6); font-size: 0.72rem; font-weight: 600;
+      padding: 0.3rem 0.8rem; border-radius: 20px;
+    }
+
+    /* COUNTDOWN */
+    .countdown-block { margin-bottom: 3rem; animation: fadeUp 0.8s 0.5s ease both; }
+    .cd-label-top {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; opacity: 0.8;
+    }
+    .countdown-timer {
+      display: flex; gap: 1rem; align-items: center; justify-content: center;
+    }
+    .cd-unit { text-align: center; min-width: 70px; }
     .cd-box {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(123,47,255,0.4);
-      border-radius: 14px; padding: 0.9rem 1.1rem; min-width: 72px; margin-bottom: 0.4rem;
+      background: rgba(123,47,255,0.12); border: 1px solid rgba(123,47,255,0.3);
+      border-radius: 16px; padding: 0.8rem 0.5rem; margin-bottom: 0.4rem;
     }
-    .cd-num { font-family: 'Poppins', sans-serif; font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 900; color: #fff; line-height: 1; display: block; }
-    .cd-lbl { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #b06aff; }
-    .cd-sep { font-family: 'Poppins', sans-serif; font-size: 2rem; color: rgba(123,47,255,0.4); padding-bottom: 1rem; }
-    .cd-sub { font-size: 0.72rem; color: rgba(226,232,240,0.4); margin-top: 0.5rem; }
-    .cd-sub strong { color: rgba(226,232,240,0.65); }
+    .cd-num {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900; color: var(--white); display: block; line-height: 1;
+    }
+    .cd-lbl { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple-light); }
+    .cd-sep { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: rgba(123,47,255,0.5); margin-bottom: 1.2rem; }
+    .cd-sublabel { font-size: 0.75rem; color: rgba(226,232,240,0.4); margin-top: 0.5rem; }
+    .cd-sublabel strong { color: rgba(226,232,240,0.7); }
 
-    /* ── DEMOGRAPHIC FORM SECTION ── */
-    .demo-section {
-      background: #f8f7ff; padding: 5rem 1.5rem; text-align: center; border-top: 4px solid #7b2fff;
+    /* WAITLIST FORM */
+    .waitlist-card {
+      background: rgba(123,47,255,0.08); border: 1px solid rgba(123,47,255,0.3);
+      border-radius: 24px; padding: 2.5rem 2rem; max-width: 520px; width: 100%;
+      margin: 0 auto; animation: fadeUp 0.8s 0.6s ease both;
+      box-shadow: 0 0 60px rgba(123,47,255,0.12);
     }
-    .section-tag {
-      display: inline-block; background: #7b2fff; color: #fff;
-      font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
-      padding: 0.35rem 1rem; border-radius: 20px; margin-bottom: 1.5rem;
-    }
-    .demo-title {
-      font-family: 'Poppins', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900; color: #0f0f1a; line-height: 1.15; margin-bottom: 1rem;
-    }
-    .demo-title span { color: #7b2fff; }
-    .demo-sub { font-size: 1rem; color: #555; max-width: 560px; margin: 0 auto 3rem; line-height: 1.7; }
+    .wl-title { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 900; margin-bottom: 0.4rem; }
+    .wl-sub { font-size: 0.83rem; color: rgba(226,232,240,0.55); margin-bottom: 1.8rem; line-height: 1.5; }
 
-    .demo-card {
-      background: #fff; border-radius: 24px; padding: 2.5rem 2rem;
-      max-width: 580px; margin: 0 auto;
-      box-shadow: 0 8px 60px rgba(123,47,255,0.12), 0 2px 8px rgba(0,0,0,0.06);
-      border: 1px solid rgba(123,47,255,0.15);
-      text-align: left;
-    }
-    .demo-card-title {
-      font-family: 'Poppins', sans-serif; font-size: 1.15rem; font-weight: 900; color: #0f0f1a;
-      margin-bottom: 0.3rem;
-    }
-    .demo-card-sub { font-size: 0.82rem; color: #888; margin-bottom: 1.8rem; line-height: 1.5; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 0.8rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #7b2fff; }
+    .form-group label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--purple-light); }
     .form-group input, .form-group select {
-      padding: 0.85rem 1rem; background: #f8f7ff;
-      border: 1.5px solid #e0d9ff; border-radius: 10px;
-      color: #0f0f1a; font-family: 'Inter', sans-serif; font-size: 0.88rem; outline: none;
-      transition: all 0.2s; -webkit-appearance: none; appearance: none;
+      padding: 0.8rem 1rem; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(123,47,255,0.3); border-radius: 10px;
+      color: white; font-family: 'Inter', sans-serif; font-size: 0.88rem; outline: none;
+      transition: all 0.2s; -webkit-appearance: none;
     }
-    .form-group input::placeholder { color: #bbb; }
-    .form-group input:focus, .form-group select:focus {
-      border-color: #7b2fff; background: #fff;
-      box-shadow: 0 0 0 3px rgba(123,47,255,0.1);
-    }
-    .form-group select option { background: #fff; color: #0f0f1a; }
-    .full { grid-column: 1 / -1; }
+    .form-group input::placeholder { color: rgba(226,232,240,0.3); }
+    .form-group input:focus, .form-group select:focus { border-color: var(--purple); background: rgba(123,47,255,0.1); box-shadow: 0 0 0 3px rgba(123,47,255,0.15); }
+    .form-group select option { background: #1a0030; color: white; }
+    .full-row { grid-column: 1 / -1; }
 
-    .cta-btn {
-      width: 100%; padding: 1.1rem; margin-top: 0.75rem;
-      background: linear-gradient(135deg, #7b2fff, #e040fb);
-      color: #fff; font-family: 'Poppins', sans-serif; font-size: 1rem;
-      font-weight: 800; letter-spacing: 0.03em; border: none; border-radius: 12px;
-      cursor: pointer; transition: all 0.25s;
-      box-shadow: 0 6px 30px rgba(123,47,255,0.35);
+    .submit-btn {
+      width: 100%; padding: 1rem; margin-top: 0.5rem;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: white; font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      font-weight: 800; letter-spacing: 0.05em; border: none; border-radius: 12px;
+      cursor: pointer; transition: all 0.2s;
+      animation: glow 3s ease-in-out infinite;
     }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(123,47,255,0.5); }
-    .cta-btn:active { transform: translateY(0); }
-    .form-note { font-size: 0.67rem; color: #aaa; text-align: center; margin-top: 0.7rem; }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(123,47,255,0.5); }
+
+    .wl-note { font-size: 0.68rem; color: rgba(226,232,240,0.3); text-align: center; margin-top: 0.8rem; }
 
     /* SUCCESS STATE */
-    .success-state { display: none; text-align: center; padding: 1rem 0; }
-    .success-icon-wrap {
-      width: 72px; height: 72px; background: linear-gradient(135deg,#7b2fff,#e040fb);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.2rem; font-size: 2rem;
+    .success-state {
+      display: none; text-align: center; padding: 1rem 0;
     }
-    .success-title { font-family: 'Poppins', sans-serif; font-size: 1.4rem; font-weight: 900; color: #0f0f1a; margin-bottom: 0.5rem; }
-    .success-sub { font-size: 0.88rem; color: #666; line-height: 1.6; max-width: 380px; margin: 0 auto 1rem; }
-    .success-spot { font-family: 'Poppins', sans-serif; font-size: 2.5rem; font-weight: 900; color: #7b2fff; }
-    .success-spot-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #999; }
+    .success-icon { font-size: 4rem; margin-bottom: 1rem; animation: float 3s ease-in-out infinite; }
+    .success-title { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--gold); margin-bottom: 0.5rem; }
+    .success-sub { font-size: 0.88rem; color: rgba(226,232,240,0.6); line-height: 1.6; }
+    .success-num {
+      display: inline-block; font-family: 'Orbitron', sans-serif;
+      font-size: 2rem; font-weight: 900; color: var(--purple-light);
+      margin: 1rem 0; animation: countUp 0.5s ease both;
+    }
 
-    /* ── WHY SECTION ── */
-    .why-section { background: #0f0f1a; color: #fff; padding: 5rem 1.5rem; text-align: center; }
-    .why-title { font-family: 'Poppins', sans-serif; font-size: clamp(1.6rem,3.5vw,2.5rem); font-weight: 900; margin-bottom: 0.75rem; }
-    .why-title span { color: #f5c842; }
-    .why-sub { color: rgba(226,232,240,0.55); font-size: 0.95rem; max-width: 520px; margin: 0 auto 3rem; line-height: 1.7; }
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
-    .why-card {
-      background: rgba(123,47,255,0.08); border: 1px solid rgba(123,47,255,0.25);
-      border-radius: 18px; padding: 2rem 1.5rem; text-align: left;
-      transition: all 0.2s;
+    /* SOCIAL PROOF COUNTER */
+    .counter-strip {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      padding: 2.5rem 1.5rem;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: rgba(123,47,255,0.04);
     }
-    .why-card:hover { background: rgba(123,47,255,0.14); border-color: rgba(123,47,255,0.5); transform: translateY(-4px); }
-    .why-card-icon {
-      width: 48px; height: 48px; background: linear-gradient(135deg,#7b2fff,#e040fb);
-      border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; margin-bottom: 1rem;
+    .counter-item { text-align: center; }
+    .counter-num {
+      font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--purple-light), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      display: block;
     }
-    .why-card h3 { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .why-card p { font-size: 0.82rem; color: rgba(226,232,240,0.55); line-height: 1.6; }
+    .counter-label { font-size: 0.72rem; color: rgba(226,232,240,0.4); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
 
-    /* ── WHAT YOU'LL LEARN ── */
-    .learn-section { background: #fff; padding: 5rem 1.5rem; text-align: center; }
-    .learn-title { font-family: 'Poppins', sans-serif; font-size: clamp(1.6rem,3.5vw,2.5rem); font-weight: 900; color: #0f0f1a; margin-bottom: 0.75rem; }
-    .learn-title span { color: #7b2fff; }
-    .learn-sub { font-size: 0.95rem; color: #666; max-width: 500px; margin: 0 auto 3rem; line-height: 1.7; }
-    .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; max-width: 860px; margin: 0 auto; }
-    .learn-item {
-      background: #f8f7ff; border-left: 4px solid #7b2fff; border-radius: 0 12px 12px 0;
-      padding: 1.2rem 1.5rem; text-align: left;
+    /* WHAT TO EXPECT */
+    .section { max-width: 860px; margin: 0 auto; padding: 3.5rem 1.5rem; }
+    .section-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 900; text-align: center; margin-bottom: 0.4rem;
     }
-    .learn-num { font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; color: #7b2fff; text-transform: uppercase; margin-bottom: 0.3rem; }
-    .learn-item h4 { font-size: 0.95rem; font-weight: 700; color: #0f0f1a; margin-bottom: 0.3rem; }
-    .learn-item p { font-size: 0.78rem; color: #777; line-height: 1.5; }
-    .learn-locked {
-      background: #f0f0f0; border-left: 4px solid #ccc; border-radius: 0 12px 12px 0;
-      padding: 1.2rem 1.5rem; text-align: left; opacity: 0.6;
-    }
-    .learn-locked h4 { font-size: 0.95rem; font-weight: 700; color: #999; }
-    .learn-locked p { font-size: 0.78rem; color: #bbb; }
-    .lock-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; }
+    .section-sub { text-align: center; font-size: 0.88rem; color: rgba(226,232,240,0.45); margin-bottom: 2.5rem; }
 
-    /* ── WHO IT'S FOR ── */
-    .who-section { background: linear-gradient(135deg, #7b2fff 0%, #4a00b4 100%); color: #fff; padding: 5rem 1.5rem; text-align: center; }
-    .who-title { font-family: 'Poppins', sans-serif; font-size: clamp(1.6rem,3.5vw,2.4rem); font-weight: 900; margin-bottom: 0.75rem; }
-    .who-sub { font-size: 0.95rem; color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto 3rem; line-height: 1.7; }
-    .who-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 700px; margin: 0 auto; }
-    .who-pill {
-      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 12px; padding: 1rem 1.5rem; font-size: 0.9rem; font-weight: 700;
-      color: #fff; transition: all 0.2s;
+    .expect-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+    .expect-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 18px; padding: 1.8rem 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
     }
-    .who-pill:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+    .expect-card:hover { transform: translateY(-4px); border-color: var(--purple); }
+    .expect-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .expect-title { font-size: 0.92rem; font-weight: 800; color: var(--white); margin-bottom: 0.4rem; }
+    .expect-desc { font-size: 0.8rem; color: rgba(226,232,240,0.55); line-height: 1.6; }
 
-    /* ── FOOTER ── */
-    .footer { background: #0a0010; color: rgba(226,232,240,0.35); padding: 2rem 1.5rem; text-align: center; font-size: 0.75rem; line-height: 2; }
-    .footer a { color: rgba(176,106,255,0.6); text-decoration: none; }
-    .footer strong { color: rgba(226,232,240,0.6); }
-
-    /* ── TOAST ── */
-    .toast {
-      position: fixed; bottom: 24px; left: 24px; z-index: 9999;
-      background: #fff; border-radius: 14px; padding: 0.85rem 1.1rem;
-      display: flex; align-items: center; gap: 0.75rem;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 0 0 1px rgba(123,47,255,0.15);
-      max-width: 300px; display: none;
+    /* UNITS TEASER */
+    .units-teaser { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.8rem; }
+    .unit-pill {
+      background: rgba(123,47,255,0.08); border: 1px solid var(--border);
+      border-radius: 12px; padding: 0.8rem 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
     }
-    .toast.show { display: flex; animation: toastIn 0.4s ease forwards; }
-    .toast.hide { animation: toastOut 0.3s ease forwards; }
-    .toast-av {
-      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-      background: linear-gradient(135deg,#7b2fff,#e040fb);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem; font-weight: 900; color: #fff; letter-spacing: -0.5px;
+    .unit-pill.free { border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.06); }
+    .unit-num-badge {
+      font-family: 'Orbitron', sans-serif; font-size: 0.6rem; font-weight: 700;
+      background: rgba(123,47,255,0.3); padding: 0.2rem 0.5rem; border-radius: 6px;
+      color: var(--purple-light); white-space: nowrap; flex-shrink: 0;
     }
-    .toast-text { flex: 1; }
-    .toast-name { font-size: 0.8rem; font-weight: 700; color: #0f0f1a; }
-    .toast-msg { font-size: 0.7rem; color: #888; margin-top: 1px; }
-    .toast-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; flex-shrink: 0; }
+    .unit-pill.free .unit-num-badge { background: rgba(34,197,94,0.2); color: #4ade80; }
+    .unit-name { font-size: 0.75rem; font-weight: 600; color: rgba(226,232,240,0.7); line-height: 1.3; }
+    .lock-icon { font-size: 0.65rem; opacity: 0.3; margin-left: auto; flex-shrink: 0; }
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:540px) {
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.72rem; color: rgba(226,232,240,0.25);
+    }
+    footer span { color: var(--purple-light); }
+
+
+    /* AI SYMBOLS */
+    .expect-icon, .success-icon {
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--purple-light), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+    }
+    .success-icon {
+      font-size: 3.5rem;
+      animation: float 3s ease-in-out infinite;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (max-width: 520px) {
       .form-row { grid-template-columns: 1fr; }
-      .countdown { gap: 0.4rem; }
-      .cd-box { min-width: 56px; padding: 0.7rem 0.6rem; }
+      .countdown-timer { gap: 0.5rem; }
+      .cd-unit { min-width: 55px; }
+      .cd-sep { font-size: 1.4rem; }
     }
   </style>
 </head>
 <body>
+<div class="stars"></div>
+<div class="orb1"></div>
+<div class="orb2"></div>
 
-<!-- TOPBAR -->
-<nav class="topbar" role="navigation" aria-label="Site navigation">
-  <div class="topbar-brand">ThinkBox <span>AI</span> — MJUnlimited Essential Mktg</div>
-  <div class="topbar-badge">Launching June 27</div>
-</nav>
+<div class="wrap">
 
-<!-- HERO -->
-<section class="hero" aria-labelledby="hero-heading">
-  <div class="hero-content">
-    <div class="hero-eyebrow"><div class="eyebrow-dot"></div> ThinkBox AI Operation Systems — New Course</div>
-    <div class="hero-eyebrow" style="background:none;border:none;color:rgba(226,232,240,0.4);font-size:0.72rem;letter-spacing:0.3em;padding:0;margin-bottom:0.75rem;display:block;">THE FIRST STRUCTURED n8n CURRICULUM</div>
-    <h1 class="hero-title" id="hero-heading">
-      <span class="white">Automate Everything.</span>
-      <span class="gradient">Master n8n.</span>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-logo">ThinkBox AI</div>
+      <div class="topbar-dot"></div>
+      <div class="topbar-status">Waitlist Open</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="product-label"><div class="dot"></div> Coming June 27, 2026</div>
+    <div class="hero-eyebrow">ThinkBox AI × MJUnlimited Essential Mktg</div>
+    <h1 class="hero-title">
+      <span class="line1">n8n Automation</span>
+      <span class="line2">Course</span>
     </h1>
-    <p class="hero-sub">Stop doing manually what AI can do for you. This course teaches real n8n automation workflows — for entrepreneurs, educators, and anyone ready to reclaim their time.</p>
-    <div class="hero-pills">
-      <span class="pill">Beginner Friendly</span>
-      <span class="pill">Grades 6–12 + Adults</span>
-      <span class="pill">12 Units</span>
-      <span class="pill">Live + Self-Paced</span>
-      <span class="pill">ThinkBox AI Systems</span>
+    <p class="hero-sub">The first structured n8n curriculum built for students ages 11–18. 12 units. Real-world projects. A certificate employers and schools recognize.</p>
+    <div class="hero-tags">
+      <span class="tag">Grades 6–12</span>
+      <span class="tag">12 Units</span>
+      <span class="tag">Self-Paced</span>
+      <span class="tag">Certificate Included</span>
+      <span class="tag">Unit 1 Free</span>
+      <span class="tag">No Experience Needed</span>
     </div>
 
     <!-- COUNTDOWN -->
-    <div class="countdown-wrap">
-      <div class="cd-label">DOORS OPEN IN</div>
-      <div class="countdown">
-        <div class="cd-unit">
-          <div class="cd-box"><span class="cd-num" id="cd-days">00</span></div>
-          <div class="cd-lbl">Days</div>
-        </div>
+    <div class="countdown-block">
+      <div class="cd-label-top">◉ Launching In</div>
+      <div class="countdown-timer">
+        <div class="cd-unit"><div class="cd-box"><span class="cd-num" id="cd-days">19</span></div><div class="cd-lbl">Days</div></div>
         <div class="cd-sep">:</div>
-        <div class="cd-unit">
-          <div class="cd-box"><span class="cd-num" id="cd-hrs">00</span></div>
-          <div class="cd-lbl">Hours</div>
-        </div>
+        <div class="cd-unit"><div class="cd-box"><span class="cd-num" id="cd-hours">00</span></div><div class="cd-lbl">Hours</div></div>
         <div class="cd-sep">:</div>
-        <div class="cd-unit">
-          <div class="cd-box"><span class="cd-num" id="cd-min">00</span></div>
-          <div class="cd-lbl">Min</div>
-        </div>
+        <div class="cd-unit"><div class="cd-box"><span class="cd-num" id="cd-mins">00</span></div><div class="cd-lbl">Mins</div></div>
         <div class="cd-sep">:</div>
-        <div class="cd-unit">
-          <div class="cd-box"><span class="cd-num" id="cd-sec">00</span></div>
-          <div class="cd-lbl">Sec</div>
-        </div>
+        <div class="cd-unit"><div class="cd-box"><span class="cd-num" id="cd-secs">00</span></div><div class="cd-lbl">Secs</div></div>
       </div>
-      <div class="cd-sub">Full launch: <strong>June 27, 2026</strong> · Waitlist members notified first</div>
+      <div class="cd-sublabel">Full launch: <strong>June 27, 2026</strong> · Waitlist members notified first</div>
     </div>
-  </div>
-</section>
 
-<!-- DEMOGRAPHICS + WAITLIST FORM -->
-<section class="demo-section" id="waitlist" aria-labelledby="demo-heading">
-  <div class="section-tag">Secure Your Spot — Free</div>
-  <h2 class="demo-title" id="demo-heading">Tell Us About <span>Your Learning Goals</span></h2>
-  <p class="demo-sub">Help us customize your experience. Answer 3 quick questions and we'll reserve your spot on the waitlist — no payment, no commitment.</p>
+    <!-- WAITLIST FORM -->
+    <div class="waitlist-card">
+      <div id="form-state">
+        <div class="wl-title">⬡ Request Early Access</div>
+        <div class="wl-sub">Join the waitlist. Be first in line when we open the doors. No payment. No commitment. Just your spot in line.</div>
 
-  <div class="demo-card">
-    <div class="demo-card-title">Join the ThinkBox n8n Waitlist</div>
-    <div class="demo-card-sub">You'll be first in line when we open. Waitlist members get early access and launch-day pricing.</div>
+        <form onsubmit="handleWaitlist(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" id="wl-first" placeholder="Maya" required />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" id="wl-last" placeholder="Johnson" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full-row">
+              <label>Email Address</label>
+              <input type="email" id="wl-email" placeholder="you@email.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>I am a...</label>
+              <select id="wl-role">
+                <option value="">Select one</option>
+                <option value="student">Student (Grades 6–12)</option>
+                <option value="parent">Parent / Guardian</option>
+                <option value="educator">Teacher / Educator</option>
+                <option value="homeschool">Homeschool Parent</option>
+                <option value="college">College Student</option>
+                <option value="adult">Adult Learner</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>How'd you find us?</label>
+              <select id="wl-source">
+                <option value="">Select one</option>
+                <option value="instagram">Instagram</option>
+                <option value="tiktok">TikTok</option>
+                <option value="facebook">Facebook</option>
+                <option value="friend">Friend / Word of Mouth</option>
+                <option value="google">Google Search</option>
+                <option value="email">Email</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
 
-    <form id="waitlistForm" onsubmit="handleSubmit(event)" novalidate>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" placeholder="Your first name" required autocomplete="given-name" />
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" placeholder="Your last name" autocomplete="family-name" />
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group full">
-          <label for="emailField">Email Address</label>
-          <input type="email" id="emailField" name="email" placeholder="your@email.com" required autocomplete="email" />
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group full">
-          <label for="roleField">Who Are You?</label>
-          <select id="roleField" name="role" required>
-            <option value="" disabled selected>Select your role...</option>
-            <option value="Student (Middle School)">Student — Middle School</option>
-            <option value="Student (High School)">Student — High School</option>
-            <option value="Educator / Teacher">Educator / Teacher</option>
-            <option value="Entrepreneur">Entrepreneur / Business Owner</option>
-            <option value="Ministry Leader">Ministry Leader</option>
-            <option value="Coach / Consultant">Coach / Consultant</option>
-            <option value="Creative / Freelancer">Creative / Freelancer</option>
-            <option value="Other Professional">Other Professional</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group full">
-          <label for="experienceField">Your Automation Experience</label>
-          <select id="experienceField" name="experience" required>
-            <option value="" disabled selected>Select your level...</option>
-            <option value="Brand New — Never heard of n8n">Brand New — Never heard of n8n</option>
-            <option value="Beginner — I've used Zapier or Make before">Beginner — I've used Zapier or Make before</option>
-            <option value="Intermediate — I've tried n8n but need structure">Intermediate — I've tried n8n but need structure</option>
-            <option value="Advanced — I want to go deeper">Advanced — I want to go deeper</option>
-          </select>
-        </div>
+          <button type="submit" class="submit-btn">◈ Secure My Spot on the Waitlist</button>
+        </form>
+        <div class="wl-note">◉ No spam. No payment required. We'll email you the moment we launch.</div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group full">
-          <label for="goalField">What's Your #1 Goal With Automation?</label>
-          <select id="goalField" name="goal" required>
-            <option value="" disabled selected>Select your goal...</option>
-            <option value="Save time on repetitive tasks">Save time on repetitive tasks</option>
-            <option value="Automate my content creation workflow">Automate my content creation workflow</option>
-            <option value="Build systems for my business or ministry">Build systems for my business or ministry</option>
-            <option value="Learn automation to teach it to others">Learn automation to teach it to others</option>
-            <option value="Create AI-powered workflows">Create AI-powered workflows</option>
-            <option value="Scale without hiring more people">Scale without hiring more people</option>
-          </select>
-        </div>
+      <!-- SUCCESS -->
+      <div class="success-state" id="success-state">
+        <div class="success-icon" style="font-size:3rem;letter-spacing:0">◎</div>
+        <div class="success-title">You're on the list!</div>
+        <div class="success-sub">You're officially in line. When we open the doors on June 27, you'll be among the first to know — and the first inside.</div>
+        <div class="success-num" id="spot-num">#1</div>
+        <div style="font-size:0.75rem;color:rgba(226,232,240,0.4);">That's your waitlist spot number ⬡</div>
       </div>
+    </div>
+  </section>
 
-      <button type="submit" class="cta-btn" id="submitBtn">Reserve My Spot on the Waitlist</button>
-      <p class="form-note">No spam. No payment required. We'll notify you the moment we launch.</p>
-    </form>
+  <!-- COUNTER STRIP -->
+  <div class="counter-strip">
+    <div class="counter-item"><span class="counter-num" id="ctr-waitlist">—</span><div class="counter-label">On the Waitlist</div></div>
+    <div class="counter-item"><span class="counter-num">12</span><div class="counter-label">Course Units</div></div>
+    <div class="counter-item"><span class="counter-num">6–12</span><div class="counter-label">Grade Levels</div></div>
+    <div class="counter-item"><span class="counter-num">1</span><div class="counter-label">Certificate Earned</div></div>
+  </div>
 
-    <!-- SUCCESS STATE -->
-    <div class="success-state" id="successState">
-      <div class="success-icon-wrap">&#10003;</div>
-      <div class="success-title">You're In!</div>
-      <p class="success-sub">Your spot is reserved. When we open the doors on June 27, you'll be among the first inside — with early access pricing.</p>
-      <div class="success-spot" id="spotNum">—</div>
-      <div class="success-spot-label">Your Waitlist Number</div>
+  <!-- WHAT TO EXPECT -->
+  <div class="section">
+    <div class="section-title">What to Expect</div>
+    <div class="section-sub">Built differently. Designed for the next generation of builders.</div>
+    <div class="expect-grid">
+      <div class="expect-card"><div class="expect-icon">⬡</div><div class="expect-title">Learn by Doing</div><div class="expect-desc">Every unit has a real project — automating homework reminders, building study playlists, connecting apps with APIs. No fluff.</div></div>
+      <div class="expect-card"><div class="expect-icon">◈</div><div class="expect-title">Structured Progression</div><div class="expect-desc">Start with "What is automation?" and finish building multi-step workflows with IF/THEN logic, scheduling, and error handling.</div></div>
+      <div class="expect-card"><div class="expect-icon">◉</div><div class="expect-title">Quiz Checkpoints</div><div class="expect-desc">Each unit ends with a checkpoint quiz. Progress saves automatically so you pick up right where you left off.</div></div>
+      <div class="expect-card"><div class="expect-icon">◎</div><div class="expect-title">n8n Automation Specialist Certificate</div><div class="expect-desc">Complete all 12 units and earn your certificate — a credential you can add to your resume, portfolio, or LinkedIn.</div></div>
+      <div class="expect-card"><div class="expect-icon">▣</div><div class="expect-title">Unit 1 Always Free</div><div class="expect-desc">Try before you buy. Unit 1 "What is Automation?" is open to everyone — no account needed.</div></div>
+      <div class="expect-card"><div class="expect-icon">⬢</div><div class="expect-title">Learn Anywhere</div><div class="expect-desc">Mobile-responsive. Self-paced. No live sessions required. Learn on your schedule, at your speed.</div></div>
     </div>
   </div>
-</section>
 
-<!-- WHY THIS COURSE -->
-<section class="why-section" aria-labelledby="why-heading">
-  <h2 class="why-title" id="why-heading">Why <span>n8n?</span> Why Now?</h2>
-  <p class="why-sub">n8n is the automation platform professionals are calling the most powerful tool of 2025–2026. And until now, there's been no structured curriculum to teach it.</p>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-card-icon">&#9711;</div>
-      <h3>No-Code Friendly</h3>
-      <p>Build powerful automations without writing a single line of code. Drag. Connect. Deploy.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-card-icon">&#9676;</div>
-      <h3>AI-Powered Workflows</h3>
-      <p>Connect ChatGPT, Claude, and other AI tools directly into your workflows. Automate the thinking, not just the tasks.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-card-icon">&#11042;</div>
-      <h3>Real Business Results</h3>
-      <p>Students and entrepreneurs leave with working automations they deploy immediately — not theory, but real systems.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-card-icon">&#9675;</div>
-      <h3>Built for All Levels</h3>
-      <p>From middle schoolers to seasoned entrepreneurs — this curriculum meets you exactly where you are.</p>
+  <!-- UNITS TEASER -->
+  <div style="background: rgba(123,47,255,0.04); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="section">
+      <div class="section-title">A Peek at the Curriculum</div>
+      <div class="section-sub">12 units. Middle school through high school. All locked in until launch day.</div>
+      <div class="units-teaser">
+        <div class="unit-pill free"><div class="unit-num-badge">Unit 01</div><div class="unit-name">What is Automation?</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 02</div><div class="unit-name">Meet the n8n Editor</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 03</div><div class="unit-name">Understanding Nodes</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 04</div><div class="unit-name">Your First Workflow</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 05</div><div class="unit-name">Automating Reminders</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 06</div><div class="unit-name">Daily Motivation Messages</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 07</div><div class="unit-name">Credentials & Security</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 08</div><div class="unit-name">IF/THEN Logic</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 09</div><div class="unit-name">Data Transformation</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 10</div><div class="unit-name">Scheduling Automations</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 11</div><div class="unit-name">Error Handling</div><div class="lock-icon">▣</div></div>
+        <div class="unit-pill"><div class="unit-num-badge">Unit 12</div><div class="unit-name">Sharing & Exporting Workflows</div><div class="lock-icon">▣</div></div>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- WHAT YOU'LL LEARN -->
-<section class="learn-section" aria-labelledby="learn-heading">
-  <div class="section-tag" style="background:#0f0f1a;">12-Unit Curriculum</div>
-  <h2 class="learn-title" id="learn-heading">What You'll <span>Learn</span></h2>
-  <p class="learn-sub">A structured path from zero to confident automation builder. Unit 1 is free. Full access unlocks at launch.</p>
-  <div class="learn-grid">
-    <div class="learn-item">
-      <div class="learn-num">Unit 01 — Free</div>
-      <h4>What Is n8n? Your First Workflow</h4>
-      <p>Set up your environment and build your very first automation from scratch.</p>
-    </div>
-    <div class="learn-item">
-      <div class="learn-num">Unit 02</div>
-      <h4>Triggers, Nodes &amp; Connections</h4>
-      <p>Learn the anatomy of an n8n workflow and how data flows between nodes.</p>
-    </div>
-    <div class="learn-locked">
-      <div class="lock-badge">Locked until June 27</div>
-      <h4>Units 03–12</h4>
-      <p>AI integrations, email automation, social scheduling, CRM workflows, and more.</p>
-    </div>
-  </div>
-</section>
+  <footer>
+    <p>A <span>ThinkBox AI Operation Systems</span> × MJUnlimited Essential Mktg Co. product.</p>
+    <p style="margin-top:0.4rem;">© 2026 ThinkBox AI Studios. All rights reserved.</p>
+  </footer>
 
-<!-- WHO IT'S FOR -->
-<section class="who-section" aria-labelledby="who-heading">
-  <h2 class="who-title" id="who-heading">This Course Is Built For You</h2>
-  <p class="who-sub">Whether you're a student discovering tech or a business owner drowning in tasks — this course was made with you in mind.</p>
-  <div class="who-grid">
-    <div class="who-pill">Students Ages 11–18</div>
-    <div class="who-pill">Entrepreneurs</div>
-    <div class="who-pill">Ministry Leaders</div>
-    <div class="who-pill">Educators</div>
-    <div class="who-pill">Coaches &amp; Consultants</div>
-    <div class="who-pill">Creatives &amp; Freelancers</div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer" role="contentinfo">
-  <div><strong>ThinkBox AI: n8n Automation Course</strong></div>
-  <div>A <strong>ThinkBox AI Operation Systems</strong> program by MJUnlimited Essential Mktg Co.</div>
-  <div>Questions? <a href="mailto:admin@mjunlimitedessentialmktg.com">admin@mjunlimitedessentialmktg.com</a></div>
-  <div style="margin-top:0.5rem;">&copy; 2026 MJUnlimited Essential Mktg, a ThinkBox AI Operation Systems. All rights reserved.</div>
-</footer>
-
-<!-- TOAST NOTIFICATION -->
-<div class="toast" id="toast" role="status" aria-live="polite">
-  <div class="toast-av">AI</div>
-  <div class="toast-text">
-    <div class="toast-name" id="toastName"></div>
-    <div class="toast-msg">just joined the waitlist</div>
-  </div>
-  <div class="toast-dot"></div>
 </div>
 
 <script>
-  // ── COUNTDOWN ──
+  // COUNTDOWN
   const launch = new Date('2026-06-27T00:00:00-04:00');
-  function updateCountdown() {
+  function tick() {
     const now = new Date();
     const diff = launch - now;
     if (diff <= 0) {
-      document.getElementById('cd-days').textContent = '00';
-      document.getElementById('cd-hrs').textContent = '00';
-      document.getElementById('cd-min').textContent = '00';
-      document.getElementById('cd-sec').textContent = '00';
+      document.querySelector('.countdown-block').innerHTML = '<div style="font-family:Orbitron,sans-serif;font-size:1.6rem;font-weight:900;color:#f5c842;">⬡ We\'re LIVE!</div>';
       return;
     }
     const d = Math.floor(diff / 86400000);
@@ -503,100 +469,72 @@
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
     document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
-    document.getElementById('cd-hrs').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
-    document.getElementById('cd-sec').textContent = String(s).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
   }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  tick(); setInterval(tick, 1000);
 
-  // ── TOAST ──
-  const toastPeople = [
-    {name:'Keisha M.', loc:'Waldorf, MD'},{name:'Marcus W.', loc:'Washington, DC'},
-    {name:'LaToya J.', loc:'Oxon Hill, MD'},{name:'Denise F.', loc:'Alexandria, VA'},
-    {name:'Simone T.', loc:'Annapolis, MD'},{name:'Renee P.', loc:'Silver Spring, MD'},
-    {name:'David C.', loc:'Bowie, MD'},{name:'Jasmine L.', loc:'Richmond, VA'},
-    {name:'Monique H.', loc:'Washington, DC'},{name:'Terrell S.', loc:'Hampton, VA'},
-    {name:'Sharon P.', loc:'Greenbelt, MD'},{name:'Theresa K.', loc:'Capitol Heights, MD'},
-    {name:'Brenda L.', loc:'Fort Washington, MD'},{name:'Tiffany R.', loc:'Woodbridge, VA'},
-    {name:'Corey M.', loc:'Landover, MD'},{name:'Natasha B.', loc:'Temple Hills, MD'}
-  ];
-  let toastIdx = 0;
-  function showToast() {
-    const p = toastPeople[toastIdx % toastPeople.length];
-    toastIdx++;
-    const el = document.getElementById('toast');
-    document.getElementById('toastName').textContent = p.name + ' · ' + p.loc;
-    el.classList.remove('hide');
-    el.classList.add('show');
-    setTimeout(() => {
-      el.classList.add('hide');
-      setTimeout(() => { el.classList.remove('show','hide'); }, 350);
-    }, 4500);
-    setTimeout(showToast, 12000 + Math.random() * 6000);
+  // WAITLIST COUNTER — pulls live count from database
+  let count = 0;
+  async function fetchWaitlistCount() {
+    try {
+      const res = await fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/n8nWaitlistCount', {
+        headers: { 'x-api-key': 'public' }
+      });
+      const data = await res.json();
+      count = data.count || 0;
+    } catch(e) { count = 0; }
+    const el = document.getElementById('ctr-waitlist');
+    if (count === 0) { el.textContent = 'Be First!'; return; }
+    let current = Math.max(0, count - 3);
+    const interval = setInterval(() => {
+      current++;
+      el.textContent = current;
+      if (current >= count) clearInterval(interval);
+    }, 80);
   }
-  setTimeout(showToast, 3000);
+  window.addEventListener('load', fetchWaitlistCount);
 
-  // ── FORM SUBMIT ──
-  async function handleSubmit(e) {
+  // FORM SUBMIT
+  async function handleWaitlist(e) {
     e.preventDefault();
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName  = document.getElementById('lastName').value.trim();
-    const email     = document.getElementById('emailField').value.trim();
-    const role      = document.getElementById('roleField').value;
-    const experience = document.getElementById('experienceField').value;
-    const goal      = document.getElementById('goalField').value;
-
-    if (!firstName) { alert('Please enter your first name.'); return; }
-    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-    if (!role) { alert('Please select your role.'); return; }
-    if (!experience) { alert('Please select your experience level.'); return; }
-    if (!goal) { alert('Please select your goal.'); return; }
-
-    const btn = document.getElementById('submitBtn');
-    btn.textContent = 'Reserving your spot...';
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = '◉ Securing your spot...';
     btn.disabled = true;
 
-    // ── Send to Base44 N8nWaitlist (lead tracking) ──
-    let spotNum = '—';
+    const first = document.getElementById('wl-first').value.trim();
+    const last = document.getElementById('wl-last').value.trim();
+    const email = document.getElementById('wl-email').value.trim();
+    const role = document.getElementById('wl-role').value;
+    const source = document.getElementById('wl-source').value;
+
     try {
-      const r = await fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/n8nWaitlist', {
+      const res = await fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/n8nWaitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-api-key': 'public' },
-        body: JSON.stringify({
-          first_name: firstName,
-          last_name: lastName,
-          email,
-          role,
-          source: 'n8n Prelaunch — ' + experience + ' / ' + goal,
-          status: 'waitlist'
-        })
+        body: JSON.stringify({ first_name: first, last_name: last, email, role, source })
       });
-      const d = await r.json();
-      if (d.spot_number) spotNum = '#' + d.spot_number;
-      if (d.count) document.getElementById('spotNum').textContent = '#' + d.count;
-    } catch(err) { console.warn('Base44 store error', err); }
+      const data = await res.json();
 
-    // ── Send demographics to ThinkBox Jotform (ID 261395894134163) ──
-    // All ThinkBox AI Operation Systems learners route through this form
-    try {
-      const jf = new FormData();
-      jf.append('submission[q3_fullName]', firstName + ' ' + lastName);
-      jf.append('submission[q4_email]', email);
-      jf.append('submission[q5_industry]', role);
-      jf.append('submission[q6_aiLevel]', experience);
-      jf.append('submission[q7_challenge]', goal);
-      jf.append('submission[q8_source]', 'n8n Automation Course Waitlist');
-      await fetch('https://submit.jotform.com/submit/261395894134163/', {
-        method: 'POST', body: jf, mode: 'no-cors'
-      });
-    } catch(err) { console.warn('Jotform submit error', err); }
-
-    // ── Show success ──
-    document.getElementById('waitlistForm').style.display = 'none';
-    const success = document.getElementById('successState');
-    success.style.display = 'block';
-    if (spotNum !== '—') document.getElementById('spotNum').textContent = spotNum;
+      if (data.success) {
+        const spotNum = data.spot_number;
+        count = spotNum;
+        document.getElementById('ctr-waitlist').textContent = count;
+        document.getElementById('form-state').style.display = 'none';
+        const success = document.getElementById('success-state');
+        success.style.display = 'block';
+        document.getElementById('spot-num').textContent = '#' + spotNum;
+      } else {
+        btn.textContent = '◈ Count Me In — Reserve My Spot';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      btn.textContent = '◈ Count Me In — Reserve My Spot';
+      btn.disabled = false;
+      alert('Connection error. Please try again.');
+    }
   }
 </script>
 </body>
