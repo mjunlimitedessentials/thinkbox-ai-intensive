@@ -234,9 +234,116 @@
   .disc-link { color: #4B0082; text-decoration: none; }
   .disc-link:hover { color: #7b2fff; }
 
+
+  /* ── PASSWORD GATE ── */
+  #password-gate {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #0a0010;
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  .gate-box {
+    background: linear-gradient(135deg, #0f0020, #12002a);
+    border: 1px solid rgba(123,47,255,0.4);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(123,47,255,0.2);
+  }
+  .gate-logo {
+    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em;
+    text-transform: uppercase; color: #f72585; margin-bottom: 1rem;
+  }
+  .gate-title {
+    font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: 0.5rem;
+  }
+  .gate-title span { color: #f5c842; }
+  .gate-sub {
+    font-size: 0.82rem; color: #b06aff; margin-bottom: 2rem; line-height: 1.6;
+  }
+  .gate-input {
+    width: 100%; padding: 0.85rem 1.2rem;
+    background: rgba(123,47,255,0.1);
+    border: 1px solid rgba(123,47,255,0.35);
+    border-radius: 12px; color: #fff;
+    font-size: 1rem; font-family: inherit;
+    text-align: center; letter-spacing: 0.1em;
+    outline: none; margin-bottom: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+  .gate-input:focus { border-color: #f5c842; }
+  .gate-input::placeholder { color: #4B0082; letter-spacing: 0.05em; }
+  .gate-btn {
+    width: 100%; padding: 0.9rem;
+    background: linear-gradient(135deg, #7b2fff, #f72585);
+    color: #fff; font-size: 1rem; font-weight: 800;
+    border: none; border-radius: 12px; cursor: pointer;
+    font-family: inherit; transition: opacity 0.2s;
+  }
+  .gate-btn:hover { opacity: 0.88; }
+  .gate-error {
+    color: #f72585; font-size: 0.78rem; margin-top: 0.75rem;
+    display: none;
+  }
+  .gate-lock {
+    font-size: 2.5rem; margin-bottom: 1rem;
+  }
+
 </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div id="password-gate">
+  <div class="gate-box">
+    <div class="gate-lock">🔐</div>
+    <div class="gate-logo">ThinkBox AI Operation Systems</div>
+    <h1 class="gate-title">20 Claude <span>Command Codes</span></h1>
+    <p class="gate-sub">This page is protected. Enter your access code to continue.</p>
+    <input
+      type="password"
+      id="gate-input"
+      class="gate-input"
+      placeholder="Enter access code"
+      onkeydown="if(event.key==='Enter') checkGate()"
+      autocomplete="off"
+    />
+    <button class="gate-btn" onclick="checkGate()">Unlock Access →</button>
+    <p class="gate-error" id="gate-error">❌ Incorrect code. Please try again.</p>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Check if already unlocked this session
+    if (sessionStorage.getItem('ccc_unlocked') === 'true') {
+      document.addEventListener('DOMContentLoaded', function() {
+        var gate = document.getElementById('password-gate');
+        if (gate) gate.style.display = 'none';
+      });
+    }
+  })();
+
+  function checkGate() {
+    var input = document.getElementById('gate-input').value.trim().toUpperCase();
+    var error = document.getElementById('gate-error');
+    // Access code — change CLAUDE27 to whatever you want
+    if (input === 'CLAUDE27') {
+      sessionStorage.setItem('ccc_unlocked', 'true');
+      document.getElementById('password-gate').style.display = 'none';
+      error.style.display = 'none';
+    } else {
+      error.style.display = 'block';
+      document.getElementById('gate-input').value = '';
+      document.getElementById('gate-input').focus();
+    }
+  }
+</script>
+
 
 <!-- TOPBAR -->
 <nav class="topbar" aria-label="Site navigation">
