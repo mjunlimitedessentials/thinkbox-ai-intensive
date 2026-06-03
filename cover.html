@@ -26,9 +26,10 @@ body{font-family:'Inter',sans-serif;background:#0a0010;color:#fff;min-height:100
 .hero-sub{font-size:clamp(15px,2.5vw,19px);color:#a78bfa;line-height:1.6;max-width:600px;margin:0 auto 32px;}
 
 /* VIDEO SECTION */
-.video-section{max-width:680px;margin:0 auto 40px;padding:0 20px;}
+.video-section{max-width:100%;margin:0 auto 40px;padding:40px 20px;background:linear-gradient(135deg,#4a0099,#7b2fff,#4a0099);border-top:3px solid rgba(176,106,255,0.3);border-bottom:3px solid rgba(176,106,255,0.3);}
+.video-inner{max-width:680px;margin:0 auto;}
 .video-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#7b2fff;text-align:center;margin-bottom:10px;}
-.video-wrap{position:relative;width:100%;background:#111;border-radius:16px;overflow:hidden;border:2px solid rgba(123,47,255,0.4);box-shadow:0 0 40px rgba(123,47,255,0.2);}
+.video-wrap{position:relative;width:100%;background:#111;border-radius:16px;overflow:hidden;border:3px solid rgba(245,200,66,0.5);box-shadow:0 0 60px rgba(123,47,255,0.5),0 0 120px rgba(123,47,255,0.2);}
 .video-placeholder{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#0a0010,#1a0533);gap:14px;}
 .play-icon{width:70px;height:70px;background:linear-gradient(135deg,#7b2fff,#e040fb);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 0 30px rgba(123,47,255,0.5);}
 .play-icon:hover{transform:scale(1.08);box-shadow:0 0 50px rgba(123,47,255,0.7);}
@@ -142,12 +143,14 @@ body{font-family:'Inter',sans-serif;background:#0a0010;color:#fff;min-height:100
 
 <!-- VIDEO -->
 <section class="video-section">
-  <p class="video-label">A Message From Mona</p>
+  <div class="video-inner">
+  <p class="video-label" style="color:#f5c842;">A Message From Mona</p>
   <div class="video-wrap">
     <video controls playsinline style="width:100%;display:block;border-radius:14px;max-height:480px;background:#000;">
       <source src="https://base44.app/api/apps/6a029d2b5cc37d5b54f861bf/files/mp/public/6a029d2b5cc37d5b54f861bf/33230847c_d03f79f08_IMG_3159.MP4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+  </div>
   </div>
 </section>
 
