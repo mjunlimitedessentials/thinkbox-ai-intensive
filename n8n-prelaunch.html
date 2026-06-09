@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://wujsdplmnorwmoltwdut.supabase.co; img-src 'self' data:; script-src 'self' 'unsafe-inline'; frame-ancestors 'none';" />
   <title>ThinkBox AI: n8n Automation Course — Join the Waitlist</title>
   <meta name="description" content="The first structured n8n automation curriculum built for students ages 11–18. Join the waitlist and be first in line when we launch June 27." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
@@ -285,6 +286,21 @@
       .cd-unit { min-width: 55px; }
       .cd-sep { font-size: 1.4rem; }
     }
+
+    /* INLINE FORM ERROR */
+    .form-error {
+      display: none; margin-top: 0.8rem; padding: 0.7rem 1rem;
+      background: rgba(224,64,251,0.1); border: 1px solid rgba(224,64,251,0.4);
+      border-radius: 10px; color: #f472b6; font-size: 0.8rem; font-weight: 600;
+      text-align: center;
+    }
+
+    /* HONEYPOT — must stay visually hidden but not display:none (bots skip those) */
+    .hp-field {
+      position: absolute; left: -9999px; top: -9999px;
+      width: 1px; height: 1px; opacity: 0; overflow: hidden;
+      pointer-events: none; tabindex: -1;
+    }
   </style>
 </head>
 <body>
@@ -387,8 +403,14 @@
             </div>
           </div>
 
+          <div class="hp-field" aria-hidden="true">
+            <label for="hp-website">Website</label>
+            <input type="text" id="hp-website" name="website" autocomplete="off" tabindex="-1" />
+          </div>
+
           <button type="submit" class="submit-btn">◈ Secure My Spot on the Waitlist</button>
         </form>
+        <div class="form-error" id="form-error"></div>
         <div class="wl-note">◉ No spam. No payment required. We'll email you the moment we launch.</div>
       </div>
 
@@ -455,13 +477,20 @@
 </div>
 
 <script>
-  // COUNTDOWN
+  const SUPA_URL = 'https://wujsdplmnorwmoltwdut.supabase.co';
+  const SUPA_KEY = 'sb_publishable_Jl7UdEuWx0DLmsZOJO2HoA_lSUEi4Gj';
+
+  // COUNTDOWN — safe DOM creation, no innerHTML
   const launch = new Date('2026-06-27T00:00:00-04:00');
   function tick() {
     const now = new Date();
     const diff = launch - now;
     if (diff <= 0) {
-      document.querySelector('.countdown-block').innerHTML = '<div style="font-family:Orbitron,sans-serif;font-size:1.6rem;font-weight:900;color:#f5c842;">⬡ We\'re LIVE!</div>';
+      const cb = document.querySelector('.countdown-block');
+      const div = document.createElement('div');
+      div.style.cssText = 'font-family:Orbitron,sans-serif;font-size:1.6rem;font-weight:900;color:#f5c842;';
+      div.textContent = '⧡ We\'re LIVE!';
+      cb.replaceChildren(div);
       return;
     }
     const d = Math.floor(diff / 86400000);
@@ -475,15 +504,15 @@
   }
   tick(); setInterval(tick, 1000);
 
-  // WAITLIST COUNTER — pulls live count from database
+  // WAITLIST COUNTER — live count from Supabase via RPC (anon cannot read rows)
   let count = 0;
   async function fetchWaitlistCount() {
     try {
-      const res = await fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/n8nWaitlistCount', {
-        headers: { 'x-api-key': 'public' }
+      const res = await fetch(`${SUPA_URL}/rest/v1/rpc/get_n8n_waitlist_count`, {
+        method: 'POST',
+        headers: { 'apikey': SUPA_KEY, 'Content-Type': 'application/json' }
       });
-      const data = await res.json();
-      count = data.count || 0;
+      count = (await res.json()) || 0;
     } catch(e) { count = 0; }
     const el = document.getElementById('ctr-waitlist');
     if (count === 0) { el.textContent = 'Be First!'; return; }
@@ -496,9 +525,26 @@
   }
   window.addEventListener('load', fetchWaitlistCount);
 
+  // INLINE ERROR HELPER
+  function showFormError(msg) {
+    const el = document.getElementById('form-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
   // FORM SUBMIT
   async function handleWaitlist(e) {
     e.preventDefault();
+    document.getElementById('form-error').style.display = 'none';
+
+    // Honeypot — silently fake success for bots
+    if (document.getElementById('hp-website').value) {
+      document.getElementById('form-state').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+      document.getElementById('spot-num').textContent = '#' + (count + 1);
+      return;
+    }
+
     const btn = document.querySelector('.submit-btn');
     btn.textContent = '◉ Securing your spot...';
     btn.disabled = true;
@@ -510,30 +556,36 @@
     const source = document.getElementById('wl-source').value;
 
     try {
-      const res = await fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/n8nWaitlist', {
+      const res = await fetch(`${SUPA_URL}/rest/v1/n8n_waitlist`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-api-key': 'public' },
+        headers: {
+          'apikey': SUPA_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=representation'
+        },
         body: JSON.stringify({ first_name: first, last_name: last, email, role, source })
       });
-      const data = await res.json();
 
-      if (data.success) {
-        const spotNum = data.spot_number;
-        count = spotNum;
+      if (res.status === 201) {
+        const [row] = await res.json();
+        count = row.spot_number;
         document.getElementById('ctr-waitlist').textContent = count;
         document.getElementById('form-state').style.display = 'none';
-        const success = document.getElementById('success-state');
-        success.style.display = 'block';
-        document.getElementById('spot-num').textContent = '#' + spotNum;
-      } else {
-        btn.textContent = '◈ Count Me In — Reserve My Spot';
+        document.getElementById('success-state').style.display = 'block';
+        document.getElementById('spot-num').textContent = '#' + row.spot_number;
+      } else if (res.status === 409) {
+        btn.textContent = '◈ Secure My Spot on the Waitlist';
         btn.disabled = false;
-        alert('Something went wrong. Please try again.');
+        showFormError("You're already on the waitlist! We'll notify you at launch.");
+      } else {
+        btn.textContent = '◈ Secure My Spot on the Waitlist';
+        btn.disabled = false;
+        showFormError('Something went wrong. Please try again.');
       }
     } catch (err) {
-      btn.textContent = '◈ Count Me In — Reserve My Spot';
+      btn.textContent = '◈ Secure My Spot on the Waitlist';
       btn.disabled = false;
-      alert('Connection error. Please try again.');
+      showFormError('Connection error. Please check your internet and try again.');
     }
   }
 </script>
