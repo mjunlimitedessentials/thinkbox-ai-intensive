@@ -556,27 +556,38 @@
     const source = document.getElementById('wl-source').value;
 
     try {
-      const res = await fetch(`${SUPA_URL}/rest/v1/n8n_waitlist`, {
+      const res = await fetch(`${SUPA_URL}/rest/v1/rpc/add_to_n8n_waitlist`, {
         method: 'POST',
         headers: {
           'apikey': SUPA_KEY,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=representation'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ first_name: first, last_name: last, email, role, source })
+        body: JSON.stringify({
+          p_first_name: first,
+          p_last_name: last,
+          p_email: email,
+          p_role: role || null,
+          p_source: source || null
+        })
       });
 
-      if (res.status === 201) {
-        const [row] = await res.json();
-        count = row.spot_number;
-        document.getElementById('ctr-waitlist').textContent = count;
-        document.getElementById('form-state').style.display = 'none';
-        document.getElementById('success-state').style.display = 'block';
-        document.getElementById('spot-num').textContent = '#' + row.spot_number;
-      } else if (res.status === 409) {
-        btn.textContent = '◈ Secure My Spot on the Waitlist';
-        btn.disabled = false;
-        showFormError("You're already on the waitlist! We'll notify you at launch.");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          count = data.spot_number;
+          document.getElementById('ctr-waitlist').textContent = count;
+          document.getElementById('form-state').style.display = 'none';
+          document.getElementById('success-state').style.display = 'block';
+          document.getElementById('spot-num').textContent = '#' + data.spot_number;
+        } else if (data.error === 'duplicate_email') {
+          btn.textContent = '◈ Secure My Spot on the Waitlist';
+          btn.disabled = false;
+          showFormError("You're already on the waitlist! We'll notify you at launch.");
+        } else {
+          btn.textContent = '◈ Secure My Spot on the Waitlist';
+          btn.disabled = false;
+          showFormError('Something went wrong. Please try again.');
+        }
       } else {
         btn.textContent = '◈ Secure My Spot on the Waitlist';
         btn.disabled = false;
