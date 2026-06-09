@@ -293,9 +293,41 @@
     font-size: 2.5rem; margin-bottom: 1rem;
   }
 
+
+  /* PAYMENT ERROR BANNER */
+  .payment-error-banner {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: linear-gradient(135deg, #ff0055, #c2003b);
+    color: #fff;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    z-index: 9999;
+    box-shadow: 0 4px 20px rgba(255,0,85,0.5);
+    animation: slideDown 0.4s ease;
+  }
+  .payment-error-banner span { font-size: 20px; margin-right: 8px; }
+  .payment-error-banner .close-btn {
+    position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.2); border: none; color: #fff;
+    font-size: 18px; cursor: pointer; border-radius: 50%; width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+
 </style>
 </head>
 <body>
+
+<!-- PAYMENT ERROR BANNER -->
+<div class="payment-error-banner" id="paymentErrorBanner">
+  <span>⚠️</span> Oops! Your payment didn't go through. Please check your card details and try again, or use a different payment method.
+  <button class="close-btn" onclick="document.getElementById('paymentErrorBanner').style.display='none'">✕</button>
+</div>
+
 
 <!-- PASSWORD GATE -->
 <div id="password-gate">
@@ -365,7 +397,7 @@
   <div style="position:relative;z-index:1;">
     <div class="orig-price">Value: $97</div>
   </div>
-  <a href="https://buy.stripe.com/7sY8wO8pxcbJ5t48mhaVa0l" class="btn-buy" aria-label="Purchase 20 Claude Command Codes for $27">Yes! I Want All 20 Codes →</a>
+  <a href="https://buy.stripe.com/7sY8wO8pxcbJ5t48mhaVa0l" class="btn-buy" aria-label="Purchase 20 Claude Command Codes for $27" onclick="goToStripe(this.href); return false;">Yes! I Want All 20 Codes →</a>
   <div class="secure">Instant Digital Download · Secure Checkout · One-Time Payment</div>
 </div>
 
@@ -442,7 +474,7 @@
         <div class="demo-success-title">Got it! You're All Set.</div>
         <p class="demo-success-sub">Now grab your 20 Claude Command Codes below and start unlocking expert-level AI outputs today.</p>
         <br/>
-        <a href="https://buy.stripe.com/7sY8wO8pxcbJ5t48mhaVa0l" class="btn-buy" style="font-size:16px;padding:16px 36px;">Get My 20 Command Codes — $27 →</a>
+        <a href="https://buy.stripe.com/7sY8wO8pxcbJ5t48mhaVa0l" class="btn-buy" style="font-size:16px;padding:16px 36px;" onclick="goToStripe(this.href); return false;">Get My 20 Command Codes — $27 →</a>
       </div>
     </div>
   </div>
@@ -626,7 +658,7 @@
 <div class="cta-bottom">
   <h2>Ready to <span>Work Smarter</span> with AI?</h2>
   <p>Stop typing paragraphs. Start using codes. Get all 20 today for just $27.</p>
-  <a href="https://buy.stripe.com/7sY8wO8pxcbJ5t48mhaVa0l" class="btn-buy">Get My 20 Claude Command Codes →</a>
+  <a href="https://buy.stripe.com/7sY8wO8pxcbJ5t48mhaVa0l" class="btn-buy" onclick="goToStripe(this.href); return false;">Get My 20 Claude Command Codes →</a>
   <div class="secure" style="margin-top:16px;">Instant Download · Secure Checkout · One-Time Payment</div>
 </div>
 
@@ -778,5 +810,40 @@
     document.getElementById('demoSuccess').style.display = 'block';
   }
 </script>
+
+<script>
+  // Detect Stripe payment failure params
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('payment') === 'failed' || params.get('canceled') === 'true' || params.get('error')) {
+      document.getElementById('paymentErrorBanner').style.display = 'block';
+      // Auto-hide after 10 seconds
+      setTimeout(function() {
+        var banner = document.getElementById('paymentErrorBanner');
+        if (banner) banner.style.display = 'none';
+      }, 10000);
+    }
+  })();
+</script>
+
+
+<script>
+  // Track when user leaves for Stripe and returns
+  function goToStripe(url) {
+    sessionStorage.setItem('stripeAttempt', Date.now());
+    window.open(url, '_blank');
+    // After 5 seconds, show "Did your payment go through?" helper
+    setTimeout(function() {
+      var banner = document.getElementById('paymentErrorBanner');
+      if (banner) {
+        banner.innerHTML = '<span>💳</span> Did your payment go through? If your card was declined, please try a different card or use Apple Pay / Cash App Pay. <button class=\'close-btn\' onclick=\'this.parentElement.style.display="none"\'>✕</button>';
+        banner.style.background = 'linear-gradient(135deg, #7b2fff, #4a0099)';
+        banner.style.display = \'block\';
+        setTimeout(function(){ banner.style.display=\'none\'; }, 15000);
+      }
+    }, 5000);
+  }
+</script>
+
 </body>
 </html>
