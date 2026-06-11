@@ -612,6 +612,29 @@ body{font-family:'Inter',sans-serif;background:#050008;color:#fff;overflow-x:hid
 
 <script>
 const steps = ['step1','step2','step3','step4','step5'];
+
+// ── Payment success detection ─────────────────────────────────────────────
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('payment') === 'success') {
+    const pkg = params.get('pkg') || 'bundle';
+    const vault = params.get('vault') === '1';
+    // Fire confirmation NOW that payment is confirmed
+    fireConfirmation(pkg, vault);
+    // Jump straight to thank-you step
+    document.addEventListener('DOMContentLoaded', function() {
+      steps.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('active');
+      });
+      const step5 = document.getElementById('step5');
+      if (step5) step5.classList.add('active');
+      updateProgress(4);
+      // Clean URL
+      window.history.replaceState({}, '', window.location.pathname);
+    });
+  }
+})();
 const fills  = ['20%','40%','60%','80%','100%'];
 const labels = [
   'Step 1 of 5 — Register Your Info',
@@ -635,39 +658,50 @@ function goStep(n) {
 
 function step1Submit() {
   const fn = document.getElementById('fn').value.trim();
+  const ln = document.getElementById('ln') ? document.getElementById('ln').value.trim() : '';
   const em = document.getElementById('em').value.trim();
   const ro = document.getElementById('ro').value;
+  const ph = document.getElementById('ph') ? document.getElementById('ph').value.trim() : '';
   if (!fn || !em || !ro) { alert('Please fill in your name, email, and role to continue.'); return; }
 
-  // Submit to Jotform 261395894134163
+  // Store form data — confirmation fires ONLY after Stripe payment confirmed
+  sessionStorage.setItem('tbReg', JSON.stringify({ fn, ln, em, ph, ro,
+    ai: document.getElementById('ai') ? document.getElementById('ai').value : '',
+    ch: document.getElementById('ch') ? document.getElementById('ch').value : ''
+  }));
+
+  document.getElementById('fn2').textContent = fn;
+  goStep(1);
+}
+
+// Called after Stripe payment confirmed — fires confirmation email + Jotform
+function fireConfirmation(pkgType, vaultAdded) {
+  const reg = JSON.parse(sessionStorage.getItem('tbReg') || '{}');
+  if (!reg.em) return;
+
+  // Submit to Jotform
   const fd = new FormData();
-  fd.append('q1_fullName[first]', fn);
-  fd.append('q1_fullName[last]',  document.getElementById('ln').value.trim());
-  fd.append('q3_emailAddress',    em);
-  fd.append('q4_phoneNumber[full]', document.getElementById('ph').value.trim());
-  fd.append('q2_address', ro
-    + (document.getElementById('ai').value ? ' | AI: ' + document.getElementById('ai').value : '')
-    + (document.getElementById('ch').value ? ' | Challenge: ' + document.getElementById('ch').value : '')
+  fd.append('q1_fullName[first]', reg.fn || '');
+  fd.append('q1_fullName[last]',  reg.ln || '');
+  fd.append('q3_emailAddress',    reg.em);
+  fd.append('q4_phoneNumber[full]', reg.ph || '');
+  fd.append('q2_address', reg.ro
+    + (reg.ai ? ' | AI: ' + reg.ai : '')
+    + (reg.ch ? ' | Challenge: ' + reg.ch : '')
   );
   fetch('https://submit.jotform.com/submit/261395894134163/', { method:'POST', body:fd, mode:'no-cors' }).catch(()=>{});
 
-  // Fire confirmation email + calendar event
-  const ln = document.getElementById('ln') ? document.getElementById('ln').value.trim() : '';
+  // Fire confirmation email + calendar
   fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/thinkboxConfirm', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      firstName: fn,
-      lastName: ln,
-      email: em,
-      phone: document.getElementById('ph') ? document.getElementById('ph').value.trim() : '',
-      package: selectedPkg ? selectedPkg.type : 'bundle',
-      vaultAdded: vaultAdded || false
+      firstName: reg.fn, lastName: reg.ln, email: reg.em, phone: reg.ph,
+      package: pkgType || 'bundle', vaultAdded: vaultAdded || false
     })
   }).catch(function(e){ console.warn('Confirm email error:', e); });
 
-  document.getElementById('fn2').textContent = fn;
-  goStep(1);
+  sessionStorage.removeItem('tbReg');
 }
 
 function selectPkg(type, price, el) {
@@ -771,41 +805,32 @@ function goToUpsell() {
 }
 
 function addVaultAndCheckout() {
+  if (!selectedPkg) { alert('Please select a package first.'); return; }
   vaultAdded = true;
   const btn = document.getElementById('vaultBtnStep4');
   if (btn) { btn.textContent = '✅ Vault Added! Opening checkout...'; btn.style.background='linear-gradient(135deg,#22c55e,#16a34a)'; }
   // Combined Stripe links (package + $37 Prompt Vault)
   const combinedLinks = {
-    recording: 'https://buy.stripe.com/4gMeVc6hpb7F9Jk5a5aVa0i', // $27 + $37 = $64
-    live:      'https://buy.stripe.com/4gM28qgW31x5aNo6e9aVa0k',   // $47 + $37 = $84
-    bundle:    'https://buy.stripe.com/9B600i8pxfnV4p0eKFaVa0j'    // $67 + $37 = $104
+    recording: 'https://buy.stripe.com/4gMeVc6hpb7F9Jk5a5aVa0i',
+    live:      'https://buy.stripe.com/4gM28qgW31x5aNo6e9aVa0k',
+    bundle:    'https://buy.stripe.com/9B600i8pxfnV4p0eKFaVa0j'
   };
-  if (selectedPkg && combinedLinks[selectedPkg.type] && combinedLinks[selectedPkg.type] !== 'COMBINED_LIVE_LINK_HERE' && combinedLinks[selectedPkg.type] !== 'COMBINED_BUNDLE_LINK_HERE') {
-    window.open(combinedLinks[selectedPkg.type], '_blank');
-  } else if (selectedPkg) {
-    // Fallback: open vault + package separately until combined links are ready
-    window.open('https://buy.stripe.com/eVqfZg9tB3Fd08K5a5aVa0h', '_blank');
-    const stripeLinks = {
-      recording: 'https://buy.stripe.com/fZu28qgW3grZ2gSbytaVa0f',
-      live: 'https://buy.stripe.com/8x2cN4cFNejRcVw6e9aVa0e',
-      bundle: 'https://buy.stripe.com/cNi28q0X5dfNf3E0TPaVa0g'
-    };
-    setTimeout(function() { window.open(stripeLinks[selectedPkg.type], '_blank'); }, 600);
-  }
-  // Open Stripe — show payment pending screen, do NOT auto-advance
-  showPaymentPending();
+  // Redirect same tab so Stripe success_url can return them
+  window.location.href = combinedLinks[selectedPkg.type];
 }
 
 function proceedToCheckout() {
+  if (!selectedPkg) { alert('Please select a package first.'); return; }
+  // Build Stripe success_url back to this funnel with payment confirmed param
+  const base = window.location.href.split('?')[0];
+  const successUrl = base + '?payment=success&pkg=' + selectedPkg.type + '&vault=0';
   const stripeLinks = {
     recording: 'https://buy.stripe.com/fZu28qgW3grZ2gSbytaVa0f',
     live: 'https://buy.stripe.com/8x2cN4cFNejRcVw6e9aVa0e',
     bundle: 'https://buy.stripe.com/cNi28q0X5dfNf3E0TPaVa0g'
   };
-  if (selectedPkg && stripeLinks[selectedPkg.type]) {
-    window.open(stripeLinks[selectedPkg.type], '_blank');
-  }
-  showPaymentPending();
+  // Open Stripe in same tab so success_url redirect works
+  window.location.href = stripeLinks[selectedPkg.type];
 }
 
 function showPaymentPending() {
