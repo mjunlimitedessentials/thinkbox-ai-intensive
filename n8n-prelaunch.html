@@ -489,6 +489,12 @@
           document.getElementById('form-state').style.display = 'none';
           document.getElementById('success-state').style.display = 'block';
           document.getElementById('spot-num').textContent = '#' + data.spot_number;
+          // Fire confirmation email — non-blocking
+          fetch(SUPA_URL + '/functions/v1/send-waitlist-confirmation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY },
+            body: JSON.stringify({ email: email, first_name: first, spot_number: data.spot_number })
+          }).catch(() => {}); // silent fail — email is best-effort
         } else if (data.error === 'duplicate_email') {
           btn.textContent = 'Secure My Spot on the Waitlist';
           btn.disabled = false;
