@@ -259,6 +259,36 @@
   }
   @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
 
+
+  /* ── UNLOCK GATE ── */
+  #unlock {
+    scroll-margin-top: 100px;
+  }
+  .unlock-gate {
+    max-width: 480px; margin: 0 auto 30px;
+    background: linear-gradient(135deg, #0f0020, #12002a);
+    border: 1px solid rgba(123,47,255,0.4);
+    border-radius: 20px; padding: 2.5rem 2rem; text-align: center;
+    box-shadow: 0 0 40px rgba(123,47,255,0.15);
+  }
+  .unlock-lock { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .unlock-title { font-size: 1.4rem; font-weight: 900; color: #fff; margin-bottom: 0.4rem; }
+  .unlock-title span { color: #f5c842; }
+  .unlock-sub { font-size: 0.82rem; color: #b06aff; margin-bottom: 1.5rem; line-height: 1.6; }
+  .unlock-field { width: 100%; padding: 0.8rem 1rem; background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.35); border-radius: 12px; color: #fff; font-size: 0.9rem; font-family: inherit; outline: none; margin-bottom: 0.75rem; box-sizing: border-box; transition: border-color 0.2s; }
+  .unlock-field:focus { border-color: #f5c842; }
+  .unlock-field::placeholder { color: rgba(176,106,255,0.4); }
+  .unlock-btn { width: 100%; padding: 0.9rem; background: linear-gradient(135deg, #7b2fff, #f72585); color: #fff; font-size: 1rem; font-weight: 800; border: none; border-radius: 12px; cursor: pointer; font-family: inherit; transition: opacity 0.2s; margin-top: 0.3rem; }
+  .unlock-btn:hover { opacity: 0.88; }
+  .unlock-btn:disabled { opacity: 0.5; cursor: wait; }
+  .unlock-error { color: #f72585; font-size: 0.78rem; margin-top: 0.75rem; display: none; }
+  .unlock-success-msg { display: none; text-align: center; padding: 1rem; }
+  .unlock-success-icon { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg,#f72585,#7b2fff); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 0.8rem; font-weight: 900; color: #fff; }
+  .unlock-success-title { font-size: 1.2rem; font-weight: 900; color: #f5c842; margin-bottom: 0.5rem; }
+  .unlock-success-sub { font-size: 0.85rem; color: #b06aff; line-height: 1.6; }
+  .codes-unlocked { display: none; }
+  .unlock-loading { display: none; font-size: 0.8rem; color: #b06aff; margin-top: 0.5rem; }
+
 </style>
 </head>
 <body>
@@ -412,20 +442,92 @@
   </div>
 
   <div class="lock-badge">
-    <span>+ 15 More Codes Unlocked After Purchase</span>
+    <span>+ 15 More Codes — Unlock After Purchase</span>
   </div>
 
-  <div class="code-row locked" aria-hidden="true">
-    <div class="code-name">/Blindspot</div>
-    <div class="code-desc">Surfaces hidden risks and gaps in your thinking</div>
+</div>
+
+<!-- UNLOCK GATE -->
+<div id="unlock" class="codes-section" style="max-width:800px;margin:0 auto;padding:0 20px 50px;">
+  <div class="unlock-gate" id="unlockGate">
+    <div class="unlock-lock">🔐</div>
+    <h2 class="unlock-title">Unlock All <span>20 Codes</span></h2>
+    <p class="unlock-sub">Already purchased? Enter your email and the access code from your confirmation email to unlock all 20 Claude Command Codes.</p>
+    <input type="email" id="unlockEmail" class="unlock-field" placeholder="Email address used at checkout" autocomplete="email"/>
+    <input type="text" id="unlockCode" class="unlock-field" placeholder="Enter your 6-character access code" autocomplete="off" style="text-transform:uppercase;letter-spacing:0.1em;text-align:center;" maxlength="6"/>
+    <button class="unlock-btn" id="unlockBtn" onclick="unlockCodes()">Unlock My Codes →</button>
+    <p class="unlock-error" id="unlockError">❌ Invalid email or access code. Please check your confirmation email and try again.</p>
+    <p class="unlock-loading" id="unlockLoading">Verifying...</p>
   </div>
-  <div class="code-row locked" aria-hidden="true">
-    <div class="code-name">/Stresstest</div>
-    <div class="code-desc">Pressure-tests your idea from every angle before you launch</div>
+
+  <div class="unlock-success-msg" id="unlockSuccess">
+    <div class="unlock-success-icon">✓</div>
+    <div class="unlock-success-title">Access Granted!</div>
+    <p class="unlock-success-sub">All 20 Claude Command Codes are now unlocked below. Save this page — you'll need your code each time you visit.</p>
   </div>
-  <div class="code-row locked" aria-hidden="true">
-    <div class="code-name">/Brainstorm</div>
-    <div class="code-desc">Floods you with a wide, varied list of ideas — fast</div>
+
+  <!-- UNLOCKED CODES (hidden until verified) -->
+  <div class="codes-unlocked" id="codesUnlocked">
+    <div class="code-row">
+      <div class="code-name">/Blindspot</div>
+      <div class="code-desc">Surfaces hidden risks and gaps in your thinking</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Stresstest</div>
+      <div class="code-desc">Pressure-tests your idea from every angle before you launch</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Brainstorm</div>
+      <div class="code-desc">Floods you with a wide, varied list of ideas — fast</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Blueprint</div>
+      <div class="code-desc">Builds a step-by-step action plan from any idea</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Refine</div>
+      <div class="code-desc">Takes any draft and makes it sharper, tighter, and more persuasive</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Translate</div>
+      <div class="code-desc">Converts jargon into plain English anyone can understand</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Outline</div>
+      <div class="code-desc">Creates a structured outline for any topic, post, or presentation</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Simplify</div>
+      <div class="code-desc">Breaks complex ideas into simple, explainable parts</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Email</div>
+      <div class="code-desc">Writes a polished, professional email in seconds</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Summary</div>
+      <div class="code-desc">Condenses any long text into key bullet points</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Counter</div>
+      <div class="code-desc">Argues the opposite side to stress-test your position</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Metaphor</div>
+      <div class="code-desc">Creates a vivid analogy that makes any concept click</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Checklist</div>
+      <div class="code-desc">Generates a complete task checklist for any project</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Rewrite</div>
+      <div class="code-desc">Rewrites any text in a different tone or for a different audience</div>
+    </div>
+    <div class="code-row">
+      <div class="code-name">/Coach</div>
+      <div class="code-desc">Acts as a world-class mentor giving you feedback on anything</div>
+    </div>
   </div>
 </div>
 
@@ -737,6 +839,68 @@
       }
     }, 5000);
   }
+</script>
+
+
+<script>
+  function unlockCodes() {
+    var email = document.getElementById('unlockEmail').value.trim();
+    var code = document.getElementById('unlockCode').value.trim().toUpperCase();
+    var error = document.getElementById('unlockError');
+    var loading = document.getElementById('unlockLoading');
+    var btn = document.getElementById('unlockBtn');
+
+    if (!email || !code) {
+      error.style.display = 'block';
+      return;
+    }
+
+    error.style.display = 'none';
+    loading.style.display = 'block';
+    btn.disabled = true;
+
+    fetch('https://api.base44.com/api/apps/6a029d2b5cc37d5b54f861bf/functions/claudeCodeAccess', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'verify', email: email, code: code })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      loading.style.display = 'none';
+      btn.disabled = false;
+      if (data.valid) {
+        sessionStorage.setItem('ccc_unlocked_email', email);
+        sessionStorage.setItem('ccc_unlocked_code', code);
+        document.getElementById('unlockGate').style.display = 'none';
+        document.getElementById('unlockSuccess').style.display = 'block';
+        document.getElementById('codesUnlocked').style.display = 'block';
+        setTimeout(function() {
+          document.getElementById('unlock').scrollIntoView({ behavior: 'smooth' });
+        }, 200);
+      } else {
+        error.style.display = 'block';
+      }
+    })
+    .catch(function(e) {
+      loading.style.display = 'none';
+      btn.disabled = false;
+      error.style.display = 'block';
+    });
+  }
+
+  // Auto-unlock if already verified this session
+  (function() {
+    var savedEmail = sessionStorage.getItem('ccc_unlocked_email');
+    var savedCode = sessionStorage.getItem('ccc_unlocked_code');
+    if (savedEmail && savedCode) {
+      var gate = document.getElementById('unlockGate');
+      var success = document.getElementById('unlockSuccess');
+      var unlocked = document.getElementById('codesUnlocked');
+      if (gate) gate.style.display = 'none';
+      if (success) success.style.display = 'block';
+      if (unlocked) unlocked.style.display = 'block';
+    }
+  })();
 </script>
 
 </body>
