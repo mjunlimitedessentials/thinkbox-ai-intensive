@@ -19,49 +19,89 @@ This is a **generative media platform**. That distinction drives everything
 below, because media generation is asynchronous, storage-heavy, and one to two
 orders of magnitude more expensive per action than text.
 
-**"140+ tools" is presets, not integrations.** The Cinematic VFX card says
-"Explore All Presets." The real integration count is likely under 15 model
-endpoints, wrapped in 140+ named, thumbnailed presets. This is the correct
-move — presets are cheap to build and remove the prompt-engineering burden
-that stops non-technical users. Build the preset library, not 140 backends.
+**"140+ tools" is presets, not integrations.** The full suite is **11 surfaces**:
+
+Create Video · Long Video · Create Image · Audio Studio · OmniReels ·
+Podcast · PDF Report · Presentation · AI Chat (50+ models) · Voice Agents ·
+Knowledge Base
+
+Plus four feature tabs: Video, Image, **Edit**, **Effects**. Edit and Effects
+are where the count inflates — "Explore All Presets" is the tell. Eleven
+surfaces over ~15 model endpoints, multiplied by named presets, becomes
+"140+ tools." Build the preset library, not 140 backends.
+
+The model grid they advertise:
+
+- **Video (8):** Seedance 2.0 (ByteDance), Kling 3 (Kuaishou), Veo 3.1
+  (Google DeepMind), Sora 2 (OpenAI), MiniMax Hailuo, LTX Video (Lightricks),
+  PixVerse V6, Wan 2.7 (Alibaba)
+- **Image (8):** Nano Banana 2 (Google), Flux Pro (Black Forest Labs),
+  Imagen 3, Midjourney v6, Seedream 4.5 (ByteDance), Stable Diffusion 3,
+  DALL-E 3, Recraft V3
+
+**Two entries in that grid are not straightforwardly obtainable.**
+
+- **Midjourney has no official public API** as of 2026 — no REST endpoint, no
+  documented key system. Every "Midjourney API" automates the Discord or web
+  client, which violates Midjourney's ToS and gets the underlying account
+  banned. Note also that they list **v6** while Midjourney has moved on, which
+  suggests part of this grid is decorative rather than wired up. Do not promise
+  Midjourney without a legitimate route.
+- **Sora 2's API is scheduled to end September 24, 2026** — weeks from now.
+  Their grid is about to develop a hole.
+
+Treat that as free evidence for the architecture argument in section 3: model
+churn in video is fast, and the grid must degrade gracefully when an endpoint
+disappears. Never hard-code a model into a preset; map presets to a
+capability, and let the capability resolve to whichever endpoint is live.
 
 ## 2. The economics — read this before anything else
 
-Video API pricing, mid-2026, directional (verify current rate cards):
+The advertised ceilings are **1080p, 30-second clips, 4K upscale**, and
+**Long Video up to 10 minutes**. Price those out at Seedance 2.0 list rates on
+fal.ai:
 
-| Model | ~Cost/sec | 5-sec clip |
-|---|---|---|
-| Seedance 2.0 (fal, 720p) | $0.24–0.30 | $1.20–1.50 |
-| Seedance 2.0 (volume/3rd-party) | ~$0.09 | ~$0.45 |
-| Seedance 2.0 Mini (720p) | ~$0.093 | ~$0.47 |
-| Seedance 2.0 Mini (480p) | ~$0.043 | ~$0.22 |
-| Kling 3.0 | $0.09–0.14 | $0.45–0.70 |
-| Veo 3.1 Fast (native audio) | ~$0.15 | ~$0.75 |
+| Tier | $/sec | 5-sec | 30-sec | 10-min |
+|---|---|---|---|---|
+| Seedance 2.0 1080p | $0.682 | $3.41 | **$20.46** | $409.20 |
+| Seedance 2.0 720p | $0.303 | $1.52 | $9.10 | $182.04 |
+| Seedance 2.0 720p fast | $0.242 | $1.21 | $7.26 | $145.14 |
+| Seedance Mini 720p | $0.093 | $0.46 | $2.79 | $55.80 |
+| Seedance Mini 480p | $0.043 | $0.22 | $1.30 | $25.98 |
 
-Now run $14.99/month:
+Other models for comparison: Kling 3 $0.09–0.14/s, Veo 3.1 Fast ~$0.15/s
+(native audio), Sora 2 $0.10/s at 720p standard.
+
+Now against $14.99/month:
 
 ```
 Gross revenue                        $14.99
 Stripe (2.9% + $0.30)               - $0.73
 Net                                  $14.26
-
-At $0.45 per 5-sec clip:
-  Break-even                        ~31 clips/month   (0% margin)
-  At 70% gross margin                ~9 clips/month
 ```
 
-Real-time voice agents run roughly $0.05–0.15/minute all-in. A hundred minutes
-is $5–15 — one user, one feature, the entire subscription gone.
+| Config | Cost / 30s clip | Break-even clips/mo | At 70% margin |
+|---|---|---|---|
+| 1080p | $20.46 | **0.70** | 0.21 |
+| 720p | $9.10 | 1.57 | 0.47 |
+| Mini 720p | $2.79 | 5.11 | 1.53 |
+| Mini 480p | $1.30 | 10.97 | 3.29 |
 
-**Conclusion: "Every AI You Need for $14.99/month" cannot mean unlimited.**
-There is a credit meter underneath. The $14.99 is a customer-acquisition
-price; the actual revenue is credit top-ups, annual prepay, and tier upgrades.
-The 30% OFF badge on Seedance is a credit promotion, not a subscription
-discount.
+**One 30-second 1080p clip costs more than the entire monthly subscription.**
+Break-even is under a single clip per month. A 10-minute Long Video at 720p is
+roughly twelve months of that user's revenue in one job.
 
-If you copy the headline without the meter, the heaviest 5% of your users will
-consume more than the other 95% pay, and you will fund their content business
-out of your own pocket.
+Real-time voice agents add $0.05–0.15/minute on top; a hundred minutes is
+$5–15 — one user, one feature, the whole subscription.
+
+**So the advertised ceilings are not what the $14.99 tier delivers.** They are
+sold as ceilings and gated by credits. The $14.99 buys the funnel; the revenue
+is credit top-ups, annual prepay, and tier upgrades. The "30% OFF" on Seedance
+is a credit promotion, not a subscription discount.
+
+This is a legitimate pattern — but it only works if the meter exists on day
+one. Ship the ceilings without the gate and the heaviest 5% of your users will
+consume more than the other 95% pay.
 
 ### Design the meter first
 
@@ -158,6 +198,22 @@ gating, onboarding sequence via Resend, referral loop into the training funnel.
 
 Fast path to v1: **Lovable** (React + Supabase from a description) to validate
 demand before hand-building.
+
+## 5b. Two features worth copying outright
+
+**URL-to-Video.** Paste a product or landing-page URL, get a finished ad. It is
+listed as "one-click professional ad generation" and it is the single feature
+here most aligned with the ThinkBox audience — marketers and entrepreneurs who
+have a product page and no video team. Mechanically it is a chain, not a model
+call: scrape the URL, extract offer and imagery, LLM writes the script and shot
+list, generate scenes, stitch, add voiceover. **That is an n8n workflow**, which
+you already run. If you build one differentiated thing, build this one.
+
+**The community gallery ("Mixed Media").** User generations displayed publicly,
+filterable by style chips (Sketch, Canvas, Flash comic, Overexposed). This is
+close to free: your users produce your marketing content, the style chips double
+as preset discovery, and new visitors see proof of output before signing up. Add
+an explicit opt-in and a takedown path, then ship it.
 
 ## 6. Risks specific to this category
 
