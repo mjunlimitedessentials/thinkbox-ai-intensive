@@ -1,151 +1,197 @@
 # Building an "All AI Tools in One Place" Platform
 
-Planning doc for a ThinkBox-branded multi-model AI workspace.
+Planning doc for a ThinkBox-branded multi-tool AI platform, written against
+the Cre-AI-Tor Universe model ($14.99/mo, "140+ tools", video-first).
 
-## 1. The core correction
+## 1. What this product actually is
 
-You are not building an LLM. Training a frontier model costs $100M+ in compute
-and a research team. Fine-tuning an open model is also unnecessary here — it
-solves a problem you don't have.
+Two corrections to the obvious reading.
 
-Every "all AI tools, one login, one price" product on the market is the same
-four things:
+**It is not an LLM.** Nobody in this category trained a model. The homepage says
+so directly: "Powered by the world's leading AI — Anthropic, Gemini, ..." It is
+a front end over other people's APIs.
 
-1. A chat UI
-2. A **router** that forwards the prompt to somebody else's model API
-3. A few task-specific surfaces (image, video, voice, transcription)
-4. Auth + credits + Stripe
+**It is not a chat product either.** The flagship is AI Video (Seedance 2.0),
+then OmniReels, Long Video, Cinematic VFX, Voice Agents. Text chat is a
+side dish; the Knowledge Base (chat-with-your-PDF) is the only text surface.
 
-The product is packaging, not modeling. Your moat is UX, curation, and
-audience — not the weights.
+This is a **generative media platform**. That distinction drives everything
+below, because media generation is asynchronous, storage-heavy, and one to two
+orders of magnitude more expensive per action than text.
 
-## 2. Architecture
+**"140+ tools" is presets, not integrations.** The Cinematic VFX card says
+"Explore All Presets." The real integration count is likely under 15 model
+endpoints, wrapped in 140+ named, thumbnailed presets. This is the correct
+move — presets are cheap to build and remove the prompt-engineering burden
+that stops non-technical users. Build the preset library, not 140 backends.
+
+## 2. The economics — read this before anything else
+
+Video API pricing, mid-2026, directional (verify current rate cards):
+
+| Model | ~Cost/sec | 5-sec clip |
+|---|---|---|
+| Seedance 2.0 (fal, 720p) | $0.24–0.30 | $1.20–1.50 |
+| Seedance 2.0 (volume/3rd-party) | ~$0.09 | ~$0.45 |
+| Seedance 2.0 Mini (720p) | ~$0.093 | ~$0.47 |
+| Seedance 2.0 Mini (480p) | ~$0.043 | ~$0.22 |
+| Kling 3.0 | $0.09–0.14 | $0.45–0.70 |
+| Veo 3.1 Fast (native audio) | ~$0.15 | ~$0.75 |
+
+Now run $14.99/month:
 
 ```
-Browser (chat + tool tabs)
-   |
-   v
-Supabase Edge Function  <-- auth check, credit check, logging
-   |
-   +--> Model gateway (OpenRouter / Vercel AI Gateway / LiteLLM)
-   |        -> Claude, GPT, Gemini, Llama, Mistral, ...
-   +--> Replicate or fal.ai      -> image + video generation
-   +--> ElevenLabs               -> voice / TTS
-   +--> Whisper (OpenAI)         -> transcription
-   +--> n8n webhook              -> multi-step automations
-   |
-   v
-Supabase Postgres: users, credit_balance, usage_log, conversations
-   |
-   v
-Stripe: subscription + credit top-ups
+Gross revenue                        $14.99
+Stripe (2.9% + $0.30)               - $0.73
+Net                                  $14.26
+
+At $0.45 per 5-sec clip:
+  Break-even                        ~31 clips/month   (0% margin)
+  At 70% gross margin                ~9 clips/month
 ```
 
-### Why a gateway instead of direct API keys
+Real-time voice agents run roughly $0.05–0.15/minute all-in. A hundred minutes
+is $5–15 — one user, one feature, the entire subscription gone.
 
-One key, one request shape, hundreds of models. Adding "we now support model X"
-becomes a dropdown entry instead of an integration sprint.
+**Conclusion: "Every AI You Need for $14.99/month" cannot mean unlimited.**
+There is a credit meter underneath. The $14.99 is a customer-acquisition
+price; the actual revenue is credit top-ups, annual prepay, and tier upgrades.
+The 30% OFF badge on Seedance is a credit promotion, not a subscription
+discount.
 
-| Option | Shape | Cost | Best when |
-|---|---|---|---|
-| **OpenRouter** | Managed, 400+ models | Provider rates + ~5.5% credit fee; BYOK ~5% past the free tier | Fastest launch. Start here. |
-| **Vercel AI Gateway** | Managed, ~45 providers | Managed SaaS | Already deploying on Vercel / Next.js |
-| **LiteLLM** | Self-hosted OSS proxy (MIT) | Infra only | Volume is high enough that 5.5% hurts |
+If you copy the headline without the meter, the heaviest 5% of your users will
+consume more than the other 95% pay, and you will fund their content business
+out of your own pocket.
 
-Migration path: launch on OpenRouter, move to LiteLLM when the fee exceeds the
-cost of running the proxy. Both speak an OpenAI-compatible API, so it's a base
-URL change.
+### Design the meter first
 
-**Never put provider keys in browser JavaScript.** Every call goes through the
-Edge Function. A leaked key is an unmetered bill against your card.
+- 1 credit = a fixed cost slice; publish a visible cost per action
+- Price credits at 3–5x underlying API cost
+- **Reserve credits before dispatching the job, settle on completion, refund
+  on provider failure.** Failed generations are common and you eat them.
+- Cap concurrent jobs per user (2–3). Without this, one user queues 50 videos.
+- Hard monthly spend ceiling per account, enforced server-side
+- Show remaining balance permanently in the UI — it self-regulates demand
 
-## 3. Reuse from this repo
+## 3. Architecture
 
-| Already have | Role in the platform |
+Media generation is **asynchronous** — 30 seconds to 5 minutes per job. This
+is the single biggest structural difference from a chat wrapper. You cannot
+hold an HTTP request open.
+
+```
+Browser
+  |  submit job
+  v
+Supabase Edge Function
+  - auth + plan check
+  - estimate cost, RESERVE credits
+  - insert row into jobs (status=queued)
+  - dispatch to provider with webhook_url
+  |
+  v
+Media aggregator (fal.ai or Replicate)
+  video  -> Seedance, Kling, Veo, Wan
+  image  -> Flux, SDXL, Nano Banana
+  audio  -> music / SFX models
+  |
+  |  webhook callback on completion
+  v
+Supabase Edge Function (webhook receiver)
+  - verify signature
+  - copy output -> Cloudflare R2
+  - SETTLE or REFUND credits
+  - update jobs row
+  |
+  v
+Supabase Realtime -> browser updates live, no polling
+```
+
+Separate providers, because aggregators don't cover these well:
+- **Voice agents (real-time):** ElevenLabs Agents, Vapi, or LiveKit + OpenAI Realtime
+- **Knowledge Base (chat-with-PDF):** Supabase pgvector + an embedding model +
+  Claude/Gemini for synthesis. Cheap. Build this early — it is the one feature
+  here with near-zero marginal cost.
+- **Text/LLM:** OpenRouter or LiteLLM if you want a chat surface too
+
+### Storage is a real line item
+
+Video files are large and users re-watch and re-download them. **Use
+Cloudflare R2 — zero egress fees.** S3 egress on a video product is a bill
+that arrives without warning. Set a retention policy (e.g. 30 days on the
+entry tier) and say so in the plan description.
+
+## 4. What carries over from this repo
+
+| Have | Role |
 |---|---|
-| Supabase (n8n waitlist RPCs, `send-waitlist-confirmation` fn) | Auth, DB, Edge Functions |
-| Stripe checkout (funnel pages) | Subscriptions + credit packs |
-| Resend | Transactional email |
-| n8n | Multi-step "agent" workflows behind a webhook |
-| Static HTML + GitHub Pages | Marketing / funnel front end |
-| ThinkBox audience + training list | Distribution — the actual hard part |
+| Supabase (RPCs + `send-waitlist-confirmation` Edge Function) | Auth, DB, jobs table, Realtime, webhook receiver |
+| Stripe checkout | Subscription + credit packs |
+| Resend | Transactional + lifecycle email |
+| n8n | Multi-step chains (OmniReels-style: script → shots → clips → stitch) |
+| GitHub Pages + funnel pages | Marketing site stays put |
+| ThinkBox training list | Distribution |
 
-The app itself outgrows GitHub Pages (needs server-side secrets). Put it on
-Vercel as a subdomain — `app.` — and keep the funnel where it is.
+n8n is a genuinely good fit for the "OmniReels" pattern — a marketing video
+factory is a workflow, not a single API call.
 
-## 4. Unit economics — decide this before writing code
-
-This is what kills these products. "Unlimited AI for $29/mo" is a business
-where the heaviest 5% of users consume more than the other 95% combined.
-
-Sell **credits**, not unlimited:
-
-- 1 credit = a fixed cost slice (e.g. $0.01 of underlying API spend)
-- Price credits at a 3–5x markup to cover the gateway fee, infra, support,
-  Stripe fees, and failed generations you eat
-- Plan includes N credits/month; overage is a top-up pack
-- Show the balance in the UI at all times — it self-regulates abuse
-
-Hard requirements from day one:
-- Per-user monthly spend cap enforced in the Edge Function, before the API call
-- Every call written to `usage_log` with model, tokens, and computed cost
-- A dashboard you check weekly for the users who are underwater
-
-Verify the current rate card for every provider before setting prices — model
-pricing moves quarterly and the numbers above are structural, not quotes.
+The app needs server-side secrets and webhooks, so it moves off GitHub Pages
+to Vercel at `app.` — funnel stays where it is.
 
 ## 5. Build sequence
 
-**Phase 1 — chat that works (~1 week)**
-Supabase auth. Edge Function proxying to OpenRouter. Model picker with 4–5
-curated models. Conversation history. Credit decrement + usage log.
+**Phase 1 — one job type, end to end (1–2 weeks).** Auth, credits ledger,
+jobs table, text-to-video via fal.ai, webhook, R2 storage, Realtime progress
+UI. Getting the async + credit-settlement loop right once means every later
+tool is a variation on it.
 
-**Phase 2 — the "all tools" promise (~2 weeks)**
-Image (Replicate/fal.ai), voice (ElevenLabs), transcription (Whisper), file
-upload → context. Each is a tab, each debits the same credit balance.
+**Phase 2 — breadth (2–3 weeks).** Image gen, image-to-video, upscale,
+voice/TTS, Knowledge Base (pgvector RAG). Each reuses the Phase 1 pipeline.
 
-**Phase 3 — the actual differentiator (~1 week)**
-Prompt library. This is where your existing `claude-command-codes.html` work
-becomes product: one-click prompts, saved as templates, organized by job.
-Generic model access is a commodity; a curated ThinkBox prompt system is not.
+**Phase 3 — the preset library (1–2 weeks).** This is where "140+ tools" comes
+from and where your existing prompt work (`claude-command-codes.html`) becomes
+product. Named presets with thumbnails, organized by outcome, one click to run.
+Highest perceived value per hour of build time in the entire plan.
 
-**Phase 4 — monetize (~1 week)**
-Stripe subscription + credit packs, plan gating, Resend onboarding sequence,
-referral/affiliate loop back into the training funnel.
+**Phase 4 — monetize (1 week).** Stripe subscription + credit packs, plan
+gating, onboarding sequence via Resend, referral loop into the training funnel.
 
-## 6. Faster paths
+Fast path to v1: **Lovable** (React + Supabase from a description) to validate
+demand before hand-building.
 
-- **Lovable** — describe the app, it builds React + Supabase. Best fit for
-  going from zero to a working v1 in days.
-- **Open-source fork** — LibreChat or Open WebUI, both self-hostable multi-model
-  chat with auth. Ship a branded instance in a weekend; you inherit a large
-  codebase you didn't write.
-- **From scratch** — Next.js + Vercel AI SDK. Most control, most time.
+## 6. Risks specific to this category
 
-Recommendation: Lovable for v1 to validate demand, then rebuild whatever earns
-its keep.
+- **Moderation is not optional.** Image/video/voice generation attracts NSFW
+  content and non-consensual likenesses. Providers require filtering; you carry
+  the liability and the App Store / payment-processor risk. Voice cloning plus
+  video is the highest-risk combination in this product. Budget for a
+  moderation pass and a reporting path from day one.
+- **Stripe risk.** Payment processors treat AI media generation as elevated
+  risk. Sudden volume on a new account can trigger a review or hold.
+- **Advertising claims.** "#1", "world's most advanced", "500,000+ creators"
+  are unverifiable puffery. Do not copy claims you cannot substantiate — the
+  FTC has been active on AI marketing claims, and this is avoidable exposure.
+- **Never say "our AI."** "Powered by leading AI models" is accurate and safe.
+  Their site does this correctly — the second screen lists Anthropic and Gemini
+  by name.
+- **Model churn.** Video model endpoints get deprecated and repriced faster
+  than text. An aggregator absorbs this; direct integrations break in prod.
+- **Provider ToS.** Check resale terms per provider before launch.
 
-## 7. Things that will bite
+## 7. Honest read
 
-- **Provider ToS on resale.** Most allow building products on the API;
-  restrictions cluster around misrepresenting whose model it is and around
-  reselling raw API access. Read the terms for each provider you route to.
-- **Don't imply you trained it.** "Powered by leading AI models" is honest and
-  legally safe. "Our AI" invites a problem.
-- **Abuse.** Rate limit, cap spend, require email verification. Open AI
-  endpoints get scraped and resold within days.
-- **Model deprecation.** Providers retire model IDs. A gateway with fallback
-  routing absorbs this; direct integrations break in production.
-- **Compliance.** Storing user conversations means a privacy policy, a
-  retention decision, and a deletion path.
+The competitor is executing well: video-first (where the demand and the
+willingness to pay actually are), a low headline price for acquisition, credits
+for monetization, and preset-count as the breadth story. That's a coherent,
+well-understood playbook.
 
-## 8. Honest read on the opportunity
+It's also capital-intensive in a way a chat wrapper is not. Every signup
+carries real marginal cost from the first click, and mispriced credits lose
+money on volume. This is not a "launch it and see" product — the meter has to
+be right on day one.
 
-The technical build is genuinely small. The market is saturated — dozens of
-identical multi-model wrappers, all competing on price against ChatGPT Plus and
-Claude Pro at $20/mo, where users already are.
-
-What sells is not access. It's the packaging: a curated workspace for a
-specific audience with prompts, workflows, and training already attached. You
-have the audience and the training. Lead with those, and let the multi-model
-access be the delivery mechanism rather than the pitch.
+Where ThinkBox has an actual edge: not the tooling, which is commodity, but the
+audience and the training. A creator who has been through the AI Intensive and
+lands in a workspace with ThinkBox presets already loaded is a fundamentally
+different retention profile than a cold $14.99 ad signup. Lead with the
+training, attach the platform.
