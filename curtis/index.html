@@ -17,6 +17,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/Anton-400-latin.woff2" crossorigin/>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/Inter-400-latin.woff2" crossorigin/>
 <link rel="preload" as="image" href="assets/neon-circuit.webp"/>
+<script type="importmap">{"imports":{"three":"./assets/three.module.min.js"}}</script>
 <style>
 /* self-hosted type — no third-party requests */
 @font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/Anton-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -864,7 +865,37 @@ const CONTACT_EMAIL = 'booking@curtisactionjackson.com'; /* TODO: replace with C
    Scene A : hero flythrough — grid plain, light rails, gates, dust
    Scene B : CWENCH carton carousel — drag / snap / flavour morph
    ═══════════════════════════════════════════════════════════ */
-import * as THREE from './assets/three.module.min.js';
+import * as THREE from 'three';
+import { EffectComposer }   from './assets/jsm/postprocessing/EffectComposer.js';
+import { RenderPass }       from './assets/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass }  from './assets/jsm/postprocessing/UnrealBloomPass.js';
+import { ShaderPass }       from './assets/jsm/postprocessing/ShaderPass.js';
+import { OutputPass }       from './assets/jsm/postprocessing/OutputPass.js';
+
+/* film grade: edge chromatic aberration, vignette, animated grain.
+   Sits after bloom and before OutputPass, which does ACES + sRGB. */
+const GradeShader = {
+  uniforms:{ tDiffuse:{value:null}, uTime:{value:0}, uRes:{value:new THREE.Vector2(1,1)},
+             uAberr:{value:0.9}, uGrain:{value:0.020}, uVig:{value:0.55} },
+  vertexShader:`varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+  fragmentShader:`precision highp float;
+    uniform sampler2D tDiffuse; uniform float uTime; uniform vec2 uRes;
+    uniform float uAberr; uniform float uGrain; uniform float uVig;
+    varying vec2 vUv;
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+    void main(){
+      vec2 d = vUv - 0.5;
+      float r2 = dot(d, d);
+      vec2 off = d * uAberr * r2 * 0.02;
+      vec3 col;
+      col.r = texture2D(tDiffuse, vUv + off).r;
+      col.g = texture2D(tDiffuse, vUv).g;
+      col.b = texture2D(tDiffuse, vUv - off).b;
+      col *= 1.0 - uVig * smoothstep(0.08, 0.62, r2);
+      col += (hash(vUv * uRes + fract(uTime) * vec2(37.0, 17.0)) - 0.5) * uGrain;
+      gl_FragColor = vec4(max(col, 0.0), 1.0);
+    }`
+};
 
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DPR = () => Math.min(devicePixelRatio || 1, 2);
@@ -889,6 +920,8 @@ function buildHero(){
   const canvas = document.getElementById('gl-hero');
   const renderer = new THREE.WebGLRenderer({canvas, antialias:true, powerPreference:'high-performance'});
   renderer.setPixelRatio(DPR());
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.22;
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x090c16, 0.019);
   const camera = new THREE.PerspectiveCamera(58, 1, 0.1, 400);
@@ -999,6 +1032,56 @@ function buildHero(){
     track.add(m);
   }
 
+  /* the bike — stylised neon BMX. Frame is built from thin tubes rather than
+     lines so it has mass and catches the bloom the way the rails do. */
+  const bike = new THREE.Group();
+  {
+    const lime = new THREE.MeshBasicMaterial({ color:0xc8ff2e, transparent:true, opacity:0.70,
+      blending:THREE.AdditiveBlending, depthWrite:false });
+    const tube = (a, b, r = 0.026) => {
+      const A = new THREE.Vector3(...a), B = new THREE.Vector3(...b);
+      const len = A.distanceTo(B);
+      const g = new THREE.CylinderGeometry(r, r, len, 6, 1, true);
+      const m = new THREE.Mesh(g, lime);
+      m.position.copy(A).lerp(B, 0.5);
+      m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), B.clone().sub(A).normalize());
+      return m;
+    };
+    const rear = [0, 0, -0.62], front = [0, 0, 0.62], bb = [0, -0.16, 0.04],
+          seat = [0, 0.46, -0.30], head = [0, 0.40, 0.50], barL = [0.26, 0.54, 0.46], barR = [-0.26, 0.54, 0.46];
+    [ [rear, bb], [bb, head], [head, seat], [seat, rear], [bb, seat],
+      [head, front], [head, [0, 0.54, 0.48]],
+      [[0, 0.54, 0.48], barL], [[0, 0.54, 0.48], barR],
+      [barL, [0.26, 0.44, 0.38]], [barR, [-0.26, 0.44, 0.38]],
+      [[0.17, -0.16, 0.04], [-0.17, -0.16, 0.04]]
+    ].forEach(([a, b]) => bike.add(tube(a, b)));
+    const saddle = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.045, 0.30), lime);
+    saddle.position.set(0, 0.50, -0.30); bike.add(saddle);
+
+    const wheelGeo = new THREE.TorusGeometry(0.42, 0.022, 6, 40);
+    const spokes = [];
+    for (let i = 0; i < 9; i++){
+      const a = i / 9 * Math.PI * 2;
+      spokes.push(0, 0, 0, 0, Math.sin(a) * 0.40, Math.cos(a) * 0.40);
+    }
+    const spokeGeo = new THREE.BufferGeometry();
+    spokeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spokes), 3));
+    const wheels = [];
+    [rear, front].forEach(pos=>{
+      const w = new THREE.Group();
+      const rim = new THREE.Mesh(wheelGeo, new THREE.MeshBasicMaterial({ color:0xeaf7ff,
+        transparent:true, opacity:0.55, blending:THREE.AdditiveBlending, depthWrite:false }));
+      rim.rotation.y = Math.PI / 2;
+      const sp = new THREE.LineSegments(spokeGeo, new THREE.LineBasicMaterial({ color:0x2ea8ff,
+        transparent:true, opacity:0.38, blending:THREE.AdditiveBlending, depthWrite:false }));
+      w.add(rim, sp); w.position.set(pos[0], pos[1], pos[2]);
+      bike.add(w); wheels.push(w);
+    });
+    bike.userData.wheels = wheels;
+  }
+  bike.scale.setScalar(1.32);
+  scene.add(bike);
+
   /* dust */
   const N = 2200, pos = new Float32Array(N*3), col = new Float32Array(N*3);
   const tints = [new THREE.Color(0xc8ff2e), new THREE.Color(0xff2e88), new THREE.Color(0xffffff), new THREE.Color(0x2ea8ff)];
@@ -1020,13 +1103,27 @@ function buildHero(){
   /* motion */
   const clock = new THREE.Clock();
   let dist = 0, boost = 0, mx = 0, my = 0, tmx = 0, tmy = 0, visible = true;
+  const INTRO = 2.8;                  /* seconds of cinematic entry, wall-clock */
   addEventListener('pointermove', e=>{ tmx = e.clientX / innerWidth - .5; tmy = e.clientY / innerHeight - .5; }, {passive:true});
   addEventListener('scroll', ()=>{ boost = Math.min(1, scrollY / Math.max(1, innerHeight)); }, {passive:true});
 
+  const composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene, camera));
+  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.48, 0.55, 0.66);
+  composer.addPass(bloom);
+  const grade = new ShaderPass(GradeShader);
+  composer.addPass(grade);
+  composer.addPass(new OutputPass());
+
   function size(){
     const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight;
-    renderer.setPixelRatio(DPR());
+    const pr = innerWidth < 900 ? Math.min(DPR(), 1.5) : DPR();
+    renderer.setPixelRatio(pr);
     renderer.setSize(w, h, false);
+    composer.setPixelRatio(pr);
+    composer.setSize(w, h);
+    bloom.setSize(w, h);
+    grade.uniforms.uRes.value.set(w * pr, h * pr);
     camera.aspect = w / h; camera.updateProjectionMatrix();
   }
   size(); addEventListener('resize', size);
@@ -1035,20 +1132,34 @@ function buildHero(){
   renderer.setAnimationLoop(()=>{
     const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
     if (!visible || document.hidden) return;
-    dist += dt * (reduced ? 1.2 : 8 + boost * 22);
+    const intro = reduced ? 1 : Math.min(1, t / INTRO);
+    const e = 1 - Math.pow(1 - intro, 3);
+    dist += dt * (reduced ? 1.2 : 8 + boost * 22 + (1 - e) * 30);
     mx = lerp(mx, tmx, 0.05); my = lerp(my, tmy, 0.05);
 
     track.position.z = dist % LOOP;
     ground.material.uniforms.uScroll.value = -dist;
     track.children.forEach(o=>{ if (o.material.uniforms) o.material.uniforms.uTime.value = t; });
 
-    camera.position.set(mx * 2.6, 1.75 + boost * 3.2 - my * 0.8, 7.5 + boost * 6);
+    camera.position.set(mx * 2.6 * e, lerp(0.5, 1.75, e) + boost * 3.2 - my * 0.8, lerp(26, 7.5, e) + boost * 6);
     camera.lookAt(mx * 1.2, 1.55 + roll(dist) * 0.25 - boost * 1.6, -46);
     camera.rotation.z = mx * 0.045 + Math.sin(t * 0.25) * 0.006;
+    if (intro < 1){ camera.fov = lerp(76, 58, e); camera.updateProjectionMatrix(); }
     sky.position.copy(camera.position);
 
+    /* the bike rides the rollers, leans into the mouse and hops the gates */
+    const bz = 1.2;
+    const hop = Math.max(0, Math.sin(dist * 0.31)) ** 6 * 0.55;
+    bike.position.set(2.3 + mx * 1.9, roll(dist + bz) - 0.12 + hop + Math.sin(t * 2.1) * 0.03, bz);
+    bike.rotation.z = -mx * 0.34 + Math.sin(t * 0.9) * 0.03;
+    bike.rotation.x = -0.05 - hop * 0.28;
+    bike.rotation.y = Math.PI + 0.62 + mx * 0.22;
+    bike.userData.wheels.forEach(w => { w.rotation.x -= dt * 9; });
+    bike.visible = e > 0.35;
+
     dust.position.z = (dist * 0.35) % 40;
-    renderer.render(scene, camera);
+    grade.uniforms.uTime.value = t;
+    composer.render();
   });
 
   window.__boot && window.__boot();
@@ -1058,7 +1169,7 @@ function buildHero(){
 
 <script type="module">
 /* ═══ SCENE B — CWENCH carton carousel ═══ */
-import * as THREE from './assets/three.module.min.js';
+import * as THREE from 'three';
 
 const FLAVOURS = [
   {key:'sunset-spin',   name:'Sunset Spin',   note:'Berry sundown · 500 mL',      col:'#b06aff', bg:'#120a1e', glow:'rgba(176,106,255,.30)'},
