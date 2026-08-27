@@ -15,7 +15,7 @@ No build step, no framework, no CDN. Open `index.html` and edit.
    section *and* where the form sends. Replace it with Curtis's real inbox.
 
 2. **Stat tiles** (Story section, marked `TODO(Curtis)` in the markup). Three of
-   the four are drawn from what Curtis told us — the $50M raise, the four CWENCH
+   the four are drawn from what Curtis told us — the $50M raise, the six CWENCH
    flavours, Olympic-level athletes on the packaging, five business lanes. Swap
    any of them for verified program numbers (riders coached, events produced,
    years in the sport) once Curtis confirms them.
@@ -28,7 +28,7 @@ No build step, no framework, no CDN. Open `index.html` and edit.
 | Section | What it does |
 |---|---|
 | Hero | WebGL night straightaway — rolling light rails to the vanishing point, start gates streaming past, grid rushing under. Mouse moves the camera; scrolling accelerates it. |
-| CWENCH | WebGL carousel of the four real cartons. Drag to spin, chips to jump, and the whole section's colour, glow, dust and ghost wordmark morph to the selected flavour. |
+| CWENCH | WebGL carousel of the six real cartons. Drag to spin, chips to jump, and the whole section's colour, glow, dust and ghost wordmark morph to the selected flavour. |
 | Pillars | Cards tilt in 3D under the cursor with a light that follows it. |
 | Academy | Facility blueprint with hover/tap hotspots; phase tracker; investor-brief modal. |
 | Programs | Four-lane tabbed panel. |
@@ -50,8 +50,9 @@ set for it.
 
 ```
 assets/
-  sunset-spin.webp  patriot-pulse.webp        cartons, backgrounds removed
-  skyline-surge.webp  neon-circuit.webp       and shadows stripped, 620px wide
+  sunset-spin.webp   patriot-pulse.webp      six cartons, backgrounds removed
+  skyline-surge.webp neon-circuit.webp        and contact shadows stripped,
+  apex-rush.webp     ramp-riot.webp           620px wide
   og-cover.jpg                                1200×630 social share card
   three.module.min.js                         three.js r169, vendored
   fonts/                                      Anton, Barlow Condensed, Inter (woff2)

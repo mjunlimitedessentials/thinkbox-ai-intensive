@@ -443,7 +443,7 @@ footer{background:#04050700;border-top:1px solid var(--line);padding:60px 0 34px
         <div class="stats">
           <!-- TODO(Curtis): swap any of these four tiles for verified program numbers. -->
           <div class="stat" data-stat><b><span class="u">$</span><span data-count="50">0</span><span class="u">M</span></b><small>Capital raise in motion for the Club &amp; Academy</small></div>
-          <div class="stat" data-stat><b data-count-plain="4">0</b><small>CWENCH flavours carrying the league &amp; team</small></div>
+          <div class="stat" data-stat><b data-count-plain="6">0</b><small>CWENCH flavours carrying the league &amp; team</small></div>
           <div class="stat" data-stat><b>Olympic</b><small>Level athletes represented on the bottle</small></div>
           <div class="stat" data-stat><b data-count-plain="5">0</b><small>Lanes of business under one operator</small></div>
         </div>
@@ -485,6 +485,8 @@ footer{background:#04050700;border-top:1px solid var(--line);padding:60px 0 34px
       <img src="assets/patriot-pulse.webp" alt="CWENCH Patriot Pulse carton"/>
       <img src="assets/skyline-surge.webp" alt="CWENCH Skyline Surge carton"/>
       <img src="assets/neon-circuit.webp" alt="CWENCH Neon Circuit carton"/>
+      <img src="assets/apex-rush.webp" alt="CWENCH Apex Rush carton"/>
+      <img src="assets/ramp-riot.webp" alt="CWENCH Ramp Riot carton"/>
     </div>
     <div class="cw-hud">
       <div class="cw-flavour" id="cwName">Sunset Spin</div>
@@ -1062,7 +1064,9 @@ const FLAVOURS = [
   {key:'sunset-spin',   name:'Sunset Spin',   note:'Berry sundown · 500 mL',      col:'#b06aff', bg:'#120a1e', glow:'rgba(176,106,255,.30)'},
   {key:'patriot-pulse', name:'Patriot Pulse', note:'Stars, stripes, start gates', col:'#ff4757', bg:'#150a10', glow:'rgba(255,71,87,.26)'},
   {key:'skyline-surge', name:'Skyline Surge', note:'Blue sky · orange line',      col:'#2ea8ff', bg:'#07111c', glow:'rgba(46,168,255,.28)'},
-  {key:'neon-circuit',  name:'Neon Circuit',  note:'Lime voltage · night laps',   col:'#c8ff2e', bg:'#0d1206', glow:'rgba(200,255,46,.26)'}
+  {key:'neon-circuit',  name:'Neon Circuit',  note:'Lime voltage · night laps',   col:'#c8ff2e', bg:'#0d1206', glow:'rgba(200,255,46,.26)'},
+  {key:'apex-rush',     name:'Apex Rush',     note:'Teal and violet · full send',   col:'#25b7c6', bg:'#04141b', glow:'rgba(37,183,198,.28)'},
+  {key:'ramp-riot',     name:'Ramp Riot',     note:'Red line · ramp to ramp',     col:'#f0202e', bg:'#170609', glow:'rgba(240,32,46,.26)'}
 ];
 const STEP = Math.PI * 2 / FLAVOURS.length;
 const lerp = (a,b,t)=> a + (b-a)*t;
@@ -1104,7 +1108,7 @@ function buildCwench(){
   camera.position.set(0, 0.25, 10);
   camera.lookAt(0, 0.25, 0);
 
-  const R = 3.3, H = 2.85;
+  const R = 3.9, H = 2.85;
   const group = new THREE.Group(); scene.add(group);
   const cards = [];
 
@@ -1198,7 +1202,7 @@ function buildCwench(){
     camera.aspect = w / h;
     const portrait = w / h < 1;                  /* phones get one hero carton, filling the frame */
     /* the front carton sits R units toward the camera, so distance = z - R */
-    camera.position.set(0, portrait ? 0.4 : 0.25, portrait ? 9.9 : 9.4);
+    camera.position.set(0, portrait ? 0.4 : 0.25, portrait ? 10.5 : 10.0);
     camera.lookAt(0, camera.position.y, 0);
     camera.updateProjectionMatrix();
   }
@@ -1207,11 +1211,11 @@ function buildCwench(){
 
   const clock = new THREE.Clock();
   renderer.setAnimationLoop(()=>{
-    const t = clock.getElapsedTime();
+    const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime;
     if (!visible || document.hidden) return;
-    if (!dragging){ rot = lerp(rot, target, 0.085); vel *= 0.9; }
+    if (!dragging){ rot = lerp(rot, target, 1 - Math.exp(-dt * 7)); vel *= Math.exp(-dt * 6); }
     group.rotation.y = rot;
-    tiltX = lerp(tiltX, tTiltX, 0.06);
+    tiltX = lerp(tiltX, tTiltX, 1 - Math.exp(-dt * 4));
     group.rotation.x = tiltX;
     group.position.y = Math.sin(t * 0.7) * 0.05;
 
