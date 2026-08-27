@@ -1032,54 +1032,80 @@ function buildHero(){
     track.add(m);
   }
 
-  /* the bike — stylised neon BMX. Frame is built from thin tubes rather than
-     lines so it has mass and catches the bloom the way the rails do. */
+  /* the bike — a 20in BMX race bike at true proportions. Hub axis is y=0;
+     bottom bracket sits ABOVE the axles and the bars carry a real riser
+     stack, which is what separates a BMX from a track bike. Frame and tyres
+     are opaque so it reads as an object and occludes the track behind it. */
   const bike = new THREE.Group();
   {
-    const lime = new THREE.MeshBasicMaterial({ color:0xc8ff2e, transparent:true, opacity:0.70,
-      blending:THREE.AdditiveBlending, depthWrite:false });
-    const tube = (a, b, r = 0.026) => {
+    const lime   = new THREE.MeshBasicMaterial({ color:0xc8ff2e });
+    const rubber = new THREE.MeshBasicMaterial({ color:0x0b0e13 });
+    const chrome = new THREE.MeshBasicMaterial({ color:0xdfe9f2 });
+    const tube = (a, b, r = 0.032, mat = lime) => {
       const A = new THREE.Vector3(...a), B = new THREE.Vector3(...b);
-      const len = A.distanceTo(B);
-      const g = new THREE.CylinderGeometry(r, r, len, 6, 1, true);
-      const m = new THREE.Mesh(g, lime);
+      const g = new THREE.CylinderGeometry(r, r, A.distanceTo(B), 7, 1);
+      const m = new THREE.Mesh(g, mat);
       m.position.copy(A).lerp(B, 0.5);
       m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), B.clone().sub(A).normalize());
       return m;
     };
-    const rear = [0, 0, -0.62], front = [0, 0, 0.62], bb = [0, -0.16, 0.04],
-          seat = [0, 0.46, -0.30], head = [0, 0.40, 0.50], barL = [0.26, 0.54, 0.46], barR = [-0.26, 0.54, 0.46];
-    [ [rear, bb], [bb, head], [head, seat], [seat, rear], [bb, seat],
-      [head, front], [head, [0, 0.54, 0.48]],
-      [[0, 0.54, 0.48], barL], [[0, 0.54, 0.48], barR],
-      [barL, [0.26, 0.44, 0.38]], [barR, [-0.26, 0.44, 0.38]],
-      [[0.17, -0.16, 0.04], [-0.17, -0.16, 0.04]]
-    ].forEach(([a, b]) => bike.add(tube(a, b)));
-    const saddle = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.045, 0.30), lime);
-    saddle.position.set(0, 0.50, -0.30); bike.add(saddle);
+    const rearHub = [0, 0, -0.61], frontHub = [0, 0, 0.61],
+          bb      = [0, 0.07, 0.00],            /* above the axles — BMX, not road */
+          seatCl  = [0, 0.60, -0.30],
+          htBot   = [0, 0.26, 0.50], htTop = [0, 0.52, 0.44],
+          barCl   = [0, 0.60, 0.40],
+          upL     = [0.12, 0.99, 0.30], upR = [-0.12, 0.99, 0.30],
+          gripL   = [0.31, 1.01, 0.25], gripR = [-0.31, 1.01, 0.25];
+    [ [bb, rearHub, 0.030], [seatCl, rearHub, 0.024],        /* chainstay, seatstay */
+      [bb, seatCl, 0.030], [bb, htBot, 0.036],               /* seat tube, down tube */
+      [[0, 0.57, -0.27], htTop, 0.034],                      /* top tube */
+      [htBot, htTop, 0.040], [htTop, barCl, 0.030],          /* head tube, stem */
+      [barCl, upL, 0.028], [barCl, upR, 0.028],              /* risers */
+      [upL, gripL, 0.028], [upR, gripR, 0.028],              /* bar tops */
+      [[0.12, 0.88, 0.31], [-0.12, 0.88, 0.31], 0.020]       /* crossbar */
+    ].forEach(([a, b, r]) => bike.add(tube(a, b, r)));
+    [0.07, -0.07].forEach(x => bike.add(tube([x, 0.26, 0.50], [x, 0, 0.61], 0.024, chrome)));  /* fork legs */
+    bike.add(tube([0.10, 0.07, 0.00], [0.13, -0.12, 0.14], 0.020, chrome));   /* cranks, opposed */
+    bike.add(tube([-0.10, 0.07, 0.00], [-0.13, 0.26, -0.14], 0.020, chrome));
 
-    const wheelGeo = new THREE.TorusGeometry(0.42, 0.022, 6, 40);
-    const spokes = [];
-    for (let i = 0; i < 9; i++){
-      const a = i / 9 * Math.PI * 2;
-      spokes.push(0, 0, 0, 0, Math.sin(a) * 0.40, Math.cos(a) * 0.40);
+    const seat = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.05, 0.26), lime);
+    seat.position.set(0, 0.645, -0.31); bike.add(seat);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.17, 0.010, 5, 26), chrome);
+    ring.rotation.y = Math.PI / 2; ring.position.set(0.10, 0.07, 0.00); bike.add(ring);
+    const plate = new THREE.Mesh(new THREE.PlaneGeometry(0.27, 0.21),
+      new THREE.MeshBasicMaterial({ color:0xb9c3ad, side:THREE.DoubleSide }));
+    plate.position.set(0, 0.775, 0.335); plate.rotation.x = -0.22; bike.add(plate);
+
+    /* light pooling under the tyres — grounds the bike instead of floating it */
+    const pool = new THREE.Mesh(new THREE.PlaneGeometry(2.5, 1.0),
+      new THREE.MeshBasicMaterial({ map:dotTexture(), color:0xc8ff2e, transparent:true,
+        opacity:0.30, blending:THREE.AdditiveBlending, depthWrite:false }));
+    pool.rotation.x = -Math.PI / 2; pool.position.set(0, -0.46, 0); bike.add(pool);
+
+    const tyreGeo = new THREE.TorusGeometry(0.40, 0.058, 8, 34);
+    const rimGeo  = new THREE.TorusGeometry(0.345, 0.014, 6, 34);
+    const spokeArr = [];
+    for (let i = 0; i < 10; i++){
+      const a = i / 10 * Math.PI * 2;
+      spokeArr.push(0, 0, 0, 0, Math.sin(a) * 0.34, Math.cos(a) * 0.34);
     }
     const spokeGeo = new THREE.BufferGeometry();
-    spokeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spokes), 3));
+    spokeGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(spokeArr), 3));
     const wheels = [];
-    [rear, front].forEach(pos=>{
+    [rearHub, frontHub].forEach(pos=>{
       const w = new THREE.Group();
-      const rim = new THREE.Mesh(wheelGeo, new THREE.MeshBasicMaterial({ color:0xeaf7ff,
-        transparent:true, opacity:0.55, blending:THREE.AdditiveBlending, depthWrite:false }));
-      rim.rotation.y = Math.PI / 2;
-      const sp = new THREE.LineSegments(spokeGeo, new THREE.LineBasicMaterial({ color:0x2ea8ff,
-        transparent:true, opacity:0.38, blending:THREE.AdditiveBlending, depthWrite:false }));
-      w.add(rim, sp); w.position.set(pos[0], pos[1], pos[2]);
+      const tyre = new THREE.Mesh(tyreGeo, rubber);
+      const rim  = new THREE.Mesh(rimGeo, new THREE.MeshBasicMaterial({ color:0xeaf7ff,
+        transparent:true, opacity:0.8, blending:THREE.AdditiveBlending, depthWrite:false }));
+      tyre.rotation.y = rim.rotation.y = Math.PI / 2;
+      const sp = new THREE.LineSegments(spokeGeo, new THREE.LineBasicMaterial({ color:0x9fd4ff,
+        transparent:true, opacity:0.45, blending:THREE.AdditiveBlending, depthWrite:false }));
+      w.add(tyre, rim, sp); w.position.set(...pos);
       bike.add(w); wheels.push(w);
     });
     bike.userData.wheels = wheels;
   }
-  bike.scale.setScalar(1.32);
+  bike.scale.setScalar(1.18);
   scene.add(bike);
 
   /* dust */
