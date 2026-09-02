@@ -37,9 +37,12 @@ https://claude.ai/code/artifact/78749bf8-e59f-40d3-ad4e-11f9dbdb0b09
 ## Open decisions
 - **Race results data source** — blocks the entire points/leaderboard system.
   USA BMX feed, admin key-in, or track submission?
-- **Minors' data** — the spec collects names, ages, photos and guardian details
-  for riders from balance-bike age. COPPA + state privacy law + waivers need a
-  lawyer before Phase 2 builds real forms. Phase 1 deliberately collects none.
+- **Minors' data** — DECIDED: no legal review at this stage (client's call, do
+  not re-litigate). Risk reduced instead by collecting less: the enrolment form
+  takes no rider photo, contacts only the adult, and its checkboxes state facts
+  rather than claiming to be a release. A real waiver is signed at the track or
+  through the sanctioning body. Revisit if the league starts holding photos or
+  issuing its own waivers.
 - **The app** — Mona wants a companion app for Curtis, referencing
   thinkboxaistudios-dashboard.netlify.app (blocked by egress here; needs a
   screenshot). Undecided: operator dashboard for Curtis vs rider/parent app.
