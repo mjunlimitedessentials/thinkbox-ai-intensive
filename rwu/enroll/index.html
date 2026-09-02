@@ -196,11 +196,28 @@ footer{text-align:center;padding:14px 18px max(18px,env(safe-area-inset-bottom))
 <footer>Roll With Us BMX · Race · Train · Develop · Compete · Give Back · Roll</footer>
 
 <script>
-/* ── Hand-off target. Point this at the RWU JotForm once it exists. ──
-   TODO: replace with the real RWU enrolment form id. Answers are passed as
-   URL parameters, so JotForm arrives pre-filled and owns every submission. */
-const JOTFORM_ID = 'REPLACE_WITH_FORM_ID';
+/* ── Hand-off target: RWU BMX League — Rider Enrollment ──────────────
+   Answers are passed as URL parameters so JotForm opens pre-filled and
+   owns every submission. FIELD_MAP keys are this app's answers; values are
+   JotForm's internal field names, which it derives from each label in
+   camelCase. VERIFY ONCE: open the form, prefill one field by hand, and
+   check the name in the resulting URL. If a name differs, fix it here —
+   a wrong name fails silently, leaving that field simply blank. */
+const JOTFORM_ID = '262445653643057';
 const JOTFORM_URL = 'https://form.jotform.com/' + JOTFORM_ID;
+const FIELD_MAP = {
+  'Rider name':   'riderName',
+  'Rider age':    'riderAge',
+  'division':     'division',
+  'program':      'programme',
+  'experience':   'experience',
+  'Home track':   'homeTrack',
+  'Goals':        'goals',
+  'Contact name': 'contactName',
+  'Email':        'email',
+  'Phone':        'phone'
+  /* 'who' routes inside the app only — the form has no matching field */
+};
 
 const DIVISIONS = ['Male Pro','Female Pro','Expert','Cruiser','Novice','Beginner',
                    'Balance Bike','Youth Division','Adult Division','Parent / Family'];
@@ -280,11 +297,11 @@ const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
 
 document.getElementById('finish').addEventListener('click', ()=>{
   const q = new URLSearchParams();
-  Object.entries(answers).forEach(([k,v])=> q.set(k.toLowerCase().replace(/[^a-z0-9]+/g,'_'), v));
+  Object.entries(answers).forEach(([k,v])=>{ const name = FIELD_MAP[k]; if(name && v) q.set(name, v); });
   const url = JOTFORM_URL + '?' + q.toString();
   document.getElementById('jump').href = url;
   show(8);
-  if(JOTFORM_ID !== 'REPLACE_WITH_FORM_ID') setTimeout(()=> location.href = url, 900);
+  setTimeout(()=> location.href = url, 900);
 });
 show(0);
 </script>
