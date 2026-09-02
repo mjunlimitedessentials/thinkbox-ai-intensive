@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>RWU — Join the League</title>
+<meta name="theme-color" content="#05070B"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<link rel="apple-touch-icon" href="../assets/rwu-logo.png"/>
+<style>
+@font-face{font-family:'Barlow Condensed';font-weight:700;font-display:swap;src:url(../../curtis/assets/fonts/BarlowCondensed-700-latin.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-weight:600;font-display:swap;src:url(../../curtis/assets/fonts/BarlowCondensed-600-latin.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:400 700;font-display:swap;src:url(../../curtis/assets/fonts/Inter-400-latin.woff2) format('woff2')}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#05070B;--card:#0E141D;--line:#1D2733;--chrome:#E8EEF4;--muted:#8E9AA8;
+  --gold:#F0A81E;--gold-hi:#FFC64B;--blue:#0A5BA8;--blue-hi:#3E9BE8;--ok:#2FA36B}
+body{background:var(--ink);color:var(--chrome);font-family:'Inter',system-ui,sans-serif;
+  min-height:100svh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+.bar{position:sticky;top:0;z-index:5;background:rgba(5,7,11,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);padding:max(12px,env(safe-area-inset-top)) 18px 12px}
+.bar-in{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:640px;margin:0 auto}
+.bar img{height:30px;width:auto}
+.step{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.track{max-width:640px;margin:10px auto 0;height:3px;background:#131C27;border-radius:2px;overflow:hidden}
+.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-hi));
+  transition:width .45s cubic-bezier(.22,1,.36,1)}
+main{flex:1;width:100%;max-width:640px;margin:0 auto;padding:26px 18px 32px}
+.screen{display:none;animation:in .4s cubic-bezier(.22,1,.36,1)}
+.screen.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:clamp(30px,8vw,44px);line-height:1.02;letter-spacing:.01em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{color:var(--muted);margin-top:12px;font-size:15.5px;line-height:1.6}
+.q{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:clamp(23px,5.6vw,30px);line-height:1.1;margin-bottom:6px}
+.hint{color:var(--muted);font-size:14px;margin-bottom:20px}
+.opts{display:grid;gap:10px;margin-top:18px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 16px;
+  color:var(--chrome);font:inherit;font-size:15.5px;transition:border-color .2s,background .2s}
+.opt:hover{border-color:#2C3B4C}
+.opt.sel{border-color:var(--gold);background:rgba(240,168,30,.09)}
+.opt .tick{width:20px;height:20px;flex:none;border-radius:50%;border:1.5px solid #33445A;display:grid;place-items:center}
+.opt.sel .tick{border-color:var(--gold);background:var(--gold)}
+.opt.sel .tick::after{content:'';width:6px;height:10px;border:2px solid #12100A;border-top:0;border-left:0;
+  transform:rotate(42deg) translateY(-1px)}
+.opt b{font-weight:600}.opt small{display:block;color:var(--muted);font-size:13px;margin-top:2px;font-weight:400}
+label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12.5px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:16px 0 7px}
+input,select,textarea{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;
+  color:var(--chrome);padding:14px 15px;font:inherit;font-size:16px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);background:rgba(240,168,30,.06)}
+textarea{min-height:96px;resize:vertical}
+.nav{display:flex;gap:10px;margin-top:26px}
+.btn{flex:1;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.16em;
+  text-transform:uppercase;padding:16px;border-radius:10px;border:1px solid var(--gold);background:var(--gold);
+  color:#12100A;cursor:pointer;transition:opacity .2s;text-align:center;text-decoration:none;display:block}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn.back{flex:0 0 96px;background:transparent;color:var(--muted);border-color:var(--line)}
+.err{color:#FF8A8A;font-size:14px;margin-top:10px;min-height:20px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 16px;margin-top:20px}
+.review div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.review div:last-child{border-bottom:0}
+.review dt{color:var(--muted);font-size:13.5px}.review dd{text-align:right;font-weight:500}
+.note{border-left:2px solid var(--blue-hi);background:rgba(62,155,232,.07);padding:13px 15px;
+  border-radius:0 8px 8px 0;font-size:14px;color:#B7C4D2;margin-top:20px;line-height:1.55}
+.done{text-align:center;padding:30px 0}
+.done .ring{width:74px;height:74px;margin:0 auto 20px;border-radius:50%;border:2px solid var(--ok);
+  display:grid;place-items:center}
+.done .ring::after{content:'';width:16px;height:28px;border:3px solid var(--ok);border-top:0;border-left:0;
+  transform:rotate(42deg) translateY(-2px)}
+footer{text-align:center;padding:14px 18px max(18px,env(safe-area-inset-bottom));color:#5B6774;font-size:12px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="bar-in">
+    <img src="../assets/rwu-logo.png" alt="RWU — Roll With Us BMX"/>
+    <span class="step" id="stepLabel">Start</span>
+  </div>
+  <div class="track"><i id="prog"></i></div>
+</div>
+
+<main>
+  <!-- 0 -->
+  <section class="screen on" data-s="0">
+    <h1>Roll with us.<br/><em>Let's get you in the gate.</em></h1>
+    <p class="sub">A few quick questions, then we hand you straight to the registration form. Takes about two minutes.</p>
+    <div class="opts" style="margin-top:26px">
+      <button class="opt" data-set="who" data-val="New rider — enrolling"><span class="tick"></span>
+        <span><b>I'm new to RWU</b><small>Enrol as a rider or a parent signing up your child</small></span></button>
+      <button class="opt" data-set="who" data-val="Returning member"><span class="tick"></span>
+        <span><b>I'm already a member</b><small>Renew, or register for the new season</small></span></button>
+    </div>
+    <div class="nav"><button class="btn" data-next disabled>Start</button></div>
+  </section>
+
+  <!-- 1 -->
+  <section class="screen" data-s="1">
+    <div class="q">Who's riding?</div>
+    <div class="hint">If you're a parent enrolling a child, put the rider's details here — we'll ask for yours next.</div>
+    <label for="riderName">Rider's full name</label>
+    <input id="riderName" data-field="Rider name" autocomplete="name" placeholder="First and last"/>
+    <label for="riderAge">Rider's age</label>
+    <input id="riderAge" data-field="Rider age" inputmode="numeric" placeholder="e.g. 12"/>
+    <div class="err" id="e1"></div>
+    <div class="nav"><button class="btn back" data-back>Back</button><button class="btn" data-next>Next</button></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="screen" data-s="2">
+    <div class="q">Which division?</div>
+    <div class="hint">Not sure? Pick the closest — Curtis's team will confirm it with you.</div>
+    <div class="opts" id="divisions"></div>
+    <div class="nav"><button class="btn back" data-back>Back</button><button class="btn" data-next disabled>Next</button></div>
+  </section>
+
+  <!-- 3 -->
+  <section class="screen" data-s="3">
+    <div class="q">What are you signing up for?</div>
+    <div class="hint">You can change this later — nothing is charged in this app.</div>
+    <div class="opts">
+      <button class="opt" data-set="program" data-val="RWU League Membership"><span class="tick"></span>
+        <span><b>League Membership</b><small>Race the RWU calendar, earn points, join a team</small></span></button>
+      <button class="opt" data-set="program" data-val="RWU Development Team — $350"><span class="tick"></span>
+        <span><b>Development Team — $350</b><small>Coaching, gate and track training, strength &amp; conditioning, video analysis</small></span></button>
+      <button class="opt" data-set="program" data-val="Not sure yet — send me details"><span class="tick"></span>
+        <span><b>Not sure yet</b><small>Send me the details and I'll decide</small></span></button>
+    </div>
+    <div class="nav"><button class="btn back" data-back>Back</button><button class="btn" data-next disabled>Next</button></div>
+  </section>
+
+  <!-- 4 -->
+  <section class="screen" data-s="4">
+    <div class="q">Riding experience</div>
+    <div class="hint">This tells the coaches where to start.</div>
+    <div class="opts">
+      <button class="opt" data-set="experience" data-val="Never raced — brand new"><span class="tick"></span><span><b>Brand new</b><small>Never raced before</small></span></button>
+      <button class="opt" data-set="experience" data-val="Ridden, not raced"><span class="tick"></span><span><b>Ridden, not raced</b><small>Comfortable on the bike</small></span></button>
+      <button class="opt" data-set="experience" data-val="Racing locally"><span class="tick"></span><span><b>Racing locally</b><small>Regular at a home track</small></span></button>
+      <button class="opt" data-set="experience" data-val="Racing regionally or nationally"><span class="tick"></span><span><b>Regional or national</b><small>Travelling to race</small></span></button>
+    </div>
+    <label for="homeTrack">Home track <span style="text-transform:none;letter-spacing:0">(if you have one)</span></label>
+    <input id="homeTrack" data-field="Home track" placeholder="Track name"/>
+    <div class="nav"><button class="btn back" data-back>Back</button><button class="btn" data-next disabled>Next</button></div>
+  </section>
+
+  <!-- 5 -->
+  <section class="screen" data-s="5">
+    <div class="q">What's the goal?</div>
+    <div class="hint">One line is plenty. It shapes the training plan.</div>
+    <textarea id="goals" data-field="Goals" placeholder="e.g. get confident off the gate, race the state series, make the national team"></textarea>
+    <div class="nav"><button class="btn back" data-back>Back</button><button class="btn" data-next>Next</button></div>
+  </section>
+
+  <!-- 6 -->
+  <section class="screen" data-s="6">
+    <div class="q">Where do we reach you?</div>
+    <div class="hint">For riders under 18 this must be a parent or guardian.</div>
+    <label for="contactName">Your name</label>
+    <input id="contactName" data-field="Contact name" autocomplete="name" placeholder="Parent, guardian or rider"/>
+    <label for="email">Email</label>
+    <input id="email" data-field="Email" type="email" inputmode="email" autocomplete="email" placeholder="you@domain.com"/>
+    <label for="phone">Mobile <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+    <input id="phone" data-field="Phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Optional"/>
+    <div class="err" id="e6"></div>
+    <div class="nav"><button class="btn back" data-back>Back</button><button class="btn" data-next>Review</button></div>
+  </section>
+
+  <!-- 7 -->
+  <section class="screen" data-s="7">
+    <div class="q">Check it over</div>
+    <div class="hint">Tap back to change anything.</div>
+    <dl class="review" id="review"></dl>
+    <div class="note">Next you'll go to the RWU registration form, already filled in with these answers. That's where the rider photo, waivers and payment are handled.</div>
+    <div class="nav"><button class="btn back" data-back>Back</button><button class="btn" id="finish">Continue</button></div>
+  </section>
+
+  <!-- 8 -->
+  <section class="screen" data-s="8">
+    <div class="done">
+      <div class="ring"></div>
+      <h1 style="font-size:32px">You're through the gate</h1>
+      <p class="sub">Opening the RWU registration form with your answers already filled in.</p>
+      <a class="btn" id="jump" href="#" style="margin-top:24px">Open the registration form</a>
+      <p class="sub" style="font-size:13.5px;margin-top:16px">Didn't open? Tap the button above.</p>
+    </div>
+  </section>
+</main>
+
+<footer>Roll With Us BMX · Race · Train · Develop · Compete · Give Back · Roll</footer>
+
+<script>
+/* ── Hand-off target. Point this at the RWU JotForm once it exists. ──
+   TODO: replace with the real RWU enrolment form id. Answers are passed as
+   URL parameters, so JotForm arrives pre-filled and owns every submission. */
+const JOTFORM_ID = 'REPLACE_WITH_FORM_ID';
+const JOTFORM_URL = 'https://form.jotform.com/' + JOTFORM_ID;
+
+const DIVISIONS = ['Male Pro','Female Pro','Expert','Cruiser','Novice','Beginner',
+                   'Balance Bike','Youth Division','Adult Division','Parent / Family'];
+
+const answers = {};
+const screens = [...document.querySelectorAll('.screen')];
+const prog = document.getElementById('prog'), stepLabel = document.getElementById('stepLabel');
+let at = 0;
+
+document.getElementById('divisions').innerHTML = DIVISIONS.map(d =>
+  `<button class="opt" data-set="division" data-val="${d}"><span class="tick"></span><span><b>${d}</b></span></button>`).join('');
+
+function show(i){
+  at = Math.max(0, Math.min(screens.length-1, i));
+  screens.forEach((s,k)=> s.classList.toggle('on', k===at));
+  prog.style.width = (at/(screens.length-1))*100 + '%';
+  stepLabel.textContent = at===0 ? 'Start' : at>=8 ? 'Done' : `Step ${at} of 7`;
+  scrollTo({top:0, behavior:'smooth'});
+  sync();
+}
+function sync(){
+  const s = screens[at];
+  const next = s.querySelector('[data-next]');
+  if(!next) return;
+  const group = s.querySelector('[data-set]');
+  if(group && !s.querySelector('input,textarea')) next.disabled = !answers[group.dataset.set];
+  else if(group) next.disabled = !answers[group.dataset.set];
+  else next.disabled = false;
+}
+document.addEventListener('click', e=>{
+  const opt = e.target.closest('.opt');
+  if(opt){
+    const key = opt.dataset.set;
+    opt.parentElement.querySelectorAll('.opt').forEach(o=> o.classList.remove('sel'));
+    opt.classList.add('sel');
+    answers[key] = opt.dataset.val;
+    sync();
+    return;
+  }
+  if(e.target.closest('[data-next]')) return step(1);
+  if(e.target.closest('[data-back]')) return step(-1);
+});
+document.addEventListener('input', e=>{
+  const f = e.target.dataset.field;
+  if(f) answers[f] = e.target.value.trim();
+});
+function step(dir){
+  if(dir > 0 && !validate()) return;
+  if(at === 7) return;
+  show(at + dir);
+  if(at === 7) renderReview();
+}
+function validate(){
+  if(at === 1){
+    const err = document.getElementById('e1');
+    if(!answers['Rider name']){ err.textContent = 'We need the rider’s name to continue.'; return false; }
+    const age = parseInt(answers['Rider age'], 10);
+    if(!age || age < 2 || age > 99){ err.textContent = 'Enter the rider’s age in years.'; return false; }
+    err.textContent = '';
+  }
+  if(at === 6){
+    const err = document.getElementById('e6');
+    if(!answers['Contact name']){ err.textContent = 'Please add a contact name.'; return false; }
+    if(!/^\S+@\S+\.\S+$/.test(answers['Email'] || '')){ err.textContent = 'That email doesn’t look right.'; return false; }
+    err.textContent = '';
+  }
+  return true;
+}
+function renderReview(){
+  const order = ['who','Rider name','Rider age','division','program','experience','Home track','Goals','Contact name','Email','Phone'];
+  const label = {who:'Enrolling as', division:'Division', program:'Programme', experience:'Experience'};
+  document.getElementById('review').innerHTML = order.filter(k=>answers[k])
+    .map(k=>`<div><dt>${label[k]||k}</dt><dd>${escapeHtml(answers[k])}</dd></div>`).join('');
+}
+const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+document.getElementById('finish').addEventListener('click', ()=>{
+  const q = new URLSearchParams();
+  Object.entries(answers).forEach(([k,v])=> q.set(k.toLowerCase().replace(/[^a-z0-9]+/g,'_'), v));
+  const url = JOTFORM_URL + '?' + q.toString();
+  document.getElementById('jump').href = url;
+  show(8);
+  if(JOTFORM_ID !== 'REPLACE_WITH_FORM_ID') setTimeout(()=> location.href = url, 900);
+});
+show(0);
+</script>
+</body>
+</html>

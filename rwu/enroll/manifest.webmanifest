@@ -1,0 +1,9 @@
+{
+  "name": "RWU BMX — Join the League",
+  "short_name": "RWU Join",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#05070B",
+  "theme_color": "#05070B",
+  "icons": [{ "src": "../assets/rwu-logo.png", "sizes": "1241x433", "type": "image/png", "purpose": "any" }]
+}
