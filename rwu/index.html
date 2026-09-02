@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RWU BMX — Cinematic Hero</title>
+<meta name="description" content="Roll With Us BMX League — cinematic WebGL hero: the gate drops, the straight opens up."/>
+<meta name="theme-color" content="#05070B"/>
+<link rel="preload" as="image" href="assets/rwu-logo.png"/>
+<script type="importmap">{"imports":{"three":"../curtis/assets/three.module.min.js"}}</script>
+<style>
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(../curtis/assets/fonts/BarlowCondensed-700-latin.woff2) format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(../curtis/assets/fonts/BarlowCondensed-600-latin.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(../curtis/assets/fonts/Inter-400-latin.woff2) format('woff2')}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#05070B; --chrome:#E8EEF4; --gold:#F0A81E; --gold-hot:#FFC64B;
+  --blue:#0A5BA8; --blue-lite:#3E9BE8; --navy:#0A3E73;
+  --swoosh-o:#E8720C; --swoosh-g:#17A44A; --swoosh-r:#D8232A;
+  --muted:#8E9AA8; --pad:clamp(20px,5vw,72px);
+}
+body{background:var(--ink);color:var(--chrome);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden}
+#hero{position:relative;height:100svh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block}
+.veil{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,7,11,.72) 0%,transparent 22%,transparent 46%,rgba(5,7,11,.93) 88%),
+             radial-gradient(120% 70% at 50% 8%,transparent 40%,rgba(5,7,11,.6) 88%)}
+.nofx{position:absolute;inset:0;display:none;background:
+  radial-gradient(70% 50% at 50% 30%,rgba(240,168,30,.16),transparent 60%),
+  radial-gradient(60% 50% at 20% 80%,rgba(10,91,168,.24),transparent 60%),#05070B}
+body.nogl .nofx{display:block}
+
+.topbar{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;padding:18px var(--pad)}
+.topbar img{height:clamp(30px,4.4vw,46px);width:auto;filter:drop-shadow(0 3px 14px rgba(0,0,0,.6))}
+.navlinks{display:flex;gap:26px}
+.navlinks a{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.19em;
+  text-transform:uppercase;color:#C3CDD8;text-decoration:none;white-space:nowrap;transition:color .3s}
+.navlinks a:hover{color:var(--gold)}
+@media(max-width:860px){.navlinks{display:none}}
+
+.inner{position:relative;z-index:4;padding:0 var(--pad) clamp(34px,7vh,74px);width:100%;max-width:1340px;margin:0 auto}
+.gatecue{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(240,168,30,.4);
+  background:rgba(5,7,11,.42);backdrop-filter:blur(6px);padding:7px 15px;margin-bottom:22px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold);opacity:0;transform:translateY(12px);
+  transition:opacity .8s ease,transform .8s ease}
+.gatecue i{width:7px;height:7px;background:var(--gold);border-radius:50%;box-shadow:0 0 12px var(--gold);
+  animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:clamp(46px,10.5vw,158px);line-height:.86;letter-spacing:.005em}
+h1 .ln{display:block;overflow:hidden}
+h1 .ln>i{display:block;font-style:normal;transform:translateY(106%);transition:transform 1s cubic-bezier(.22,1,.36,1)}
+h1 .chrome{background:linear-gradient(178deg,#fff 6%,#C9D6E2 34%,#8FA2B4 52%,#F2F6FA 70%,#B9C7D4 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+h1 .gold{background:linear-gradient(178deg,#FFE9A8 6%,var(--gold-hot) 40%,#C9820A 68%,#FFD873 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:clamp(12px,1.5vw,15px);
+  letter-spacing:.32em;text-transform:uppercase;color:#A9B6C4;margin-top:20px;
+  opacity:0;transform:translateY(14px);transition:opacity .9s .45s ease,transform .9s .45s ease}
+.cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px;
+  opacity:0;transform:translateY(16px);transition:opacity .9s .62s ease,transform .9s .62s ease}
+.btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.19em;
+  text-transform:uppercase;padding:15px 28px;border:1px solid var(--gold);background:var(--gold);
+  color:#120C02;text-decoration:none;position:relative;overflow:hidden;transition:color .35s}
+.btn::after{content:'';position:absolute;inset:0;background:#05070B;transform:translateY(101%);
+  transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.btn:hover{color:var(--gold)}
+.btn:hover::after{transform:translateY(0)}
+.btn span{position:relative;z-index:2}
+.btn.ghost{background:transparent;color:var(--chrome);border-color:rgba(232,238,244,.34)}
+.btn.ghost::after{background:var(--chrome)}
+.btn.ghost:hover{color:#05070B;border-color:var(--chrome)}
+body.dropped .gatecue,body.dropped .tagline,body.dropped .cta{opacity:1;transform:none}
+body.dropped h1 .ln>i{transform:translateY(0)}
+h1 .ln:nth-child(2)>i{transition-delay:.08s}
+.scrollcue{position:absolute;left:var(--pad);bottom:16px;z-index:5;display:flex;align-items:center;gap:11px;
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--muted);opacity:0;transition:opacity .9s 1.1s ease}
+body.dropped .scrollcue{opacity:1}
+.scrollcue b{display:block;width:54px;height:1px;background:rgba(232,238,244,.28);position:relative;overflow:hidden}
+.scrollcue b::after{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-100%);
+  animation:sweep 2.3s cubic-bezier(.22,1,.36,1) infinite}
+@keyframes sweep{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .gatecue,.tagline,.cta,.scrollcue{opacity:1;transform:none}
+  h1 .ln>i{transform:none}
+}
+</style>
+</head>
+<body>
+<section id="hero">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="nofx" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <img src="assets/rwu-logo.png" alt="RWU — Roll With Us BMX"/>
+    <nav class="navlinks">
+      <a href="#">League</a><a href="#">Racing</a><a href="#">Athletes</a>
+      <a href="#">Tracks</a><a href="#">Training</a><a href="#">Support</a>
+    </nav>
+  </header>
+
+  <div class="inner">
+    <div class="gatecue"><i></i>Riders ready — watch the gate</div>
+    <h1>
+      <span class="ln"><i class="chrome">Roll With Us</i></span>
+      <span class="ln"><i class="gold">BMX</i></span>
+    </h1>
+    <p class="tagline">Race · Train · Develop · Compete · Give Back · Roll</p>
+    <div class="cta">
+      <a href="#" class="btn"><span>Join the League</span></a>
+      <a href="#" class="btn ghost"><span>Development Team — $350</span></a>
+    </div>
+  </div>
+  <div class="scrollcue"><b></b>Scroll</div>
+</section>
+
+<script type="module">
+/* ═══ RWU cinematic hero ═══════════════════════════════════════════
+   The gate holds, the gate drops, the straight opens up. Palette and
+   the four swoosh arcs are taken from the RWU mark itself.          */
+import * as THREE from 'three';
+import { EffectComposer }  from '../curtis/assets/jsm/postprocessing/EffectComposer.js';
+import { RenderPass }      from '../curtis/assets/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from '../curtis/assets/jsm/postprocessing/UnrealBloomPass.js';
+import { ShaderPass }      from '../curtis/assets/jsm/postprocessing/ShaderPass.js';
+import { OutputPass }      from '../curtis/assets/jsm/postprocessing/OutputPass.js';
+
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DPR = () => Math.min(devicePixelRatio || 1, 2);
+const lerp = (a,b,t) => a + (b-a)*t;
+const easeInOut = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+
+const Grade = {
+  uniforms:{ tDiffuse:{value:null}, uTime:{value:0}, uRes:{value:new THREE.Vector2(1,1)},
+             uAberr:{value:0.85}, uGrain:{value:0.019}, uVig:{value:0.52} },
+  vertexShader:`varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+  fragmentShader:`precision highp float;
+    uniform sampler2D tDiffuse; uniform float uTime; uniform vec2 uRes;
+    uniform float uAberr; uniform float uGrain; uniform float uVig;
+    varying vec2 vUv;
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+    void main(){
+      vec2 d = vUv - 0.5; float r2 = dot(d,d);
+      vec2 off = d * uAberr * r2 * 0.02;
+      vec3 c;
+      c.r = texture2D(tDiffuse, vUv + off).r;
+      c.g = texture2D(tDiffuse, vUv).g;
+      c.b = texture2D(tDiffuse, vUv - off).b;
+      c *= 1.0 - uVig * smoothstep(0.06, 0.6, r2);
+      c += (hash(vUv * uRes + fract(uTime) * vec2(37.0, 17.0)) - 0.5) * uGrain;
+      gl_FragColor = vec4(max(c, 0.0), 1.0);
+    }`
+};
+
+try { build(); } catch(e){ console.warn('RWU hero skipped', e); document.body.classList.add('nogl','dropped'); }
+
+function build(){
+  const canvas = document.getElementById('gl');
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, powerPreference:'high-performance'});
+  renderer.setPixelRatio(DPR());
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.18;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x070B12, 0.021);
+  const camera = new THREE.PerspectiveCamera(56, 1, 0.1, 400);
+
+  const GOLD = 0xF0A81E, BLUE = 0x0A5BA8, BLUELITE = 0x3E9BE8, CHROME = 0xE8EEF4;
+  const LOOP = 20;
+  const roll = z => Math.sin(z * (Math.PI*2/LOOP)) * 0.5 + Math.sin(z * (Math.PI*4/LOOP) + 1.0) * 0.18;
+
+  /* sky */
+  const sky = new THREE.Mesh(new THREE.SphereGeometry(300, 32, 20), new THREE.ShaderMaterial({
+    side:THREE.BackSide, depthWrite:false, fog:false,
+    vertexShader:`varying vec3 vD; void main(){ vD = normalize(position);
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+    fragmentShader:`precision highp float; uniform vec3 uTop,uHor,uGlow; varying vec3 vD;
+      void main(){
+        float h = clamp(vD.y*0.5+0.5, 0.0, 1.0);
+        vec3 c = mix(uHor, uTop, smoothstep(0.5, 0.95, h));
+        float band = exp(-pow((h-0.5)*8.5, 2.0));
+        c += uGlow * band * mix(0.3, 1.0, smoothstep(0.2, 1.0, -vD.z));
+        gl_FragColor = vec4(c, 1.0);
+      }`,
+    uniforms:{ uTop:{value:new THREE.Color(0x03050A)}, uHor:{value:new THREE.Color(0x0A1220)},
+               uGlow:{value:new THREE.Color(0x123A63)} }
+  }));
+  scene.add(sky);
+
+  /* ground */
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(700,700), new THREE.ShaderMaterial({
+    vertexShader:`varying vec3 vW; void main(){ vec4 w = modelMatrix*vec4(position,1.0); vW = w.xyz;
+      gl_Position = projectionMatrix*viewMatrix*w; }`,
+    fragmentShader:`precision highp float; uniform float uScroll; uniform vec3 uNear,uFar; varying vec3 vW;
+      float lm(float v,float k){ float f = abs(fract(v)-0.5)*2.0; return pow(max(0.0,1.0-f), k); }
+      void main(){
+        float d = length(vW.xz);
+        float k = mix(32.0, 3.0, clamp(d/90.0, 0.0, 1.0));
+        vec2 p = vec2(vW.x*0.34, (vW.z+uScroll)*0.34);
+        float g = max(lm(p.x,k), lm(p.y,k));
+        vec2 q = vec2(vW.x*0.055, (vW.z+uScroll)*0.055);
+        float g2 = max(lm(q.x,k*0.3), lm(q.y,k*0.3));
+        float fade = (1.0-smoothstep(9.0,145.0,d))*smoothstep(1.0,8.0,d);
+        float lane = 1.0 - smoothstep(3.5, 20.0, abs(vW.x));
+        vec3 c = mix(uFar, uNear, lane);
+        float a = (g*0.8 + g2*0.5)*fade*(0.32+0.68*lane);
+        if(a < 0.004) discard;
+        gl_FragColor = vec4(c, a);
+      }`,
+    uniforms:{ uScroll:{value:0}, uNear:{value:new THREE.Color(GOLD)}, uFar:{value:new THREE.Color(0x16304F)} },
+    transparent:true, depthWrite:false
+  }));
+  ground.rotation.x = -Math.PI/2; ground.position.y = -0.9; scene.add(ground);
+
+  /* rails */
+  const track = new THREE.Group(); scene.add(track);
+  const railV = `varying vec2 vUv; varying float vD;
+    void main(){ vUv = uv; vec4 mv = modelViewMatrix*vec4(position,1.0); vD = -mv.z;
+      gl_Position = projectionMatrix*mv; }`;
+  const railF = `precision highp float; uniform float uTime; uniform vec3 uA,uB; uniform float uSpeed,uBase;
+    varying vec2 vUv; varying float vD;
+    void main(){
+      float flow = fract(vUv.x*38.0 - uTime*uSpeed);
+      float pulse = smoothstep(0.0,0.2,flow)*smoothstep(1.0,0.72,flow);
+      vec3 c = mix(uA, uB, clamp(vD/85.0, 0.0, 1.0));
+      gl_FragColor = vec4(c, (uBase + (1.0-uBase)*pulse) * exp(-pow(vD*0.0135, 2.0)));
+    }`;
+  const railCurve = x => {
+    const p=[]; for(let z=60; z>-300; z-=4) p.push(new THREE.Vector3(x, roll(z)-0.55, z));
+    return new THREE.CatmullRomCurve3(p);
+  };
+  [[-3.5,GOLD,0xB07408,0.11,0.075,0.20],[3.5,GOLD,0xB07408,0.11,0.075,0.20],
+   [-1.2,CHROME,BLUELITE,0.17,0.028,0.10],[1.2,CHROME,BLUELITE,0.17,0.028,0.10]]
+  .forEach(([x,a,b,spd,rad,base])=>{
+    track.add(new THREE.Mesh(new THREE.TubeGeometry(railCurve(x), 520, rad, 6, false),
+      new THREE.ShaderMaterial({ vertexShader:railV, fragmentShader:railF,
+        uniforms:{uTime:{value:0},uA:{value:new THREE.Color(a)},uB:{value:new THREE.Color(b)},
+                  uSpeed:{value:spd},uBase:{value:base}},
+        transparent:true, blending:THREE.AdditiveBlending, depthWrite:false, side:THREE.DoubleSide })));
+  });
+
+  /* the four swoosh arcs from the mark, sweeping overhead */
+  const swooshes = new THREE.Group(); scene.add(swooshes);
+  [[BLUE,7.2,0.5],[0xE8720C,6.4,-0.35],[0x17A44A,8.0,0.9],[0xD8232A,7.6,-0.8]].forEach(([col,r,ph],i)=>{
+    const m = new THREE.Mesh(new THREE.TorusGeometry(r, 0.045, 5, 90, Math.PI*0.62),
+      new THREE.MeshBasicMaterial({color:col, transparent:true, opacity:0.34,
+        blending:THREE.AdditiveBlending, depthWrite:false}));
+    m.position.set(0, 2.4, -16 - i*7);
+    m.rotation.x = -Math.PI/2.6; m.rotation.z = ph;
+    m.userData.ph = ph; m.userData.i = i;
+    swooshes.add(m);
+  });
+
+  /* dust */
+  const N = 1500, pos = new Float32Array(N*3), col = new Float32Array(N*3);
+  const tints = [new THREE.Color(GOLD), new THREE.Color(CHROME), new THREE.Color(BLUELITE)];
+  for(let i=0;i<N;i++){
+    pos[i*3] = (Math.random()-.5)*80; pos[i*3+1] = -1 + Math.random()*20; pos[i*3+2] = 20 - Math.random()*220;
+    const c = tints[(Math.random()*tints.length)|0];
+    col[i*3]=c.r; col[i*3+1]=c.g; col[i*3+2]=c.b;
+  }
+  const dg = new THREE.BufferGeometry();
+  dg.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  dg.setAttribute('color', new THREE.BufferAttribute(col,3));
+  const dcv = document.createElement('canvas'); dcv.width = dcv.height = 64;
+  const gx = dcv.getContext('2d'), gr = gx.createRadialGradient(32,32,0,32,32,32);
+  gr.addColorStop(0,'rgba(255,255,255,1)'); gr.addColorStop(.4,'rgba(255,255,255,.5)'); gr.addColorStop(1,'rgba(255,255,255,0)');
+  gx.fillStyle = gr; gx.fillRect(0,0,64,64);
+  const dust = new THREE.Points(dg, new THREE.PointsMaterial({size:0.17, map:new THREE.CanvasTexture(dcv),
+    vertexColors:true, transparent:true, opacity:0.8, blending:THREE.AdditiveBlending,
+    depthWrite:false, sizeAttenuation:true, fog:true}));
+  scene.add(dust);
+
+  /* THE GATE — holds, then falls forward on its bottom edge */
+  const GATE_Z = -9.4;
+  const gate = new THREE.Group(); gate.position.set(0, -0.88, GATE_Z); scene.add(gate);
+  {
+    const bar = new THREE.MeshBasicMaterial({color:GOLD});
+    const slat = new THREE.MeshBasicMaterial({color:CHROME});
+    const panel = new THREE.Group();
+    const H = 2.05, W = 3.05;
+    const add = (geo, mat, x,y,z) => { const m = new THREE.Mesh(geo, mat); m.position.set(x,y,z); panel.add(m); return m; };
+    add(new THREE.BoxGeometry(W*2, 0.13, 0.1), bar, 0, H, 0);
+    add(new THREE.BoxGeometry(W*2, 0.09, 0.1), bar, 0, H*0.52, 0);
+    for(let i=0;i<=10;i++){
+      const x = -W + (i/10)*W*2;
+      add(new THREE.BoxGeometry(0.055, H, 0.07), slat, x, H/2, 0);
+    }
+    panel.position.y = 0;
+    gate.add(panel);
+    gate.userData.panel = panel;
+    /* posts stay standing */
+    [-W-0.16, W+0.16].forEach(x=>{
+      const p = new THREE.Mesh(new THREE.BoxGeometry(0.14, H*1.16, 0.14), bar);
+      p.position.set(x, H*0.58 - 0.88, GATE_Z);
+      scene.add(p);
+    });
+  }
+
+  /* post-processing */
+  const composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene, camera));
+  const bloom = new UnrealBloomPass(new THREE.Vector2(1,1), 0.58, 0.6, 0.6);
+  composer.addPass(bloom);
+  const grade = new ShaderPass(Grade);
+  composer.addPass(grade);
+  composer.addPass(new OutputPass());
+
+  function size(){
+    const w = canvas.clientWidth || innerWidth, h = canvas.clientHeight || innerHeight;
+    const pr = innerWidth < 900 ? Math.min(DPR(), 1.5) : DPR();
+    renderer.setPixelRatio(pr); renderer.setSize(w,h,false);
+    composer.setPixelRatio(pr); composer.setSize(w,h); bloom.setSize(w,h);
+    grade.uniforms.uRes.value.set(w*pr, h*pr);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+  }
+  size(); addEventListener('resize', size);
+
+  /* timeline: 0-1.5 hold at the gate · 1.5-2.1 gate drops · then go */
+  const HOLD = reduced ? 0 : 1.5, DROP = reduced ? 0.01 : 0.6;
+  const clock = new THREE.Clock();
+  let tl = 0, dist = 0, speed = 0, mx = 0, my = 0, tmx = 0, tmy = 0, boost = 0, visible = true, announced = false;
+  addEventListener('pointermove', e=>{ tmx = e.clientX/innerWidth - .5; tmy = e.clientY/innerHeight - .5; }, {passive:true});
+  addEventListener('scroll', ()=>{ boost = Math.min(1, scrollY/Math.max(1,innerHeight)); }, {passive:true});
+  new IntersectionObserver(es=>{ visible = es[0].isIntersecting; }, {threshold:0}).observe(canvas);
+
+  renderer.setAnimationLoop(()=>{
+    const dt = Math.min(clock.getDelta(), 0.1), t = clock.elapsedTime;
+    if(!visible || document.hidden) return;
+    tl += dt;                                   /* clamped: a stalled frame cannot skip the beat */
+
+    const dropT = Math.min(1, Math.max(0, (tl - HOLD) / DROP));
+    gate.userData.panel.rotation.x = -easeInOut(dropT) * Math.PI * 0.5;
+    if(dropT >= 1 && !announced){ announced = true; document.body.classList.add('dropped'); }
+
+    const go = Math.min(1, Math.max(0, (tl - HOLD - DROP*0.55) / 2.4));
+    speed = lerp(speed, (reduced ? 1.5 : 9 + boost*20) * go, 1 - Math.exp(-dt*1.6));
+    dist += dt * speed;
+    mx = lerp(mx, tmx, 1 - Math.exp(-dt*3)); my = lerp(my, tmy, 1 - Math.exp(-dt*3));
+
+    track.position.z = dist % LOOP;
+    ground.material.uniforms.uScroll.value = -dist;
+    track.children.forEach(o => o.material.uniforms.uTime.value = t);
+
+    swooshes.children.forEach(s=>{
+      s.rotation.z = s.userData.ph + Math.sin(t*0.19 + s.userData.i) * 0.14;
+      s.position.z = -16 - s.userData.i*7 + (dist*0.5) % 40;
+      s.material.opacity = 0.20 + 0.16 * go;
+    });
+
+    camera.position.set(mx*2.2, 1.62 + boost*3.0 - my*0.7, GATE_Z + 8.2 - go*1.4 + boost*5.5);
+    camera.lookAt(mx*1.1, 1.5 + roll(dist)*0.2 - boost*1.5, -46);
+    camera.rotation.z = mx*0.04 + Math.sin(t*0.24)*0.005;
+    sky.position.copy(camera.position);
+    dust.position.z = (dist*0.35) % 40;
+
+    grade.uniforms.uTime.value = t;
+    composer.render();
+  });
+
+  setTimeout(()=> document.body.classList.add('dropped'), 4000);  /* never strand the copy */
+}
+</script>
+</body>
+</html>
