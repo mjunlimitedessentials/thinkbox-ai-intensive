@@ -34,6 +34,27 @@ https://claude.ai/code/artifact/78749bf8-e59f-40d3-ad4e-11f9dbdb0b09
   (+ mono white). It is stored as JPEG plus an inverted alpha mask, so a naive
   extraction yields a white block.
 
+## ON HOLD — the enrolment app (per Curtis)
+
+Paused until further notice. Do not resume without the client asking. What
+exists and is paid for:
+- `rwu/enroll/` — the standalone questionnaire (vanilla HTML, works, tested)
+- `/join` in the Lovable RWU project (commit df72d3b) — the same flow in React
+- JotForm "RWU BMX League — Rider Enrollment", id 262445653643057, live at
+  https://form.jotform.com/262445653643057 and able to accept submissions
+- Every enrolment CTA on the RWU site points at `/join`; `/register` redirects
+  there and the old "opening soon" page is deleted
+
+Not done, deliberately: mid-flow lead capture for drop-offs, a square
+home-screen icon (the current one is the 1241x433 logo and iOS will crop it),
+the JotForm Sign waiver path (needs a real waiver document).
+
+Two couplings to remember before publishing anything:
+- Publishing the RWU site sends every "Join" button into a live enrolment
+  flow. If the app is still on hold then, those CTAs need parking first.
+- The JotForm form is reachable by anyone with its link. If nobody is
+  monitoring submissions during the hold, disable it in JotForm.
+
 ## Open decisions
 - **Race results data source** — blocks the entire points/leaderboard system.
   USA BMX feed, admin key-in, or track submission?
