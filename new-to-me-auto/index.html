@@ -65,6 +65,24 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1}
 .stats b{display:block;font:800 30px/1 var(--disp)}
 .stats span{font-size:12px;color:#9aa0ad;letter-spacing:.1em;text-transform:uppercase}
 
+/* DRIVE-BY */
+.driveby{position:absolute;inset:0;z-index:3;pointer-events:none;perspective:1100px;perspective-origin:50% 60%;overflow:hidden}
+.driveby .road{position:absolute;left:-10%;right:-10%;top:calc(min(52vh,560px) + 300px);height:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent)}
+.driveby .rig{position:absolute;left:0;top:min(52vh,560px);width:min(46vw,620px);transform-style:preserve-3d;will-change:transform;pointer-events:auto;cursor:pointer}
+.driveby .rig img{width:100%;display:block;transform:scaleX(-1);filter:drop-shadow(0 30px 24px rgba(0,0,0,.7)) saturate(1.1) contrast(1.08);transform-origin:50% 100%}
+.driveby .shadow{position:absolute;left:8%;right:8%;bottom:-4%;height:12%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.85),transparent);transform:translateZ(-1px)}
+.driveby .beam{position:absolute;right:-42%;bottom:26%;width:60%;height:38%;background:linear-gradient(90deg,rgba(255,244,200,.55),transparent 80%);clip-path:polygon(0 42%,100% 0,100% 100%,0 58%);filter:blur(6px);opacity:.9;transform:translateZ(-2px)}
+.driveby .glow{position:absolute;left:-10%;right:-10%;bottom:-6%;height:40%;border-radius:50%;background:radial-gradient(closest-side,rgba(215,38,61,.45),transparent);filter:blur(30px);transform:translateZ(-3px)}
+.driveby .streaks{position:absolute;left:-60%;top:20%;width:70%;height:60%;transform:translateZ(-4px);opacity:0}
+.driveby .streaks i{position:absolute;left:0;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7))}
+.driveby.fast .streaks{opacity:1}
+.driveby .tag{position:absolute;left:50%;top:-38px;transform:translate(-50%,0) translateZ(20px);white-space:nowrap;padding:6px 12px;border-radius:999px;background:rgba(10,12,17,.75);border:1px solid var(--glassb);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#d8dbe4;backdrop-filter:blur(6px)}
+.hero .wrap{z-index:4}
+.driveby.front{z-index:6}
+.driveby .tag{opacity:0;transition:opacity .3s}
+.driveby.front .tag{opacity:1}
+@media(max-width:860px){.driveby .rig{width:70vw;top:60vh}.driveby .tag{display:none}}
+
 /* 3D STAGE */
 .stage{position:relative;transform-style:preserve-3d;transition:transform .12s ease-out;will-change:transform}
 .stage-card{position:relative;border-radius:34px;padding:30px;background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid var(--glassb);backdrop-filter:blur(20px);box-shadow:0 40px 90px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.2);transform:translateZ(40px)}
@@ -309,6 +327,16 @@ section.light .btn-dark:hover{background:#e6e9ef}
 <header class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="grid-floor"></div>
+  <div class="driveby" id="driveby" aria-hidden="true">
+    <div class="road"></div>
+    <div class="rig" id="rig" title="Click to replay">
+      <i class="glow"></i><i class="beam"></i>
+      <div class="streaks"><i style="top:10%;width:70%"></i><i style="top:35%;width:100%"></i><i style="top:60%;width:55%"></i><i style="top:85%;width:85%"></i></div>
+      <img src="img/chevrolet-side.png" alt="" id="rigImg">
+      <i class="shadow"></i>
+      <span class="tag">Cadillac Escalade · Coming to the lot</span>
+    </div>
+  </div>
   <div class="wrap">
     <div>
       <span class="eyebrow"><i></i> Open Today · 9am – 7pm</span>
@@ -493,6 +521,27 @@ showFeat(0,false);
 const stage=$('#stage');
 window.addEventListener('mousemove',e=>{if(innerWidth<1024)return;const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);stage.style.transform=`rotateY(${x*18}deg) rotateX(${-y*12}deg)`;});
 window.addEventListener('scroll',()=>{$('#nav').classList.toggle('scrolled',scrollY>30);const h=$('.hero-bg');h.style.transform=`translateY(${scrollY*.25}px)`});
+
+
+/* ===== DRIVE-BY (3D pass across the hero) ===== */
+(()=>{const rig=$('#rig'),wrap=$('#driveby'),hero=$('.hero');if(!rig)return;
+ let t=0,last=performance.now(),boost=0,lastY=scrollY,DUR=11000;
+ addEventListener('scroll',()=>{boost=Math.min(6,boost+Math.abs(scrollY-lastY)/40);lastY=scrollY},{passive:true});
+ rig.addEventListener('click',()=>{t=0.02});
+ function frame(now){const dt=now-last;last=now;
+  const inView=hero.getBoundingClientRect().bottom>0;
+  if(inView){t=(t+dt/DUR*(1+boost))%1;boost*=0.94;
+   const W=innerWidth,rw=rig.offsetWidth;
+   // eased path: enter left (far), sweep near the viewer mid-screen, exit right (far)
+   const p=t;const x=-rw*1.2+p*(W+rw*2.4);
+   const near=1-Math.pow(Math.abs(p-.5)*2,2);          // 0 at edges, 1 mid
+   const yaw=-28+p*56;                                  // turn from left to right
+   const scale=.55+near*.75;const z=-500+near*520;const y=near*-10;
+   rig.style.transform=`translate3d(${x}px,${y}px,${z}px) rotateY(${yaw}deg) scale(${scale})`;
+   rig.style.opacity=(p<.03||p>.97)?0:1;
+   wrap.classList.toggle('fast',boost>.6||near>.7);wrap.classList.toggle('front',near>.55);}
+  requestAnimationFrame(frame)}
+ requestAnimationFrame(frame)})();
 
 /* marquee */
 const mq=BRANDS;
