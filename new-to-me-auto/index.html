@@ -332,9 +332,9 @@ section.light .btn-dark:hover{background:#e6e9ef}
     <div class="rig" id="rig" title="Click to replay">
       <i class="glow"></i><i class="beam"></i>
       <div class="streaks"><i style="top:10%;width:70%"></i><i style="top:35%;width:100%"></i><i style="top:60%;width:55%"></i><i style="top:85%;width:85%"></i></div>
-      <img src="img/chevrolet-side.png" alt="" id="rigImg">
+      <img src="img/cadillac-side.png" alt="" id="rigImg">
       <i class="shadow"></i>
-      <span class="tag">Cadillac Escalade · Coming to the lot</span>
+      <span class="tag">Cadillac Escalade · Now on the lot</span>
     </div>
   </div>
   <div class="wrap">
@@ -470,6 +470,7 @@ section.light .btn-dark:hover{background:#e6e9ef}
 <script>
 /* ===== DATA ===== */
 const V=[
+ {id:21,year:2024,brand:'Cadillac',model:'Escalade',trim:'Sport Platinum 4WD',price:98900,miles:7400,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#0b0d12',paint:'Black Raven',img:'cadillac',origin:'American',mpg:'14/18',seats:7,badge:'Hot',feat:['6.2L V8','38" Curved OLED Display','AKG Studio Reference 36-Speaker Audio','Super Cruise Hands-Free Driving','Air Ride Adaptive Suspension']},
  {id:1,year:2023,brand:'Ford',model:'F-150',trim:'Lariat SuperCrew 4x4',price:47900,miles:18400,body:'Truck',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#1d4ed8',paint:'Velocity Blue',img:'ford',origin:'American',mpg:'20/26',seats:5,badge:'Hot',feat:['Pro Power Onboard','Tow Technology Package','SYNC 4 12" Screen','Heated & Ventilated Seats']},
  {id:2,year:2022,brand:'Ford',model:'F-150',trim:'XLT SuperCrew 4x4',price:41900,miles:28400,body:'Truck',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#1d4ed8',paint:'Velocity Blue',img:'ford',origin:'American',mpg:'20/26',seats:5,feat:['2.7L EcoBoost','Tow Package','FordPass Connect','Backup Camera']},
  {id:3,year:2023,brand:'Buick',model:'Enclave',trim:'Avenir AWD',price:44500,miles:12100,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#f8fafc',paint:'White Frost',img:'buick',origin:'American',mpg:'17/25',seats:7,badge:'New Arrival',feat:['QuietTuning Cabin','Panoramic Moonroof','Adaptive Cruise','Massaging Front Seats']},
@@ -501,7 +502,7 @@ const pay=(p,down=2000,apr=6.9,n=72)=>{const P=p-down,r=apr/1200;return Math.rou
 const carIMG=(v,angle='side')=>`<div class="shot" style="--accent:${v.color}"><i class="spot"></i><i class="glow"></i><img class="car" src="img/${v.img}-${angle}.png" alt="${v.year} ${v.brand} ${v.model} ${angle} view" loading="lazy"><img class="refl" src="img/${v.img}-${angle}.png" alt="" aria-hidden="true" loading="lazy"><i class="floor"></i></div>`;
 
 /* ===== HERO STAGE ===== */
-const FEAT=[1,16,12,6,18,8].map(id=>V.find(v=>v.id===id));
+const FEAT=[21,1,16,12,6,18].map(id=>V.find(v=>v.id===id));
 let fi=0,ft;
 function showFeat(i,anim=true){
  fi=i;const v=FEAT[i],car=$('#stCar');
@@ -527,7 +528,7 @@ window.addEventListener('scroll',()=>{$('#nav').classList.toggle('scrolled',scro
 (()=>{const rig=$('#rig'),wrap=$('#driveby'),hero=$('.hero');if(!rig)return;
  let t=0,last=performance.now(),boost=0,lastY=scrollY,DUR=11000;
  addEventListener('scroll',()=>{boost=Math.min(6,boost+Math.abs(scrollY-lastY)/40);lastY=scrollY},{passive:true});
- rig.addEventListener('click',()=>{t=0.02});
+ rig.addEventListener('click',()=>{openPanel(21)});rig.title='View the Escalade';
  function frame(now){const dt=now-last;last=now;
   const inView=hero.getBoundingClientRect().bottom>0;
   if(inView){t=(t+dt/DUR*(1+boost))%1;boost*=0.94;
