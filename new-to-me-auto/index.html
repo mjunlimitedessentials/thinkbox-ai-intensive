@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New To Me Auto | Quality Pre-Owned Vehicles</title>
-<meta name="description" content="New To Me Auto — a USA-based dealership with a hand-picked lineup of American and import pre-owned vehicles. Ford, Chevy, Buick, GMC, Dodge, BMW, Audi, Toyota, Kia and more.">
+<meta name="description" content="New To Me Auto — a USA-based dealership with a hand-picked lineup of American and import pre-owned vehicles. Ford, Chevy, Buick, Chrysler, BMW, Audi, Porsche, Toyota, Hyundai, Kia and Mercedes-Benz.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -70,11 +70,11 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.02em;line-height:1}
 .stage-card{position:relative;border-radius:34px;padding:30px;background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid var(--glassb);backdrop-filter:blur(20px);box-shadow:0 40px 90px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.2);transform:translateZ(40px)}
 .stage-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#aab0bd}
 .stage-top b{color:#fff}
-.stage-car{position:relative;height:300px;display:grid;place-items:center;margin:14px 0 8px}
-.stage-car .car{width:92%;filter:drop-shadow(0 30px 40px rgba(0,0,0,.65));transition:opacity .5s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.stage-car{position:relative;height:280px;border-radius:22px;overflow:hidden;background:#f7f8fa;display:grid;place-items:center;margin:14px 0 8px}
+.stage-car .car{width:100%;height:100%;object-fit:contain;padding:12px;border-radius:22px;background:radial-gradient(80% 100% at 50% 100%,#e6e9ef,#f7f8fa 70%);transition:opacity .5s,transform .7s cubic-bezier(.2,.8,.2,1)}
 .stage-car .car.out{opacity:0;transform:translateX(-60px) scale(.94)}
-.stage-car .glow{position:absolute;bottom:18px;width:80%;height:40px;border-radius:50%;background:var(--accent,var(--red));filter:blur(40px);opacity:.55}
-.stage-car .ring{position:absolute;inset:auto;width:120%;height:60px;bottom:14px;border-radius:50%;border:1px solid rgba(255,255,255,.15)}
+.stage-car .glow{z-index:-1;position:absolute;bottom:18px;width:80%;height:40px;border-radius:50%;background:var(--accent,var(--red));filter:blur(40px);opacity:.55}
+.stage-car .ring{display:none;position:absolute;inset:auto;width:120%;height:60px;bottom:14px;border-radius:50%;border:1px solid rgba(255,255,255,.15)}
 .stage-name h3{font-size:30px;font-weight:700}
 .stage-name span{color:#aab0bd;font-size:13px}
 .stage-price{text-align:right}
@@ -144,9 +144,9 @@ section.light{background:var(--paper);color:var(--ink)}
 .tag.green{background:#e6f8ee;color:#1e8f4d}.tag.gold{background:#fff5d6;color:#9a6b00}.tag.blue{background:#e8efff;color:#2455d6}
 .heart{position:absolute;right:14px;top:12px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#c2c7d2;transition:.2s}
 .heart:hover,.heart.on{color:var(--red)}
-.card-car{height:130px;display:grid;place-items:center;padding:10px 0}
-.card-car .car{width:88%;filter:drop-shadow(0 16px 18px rgba(0,0,0,.28));transition:transform .5s}
-.card:hover .car{transform:scale(1.05) translateX(4px)}
+.card-car{height:140px;border-radius:14px;overflow:hidden;margin:10px 0 12px;background:radial-gradient(80% 100% at 50% 100%,#e6e9ef,#f7f8fa 70%)}
+.card-car .car{width:100%;height:100%;object-fit:contain;padding:6px;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.card:hover .car{transform:scale(1.07)}
 .card h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b7180;font-weight:600}
 .card-name{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:4px 0 12px}
 .card-name b{font:700 16px var(--disp);letter-spacing:-.01em}
@@ -164,9 +164,14 @@ section.light{background:var(--paper);color:var(--ink)}
 @keyframes slide{from{transform:translateX(60px);opacity:0}}
 .sheet-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#6b7180}
 .close{width:36px;height:36px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font-size:18px}
-.sheet-stage{margin:18px 0;border-radius:20px;padding:20px;background:radial-gradient(70% 90% at 50% 100%,var(--accent,#333),#0d1017 70%);display:grid;place-items:center;height:240px;perspective:900px}
-.sheet-stage .car{width:90%;filter:drop-shadow(0 24px 30px rgba(0,0,0,.7));animation:turn 8s ease-in-out infinite}
-@keyframes turn{0%,100%{transform:rotateY(-10deg)}50%{transform:rotateY(10deg)}}
+.sheet-stage{margin:18px 0 10px;border-radius:20px;overflow:hidden;height:250px;background:radial-gradient(80% 100% at 50% 100%,#e2e6ed,#f7f8fa 70%);box-shadow:0 20px 50px rgba(15,17,22,.15)}
+.sheet-stage .car{width:100%;height:100%;object-fit:contain;padding:14px;animation:fadein .5s}
+.angles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.angles button{border-radius:12px;overflow:hidden;border:2px solid transparent;background:#eef0f4;position:relative;transition:.2s}
+.angles button.on{border-color:var(--blue)}
+.angles img{width:100%;height:64px;object-fit:contain;padding:4px}
+.angles span{position:absolute;left:8px;bottom:6px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+@keyframes fadein{from{opacity:0}}
 .sheet h3{font-size:26px;font-weight:700}
 .sheet .sub{color:#6b7180;font-size:13px;margin-top:4px}
 .sheet .price{display:flex;justify-content:space-between;align-items:baseline;margin:10px 0 16px}
@@ -270,7 +275,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     <div>
       <span class="eyebrow"><i></i> Open Today · 9am – 7pm</span>
       <h1>It's not new.<span class="accent">It's new to you.</span><span class="thin">Drive it home today.</span></h1>
-      <p>Hand-picked American icons and world-class imports, inspected, priced honestly and ready to roll. Ford, Chevy, Buick, GMC and Dodge sit beside BMW, Audi, Toyota and Kia on one lot.</p>
+      <p>Hand-picked American icons and world-class imports, inspected, priced honestly and ready to roll. Ford, Chevy, Buick and Chrysler sit beside BMW, Audi, Porsche, Toyota, Hyundai and Kia on one lot.</p>
       <div class="hero-cta">
         <a href="#inventory" class="btn btn-red">View Vehicles →</a>
         <a href="#finance" class="btn btn-ghost">Get Pre-Approved</a>
@@ -313,7 +318,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
         <h4>Filter by: <button id="resetF">Reset all ✕</button></h4>
         <div class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7180" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="Search make or model"></div>
         <div class="fgroup"><label class="t">Origin</label><div class="seg" id="origin"><button data-v="" class="on">Any</button><button data-v="American">American</button><button data-v="Import">Import</button></div></div>
-        <div class="fgroup"><label class="t">Price range</label><div class="bars" id="bars"></div><div class="range"><div>From<input id="pmin" type="number" value="15000" step="1000"></div><div>To<input id="pmax" type="number" value="80000" step="1000"></div></div></div>
+        <div class="fgroup"><label class="t">Price range</label><div class="bars" id="bars"></div><div class="range"><div>From<input id="pmin" type="number" value="15000" step="1000"></div><div>To<input id="pmax" type="number" value="140000" step="1000"></div></div></div>
         <div class="fgroup"><label class="t">Brand</label><div class="checks" id="brands"></div></div>
         <div class="fgroup"><label class="t">Body style</label><div class="checks" id="bodies"></div></div>
         <div class="fgroup"><label class="t">Transmission</label><div class="seg" id="trans"><button data-v="" class="on">Any</button><button data-v="Automatic">Automatic</button><button data-v="Manual">Manual</button></div></div>
@@ -399,26 +404,26 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <script>
 /* ===== DATA ===== */
 const V=[
- {id:1,year:2022,brand:'Ford',model:'F-150',trim:'XLT SuperCrew 4x4',price:41900,miles:28400,body:'Truck',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#c0392b',origin:'American',mpg:'20/26',seats:5,badge:'Hot',feat:['Pro Power Onboard','Tow Package','SYNC 4 12" Screen','Heated Seats']},
- {id:2,year:2021,brand:'Ford',model:'Mustang',trim:'GT Premium Fastback',price:38500,miles:19800,body:'Coupe',trans:'Manual',fuel:'Gas',drive:'RWD',color:'#1c4fd8',origin:'American',mpg:'15/24',seats:4,badge:'Rare',feat:['5.0L V8','Performance Pack','Recaro Seats','Active Exhaust']},
- {id:3,year:2023,brand:'Chevrolet',model:'Silverado 1500',trim:'RST Crew Cab',price:46200,miles:14100,body:'Truck',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#111827',origin:'American',mpg:'17/21',seats:5,badge:'New Arrival',feat:['5.3L V8','Z71 Off-Road','Multi-Flex Tailgate','Bose Audio']},
- {id:4,year:2022,brand:'Chevrolet',model:'Tahoe',trim:'LT 4WD',price:52900,miles:31000,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#e5e7eb',origin:'American',mpg:'15/20',seats:8,feat:['3rd Row Seating','Panoramic Sunroof','Power Liftgate','Wireless CarPlay']},
- {id:5,year:2022,brand:'Buick',model:'Enclave',trim:'Essence AWD',price:36800,miles:22500,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#7c2d12',origin:'American',mpg:'17/25',seats:7,feat:['QuietTuning Cabin','Leather Interior','Adaptive Cruise','Remote Start']},
- {id:6,year:2021,brand:'GMC',model:'Sierra 1500',trim:'AT4 Crew Cab',price:47500,miles:33200,body:'Truck',trans:'Automatic',fuel:'Diesel',drive:'4WD',color:'#374151',origin:'American',mpg:'22/26',seats:5,feat:['3.0L Duramax','2" Lift','Skid Plates','Head-Up Display']},
- {id:7,year:2022,brand:'Dodge',model:'Charger',trim:'R/T Scat Pack',price:43900,miles:16700,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'RWD',color:'#d7263d',origin:'American',mpg:'15/24',seats:5,badge:'Hot',feat:['6.4L HEMI V8','Brembo Brakes','Launch Control','Uconnect 8.4"']},
- {id:8,year:2020,brand:'Jeep',model:'Grand Cherokee',trim:'Limited 4x4',price:29900,miles:41200,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#0f766e',origin:'American',mpg:'19/26',seats:5,feat:['Quadra-Trac','Heated Steering','Blind Spot Monitor','Tow Group']},
- {id:9,year:2022,brand:'BMW',model:'3 Series',trim:'330i xDrive',price:37900,miles:21300,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#1e3a8a',origin:'Import',mpg:'25/34',seats:5,badge:'Certified',feat:['M Sport Package','Live Cockpit Pro','Harman Kardon','Parking Assist']},
- {id:10,year:2021,brand:'BMW',model:'X5',trim:'xDrive40i',price:49800,miles:29900,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#0b0d12',origin:'Import',mpg:'21/26',seats:5,feat:['Panoramic Roof','Vernasca Leather','Driving Assist Pro','Air Suspension']},
- {id:11,year:2022,brand:'Audi',model:'A4',trim:'Premium Plus quattro',price:35400,miles:18900,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#9ca3af',origin:'Import',mpg:'24/31',seats:5,feat:['Virtual Cockpit','S Line Exterior','B&O Sound','Matrix LED']},
- {id:12,year:2021,brand:'Audi',model:'Q5',trim:'Premium 45 TFSI',price:33900,miles:27600,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#f8fafc',origin:'Import',mpg:'23/28',seats:5,badge:'New Arrival',feat:['Panoramic Sunroof','Heated Seats','Audi Pre Sense','Power Tailgate']},
- {id:13,year:2023,brand:'Toyota',model:'Camry',trim:'XSE Hybrid',price:31200,miles:9800,body:'Sedan',trans:'Automatic',fuel:'Hybrid',drive:'FWD',color:'#b91c1c',origin:'Import',mpg:'44/47',seats:5,badge:'Certified',feat:['Toyota Safety Sense','JBL Audio','Sport-Tuned Suspension','Wireless Charging']},
- {id:14,year:2022,brand:'Toyota',model:'RAV4',trim:'XLE Premium AWD',price:30500,miles:24400,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#2563eb',origin:'Import',mpg:'27/34',seats:5,feat:['Power Moonroof','SofTex Seats','Blind Spot Monitor','Hands-Free Liftgate']},
- {id:15,year:2023,brand:'Kia',model:'Telluride',trim:'SX X-Line AWD',price:44700,miles:12300,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#166534',origin:'Import',mpg:'18/24',seats:7,badge:'Hot',feat:['Dual Sunroof','Nappa Leather','Highway Drive Assist','Harman Kardon']},
- {id:16,year:2022,brand:'Kia',model:'K5',trim:'GT-Line',price:24900,miles:20100,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'FWD',color:'#facc15',origin:'Import',mpg:'27/37',seats:5,feat:['10.25" Touchscreen','Wireless CarPlay','LED Headlights','Smart Cruise']},
- {id:17,year:2021,brand:'Honda',model:'Accord',trim:'Sport 2.0T',price:27800,miles:30200,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'FWD',color:'#e2e8f0',origin:'Import',mpg:'22/32',seats:5,feat:['Honda Sensing','19" Alloys','Dual-Zone Climate','Remote Start']},
- {id:18,year:2023,brand:'Hyundai',model:'Ioniq 5',trim:'SEL AWD',price:39900,miles:8700,body:'SUV',trans:'Automatic',fuel:'Electric',drive:'AWD',color:'#94a3b8',origin:'Import',mpg:'303 mi range',seats:5,badge:'New Arrival',feat:['800V Ultra-Fast Charging','Vehicle-to-Load','Highway Drive Assist II','Bose Audio']},
- {id:19,year:2020,brand:'Chevrolet',model:'Camaro',trim:'SS 1LE',price:39500,miles:15200,body:'Coupe',trans:'Manual',fuel:'Gas',drive:'RWD',color:'#f97316',origin:'American',mpg:'16/24',seats:4,badge:'Rare',feat:['6.2L V8','Magnetic Ride','Recaro Seats','Performance Data Recorder']},
- {id:20,year:2022,brand:'Mercedes-Benz',model:'C-Class',trim:'C300 4MATIC',price:41200,miles:17400,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#4b5563',origin:'Import',mpg:'23/33',seats:5,feat:['MBUX 11.9" Display','AMG Line','Burmester 3D','Digital Light']},
+ {id:1,year:2023,brand:'Ford',model:'F-150',trim:'Lariat SuperCrew 4x4',price:47900,miles:18400,body:'Truck',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#1d4ed8',paint:'Velocity Blue',img:'ford',origin:'American',mpg:'20/26',seats:5,badge:'Hot',feat:['Pro Power Onboard','Tow Technology Package','SYNC 4 12" Screen','Heated & Ventilated Seats']},
+ {id:2,year:2022,brand:'Ford',model:'F-150',trim:'XLT SuperCrew 4x4',price:41900,miles:28400,body:'Truck',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#1d4ed8',paint:'Velocity Blue',img:'ford',origin:'American',mpg:'20/26',seats:5,feat:['2.7L EcoBoost','Tow Package','FordPass Connect','Backup Camera']},
+ {id:3,year:2023,brand:'Buick',model:'Enclave',trim:'Avenir AWD',price:44500,miles:12100,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#f8fafc',paint:'White Frost',img:'buick',origin:'American',mpg:'17/25',seats:7,badge:'New Arrival',feat:['QuietTuning Cabin','Panoramic Moonroof','Adaptive Cruise','Massaging Front Seats']},
+ {id:4,year:2022,brand:'Buick',model:'Enclave',trim:'Essence AWD',price:36800,miles:22500,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#f8fafc',paint:'White Frost',img:'buick',origin:'American',mpg:'17/25',seats:7,feat:['Leather Interior','Remote Start','Power Liftgate','Wireless CarPlay']},
+ {id:5,year:2022,brand:'Chrysler',model:'300',trim:'Touring L RWD',price:29400,miles:24900,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'RWD',color:'#cbd5e1',paint:'Silver Mist',img:'chrysler',origin:'American',mpg:'19/30',seats:5,feat:['3.6L Pentastar V6','Nappa Leather','Uconnect 8.4"','Heated Seats']},
+ {id:6,year:2023,brand:'Chevrolet',model:'Tahoe',trim:'RST 4WD',price:58900,miles:14200,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#111827',paint:'Black',img:'chevrolet',origin:'American',mpg:'15/20',seats:7,badge:'Hot',feat:['5.3L V8','Magnetic Ride Control','Bose Performance Audio','Rear Seat Media']},
+ {id:7,year:2021,brand:'Chevrolet',model:'Tahoe',trim:'LT 4WD',price:48900,miles:33000,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#111827',paint:'Black',img:'chevrolet',origin:'American',mpg:'15/20',seats:8,feat:['3rd Row Seating','Power Liftgate','Trailering Package','Wireless CarPlay']},
+ {id:8,year:2023,brand:'Hyundai',model:'Santa Fe',trim:'Calligraphy AWD',price:39800,miles:9700,body:'SUV',trans:'Automatic',fuel:'Hybrid',drive:'AWD',color:'#b91c1c',paint:'Calypso Red',img:'hyundai',origin:'Import',mpg:'34/36',seats:5,badge:'Certified',feat:['Hybrid Powertrain','Highway Drive Assist','Nappa Leather','Head-Up Display']},
+ {id:9,year:2022,brand:'Hyundai',model:'Santa Fe',trim:'SEL AWD',price:29900,miles:26400,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#b91c1c',paint:'Calypso Red',img:'hyundai',origin:'Import',mpg:'22/25',seats:5,feat:['Smart Cruise Control','Blind-Spot Monitor','Heated Seats','Digital Key']},
+ {id:10,year:2023,brand:'Kia',model:'Sorento',trim:'X-Line SX Prestige AWD',price:41200,miles:11300,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#4b5563',paint:'Wolf Gray',img:'kia',origin:'Import',mpg:'21/28',seats:6,badge:'New Arrival',feat:['Panoramic Sunroof','Bose Audio','Highway Driving Assist','Captain\'s Chairs']},
+ {id:11,year:2022,brand:'Kia',model:'Sorento',trim:'EX AWD',price:31900,miles:23800,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#4b5563',paint:'Wolf Gray',img:'kia',origin:'Import',mpg:'21/28',seats:7,feat:['10.25" Touchscreen','Wireless CarPlay','LED Headlights','Smart Power Liftgate']},
+ {id:12,year:2024,brand:'Toyota',model:'Tacoma',trim:'TRD Off-Road 4x4',price:44900,miles:6200,body:'Truck',trans:'Automatic',fuel:'Gas',drive:'4WD',color:'#2563eb',paint:'Blue Crush',img:'toyota',origin:'Import',mpg:'20/24',seats:5,badge:'Hot',feat:['i-FORCE 2.4L Turbo','Multi-Terrain Select','Crawl Control','14" Touchscreen']},
+ {id:13,year:2022,brand:'Toyota',model:'Tacoma',trim:'SR5 Double Cab 4x4',price:36400,miles:21800,body:'Truck',trans:'Manual',fuel:'Gas',drive:'4WD',color:'#2563eb',paint:'Blue Crush',img:'toyota',origin:'Import',mpg:'17/21',seats:5,badge:'Rare',feat:['6-Speed Manual','Toyota Safety Sense','Tow Package','Bed Liner']},
+ {id:14,year:2023,brand:'Audi',model:'A4',trim:'Premium Plus 45 quattro',price:39900,miles:12900,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#f8fafc',paint:'Glacier White',img:'audi',origin:'Import',mpg:'24/31',seats:5,badge:'Certified',feat:['Virtual Cockpit Plus','S Line Exterior','Bang & Olufsen 3D','Matrix LED Headlights']},
+ {id:15,year:2021,brand:'Audi',model:'A4',trim:'Premium 40 quattro',price:31400,miles:27600,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#f8fafc',paint:'Glacier White',img:'audi',origin:'Import',mpg:'25/32',seats:5,feat:['Audi Pre Sense','Heated Seats','Apple CarPlay','Sunroof']},
+ {id:16,year:2023,brand:'BMW',model:'X5',trim:'xDrive40i M Sport',price:61900,miles:10800,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#374151',paint:'Dravit Grey',img:'bmw',origin:'Import',mpg:'23/25',seats:5,badge:'Certified',feat:['M Sport Package','Curved Display','Harman Kardon','Driving Assistant Pro']},
+ {id:17,year:2021,brand:'BMW',model:'X5',trim:'xDrive40i',price:49800,miles:29900,body:'SUV',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#374151',paint:'Dravit Grey',img:'bmw',origin:'Import',mpg:'21/26',seats:5,feat:['Panoramic Roof','Vernasca Leather','Parking Assist Plus','Air Suspension']},
+ {id:18,year:2022,brand:'Porsche',model:'911',trim:'Carrera S Coupe',price:129900,miles:8400,body:'Coupe',trans:'Manual',fuel:'Gas',drive:'RWD',color:'#dc2626',paint:'Guards Red',img:'porsche',origin:'Import',mpg:'18/24',seats:4,badge:'Rare',feat:['3.0L Twin-Turbo Flat-6','7-Speed Manual','Sport Chrono Package','PASM Sport Suspension']},
+ {id:19,year:2023,brand:'Mercedes-Benz',model:'C-Class',trim:'C300 4MATIC',price:46200,miles:11400,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'AWD',color:'#111827',paint:'Obsidian Black',img:'mercedes',origin:'Import',mpg:'23/33',seats:5,badge:'New Arrival',feat:['MBUX 11.9" Display','AMG Line','Burmester 3D Sound','Digital Light']},
+ {id:20,year:2021,brand:'Mercedes-Benz',model:'C-Class',trim:'C300 Sedan',price:35900,miles:28700,body:'Sedan',trans:'Automatic',fuel:'Gas',drive:'RWD',color:'#111827',paint:'Obsidian Black',img:'mercedes',origin:'Import',mpg:'23/35',seats:5,feat:['Premium Package','Blind Spot Assist','Panorama Roof','Heated Front Seats']},
 ];
 const BRANDS=[...new Set(V.map(v=>v.brand))];
 const BODIES=['Sedan','SUV','Truck','Coupe'];
@@ -426,41 +431,22 @@ const $=s=>document.querySelector(s);
 const money=n=>'$'+n.toLocaleString();
 const pay=(p,down=2000,apr=6.9,n=72)=>{const P=p-down,r=apr/1200;return Math.round(P*r/(1-Math.pow(1+r,-n)))};
 
-/* ===== SVG CARS ===== */
-const SHAPES={
- Sedan:{body:'M20 110 L40 80 L110 74 L150 44 L250 44 L300 74 L370 84 L385 110 Q385 125 370 125 L30 125 Q20 125 20 110 Z',win:'M118 75 L154 52 L196 52 L196 75 Z M204 75 L204 52 L246 52 L290 75 Z'},
- SUV:{body:'M20 110 L34 68 L100 64 L128 32 L282 32 L332 64 L376 78 L385 110 Q385 125 370 125 L30 125 Q20 125 20 110 Z',win:'M108 65 L136 40 L196 40 L196 65 Z M204 65 L204 40 L276 40 L322 65 Z'},
- Truck:{body:'M20 110 L26 68 L196 68 L196 60 L210 32 L300 32 L342 68 L380 80 L385 110 Q385 125 370 125 L30 125 Q20 125 20 110 Z',win:'M214 40 L296 40 L326 68 L214 68 Z'},
- Coupe:{body:'M20 112 L46 86 L118 78 L166 46 L244 46 L312 80 L376 90 L385 112 Q385 125 370 125 L30 125 Q20 125 20 112 Z',win:'M130 79 L172 54 L236 54 L302 79 Z'}
-};
-function carSVG(v,uid){
- const s=SHAPES[v.body],g='g'+uid+v.id;
- return `<svg class="car" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
- <defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".35" stop-color="${v.color}"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></linearGradient>
- <linearGradient id="${g}w" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe6ff"/><stop offset="1" stop-color="#1b2a44"/></linearGradient></defs>
- <ellipse cx="200" cy="142" rx="180" ry="9" fill="#000" opacity=".35"/>
- <path d="${s.body}" fill="${v.color}"/><path d="${s.body}" fill="url(#${g})" opacity=".9"/>
- <path d="${s.win}" fill="url(#${g}w)"/>
- <path d="M24 108 L380 104" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
- <rect x="22" y="94" width="14" height="10" rx="3" fill="#fff7c2"/><rect x="366" y="96" width="14" height="10" rx="3" fill="#ff5a5a"/>
- <g><circle cx="98" cy="122" r="24" fill="#0b0d12"/><circle cx="98" cy="122" r="14" fill="#8b93a3"/><circle cx="98" cy="122" r="6" fill="#d1d5db"/></g>
- <g><circle cx="304" cy="122" r="24" fill="#0b0d12"/><circle cx="304" cy="122" r="14" fill="#8b93a3"/><circle cx="304" cy="122" r="6" fill="#d1d5db"/></g>
- </svg>`;
-}
+/* ===== VEHICLE PHOTOS ===== */
+const carIMG=(v,angle='side')=>`<img class="car" src="img/${v.img}-${angle}.jpg" alt="${v.year} ${v.brand} ${v.model} ${angle} view" loading="lazy">`;
 
 /* ===== HERO STAGE ===== */
-const FEAT=[1,9,15,7,12,3].map(id=>V.find(v=>v.id===id));
+const FEAT=[1,16,12,6,18,8].map(id=>V.find(v=>v.id===id));
 let fi=0,ft;
 function showFeat(i,anim=true){
  fi=i;const v=FEAT[i],car=$('#stCar');
- const set=()=>{car.innerHTML=carSVG(v,'h');car.classList.remove('out');
+ const set=()=>{car.innerHTML=carIMG(v,'front');car.classList.remove('out');
   $('#stName').textContent=`${v.year} ${v.brand} ${v.model}`;$('#stSub').textContent=v.trim;
   $('#stPrice').textContent=money(v.price);$('#stPay').textContent=`est. ${money(pay(v.price))}/mo`;
   $('#stOrigin').textContent=v.origin;$('#stIdx').textContent=String(i+1).padStart(2,'0')+' / '+String(FEAT.length).padStart(2,'0');
   $('#stGlow').style.background=v.color;
   $('#stChips').innerHTML=[v.body,v.trans,v.fuel,v.drive,v.miles.toLocaleString()+' mi'].map(c=>`<span class="chip">${c}</span>`).join('');
   document.querySelectorAll('#stDots button').forEach((b,j)=>b.classList.toggle('on',j===i));};
- if(anim){car.querySelector('svg')?.classList.add('out');setTimeout(set,350)}else set();
+ if(anim){car.querySelector('img')?.classList.add('out');setTimeout(set,350)}else set();
  clearTimeout(ft);ft=setTimeout(()=>showFeat((fi+1)%FEAT.length),5500);
 }
 $('#stDots').innerHTML=FEAT.map((_,i)=>`<button aria-label="Slide ${i+1}"></button>`).join('');
@@ -471,13 +457,13 @@ window.addEventListener('mousemove',e=>{if(innerWidth<1024)return;const x=(e.cli
 window.addEventListener('scroll',()=>{$('#nav').classList.toggle('scrolled',scrollY>30);const h=$('.hero-bg');h.style.transform=`translateY(${scrollY*.25}px)`});
 
 /* marquee */
-const mq=[...BRANDS,'Jeep','GMC'].filter((b,i,a)=>a.indexOf(b)===i);
+const mq=BRANDS;
 $('#marquee').innerHTML=[...mq,...mq].map(b=>`<span>${b}</span>`).join('');
 $('#statCount').textContent=V.length;$('#yr').textContent=new Date().getFullYear();
 $('#vehicleSel').innerHTML+=V.map(v=>`<option>${v.year} ${v.brand} ${v.model} ${v.trim}</option>`).join('');
 
 /* ===== FILTERS ===== */
-const F={q:'',origin:'',brands:new Set(),bodies:new Set(),trans:'',fuel:'',pmin:15000,pmax:80000,sort:'featured'};
+const F={q:'',origin:'',brands:new Set(),bodies:new Set(),trans:'',fuel:'',pmin:15000,pmax:140000,sort:'featured'};
 const fav=new Set();
 $('#brands').innerHTML=BRANDS.map(b=>`<label><input type="checkbox" value="${b}">${b}</label>`).join('');
 $('#bodies').innerHTML=BODIES.map(b=>`<label><input type="checkbox" value="${b}">${b}</label>`).join('');
@@ -489,8 +475,8 @@ $('#bodies').onchange=e=>{e.target.checked?F.bodies.add(e.target.value):F.bodies
 $('#q').oninput=e=>{F.q=e.target.value.toLowerCase();render()};
 $('#pmin').oninput=e=>{F.pmin=+e.target.value||0;render()};$('#pmax').oninput=e=>{F.pmax=+e.target.value||1e9;render()};
 $('#sort').onchange=e=>{F.sort=e.target.value;render()};
-$('#resetF').onclick=()=>{F.q='';F.origin='';F.trans='';F.fuel='';F.brands.clear();F.bodies.clear();F.pmin=15000;F.pmax=80000;
- $('#q').value='';$('#pmin').value=15000;$('#pmax').value=80000;document.querySelectorAll('.checks input').forEach(c=>c.checked=false);
+$('#resetF').onclick=()=>{F.q='';F.origin='';F.trans='';F.fuel='';F.brands.clear();F.bodies.clear();F.pmin=15000;F.pmax=140000;
+ $('#q').value='';$('#pmin').value=15000;$('#pmax').value=140000;document.querySelectorAll('.checks input').forEach(c=>c.checked=false);
  ['origin','trans','fuel'].forEach(id=>document.querySelectorAll('#'+id+' button').forEach((b,i)=>b.classList.toggle('on',i===0)));render()};
 
 function filtered(){
@@ -502,11 +488,11 @@ function filtered(){
 }
 function render(){
  const r=filtered();$('#count').textContent=r.length;
- const bars=[...document.querySelectorAll('#bars i')];bars.forEach((b,i)=>{const p=15000+i*(65000/27);b.classList.toggle('hot',p>=F.pmin&&p<=F.pmax)});
+ const bars=[...document.querySelectorAll('#bars i')];bars.forEach((b,i)=>{const p=15000+i*(125000/27);b.classList.toggle('hot',p>=F.pmin&&p<=F.pmax)});
  $('#cards').innerHTML=r.length?r.map(v=>`<article class="card" data-id="${v.id}">
   <div class="card-top"><span class="tag gold">★ 4.${(v.id%3)+7}</span>${v.badge?`<span class="tag ${v.badge==='Certified'?'blue':'green'}">${v.badge}</span>`:'<span class="tag green">Available now</span>'}<span>${v.miles.toLocaleString()} mi</span></div>
   <button class="heart ${fav.has(v.id)?'on':''}" data-fav="${v.id}" aria-label="Save"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.6-9.3-9A5.3 5.3 0 0 1 12 6.4 5.3 5.3 0 0 1 21.3 12C19 16.4 12 21 12 21z"/></svg></button>
-  <div class="card-car">${carSVG(v,'c')}</div>
+  <div class="card-car">${carIMG(v,'side')}</div>
   <h5>${v.brand} · ${v.origin}</h5>
   <div class="card-name"><b>${v.year} ${v.model} ${v.trim}</b><span>${money(v.price)}<br><small>${money(pay(v.price))}/mo</small></span></div>
   <div class="specs"><span>🚘 ${v.body}</span><span>⚙️ ${v.trans}</span><span>⛽ ${v.fuel}</span><span>👥 ${v.seats}</span></div>
@@ -520,8 +506,9 @@ render();
 function openPanel(id){
  const v=V.find(x=>x.id===id);
  $('#sheet').innerHTML=`<div class="sheet-top"><span>Stock #NTM-${1000+v.id} · ${v.origin}</span><button class="close" id="closeP">✕</button></div>
- <div class="sheet-stage" style="--accent:${v.color}">${carSVG(v,'p')}</div>
- <h3>${v.year} ${v.brand} ${v.model}</h3><div class="sub">${v.trim} · ${v.miles.toLocaleString()} miles · ${v.color==='#f8fafc'||v.color==='#e5e7eb'||v.color==='#e2e8f0'?'White/Silver':'Exterior as shown'}</div>
+ <div class="sheet-stage" style="--accent:${v.color}"><img class="car" id="pImg" src="img/${v.img}-front.jpg" alt="${v.brand} ${v.model}"></div>
+ <div class="angles">${['front','side','rear'].map((a,i)=>`<button class="${i?'':'on'}" data-a="${a}"><img src="img/${v.img}-${a}.jpg" alt="${a}"><span>${a}</span></button>`).join('')}</div>
+ <h3>${v.year} ${v.brand} ${v.model}</h3><div class="sub">${v.trim} · ${v.miles.toLocaleString()} miles · ${v.paint}</div>
  <div class="price"><b>${money(v.price)}</b><span style="color:#6b7180;font-size:13px">or <b id="pmo" style="color:var(--ink)">${money(pay(v.price))}</b>/mo</span></div>
  <div class="tabs"><button class="on" data-t="0">Payment</button><button data-t="1">Specifications</button><button data-t="2">Features</button></div>
  <div class="tab on"><div class="calc"><div class="row">
@@ -530,12 +517,12 @@ function openPanel(id){
    <div><label>Term</label><select id="cTerm"><option>48</option><option>60</option><option selected>72</option><option>84</option></select></div></div>
    <div class="out"><span>Estimated monthly<br>payment</span><b id="cOut">${money(pay(v.price))}</b></div></div>
    <p style="font-size:12px;color:#6b7180;margin-top:10px">Estimate only. Excludes tax, title and fees. Final terms depend on lender approval.</p></div>
- <div class="tab"><div class="kv">${[['Body',v.body],['Transmission',v.trans],['Fuel',v.fuel],['Drivetrain',v.drive],['MPG / Range',v.mpg],['Seats',v.seats],['Year',v.year],['Mileage',v.miles.toLocaleString()+' mi']].map(([k,x])=>`<div><small>${k}</small><b>${x}</b></div>`).join('')}</div></div>
+ <div class="tab"><div class="kv">${[['Exterior',v.paint],['Body',v.body],['Transmission',v.trans],['Fuel',v.fuel],['Drivetrain',v.drive],['MPG / Range',v.mpg],['Seats',v.seats],['Year',v.year],['Mileage',v.miles.toLocaleString()+' mi']].map(([k,x])=>`<div><small>${k}</small><b>${x}</b></div>`).join('')}</div></div>
  <div class="tab"><ul class="feat-list">${v.feat.map(f=>`<li>${f}</li>`).join('')}<li>Free vehicle history report</li><li>150-point inspection passed</li></ul></div>
  <div class="cta"><a href="#contact" class="btn btn-red" id="tdBtn">Schedule Test Drive</a><a href="#finance" class="btn btn-dark" id="finBtn">Get Pre-Approved</a></div>`;
  $('#panel').classList.add('open');document.body.style.overflow='hidden';
  document.querySelectorAll('.card').forEach(c=>c.classList.toggle('sel',+c.dataset.id===id));
- $('#closeP').onclick=closePanel;$('#tdBtn').onclick=()=>{closePanel();$('#vehicleSel').value=`${v.year} ${v.brand} ${v.model} ${v.trim}`};$('#finBtn').onclick=closePanel;
+ $('#closeP').onclick=closePanel;document.querySelectorAll('.angles button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.angles button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('#pImg').src=`img/${v.img}-${b.dataset.a}.jpg`});$('#tdBtn').onclick=()=>{closePanel();$('#vehicleSel').value=`${v.year} ${v.brand} ${v.model} ${v.trim}`};$('#finBtn').onclick=closePanel;
  document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===+b.dataset.t))});
  const recalc=()=>{const m=pay(v.price,+$('#cDown').value||0,+$('#cApr').value||0.01,+$('#cTerm').value);$('#cOut').textContent=money(m);$('#pmo').textContent=money(m)};
  ['cDown','cApr','cTerm'].forEach(i=>$('#'+i).oninput=recalc);
