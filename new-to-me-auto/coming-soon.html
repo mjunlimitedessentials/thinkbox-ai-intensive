@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New To Me Auto | Coming Soon</title>
+<meta name="description" content="New To Me Auto is coming soon. A USA-based dealership with hand-picked American and import pre-owned vehicles. Get notified when we open.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c11;--red:#d7263d;--red2:#ff4d5e;--blue:#2f6bff;--glass:rgba(255,255,255,.06);--glassb:rgba(255,255,255,.12);--font:'Inter',system-ui,sans-serif;--disp:'Inter Tight',var(--font)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--font);background:var(--bg);color:#fff;overflow:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{display:block;max-width:100%}
+
+.page{position:relative;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;grid-template-columns:minmax(0,1fr);width:100%;perspective:1400px;overflow:hidden}
+.bg{position:absolute;inset:0;background:
+  radial-gradient(900px 500px at 15% 10%,rgba(215,38,61,.30),transparent 60%),
+  radial-gradient(800px 600px at 90% 90%,rgba(47,107,255,.22),transparent 60%),
+  linear-gradient(180deg,#0a0c11 0%,#0f121a 100%)}
+.floor{position:absolute;left:-20%;right:-20%;bottom:-8%;height:60%;
+  background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:80px 80px;transform:perspective(600px) rotateX(64deg);transform-origin:top;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 40%,transparent);mask-image:linear-gradient(180deg,transparent,#000 40%,transparent);animation:floor 12s linear infinite;pointer-events:none}
+@keyframes floor{to{background-position:0 80px,0 0}}
+.spot{position:absolute;left:50%;top:-10%;width:900px;height:900px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,255,255,.10),transparent 70%);pointer-events:none}
+
+.top{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:24px min(6vw,60px)}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.02em}
+.logo .mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--red),#7a0f1f);display:grid;place-items:center;box-shadow:0 8px 24px rgba(215,38,61,.45)}
+.logo small{display:block;font:500 10px/1 var(--font);letter-spacing:.24em;color:#aab;text-transform:uppercase;margin-top:4px}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid var(--glassb);background:var(--glass);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#d8dbe4;backdrop-filter:blur(8px)}
+.pill i{width:8px;height:8px;border-radius:50%;background:#ffb020;box-shadow:0 0 12px #ffb020;animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.35}}
+
+.main{position:relative;z-index:4;display:grid;place-items:center;text-align:center;padding:20px min(6vw,60px) 0}
+.main .inner{max-width:900px;transform-style:preserve-3d}
+.kicker{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--red2);font-weight:600;margin-bottom:22px}
+h1{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.92;font-size:clamp(64px,13vw,170px);text-transform:uppercase}
+h1 .a{display:block;color:#fff}
+h1 .b{display:block;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.55);background:linear-gradient(90deg,var(--red2),#ff8a94);-webkit-background-clip:text;background-clip:text;animation:fill 2.2s ease .6s forwards}
+@keyframes fill{to{color:transparent;-webkit-text-stroke:0;-webkit-text-fill-color:transparent;text-shadow:0 0 40px rgba(255,77,94,.35)}}
+h1 .b::selection{color:#fff}
+.lead{margin:26px auto 0;max-width:560px;color:#b6bac6;font-size:clamp(15px,1.6vw,18px);line-height:1.65}
+
+.notify{margin:34px auto 0;max-width:520px;display:flex;gap:8px;padding:8px;border-radius:999px;border:1px solid var(--glassb);background:rgba(255,255,255,.05);backdrop-filter:blur(14px);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.notify input{flex:1;min-width:0;border:0;background:none;outline:0;font:500 15px var(--font);color:#fff;padding:0 18px}
+.notify input::placeholder{color:#8a91a0}
+.notify button{padding:14px 22px;border-radius:999px;background:var(--red);color:#fff;font-weight:600;font-size:14px;white-space:nowrap;box-shadow:0 10px 30px rgba(215,38,61,.4);transition:.25s}
+.notify button:hover{background:var(--red2);transform:translateY(-1px)}
+.ok{display:none;margin:16px auto 0;padding:12px 18px;border-radius:999px;background:rgba(55,214,122,.12);border:1px solid rgba(55,214,122,.35);color:#7ee2a5;font-size:14px;max-width:520px}
+
+.count{display:flex;justify-content:center;gap:clamp(18px,4vw,44px);margin-top:36px}
+.count div{text-align:center}
+.count b{display:block;font:800 clamp(28px,4vw,44px)/1 var(--disp)}
+.count span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8a91a0}
+
+/* DRIVE-BY */
+.driveby{position:absolute;inset:0;z-index:3;pointer-events:none;perspective:1100px;perspective-origin:50% 60%;overflow:hidden}
+.driveby.front{z-index:6}
+.rig{position:absolute;left:0;top:min(54vh,600px);width:min(46vw,640px);transform-style:preserve-3d;will-change:transform}
+.rig img{width:100%;transform:scaleX(-1);filter:drop-shadow(0 30px 24px rgba(0,0,0,.75)) saturate(1.1) contrast(1.08)}
+.rig .shadow{position:absolute;left:8%;right:8%;bottom:-4%;height:12%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.85),transparent);transform:translateZ(-1px)}
+.rig .beam{position:absolute;right:-42%;bottom:26%;width:60%;height:38%;background:linear-gradient(90deg,rgba(255,244,200,.55),transparent 80%);clip-path:polygon(0 42%,100% 0,100% 100%,0 58%);filter:blur(6px);transform:translateZ(-2px)}
+.rig .glow{position:absolute;left:-10%;right:-10%;bottom:-6%;height:40%;border-radius:50%;background:radial-gradient(closest-side,rgba(215,38,61,.5),transparent);filter:blur(30px);transform:translateZ(-3px)}
+.rig .streaks{position:absolute;left:-60%;top:20%;width:70%;height:60%;opacity:0;transition:opacity .3s}
+.rig .streaks i{position:absolute;left:0;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7))}
+.driveby.fast .streaks{opacity:1}
+
+/* BRANDS */
+.page>*{min-width:0}
+.brands{position:relative;max-width:100%;z-index:5;border-top:1px solid var(--glassb);background:rgba(13,16,23,.7);backdrop-filter:blur(10px);padding:18px 0;overflow:hidden}
+.marquee{display:flex;gap:56px;width:max-content;animation:mq 30s linear infinite}
+.marquee span{font:700 16px var(--disp);letter-spacing:.2em;text-transform:uppercase;color:#7d8494;white-space:nowrap}
+.marquee span::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:18px;vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
+.foot{position:relative;z-index:5;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px min(6vw,60px) 20px;font-size:12px;color:#8a91a0}
+
+@media(max-width:860px){
+  body{overflow:auto}
+  .top{padding:18px 5vw}.pill span{display:none}
+  .rig{width:80vw;top:auto;bottom:9%;opacity:.5}.driveby.front{z-index:3}.rig .streaks{display:none}
+  .notify{flex-direction:column;border-radius:22px}.notify input{padding:12px 14px}.notify button{width:100%}
+  .count{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){.driveby,.floor,.marquee{display:none}h1 .b{animation:none;color:var(--red2);-webkit-text-stroke:0}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="bg"></div><div class="spot"></div><div class="floor"></div>
+
+  <header class="top">
+    <a href="#" class="logo">
+      <span class="mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1.5-6h9L18 17M3 17v-4l3-2 2-5h8l2 5 3 2v4"/><circle cx="7.5" cy="17" r="1.6" fill="#fff"/><circle cx="16.5" cy="17" r="1.6" fill="#fff"/></svg></span>
+      <span>New To Me Auto<small>Pre-Owned · USA</small></span>
+    </a>
+    <span class="pill"><i></i><span>Opening</span> Soon</span>
+  </header>
+
+  <div class="driveby" id="driveby" aria-hidden="true">
+    <div class="rig" id="rig">
+      <i class="glow"></i><i class="beam"></i>
+      <div class="streaks"><i style="top:10%;width:70%"></i><i style="top:35%;width:100%"></i><i style="top:60%;width:55%"></i><i style="top:85%;width:85%"></i></div>
+      <img src="img/cadillac-side.png" alt="">
+      <i class="shadow"></i>
+    </div>
+  </div>
+
+  <main class="main">
+    <div class="inner" id="inner">
+      <div class="kicker">New To Me Auto · Curtis Jackson</div>
+      <h1><span class="a">Coming</span><span class="b">Soon</span></h1>
+      <p class="lead">It's not new. It's new to you. A hand-picked lot of American icons and world-class imports is on its way. Drop your email and be first on the lot when the doors open.</p>
+      <form class="notify" id="notify">
+        <input type="email" placeholder="Enter your email" required aria-label="Email address">
+        <button type="submit">Notify Me →</button>
+      </form>
+      <div class="ok" id="ok">You're on the list. We'll let you know the moment we open.</div>
+      <div class="count" id="count">
+        <div><b id="d">00</b><span>Days</span></div>
+        <div><b id="h">00</b><span>Hours</span></div>
+        <div><b id="m">00</b><span>Minutes</span></div>
+        <div><b id="s">00</b><span>Seconds</span></div>
+      </div>
+    </div>
+  </main>
+
+  <div>
+    <div class="brands"><div class="marquee" id="marquee"></div></div>
+    <footer class="foot"><span>© <span id="yr"></span> New To Me Auto. All rights reserved.</span><span>Ford · Chevrolet · Cadillac · Buick · Chrysler · BMW · Audi · Porsche · Toyota · Hyundai · Kia · Mercedes-Benz</span></footer>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+$('#yr').textContent=new Date().getFullYear();
+const brands=['Cadillac','Ford','Chevrolet','Buick','Chrysler','BMW','Audi','Porsche','Toyota','Hyundai','Kia','Mercedes-Benz'];
+$('#marquee').innerHTML=[...brands,...brands].map(b=>`<span>${b}</span>`).join('');
+
+/* Launch countdown: set your opening date here */
+const OPEN=new Date('2026-11-01T09:00:00');
+function tick(){const t=Math.max(0,OPEN-Date.now());const p=n=>String(n).padStart(2,'0');
+ $('#d').textContent=p(Math.floor(t/864e5));$('#h').textContent=p(Math.floor(t/36e5)%24);$('#m').textContent=p(Math.floor(t/6e4)%60);$('#s').textContent=p(Math.floor(t/1e3)%60)}
+tick();setInterval(tick,1000);
+
+$('#notify').onsubmit=e=>{e.preventDefault();e.target.reset();$('#ok').style.display='block'};
+
+/* Mouse parallax on the headline block */
+addEventListener('mousemove',e=>{if(innerWidth<1024)return;const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;
+ $('#inner').style.transform=`rotateY(${x*8}deg) rotateX(${-y*6}deg)`});
+
+/* 3D drive-by */
+(()=>{const rig=$('#rig'),wrap=$('#driveby');let t=0,last=performance.now(),DUR=11000;
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ function frame(now){const dt=now-last;last=now;t=(t+dt/DUR)%1;
+  const W=innerWidth,rw=rig.offsetWidth,p=t,x=-rw*1.2+p*(W+rw*2.4);
+  const near=1-Math.pow(Math.abs(p-.5)*2,2),yaw=-28+p*56,scale=.55+near*.75,z=-500+near*520;
+  rig.style.transform=`translate3d(${x}px,${near*-10}px,${z}px) rotateY(${yaw}deg) scale(${scale})`;
+  rig.style.opacity=(p<.03||p>.97)?0:1;
+  wrap.classList.toggle('fast',near>.7);
+  requestAnimationFrame(frame)}
+ requestAnimationFrame(frame)})();
+</script>
+</body>
+</html>
