@@ -5,16 +5,16 @@
   const SEQ = { a: 'orbit', b: 'drive', c: 'detail' };
   const PALETTE = ['#2f7bff', '#7c3aed', '#ff2fb3', '#ff6a1a', '#22d3ee', '#10b981'];
   const VERSIONS = [
-    { id: 'aurora', name: 'Aurora', tone: 'Electric blue · Deep violet', c: '#4f6bff', img: 'v-aurora.jpg' },
-    { id: 'ember', name: 'Ember', tone: 'Molten orange · Liquid magenta', c: '#ff4d6d', img: 'v-ember.jpg', video: 'v-ember.mp4' },
-    { id: 'lagoon', name: 'Lagoon', tone: 'Neon cyan · Emerald', c: '#18c8b8', img: 'v-lagoon.jpg' },
-    { id: 'chrome', name: 'Chrome', tone: 'Liquid silver · Prism', c: '#c9ced8', img: 'v-chrome.jpg' },
+    { id: 'mercedes', name: 'Mercedes-Benz S-Class', tone: 'Obsidian black · Executive sedan', c: '#4f6bff', img: 'v-mercedes.jpg' },
+    { id: 'cadillac', name: 'Cadillac Escalade', tone: 'Black Raven · Full-size luxury SUV', c: '#ff4d6d', img: 'v-cadillac.jpg' },
+    { id: 'buick', name: 'Buick Enclave', tone: 'White Frost · Three-row SUV', c: '#18c8b8', img: 'v-buick.jpg' },
+    { id: 'toyota', name: 'Toyota Tacoma TRD', tone: 'Blue Crush · Off-road pickup', c: '#2f7bff', img: 'v-toyota.jpg' },
   ];
 
   const HTML = `
   <div class="ax-loader" id="axLoader">
     <div>
-      <div class="mark">AURAX · Concept One</div>
+      <div class="mark">AURAX · The Collection</div>
       <div class="word chrome" data-text="Coming Soon">Coming Soon</div>
       <div class="bar"><i id="axBar"></i></div>
       <div class="pct" id="axPct">Loading 0%</div>
@@ -25,7 +25,7 @@
   <div class="ax-progress" id="axProgress"></div>
 
   <nav class="ax-nav">
-    <a href="#top" class="logo">Aurax<small>Concept One</small></a>
+    <a href="#top" class="logo">Aurax<small>The Collection</small></a>
     <div class="menu"><a href="#design">Design</a><a href="#performance">Performance</a><a href="#technology">Technology</a><a href="#spectrum">Spectrum</a><a href="#specs">Specs</a></div>
     <a href="#reserve" class="pill">Coming Soon</a>
   </nav>
@@ -37,14 +37,14 @@
       <div class="veil"></div>
       <div class="copy">
         <div>
-          <div class="k rv">A new luxury performance marque</div>
+          <div class="k rv">A new luxury automotive experience</div>
           <h1 class="chrome" data-text="Coming Soon">Coming Soon</h1>
-          <div class="sub rv">The first hypercar finished in living iridescent light. Scroll to walk around it.</div>
+          <div class="sub rv">Four icons of luxury and performance, presented like never before. Scroll to walk around them.</div>
         </div>
         <div class="scroll">Scroll</div>
       </div>
-      <div class="cap l" data-at="0.55"><div class="k">01 · Silhouette</div><h2>One unbroken line.</h2><p>From the light blade to the diffuser, the body is a single sculpted surface with no seams to interrupt the light.</p></div>
-      <div class="cap r" data-at="0.85"><div class="k">02 · Presence</div><h2>Recognisable at a glance.</h2><p>Paint that shifts through six colours as you move. No badge required.</p></div>
+      <div class="cap l" data-at="0.55"><div class="k">01 · Presence</div><h2>The S-Class standard.</h2><p>Long, low and unmistakable. Every surface of the flagship sedan is shaped to carry light from nose to tail.</p></div>
+      <div class="cap r" data-at="0.85"><div class="k">02 · Detail</div><h2>Recognisable at a glance.</h2><p>Chrome grille, multi-spoke wheels and a light signature you know before you read the badge.</p></div>
     </div>
   </section>
 
@@ -54,14 +54,14 @@
       <div class="ax-split">
         <div>
           <div class="ax-k rv">Design philosophy</div>
-          <h2 class="ax-h rv">Sculpted by <span class="irid">light</span>, not lines.</h2>
+          <h2 class="ax-h rv">Curated by <span class="irid">taste</span>, not volume.</h2>
         </div>
-        <p class="ax-p rv">We began with a single question: what if a car's colour was never fixed? Concept One answers with a multi-layer interference paint that refracts electric blue, deep violet, molten orange, neon cyan, emerald and liquid magenta depending on where you stand and where the light falls. Every angle is a new car.</p>
+        <p class="ax-p rv">We began with a single question: what if a dealership felt like a launch event? The Collection brings together a hand-picked set of luxury sedans, flagship SUVs and performance trucks, each inspected, detailed and lit like the day it left the studio. Every angle is a new reason to look twice.</p>
       </div>
       <div class="ax-grid">
-        <div class="glass rv"><div class="n">01</div><h3>Interference paint</h3><p>Seven nano-layers of ceramic pigment refract light like a soap film, so the hue changes with the viewing angle rather than the paint.</p></div>
-        <div class="glass rv"><div class="n">02</div><h3>Light blade</h3><p>A single full-width LED blade replaces headlamps, grille and badge. It is the only straight line on the car.</p></div>
-        <div class="glass rv"><div class="n">03</div><h3>Monocoque cabin</h3><p>Carbon tub, glass canopy, two seats. Nothing that does not make the car faster or more beautiful.</p></div>
+        <div class="glass rv"><div class="n">01</div><h3>Flagship sedans</h3><p>Mercedes-Benz S-Class and its peers: the quietest, most complete cars on the road, chosen for provenance and condition.</p></div>
+        <div class="glass rv"><div class="n">02</div><h3>Luxury SUVs</h3><p>Cadillac Escalade and Buick Enclave: three rows, real presence, and cabins built for the long way round.</p></div>
+        <div class="glass rv"><div class="n">03</div><h3>Performance trucks</h3><p>Toyota Tacoma TRD: trail-rated hardware with the reliability to make it a daily.</p></div>
       </div>
     </div>
   </section>
@@ -71,13 +71,13 @@
     <div class="stick">
       <canvas class="seq"></canvas>
       <div class="veil"></div>
-      <div class="cap tl" data-at="0.12"><div class="k">Aerodynamics &amp; performance</div><h2>Shaped by the wind.</h2><p>Active aero surfaces, a full underbody diffuser and channelled air through the doors deliver downforce without a single wing.</p></div>
+      <div class="cap tl" data-at="0.12"><div class="k">Capability &amp; performance</div><h2>Built for the road ahead.</h2><p>Tacoma TRD Off-Road: locking rear differential, multi-terrain select and crawl control, wrapped in a body that still looks right on a wet coastal highway.</p></div>
       <div class="hud r" data-at="0.45">
-        <div><b>1,240</b><span>Horsepower</span></div>
-        <div><b>1.9<small>s</small></b><span>0–60 mph</span></div>
-        <div><b>0.21</b><span>Drag coefficient</span></div>
+        <div><b>278</b><span>Horsepower</span></div>
+        <div><b>317</b><span>lb-ft torque</span></div>
+        <div><b>6,500</b><span>lb towing</span></div>
       </div>
-      <div class="cap l" data-at="0.8"><div class="k">Quad-motor torque vectoring</div><h2>Every wheel thinks.</h2><p>Four independent motors adjust torque 1,000 times per second so the car rotates around you, not the other way round.</p></div>
+      <div class="cap l" data-at="0.8"><div class="k">Four-wheel drive</div><h2>Every wheel pulls.</h2><p>Part-time 4WD with an electronically controlled transfer case keeps the truck planted whether the surface is rain, gravel or sand.</p></div>
     </div>
   </section>
 
@@ -86,11 +86,11 @@
     <div class="ax-wrap">
       <div class="ax-k rv">Intelligent technology</div>
       <h2 class="ax-h rv">Quietly <span class="irid">brilliant</span>.</h2>
-      <p class="ax-p rv">The technology stays out of sight until it matters. A cabin with no screens to distract you, an assistant that understands intent, and a battery that charges in the time it takes to order coffee.</p>
+      <p class="ax-p rv">The technology stays out of sight until it matters. Driver assistance that watches the road with you, cabins that pair with your phone in seconds, and service histories you can read before you visit.</p>
       <div class="ax-grid">
-        <div class="glass rv"><div class="big irid">12 min</div><h3>10 to 80 percent</h3><p>Immersion-cooled 900 V architecture accepts 500 kW charging without throttling.</p></div>
-        <div class="glass rv"><div class="big irid">0 screens</div><h3>Canopy display</h3><p>Navigation and telemetry are projected onto the glass canopy itself, aligned to the road ahead.</p></div>
-        <div class="glass rv"><div class="big irid">Level 3</div><h3>Aurax Pilot</h3><p>Lidar, radar and 14 cameras let the car drive the boring parts so you can drive the rest.</p></div>
+        <div class="glass rv"><div class="big irid">150-pt</div><h3>Inspection</h3><p>Every vehicle in the Collection passes a 150-point mechanical and cosmetic check before it is photographed.</p></div>
+        <div class="glass rv"><div class="big irid">MBUX</div><h3>Cabins that listen</h3><p>Voice assistants, head-up displays and wireless CarPlay across the lineup.</p></div>
+        <div class="glass rv"><div class="big irid">Level 2</div><h3>Driver assistance</h3><p>Adaptive cruise, lane centering and Super Cruise where fitted, so the long miles take care of themselves.</p></div>
       </div>
     </div>
   </section>
@@ -100,13 +100,13 @@
     <div class="stick">
       <canvas class="seq"></canvas>
       <div class="veil"></div>
-      <div class="cap tr" data-at="0.1"><div class="k">Driving experience</div><h2>Closer than you have ever sat to the road.</h2><p>A seating position 30 cm lower than a conventional supercar, steering with 2.1 turns lock to lock, and a chassis that weighs less than a tonne.</p></div>
+      <div class="cap tr" data-at="0.1"><div class="k">Driving experience</div><h2>Quiet, commanding, effortless.</h2><p>Buick Enclave: QuietTuning cabin, seven seats and an adaptive ride tuned for the long weekend rather than the lap time.</p></div>
       <div class="hud" data-at="0.5">
-        <div><b>3</b><span>Drive modes: Glide · Pulse · Storm</span></div>
-        <div><b>420</b><span>Miles of range</span></div>
-        <div><b>217</b><span>mph limited</span></div>
+        <div><b>7</b><span>Seats · three rows</span></div>
+        <div><b>328</b><span>Horsepower</span></div>
+        <div><b>5,000</b><span>lb towing</span></div>
       </div>
-      <div class="cap r" data-at="0.82"><div class="k">The reveal</div><h2>Every arrival is an event.</h2><p>Energy particles trace the airflow along the body as the paint shifts through the spectrum under any light.</p></div>
+      <div class="cap r" data-at="0.82"><div class="k">The reveal</div><h2>Every arrival is an event.</h2><p>Pearl white under an aurora sky. This is what showing up looks like.</p></div>
     </div>
   </section>
 
@@ -114,13 +114,13 @@
   <section class="ax-sec ax-spec" id="spectrum">
     <div class="ax-wrap">
       <div class="ax-split">
-        <div><div class="ax-k rv">Colour spectrum</div><h2 class="ax-h rv">Four <span class="irid">living</span> finishes.</h2></div>
-        <p class="ax-p rv">Each finish is tuned to a different band of the spectrum. Hover or tap a swatch to change the light.</p>
+        <div><div class="ax-k rv">Colour spectrum</div><h2 class="ax-h rv">Four <span class="irid">icons</span>, one lot.</h2></div>
+        <p class="ax-p rv">Each vehicle photographed under its own light. Hover or tap a name to switch.</p>
       </div>
       <div class="spec-stage rv" id="specStage">
         ${VERSIONS.map((v, i) => v.video
           ? `<video src="${ASSET}/img/${v.video}" poster="${ASSET}/img/${v.img}" class="${i ? '' : 'on'}" data-v="${v.id}" muted loop playsinline preload="none"></video>`
-          : `<img src="${ASSET}/img/${v.img}" alt="Aurax Concept One in ${v.name}" class="${i ? '' : 'on'}" data-v="${v.id}" loading="lazy">`).join('')}
+          : `<img src="${ASSET}/img/${v.img}" alt="${v.name}" class="${i ? '' : 'on'}" data-v="${v.id}" loading="lazy">`).join('')}
         <div class="glow" id="specGlow" style="--c:${VERSIONS[0].c}"></div>
         <div class="lbl"><b id="specName">${VERSIONS[0].name}</b><span id="specTone">${VERSIONS[0].tone}</span></div>
       </div>
@@ -134,18 +134,18 @@
   <section class="ax-sec" id="specs">
     <div class="ax-wrap">
       <div class="ax-k rv">Specifications</div>
-      <h2 class="ax-h rv">Concept One.</h2>
+      <h2 class="ax-h rv">The Collection.</h2>
       <div class="specs">
-        <div class="rv"><span>Powertrain</span><b>Quad-motor electric</b></div>
-        <div class="rv"><span>Output</span><b>1,240 hp · 1,800 Nm</b></div>
-        <div class="rv"><span>0–60 mph</span><b>1.9 s</b></div>
-        <div class="rv"><span>Top speed</span><b>217 mph</b></div>
-        <div class="rv"><span>Battery</span><b>120 kWh · 900 V</b></div>
-        <div class="rv"><span>Range</span><b>420 mi</b></div>
-        <div class="rv"><span>Weight</span><b>1,890 lb dry</b></div>
-        <div class="rv"><span>Drag coefficient</span><b>0.21</b></div>
-        <div class="rv"><span>Chassis</span><b>Carbon monocoque</b></div>
-        <div class="rv"><span>Production</span><b>99 units</b></div>
+        <div class="rv"><span>Mercedes-Benz S-Class</span><b>3.0L I6 turbo · 429 hp</b></div>
+        <div class="rv"><span>Cadillac Escalade</span><b>6.2L V8 · 420 hp</b></div>
+        <div class="rv"><span>Buick Enclave</span><b>2.5L turbo · 328 hp</b></div>
+        <div class="rv"><span>Toyota Tacoma TRD</span><b>2.4L turbo · 278 hp</b></div>
+        <div class="rv"><span>Drivetrain</span><b>AWD · 4WD across the lineup</b></div>
+        <div class="rv"><span>Seating</span><b>5 to 7</b></div>
+        <div class="rv"><span>Inspection</span><b>150-point certified</b></div>
+        <div class="rv"><span>History</span><b>Full report included</b></div>
+        <div class="rv"><span>Warranty</span><b>Available on every vehicle</b></div>
+        <div class="rv"><span>Availability</span><b>Opening soon</b></div>
       </div>
     </div>
   </section>
@@ -155,12 +155,12 @@
     <div class="ax-wrap">
       <div class="ax-k rv">Be first</div>
       <h2 class="ax-h chrome rv" data-text="Coming Soon">Coming Soon</h2>
-      <p class="ax-p rv" style="margin-left:auto;margin-right:auto">Ninety-nine cars. Register now for early allocation and the world premiere invitation.</p>
+      <p class="ax-p rv" style="margin-left:auto;margin-right:auto">Register now for first access to the Collection and an invitation to the opening.</p>
       <form id="axForm" class="rv"><input type="email" placeholder="Your email" required aria-label="Email"><button type="submit">Register interest</button></form>
       <div class="ok" id="axOk">You are on the list. Watch your inbox.</div>
     </div>
   </section>
-  <footer class="ax-foot"><span>© ${new Date().getFullYear()} Aurax Automotive</span><span>Concept One · Coming Soon</span></footer>`;
+  <footer class="ax-foot"><span>© ${new Date().getFullYear()} Aurax Automotive</span><span>The Collection · Coming Soon</span></footer>`;
 
   const root = document.getElementById('aurax-root');
   root.innerHTML = HTML;
