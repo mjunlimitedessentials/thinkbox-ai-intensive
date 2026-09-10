@@ -6,7 +6,7 @@
   const PALETTE = ['#2f7bff', '#7c3aed', '#ff2fb3', '#ff6a1a', '#22d3ee', '#10b981'];
   const VERSIONS = [
     { id: 'aurora', name: 'Aurora', tone: 'Electric blue · Deep violet', c: '#4f6bff', img: 'v-aurora.jpg' },
-    { id: 'ember', name: 'Ember', tone: 'Molten orange · Liquid magenta', c: '#ff4d6d', img: 'v-ember.jpg' },
+    { id: 'ember', name: 'Ember', tone: 'Molten orange · Liquid magenta', c: '#ff4d6d', img: 'v-ember.jpg', video: 'v-ember.mp4' },
     { id: 'lagoon', name: 'Lagoon', tone: 'Neon cyan · Emerald', c: '#18c8b8', img: 'v-lagoon.jpg' },
     { id: 'chrome', name: 'Chrome', tone: 'Liquid silver · Prism', c: '#c9ced8', img: 'v-chrome.jpg' },
   ];
@@ -118,7 +118,9 @@
         <p class="ax-p rv">Each finish is tuned to a different band of the spectrum. Hover or tap a swatch to change the light.</p>
       </div>
       <div class="spec-stage rv" id="specStage">
-        ${VERSIONS.map((v, i) => `<img src="${ASSET}/img/${v.img}" alt="Aurax Concept One in ${v.name}" class="${i ? '' : 'on'}" data-v="${v.id}" loading="lazy">`).join('')}
+        ${VERSIONS.map((v, i) => v.video
+          ? `<video src="${ASSET}/img/${v.video}" poster="${ASSET}/img/${v.img}" class="${i ? '' : 'on'}" data-v="${v.id}" muted loop playsinline preload="none"></video>`
+          : `<img src="${ASSET}/img/${v.img}" alt="Aurax Concept One in ${v.name}" class="${i ? '' : 'on'}" data-v="${v.id}" loading="lazy">`).join('')}
         <div class="glow" id="specGlow" style="--c:${VERSIONS[0].c}"></div>
         <div class="lbl"><b id="specName">${VERSIONS[0].name}</b><span id="specTone">${VERSIONS[0].tone}</span></div>
       </div>
@@ -296,10 +298,10 @@
 
   /* ---------- spectrum ---------- */
   function initSpectrum() {
-    const imgs = $$('#specStage img'), sw = $$('#swatches .swatch');
+    const imgs = $$('#specStage img, #specStage video'), sw = $$('#swatches .swatch');
     const set = (id) => {
       const v = VERSIONS.find((x) => x.id === id);
-      imgs.forEach((im) => im.classList.toggle('on', im.dataset.v === id));
+      imgs.forEach((im) => { const on = im.dataset.v === id; im.classList.toggle('on', on); if (im.tagName === 'VIDEO') { if (on) { im.play().catch(() => {}); } else { im.pause(); } } });
       sw.forEach((b) => b.classList.toggle('on', b.dataset.v === id));
       $('#specName').textContent = v.name; $('#specTone').textContent = v.tone; $('#specGlow').style.setProperty('--c', v.c);
     };
