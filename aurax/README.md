@@ -1,6 +1,6 @@
-# Aurax Concept One — scroll-cinematic experience
+# New To Me Auto — The Collection (scroll-cinematic experience)
 
-Source for the Aurax "Coming Soon" launch site.
+Source for the New To Me Auto "Coming Soon" cinematic launch site. Vehicles: Mercedes-Benz S-Class, Cadillac Escalade, Buick Enclave, Toyota Tacoma TRD.
 
 - `index.html`, `site.css`, `site.js` — standalone static version. Expects
   `frames/orbit|drive|detail/0001..0096.jpg` and `img/v-*.jpg|mp4` beside it.

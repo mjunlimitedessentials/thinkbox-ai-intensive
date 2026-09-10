@@ -41,7 +41,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.03em;line-height:.95}
 
 /* ---------- nav ---------- */
 .ax-nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:22px min(5vw,56px);mix-blend-mode:difference}
-.ax-nav .logo{font:800 20px/1 var(--disp);letter-spacing:.32em;text-transform:uppercase}
+.ax-nav .logo{font:800 18px/1 var(--disp);letter-spacing:.22em;text-transform:uppercase}
 .ax-nav .logo small{display:block;font:500 9px/1 var(--font);letter-spacing:.34em;color:#c9ccd6;margin-top:6px}
 .ax-nav .menu{display:flex;gap:28px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#d0d4dc}
 .ax-nav .menu a{opacity:.7;transition:.3s}.ax-nav .menu a:hover{opacity:1}

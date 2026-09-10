@@ -1,4 +1,4 @@
-/* AURAX — scroll-cinematic experience. Requires gsap + ScrollTrigger + THREE on window. */
+/* NEW TO ME AUTO — scroll-cinematic experience. Requires gsap + ScrollTrigger + THREE on window. */
 (function () {
   const ASSET = window.AURAX_ASSET_BASE || '/aurax';
   const FRAMES = window.AURAX_FRAMES || 96;
@@ -14,7 +14,7 @@
   const HTML = `
   <div class="ax-loader" id="axLoader">
     <div>
-      <div class="mark">AURAX · The Collection</div>
+      <div class="mark">New To Me Auto · The Collection</div>
       <div class="word chrome" data-text="Coming Soon">Coming Soon</div>
       <div class="bar"><i id="axBar"></i></div>
       <div class="pct" id="axPct">Loading 0%</div>
@@ -25,7 +25,7 @@
   <div class="ax-progress" id="axProgress"></div>
 
   <nav class="ax-nav">
-    <a href="#top" class="logo">Aurax<small>The Collection</small></a>
+    <a href="#top" class="logo">New To Me<small>Auto · The Collection</small></a>
     <div class="menu"><a href="#design">Design</a><a href="#performance">Performance</a><a href="#technology">Technology</a><a href="#spectrum">Spectrum</a><a href="#specs">Specs</a></div>
     <a href="#reserve" class="pill">Coming Soon</a>
   </nav>
@@ -37,7 +37,7 @@
       <div class="veil"></div>
       <div class="copy">
         <div>
-          <div class="k rv">A new luxury automotive experience</div>
+          <div class="k rv">New To Me Auto · A new luxury automotive experience</div>
           <h1 class="chrome" data-text="Coming Soon">Coming Soon</h1>
           <div class="sub rv">Four icons of luxury and performance, presented like never before. Scroll to walk around them.</div>
         </div>
@@ -160,7 +160,7 @@
       <div class="ok" id="axOk">You are on the list. Watch your inbox.</div>
     </div>
   </section>
-  <footer class="ax-foot"><span>© ${new Date().getFullYear()} Aurax Automotive</span><span>The Collection · Coming Soon</span></footer>`;
+  <footer class="ax-foot"><span>© ${new Date().getFullYear()} New To Me Auto</span><span>The Collection · Coming Soon</span></footer>`;
 
   const root = document.getElementById('aurax-root');
   root.innerHTML = HTML;
