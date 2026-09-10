@@ -17,3 +17,5 @@ Pipeline used to produce the assets (Higgsfield):
 4. Ember finish animated into a 5 s loop for the colour spectrum stage.
 
 Live deployment: https://aurax-concept.higgsfield.app
+
+Footer carries Terms of Service and Privacy Policy small print, opened in an in-page reader (text lives in `site.js` under `LEGAL`; update the contact emails and governing state before launch).
