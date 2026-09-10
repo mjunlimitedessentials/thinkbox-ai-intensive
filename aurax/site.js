@@ -337,7 +337,7 @@
       <h4>5. Intellectual property</h4><p>Site design, text, imagery and video are owned by or licensed to New To Me Auto. Vehicle names and logos are trademarks of their respective manufacturers and are used for identification only. New To Me Auto is an independent dealership and is not affiliated with any manufacturer.</p>
       <h4>6. Acceptable use</h4><p>You agree not to misuse the site, attempt to gain unauthorised access, scrape content, or interfere with its operation.</p>
       <h4>7. Disclaimer and limitation of liability</h4><p>The site is provided "as is" without warranties of any kind. To the fullest extent permitted by law, New To Me Auto is not liable for any indirect, incidental or consequential loss arising from use of the site.</p>
-      <h4>8. Changes and governing law</h4><p>We may update these terms at any time by posting a revised version here. These terms are governed by the laws of the State in which New To Me Auto is registered, and disputes are subject to the courts of that State.</p>
+      <h4>8. Changes and governing law</h4><p>We may update these terms at any time by posting a revised version here. These terms are governed by the laws of the State of Connecticut, and any dispute is subject to the exclusive jurisdiction of the state and federal courts located in Connecticut.</p>
       <h4>9. Contact</h4><p>Questions about these terms: <a href="mailto:info@newtomeauto.com">info@newtomeauto.com</a>.</p>` },
     privacy: { title: 'Privacy Policy', html: `
       <p><em>Last updated: ${new Date().toLocaleDateString('en-US',{year:'numeric',month:'long'})}</em></p>
