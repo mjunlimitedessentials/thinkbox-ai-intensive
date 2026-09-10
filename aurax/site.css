@@ -122,6 +122,18 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-.03em;line-height:.95}
 .ax-cta .ok{display:none;margin-top:16px;color:#7ee2a5;font-size:14px}
 .ax-foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:30px min(5vw,56px);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);border-top:1px solid rgba(255,255,255,.08);position:relative;z-index:2}
 
+.ax-foot .legal a{color:#c9ccd6;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.3)}
+.ax-foot .legal a:hover{color:#fff}
+.ax-modal{position:fixed;inset:0;z-index:200;display:none}
+.ax-modal.open{display:block}
+.ax-modal .bg{position:absolute;inset:0;background:rgba(5,6,9,.7);backdrop-filter:blur(6px)}
+.ax-modal .box{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(720px,92vw);max-height:84vh;overflow:auto;padding:36px;border-radius:24px;background:#0d1017;border:1px solid var(--glassb);box-shadow:0 40px 100px rgba(0,0,0,.7)}
+.ax-modal .x{position:absolute;right:16px;top:16px;width:36px;height:36px;border-radius:50%;background:var(--glass);border:1px solid var(--glassb)}
+.ax-modal h3{font-size:26px;font-weight:700;margin-bottom:6px}
+.ax-modal h4{font:600 13px/1 var(--font);letter-spacing:.12em;text-transform:uppercase;color:#c9ccd6;margin:22px 0 8px}
+.ax-modal p{font-size:14px;line-height:1.7;color:#b8bdc8}
+.ax-modal a{color:#fff;text-decoration:underline}
+.ax-modal em{color:var(--mute);font-size:12px}
 .rv{opacity:0;transform:translateY(40px)}
 
 @media(max-width:900px){

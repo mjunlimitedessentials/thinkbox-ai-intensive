@@ -160,7 +160,18 @@
       <div class="ok" id="axOk">You are on the list. Watch your inbox.</div>
     </div>
   </section>
-  <footer class="ax-foot"><span>© ${new Date().getFullYear()} New To Me Auto</span><span>The Collection · Coming Soon</span></footer>`;
+  <footer class="ax-foot">
+    <span>© ${new Date().getFullYear()} New To Me Auto. All rights reserved.</span>
+    <span class="legal"><a href="#" data-legal="terms">Terms of Service</a> · <a href="#" data-legal="privacy">Privacy Policy</a> · The Collection · Coming Soon</span>
+  </footer>
+  <div class="ax-modal" id="axModal" role="dialog" aria-modal="true" aria-labelledby="axModalTitle">
+    <div class="bg" data-close></div>
+    <div class="box">
+      <button class="x" data-close aria-label="Close">✕</button>
+      <h3 id="axModalTitle"></h3>
+      <div class="body" id="axModalBody"></div>
+    </div>
+  </div>`;
 
   const root = document.getElementById('aurax-root');
   root.innerHTML = HTML;
@@ -314,6 +325,37 @@
     const g = e.target.closest && e.target.closest('.glass'); if (!g) return;
     const r = g.getBoundingClientRect(); g.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%'); g.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
   }, { passive: true });
+
+
+  const LEGAL = {
+    terms: { title: 'Terms of Service', html: `
+      <p><em>Last updated: ${new Date().toLocaleDateString('en-US',{year:'numeric',month:'long'})}</em></p>
+      <h4>1. Acceptance</h4><p>By accessing this website you agree to these Terms of Service and to our Privacy Policy. If you do not agree, please do not use the site.</p>
+      <h4>2. Pre-launch information</h4><p>New To Me Auto is preparing to open. Vehicles, specifications, pricing and availability shown on this site are illustrative previews and may change or be withdrawn without notice. Nothing on this site is an offer to sell a specific vehicle.</p>
+      <h4>3. Registration of interest</h4><p>Submitting your email registers your interest only. It does not reserve a vehicle, create a contract, or guarantee allocation, pricing or an invitation.</p>
+      <h4>4. Vehicle information</h4><p>Manufacturer specifications, performance figures and imagery are provided for general information. Confirm details of any specific vehicle with New To Me Auto before purchase. All vehicles are sold subject to a written purchase agreement.</p>
+      <h4>5. Intellectual property</h4><p>Site design, text, imagery and video are owned by or licensed to New To Me Auto. Vehicle names and logos are trademarks of their respective manufacturers and are used for identification only. New To Me Auto is an independent dealership and is not affiliated with any manufacturer.</p>
+      <h4>6. Acceptable use</h4><p>You agree not to misuse the site, attempt to gain unauthorised access, scrape content, or interfere with its operation.</p>
+      <h4>7. Disclaimer and limitation of liability</h4><p>The site is provided "as is" without warranties of any kind. To the fullest extent permitted by law, New To Me Auto is not liable for any indirect, incidental or consequential loss arising from use of the site.</p>
+      <h4>8. Changes and governing law</h4><p>We may update these terms at any time by posting a revised version here. These terms are governed by the laws of the State in which New To Me Auto is registered, and disputes are subject to the courts of that State.</p>
+      <h4>9. Contact</h4><p>Questions about these terms: <a href="mailto:info@newtomeauto.com">info@newtomeauto.com</a>.</p>` },
+    privacy: { title: 'Privacy Policy', html: `
+      <p><em>Last updated: ${new Date().toLocaleDateString('en-US',{year:'numeric',month:'long'})}</em></p>
+      <h4>1. What we collect</h4><p>When you register interest we collect your email address and the date and time of your submission. We also collect standard technical information such as IP address, browser type and pages viewed, through server logs and, where enabled, analytics cookies.</p>
+      <h4>2. How we use it</h4><p>To notify you when New To Me Auto opens, send you an invitation and occasional updates about the Collection, respond to enquiries, and keep the site secure and working properly. We do not sell your personal information.</p>
+      <h4>3. Sharing</h4><p>We share data only with service providers that help us run the site and send email (for example hosting and email delivery providers), and where required by law. Providers may process data only on our instructions.</p>
+      <h4>4. Cookies</h4><p>The site uses essential cookies and local storage for basic functionality. Optional analytics cookies, if used, can be blocked in your browser settings without affecting the site.</p>
+      <h4>5. Retention</h4><p>We keep registration details until you unsubscribe or ask us to delete them, and technical logs for no longer than 12 months.</p>
+      <h4>6. Your choices and rights</h4><p>Every email includes an unsubscribe link. You may ask us to access, correct or delete your information at any time by emailing <a href="mailto:privacy@newtomeauto.com">privacy@newtomeauto.com</a>. California residents have additional rights under the CCPA, including the right to know and delete, which we honour on request.</p>
+      <h4>7. Children</h4><p>The site is not directed at children under 16 and we do not knowingly collect their information.</p>
+      <h4>8. Security</h4><p>We use reasonable technical and organisational measures to protect your data, including encrypted connections (HTTPS).</p>
+      <h4>9. Changes and contact</h4><p>We will post any changes to this policy here. Contact New To Me Auto at <a href="mailto:privacy@newtomeauto.com">privacy@newtomeauto.com</a>.</p>` },
+  };
+  const modal = $('#axModal');
+  const openLegal = (k) => { const l = LEGAL[k]; if (!l) return; $('#axModalTitle').textContent = l.title; $('#axModalBody').innerHTML = l.html; modal.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const closeLegal = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
+  document.addEventListener('click', (e) => { const a = e.target.closest('[data-legal]'); if (a) { e.preventDefault(); openLegal(a.dataset.legal); return; } if (e.target.closest('[data-close]')) closeLegal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLegal(); });
 
   /* ---------- form ---------- */
   $('#axForm').addEventListener('submit', (e) => { e.preventDefault(); e.target.reset(); $('#axOk').style.display = 'block'; });
