@@ -26,7 +26,7 @@
 
   <nav class="ax-nav">
     <a href="#top" class="logo">New To Me<small>Auto · The Collection</small></a>
-    <div class="menu"><a href="#design">Design</a><a href="#performance">Performance</a><a href="#technology">Technology</a><a href="#spectrum">Spectrum</a><a href="#specs">Specs</a></div>
+    <div class="menu"><a href="#design">About</a><a href="#performance">Sourcing</a><a href="#technology">Process</a><a href="#spectrum">Collection</a><a href="#partners">Partners</a></div>
     <a href="#reserve" class="pill">Coming Soon</a>
   </nav>
 
@@ -37,14 +37,14 @@
       <div class="veil"></div>
       <div class="copy">
         <div>
-          <div class="k rv">New To Me Auto · A new luxury automotive experience</div>
+          <div class="k rv">New To Me Auto · Your connection to the wholesale automotive market</div>
           <h1 class="chrome" data-text="Coming Soon">Coming Soon</h1>
-          <div class="sub rv">Four icons of luxury and performance, presented like never before. Scroll to walk around them.</div>
+          <div class="sub rv">From dealer auctions to your driveway. Scroll to see what access looks like.</div>
         </div>
         <div class="scroll">Scroll</div>
       </div>
-      <div class="cap l" data-at="0.55"><div class="k">01 · Presence</div><h2>The S-Class standard.</h2><p>Long, low and unmistakable. Every surface of the flagship sedan is shaped to carry light from nose to tail.</p></div>
-      <div class="cap r" data-at="0.85"><div class="k">02 · Detail</div><h2>Recognisable at a glance.</h2><p>Chrome grille, multi-spoke wheels and a light signature you know before you read the badge.</p></div>
+      <div class="cap l" data-at="0.55"><div class="k">01 · Access</div><h2>Inventory that never reaches the lot.</h2><p>We source from dealer trades, off-lease returns, excess and aging inventory, fleet opportunities and licensed wholesale auctions.</p></div>
+      <div class="cap r" data-at="0.85"><div class="k">02 · Opportunity</div><h2>The right vehicle, the right channel.</h2><p>Every car in the Collection was identified through the wholesale marketplace at the right opportunity.</p></div>
     </div>
   </section>
 
@@ -53,15 +53,15 @@
     <div class="ax-wrap">
       <div class="ax-split">
         <div>
-          <div class="ax-k rv">Design philosophy</div>
-          <h2 class="ax-h rv">Curated by <span class="irid">taste</span>, not volume.</h2>
+          <div class="ax-k rv">Who we are</div>
+          <h2 class="ax-h rv">From dealer auctions to <span class="irid">your driveway</span>.</h2>
         </div>
-        <p class="ax-p rv">We began with a single question: what if a dealership felt like a launch event? The Collection brings together a hand-picked set of luxury sedans, flagship SUVs and performance trucks, each inspected, detailed and lit like the day it left the studio. Every angle is a new reason to look twice.</p>
+        <p class="ax-p rv">New To Me Auto is a wholesale automotive dealership focused on connecting quality pre-owned vehicles with buyers through a trusted network of established dealerships, licensed dealer-auction channels and automotive industry partners. Rather than relying on traditional retail inventory alone, we strategically source vehicles across the wholesale marketplace, which gives us access to inventory that may never reach a traditional dealership lot.</p>
       </div>
       <div class="ax-grid">
-        <div class="glass rv"><div class="n">01</div><h3>Flagship sedans</h3><p>Mercedes-Benz S-Class and its peers: the quietest, most complete cars on the road, chosen for provenance and condition.</p></div>
-        <div class="glass rv"><div class="n">02</div><h3>Luxury SUVs</h3><p>Cadillac Escalade and Buick Enclave: three rows, real presence, and cabins built for the long way round.</p></div>
-        <div class="glass rv"><div class="n">03</div><h3>Performance trucks</h3><p>Toyota Tacoma TRD: trail-rated hardware with the reliability to make it a daily.</p></div>
+        <div class="glass rv"><div class="n">01 · Access</div><h3>A broader marketplace</h3><p>New- and used-car dealerships, dealer trades, excess and aging inventory, off-lease vehicles, fleet opportunities and licensed wholesale automotive auctions.</p></div>
+        <div class="glass rv"><div class="n">02 · Relationships</div><h3>A trusted network</h3><p>Established dealerships, auction resources and automotive professionals we work with every week. The wholesale industry moves through relationships, market knowledge, timing and access.</p></div>
+        <div class="glass rv"><div class="n">03 · Opportunity</div><h3>The right vehicle, through the right channel</h3><p>Whether it begins with a dealership trade, an off-lease return, excess dealer inventory or a vehicle crossing the auction block, the goal is the same.</p></div>
       </div>
     </div>
   </section>
@@ -71,26 +71,26 @@
     <div class="stick">
       <canvas class="seq"></canvas>
       <div class="veil"></div>
-      <div class="cap tl" data-at="0.12"><div class="k">Capability &amp; performance</div><h2>Built for the road ahead.</h2><p>Tacoma TRD Off-Road: locking rear differential, multi-terrain select and crawl control, wrapped in a body that still looks right on a wet coastal highway.</p></div>
+      <div class="cap tl" data-at="0.12"><div class="k">Sourcing in motion</div><h2>More than buying and selling.</h2><p>Behind every vehicle is a sourcing process. Our team navigates the wholesale marketplace to identify available inventory, evaluate purchasing opportunities and build relationships with dealers and industry partners.</p></div>
       <div class="hud r" data-at="0.45">
-        <div><b>278</b><span>Horsepower</span></div>
-        <div><b>317</b><span>lb-ft torque</span></div>
-        <div><b>6,500</b><span>lb towing</span></div>
+        <div><b>Trades</b><span>Dealer to dealer</span></div>
+        <div><b>Off-lease</b><span>Returns &amp; fleet</span></div>
+        <div><b>Auctions</b><span>Licensed wholesale</span></div>
       </div>
-      <div class="cap l" data-at="0.8"><div class="k">Four-wheel drive</div><h2>Every wheel pulls.</h2><p>Part-time 4WD with an electronically controlled transfer case keeps the truck planted whether the surface is rain, gravel or sand.</p></div>
+      <div class="cap l" data-at="0.8"><div class="k">The bridge</div><h2>Dealer marketplace to your driveway.</h2><p>By working within established wholesale channels we create a bridge between the automotive dealer marketplace and customers seeking greater access to quality pre-owned vehicles.</p></div>
     </div>
   </section>
 
   <!-- 4. INTELLIGENT TECHNOLOGY -->
   <section class="ax-sec" id="technology">
     <div class="ax-wrap">
-      <div class="ax-k rv">Intelligent technology</div>
-      <h2 class="ax-h rv">Quietly <span class="irid">brilliant</span>.</h2>
-      <p class="ax-p rv">The technology stays out of sight until it matters. Driver assistance that watches the road with you, cabins that pair with your phone in seconds, and service histories you can read before you visit.</p>
+      <div class="ax-k rv">Built on relationships. Driven by opportunity.</div>
+      <h2 class="ax-h rv">Positioned for <span class="irid">growth</span>.</h2>
+      <p class="ax-p rv">As buying habits and the automotive marketplace evolve, wholesale vehicle sourcing presents significant opportunity for expansion. Our vision extends beyond individual transactions: we are building a scalable sourcing operation supported by dealership relationships, wholesale market access, technology, efficient inventory acquisition and strategic partnerships.</p>
       <div class="ax-grid">
-        <div class="glass rv"><div class="big irid">150-pt</div><h3>Inspection</h3><p>Every vehicle in the Collection passes a 150-point mechanical and cosmetic check before it is photographed.</p></div>
-        <div class="glass rv"><div class="big irid">MBUX</div><h3>Cabins that listen</h3><p>Voice assistants, head-up displays and wireless CarPlay across the lineup.</p></div>
-        <div class="glass rv"><div class="big irid">Level 2</div><h3>Driver assistance</h3><p>Adaptive cruise, lane centering and Super Cruise where fitted, so the long miles take care of themselves.</p></div>
+        <div class="glass rv"><div class="big irid">Network</div><h3>Dealership partners</h3><p>We continue to expand our network of dealership partners, auction resources and purchasing channels to strengthen our ability to source diverse inventory.</p></div>
+        <div class="glass rv"><div class="big irid">Value</div><h3>Across the ecosystem</h3><p>Our model helps dealerships move inventory while creating additional opportunities for vehicles to reach their next destination.</p></div>
+        <div class="glass rv"><div class="big irid">Scale</div><h3>Technology and access</h3><p>Efficient acquisition, market knowledge and timing, so opportunities are identified and acted on quickly.</p></div>
       </div>
     </div>
   </section>
@@ -100,13 +100,13 @@
     <div class="stick">
       <canvas class="seq"></canvas>
       <div class="veil"></div>
-      <div class="cap tr" data-at="0.1"><div class="k">Driving experience</div><h2>Quiet, commanding, effortless.</h2><p>Buick Enclave: QuietTuning cabin, seven seats and an adaptive ride tuned for the long weekend rather than the lap time.</p></div>
+      <div class="cap tr" data-at="0.1"><div class="k">For customers</div><h2>Greater access. More possibilities.</h2><p>Vehicles sourced across the wholesale marketplace, inspected and presented like the day they left the studio.</p></div>
       <div class="hud" data-at="0.5">
-        <div><b>7</b><span>Seats · three rows</span></div>
-        <div><b>328</b><span>Horsepower</span></div>
-        <div><b>5,000</b><span>lb towing</span></div>
+        <div><b>Sedans</b><span>Executive &amp; luxury</span></div>
+        <div><b>SUVs</b><span>Full-size &amp; three-row</span></div>
+        <div><b>Trucks</b><span>Performance &amp; off-road</span></div>
       </div>
-      <div class="cap r" data-at="0.82"><div class="k">The reveal</div><h2>Every arrival is an event.</h2><p>Pearl white under an aurora sky. This is what showing up looks like.</p></div>
+      <div class="cap r" data-at="0.82"><div class="k">The reveal</div><h2>Every arrival is an event.</h2><p>From the auction lane to the open road. This is what showing up looks like.</p></div>
     </div>
   </section>
 
@@ -114,8 +114,8 @@
   <section class="ax-sec ax-spec" id="spectrum">
     <div class="ax-wrap">
       <div class="ax-split">
-        <div><div class="ax-k rv">Colour spectrum</div><h2 class="ax-h rv">Four <span class="irid">icons</span>, one lot.</h2></div>
-        <p class="ax-p rv">Each vehicle photographed under its own light. Hover or tap a name to switch.</p>
+        <div><div class="ax-k rv">The Collection</div><h2 class="ax-h rv">Four <span class="irid">icons</span>, one lot.</h2></div>
+        <p class="ax-p rv">A preview of the kind of inventory we source. Hover or tap a name to switch.</p>
       </div>
       <div class="spec-stage rv" id="specStage">
         ${VERSIONS.map((v, i) => v.video
@@ -130,22 +130,35 @@
     </div>
   </section>
 
+  <!-- 6b. WHO WE SERVE -->
+  <section class="ax-sec ax-band" id="partners">
+    <div class="ax-wrap">
+      <div class="ax-k rv">Who we serve</div>
+      <h2 class="ax-h rv">Value across the <span class="irid">ecosystem</span>.</h2>
+      <div class="ax-grid">
+        <div class="glass rv"><div class="n">Customers</div><h3>Greater access and more possibilities</h3><p>Quality pre-owned vehicles identified through channels a traditional retail lot never sees.</p></div>
+        <div class="glass rv"><div class="n">Dealership partners</div><h3>Another reliable channel for moving inventory</h3><p>Trades, aging stock and off-lease returns find their next destination through our network.</p></div>
+        <div class="glass rv"><div class="n">Strategic partners &amp; investors</div><h3>A model built for the moving marketplace</h3><p>Participation in a scalable sourcing operation positioned within the continually moving pre-owned automotive market. <a href="mailto:info@NewToMeAuto.com">info@NewToMeAuto.com</a></p></div>
+      </div>
+    </div>
+  </section>
+
   <!-- 7. SPECIFICATIONS -->
   <section class="ax-sec" id="specs">
     <div class="ax-wrap">
-      <div class="ax-k rv">Specifications</div>
-      <h2 class="ax-h rv">The Collection.</h2>
+      <div class="ax-k rv">Sourcing at a glance</div>
+      <h2 class="ax-h rv">How we source.</h2>
       <div class="specs">
-        <div class="rv"><span>Mercedes-Benz S-Class</span><b>3.0L I6 turbo · 429 hp</b></div>
-        <div class="rv"><span>Cadillac Escalade</span><b>6.2L V8 · 420 hp</b></div>
-        <div class="rv"><span>Buick Enclave</span><b>2.5L turbo · 328 hp</b></div>
-        <div class="rv"><span>Toyota Tacoma TRD</span><b>2.4L turbo · 278 hp</b></div>
-        <div class="rv"><span>Drivetrain</span><b>AWD · 4WD across the lineup</b></div>
-        <div class="rv"><span>Seating</span><b>5 to 7</b></div>
-        <div class="rv"><span>Inspection</span><b>150-point certified</b></div>
+        <div class="rv"><span>Channel</span><b>Dealer trades</b></div>
+        <div class="rv"><span>Channel</span><b>Off-lease vehicles</b></div>
+        <div class="rv"><span>Channel</span><b>Excess &amp; aging inventory</b></div>
+        <div class="rv"><span>Channel</span><b>Fleet opportunities</b></div>
+        <div class="rv"><span>Channel</span><b>Licensed wholesale auctions</b></div>
+        <div class="rv"><span>Network</span><b>Dealerships &amp; industry partners</b></div>
+        <div class="rv"><span>Inspection</span><b>150-point check</b></div>
         <div class="rv"><span>History</span><b>Full report included</b></div>
-        <div class="rv"><span>Warranty</span><b>Available on every vehicle</b></div>
-        <div class="rv"><span>Availability</span><b>Opening soon</b></div>
+        <div class="rv"><span>Based in</span><b>Connecticut, USA</b></div>
+        <div class="rv"><span>Status</span><b>Opening soon</b></div>
       </div>
     </div>
   </section>
@@ -153,9 +166,9 @@
   <!-- 8. CTA -->
   <section class="ax-sec ax-band ax-cta" id="reserve">
     <div class="ax-wrap">
-      <div class="ax-k rv">Be first</div>
+      <div class="ax-k rv">From the auction lane to the open road</div>
       <h2 class="ax-h chrome rv" data-text="Coming Soon">Coming Soon</h2>
-      <p class="ax-p rv" style="margin-left:auto;margin-right:auto">Register now for first access to the Collection and an invitation to the opening.</p>
+      <p class="ax-p rv" style="margin-left:auto;margin-right:auto">Your connection to the wholesale automotive market. Register now for first access to the Collection and an invitation to the opening.</p>
       <form id="axForm" class="rv"><input type="email" placeholder="Your email" required aria-label="Email"><button type="submit">Register interest</button></form>
       <div class="ok" id="axOk">Thank you. Your registration has been sent to info@NewToMeAuto.com.</div>
       <p class="ax-contact rv">Questions? Email <a href="mailto:info@NewToMeAuto.com">info@NewToMeAuto.com</a></p>
@@ -163,7 +176,7 @@
   </section>
   <footer class="ax-foot">
     <span>© ${new Date().getFullYear()} New To Me Auto. All rights reserved. · <a href="mailto:info@NewToMeAuto.com">info@NewToMeAuto.com</a></span>
-    <span class="legal"><a href="#" data-legal="terms">Terms of Service</a> · <a href="#" data-legal="privacy">Privacy Policy</a> · The Collection · Coming Soon</span>
+    <span class="legal"><a href="#" data-legal="terms">Terms of Service</a> · <a href="#" data-legal="privacy">Privacy Policy</a> · From Dealer Auctions to Your Driveway</span>
   </footer>
   <div class="ax-modal" id="axModal" role="dialog" aria-modal="true" aria-labelledby="axModalTitle">
     <div class="bg" data-close></div>
