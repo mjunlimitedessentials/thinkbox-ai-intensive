@@ -14,8 +14,7 @@
   const HTML = `
   <div class="ax-loader" id="axLoader">
     <div>
-      <img class="logo-img" src="${ASSET}/img/logo.png" alt="New To Me Auto — Wholesaler · Distributor">
-      <div class="mark">Wholesaler · Distributor</div>
+      <div class="mark">New To Me Auto · The Collection</div>
       <div class="word chrome" data-text="Coming Soon">Coming Soon</div>
       <div class="bar"><i id="axBar"></i></div>
       <div class="pct" id="axPct">Loading 0%</div>
@@ -26,7 +25,7 @@
   <div class="ax-progress" id="axProgress"></div>
 
   <nav class="ax-nav">
-    <a href="#top" class="logo"><img src="${ASSET}/img/logo.png" alt="New To Me Auto"><span class="lt">Wholesaler · Distributor</span></a>
+    <a href="#top" class="logo">New To Me<small>Auto · The Collection</small></a>
     <div class="menu"><a href="#design">About</a><a href="#performance">Sourcing</a><a href="#technology">Process</a><a href="#spectrum">Collection</a><a href="#partners">Partners</a></div>
     <a href="#reserve" class="pill">Coming Soon</a>
   </nav>
@@ -38,9 +37,9 @@
       <div class="veil"></div>
       <div class="copy">
         <div>
-          <div class="k rv">Wholesaler · Distributor · Your connection to the wholesale automotive market</div>
+          <div class="k rv">New To Me Auto · Your connection to the wholesale automotive market</div>
           <h1 class="chrome" data-text="Coming Soon">Coming Soon</h1>
-          <div class="sub rv">Quality vehicles. More possibilities. From dealer auctions to your driveway.</div>
+          <div class="sub rv">From dealer auctions to your driveway. Scroll to see what access looks like.</div>
         </div>
         <div class="scroll">Scroll</div>
       </div>
@@ -176,7 +175,6 @@
     </div>
   </section>
   <footer class="ax-foot">
-    <img class="foot-logo" src="${ASSET}/img/logo.png" alt="New To Me Auto">
     <span>© ${new Date().getFullYear()} New To Me Auto. All rights reserved. · <a href="mailto:info@NewToMeAuto.com">info@NewToMeAuto.com</a></span>
     <span class="legal"><a href="#" data-legal="terms">Terms of Service</a> · <a href="#" data-legal="privacy">Privacy Policy</a> · From Dealer Auctions to Your Driveway</span>
   </footer>
